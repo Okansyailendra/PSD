@@ -389,8 +389,20 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.2 Tujuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumusan-masalah">1.3 Rumusan Masalah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">1.4 Manfaat</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-data">2.1 Sumber Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-data">2.2 Struktur Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur-polutan">2.3 Deskripsi Fitur (Polutan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-pengecekan-anomali">2.4 Eksplorasi Data &amp; Pengecekan Anomali</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-crawling-pemrosesan-data">3. Proses Crawling &amp; Pemrosesan Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-setup-batas-wilayah-geojson">A. Setup Batas Wilayah GeoJSON</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengunduh-data-dari-api">B. Mengunduh Data dari API</a></li>
@@ -419,7 +431,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5">B. Grafik Partikel Berbahaya (PM10 dan PM2.5)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-grafik-ozon-permukaan-o3">C. Grafik Ozon Permukaan (O3)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-ringkasan-statistik-akhir">D. Ringkasan Statistik Akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-sementara">5. Kesimpulan Sementara</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -436,32 +453,174 @@ document.write(`
 <h1>Analisis Kualitas Udara (Polutan) di Kawasan Gresik<a class="headerlink" href="#analisis-kualitas-udara-polutan-di-kawasan-gresik" title="Link to this heading">#</a></h1>
 <section id="business-understanding">
 <h2>1. Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h2>
-<p><strong>Tujuan:</strong>
-Proyek ini bertujuan untuk mengekstraksi, menganalisis, dan mengetahui tren kualitas udara (tingkat polutan) di area spesifik Kabupaten Gresik selama kurun waktu satu tahun terakhir. Analisis ini menggunakan data historis yang ditarik hingga 31 Agustus 2026.</p>
-<p><strong>Manfaat:</strong></p>
+<section id="latar-belakang">
+<h3>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h3>
+<p>Kabupaten Gresik merupakan salah satu kawasan industri terpadat di Provinsi Jawa Timur, dengan konsentrasi pabrik semen, petrokimia, baja, dan pelabuhan yang tinggi. Aktivitas industri ini, ditambah dengan kepadatan lalu lintas kendaraan bermotor, berpotensi menghasilkan emisi gas buang dan partikulat dalam jumlah besar. Kualitas udara yang buruk secara langsung berdampak pada kesehatan masyarakat sekitar, mulai dari gangguan pernapasan ringan hingga penyakit kronis seperti asma, bronkitis, dan penyakit kardiovaskular jika terpapar dalam jangka panjang.</p>
+<p>Sayangnya, informasi mengenai kondisi kualitas udara di tingkat kabupaten/kota seringkali tidak tersedia secara real-time atau mudah diakses oleh masyarakat umum. Oleh karena itu, proyek ini mencoba menjawab kebutuhan tersebut dengan memanfaatkan data satelit dan sensor kualitas udara yang tersedia secara terbuka (open data).</p>
+</section>
+<section id="tujuan">
+<h3>1.2 Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h3>
+<p>Proyek ini bertujuan untuk:</p>
+<ol class="arabic simple">
+<li><p><strong>Mengekstraksi</strong> data historis kualitas udara (level polutan) di wilayah spesifik Kabupaten Gresik selama kurun waktu satu tahun terakhir (31 Agustus 2025 – 31 Agustus 2026) menggunakan API publik.</p></li>
+<li><p><strong>Menganalisis</strong> karakteristik statistik dari setiap jenis polutan (CO, NO2, PM10, PM2.5, dan O3), termasuk mendeteksi adanya data yang hilang (<em>missing values</em>), nilai negatif, dan outlier.</p></li>
+<li><p><strong>Mengetahui tren</strong> pergerakan kualitas udara dari waktu ke waktu (time series) untuk melihat pola musiman, jam-jam dengan polusi tertinggi, atau lonjakan konsentrasi tertentu.</p></li>
+<li><p><strong>Menyajikan</strong> hasil analisis dalam bentuk visualisasi yang mudah dipahami oleh berbagai kalangan, baik akademisi, masyarakat umum, maupun pengambil kebijakan.</p></li>
+</ol>
+</section>
+<section id="rumusan-masalah">
+<h3>1.3 Rumusan Masalah<a class="headerlink" href="#rumusan-masalah" title="Link to this heading">#</a></h3>
+<p>Berdasarkan tujuan di atas, terdapat beberapa pertanyaan yang ingin dijawab melalui analisis ini:</p>
 <ul class="simple">
-<li><p><strong>Bagi Masyarakat:</strong> Meningkatkan kesadaran akan kualitas udara sehingga masyarakat bisa mengambil langkah preventif kesehatan (misalnya mengurangi kegiatan luar ruangan atau memakai masker saat polutan tinggi).</p></li>
-<li><p><strong>Bagi Pemerintah:</strong> Mengingat Gresik adalah kawasan perindustrian padat, data ini bisa menjadi landasan atau acuan untuk mengevaluasi kebijakan pengendalian emisi dari pabrik dan lalu lintas jalan.</p></li>
+<li><p>Bagaimana tren konsentrasi CO, NO2, PM10, PM2.5, dan O3 di Gresik selama satu tahun terakhir?</p></li>
+<li><p>Apakah terdapat pola musiman atau harian (misalnya lebih tinggi di jam sibuk lalu lintas atau musim kemarau)?</p></li>
+<li><p>Apakah ada indikasi anomali data (nilai negatif, data hilang, atau lonjakan ekstrem) yang perlu ditangani sebelum analisis lanjutan?</p></li>
+<li><p>Polutan mana yang paling sering melebihi ambang batas aman menurut standar kesehatan?</p></li>
 </ul>
+</section>
+<section id="manfaat">
+<h3>1.4 Manfaat<a class="headerlink" href="#manfaat" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Bagi Masyarakat:</strong> Meningkatkan kesadaran akan kondisi kualitas udara di lingkungan sekitar, sehingga masyarakat dapat mengambil langkah preventif (misalnya mengurangi aktivitas luar ruangan atau memakai masker saat konsentrasi polutan tinggi), terutama bagi kelompok rentan seperti anak-anak, lansia, dan penderita gangguan pernapasan.</p></li>
+<li><p><strong>Bagi Pemerintah:</strong> Mengingat Gresik adalah kawasan perindustrian padat, data ini dapat menjadi landasan atau acuan untuk mengevaluasi efektivitas kebijakan pengendalian emisi dari pabrik dan lalu lintas jalan, serta menjadi dasar untuk perencanaan tata ruang yang lebih ramah lingkungan.</p></li>
+<li><p><strong>Bagi Akademisi/Peneliti:</strong> Data dan hasil analisis ini dapat menjadi baseline atau titik awal untuk penelitian lanjutan, misalnya pemodelan prediksi kualitas udara (forecasting) atau studi korelasi antara aktivitas industri dan tingkat polusi.</p></li>
+</ul>
+</section>
 </section>
 <hr class="docutils" />
 <section id="data-understanding">
 <h2>2. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
-<p>Data yang digunakan merupakan rangkaian <em>time-series</em> polutan udara per jam. Berikut adalah rincian fitur dan sumbernya:</p>
+<section id="sumber-data">
+<h3>2.1 Sumber Data<a class="headerlink" href="#sumber-data" title="Link to this heading">#</a></h3>
+<p>Data diperoleh dari <strong>Open-Meteo Air Quality API</strong>, yaitu layanan open data yang menyediakan estimasi konsentrasi polutan udara berbasis model reanalisis atmosfer (mengombinasikan data satelit, model kimia atmosfer CAMS milik Copernicus, dan data stasiun pemantauan darat). Data yang diambil berupa data per jam (<em>hourly</em>) selama satu tahun ke belakang, dibatasi pada satu titik koordinat yang mewakili pusat wilayah kajian (Gresik), yang diperoleh dari titik tengah (<em>centroid</em>) poligon GeoJSON batas wilayah yang telah ditentukan.</p>
+<p>Karena sifatnya berbasis model estimasi (bukan pengukuran langsung dari satu alat sensor fisik di lokasi), nilai yang dihasilkan bisa dianggap sebagai representasi kondisi udara di area tersebut, bukan pengukuran presisi pada satu titik geografis yang sangat spesifik.</p>
+</section>
+<section id="struktur-data">
+<h3>2.2 Struktur Data<a class="headerlink" href="#struktur-data" title="Link to this heading">#</a></h3>
+<p>Data yang digunakan merupakan rangkaian <em>time-series</em> polutan udara per jam, dengan kolom sebagai berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Tipe Data</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+<td><p>datetime</p></td>
+<td><p>Waktu pencatatan (tanggal dan jam)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CO</span></code></p></td>
+<td><p>float</p></td>
+<td><p>Konsentrasi Karbon Monoksida (μg/m³)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NO2</span></code></p></td>
+<td><p>float</p></td>
+<td><p>Konsentrasi Nitrogen Dioksida (μg/m³)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PM10</span></code></p></td>
+<td><p>float</p></td>
+<td><p>Konsentrasi partikel &lt; 10 mikrometer (μg/m³)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PM2.5</span></code></p></td>
+<td><p>float</p></td>
+<td><p>Konsentrasi partikel &lt; 2.5 mikrometer (μg/m³)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">O3</span></code></p></td>
+<td><p>float</p></td>
+<td><p>Konsentrasi Ozon permukaan (μg/m³)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="deskripsi-fitur-polutan">
+<h3>2.3 Deskripsi Fitur (Polutan)<a class="headerlink" href="#deskripsi-fitur-polutan" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">time</span></code></strong>: Waktu pencatatan (tanggal dan jam) dari sensor.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">CO</span></code> (Karbon Monoksida):</strong> Gas beracun yang tidak memiliki warna maupun bau. <strong>Sumber utama:</strong> Berasal dari pembakaran yang tidak sempurna, umumnya diproduksi paling banyak oleh asap knalpot kendaraan bermotor.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">NO2</span></code> (Nitrogen Dioksida):</strong> Gas yang memiliki bau tajam menyengat dan berwarna cokelat kemerahan. <strong>Sumber utama:</strong> Mesin kendaraan bermotor (terutama diesel), pembangkit listrik, dan pembuangan asap pabrik.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">PM10</span></code> (Particulate Matter):</strong> Partikel udara debu atau asap yang berukuran mikroskopis (kurang dari 2,5 dan 10 mikrometer) dan dapat masuk ke saluran pernapasan. <strong>Sumber:</strong> Asap cerobong pabrik, debu aktivitas konstruksi, dan pembakaran terbuka.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">O3</span></code> (Ozon Permukaan):</strong> Ozon di permukaan tanah yang bisa membahayakan paru-paru. Terbentuk dari reaksi kimia antara sinar matahari dan polutan lain (seperti NO2).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">CO</span></code> (Karbon Monoksida):</strong> Gas beracun yang tidak berwarna maupun berbau, dihasilkan dari pembakaran bahan bakar fosil yang tidak sempurna. <strong>Sumber utama:</strong> asap knalpot kendaraan bermotor, pembakaran industri, dan pembakaran biomassa. <strong>Dampak kesehatan:</strong> mengikat hemoglobin dalam darah menggantikan oksigen, sehingga dalam konsentrasi tinggi dapat menyebabkan pusing, mual, hingga keracunan yang berakibat fatal. Baku mutu udara ambien nasional (PP No. 22 Tahun 2021) untuk CO rata-rata 1 jam adalah 10.000 μg/m³.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">NO2</span></code> (Nitrogen Dioksida):</strong> Gas berwarna cokelat kemerahan dengan bau tajam menyengat. <strong>Sumber utama:</strong> mesin kendaraan bermotor (terutama diesel), pembangkit listrik tenaga bahan bakar fosil, dan cerobong asap pabrik. <strong>Dampak kesehatan:</strong> mengiritasi saluran pernapasan, memperparah asma, dan dalam jangka panjang menurunkan fungsi paru-paru. Baku mutu rata-rata 1 jam menurut PP No. 22 Tahun 2021 adalah 200 μg/m³.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">PM10</span></code> (Particulate Matter ≤10 µm):</strong> Partikel debu/asap berukuran di bawah 10 mikrometer yang dapat masuk ke saluran pernapasan bagian atas. <strong>Sumber:</strong> debu jalan, aktivitas konstruksi, dan asap cerobong pabrik. Baku mutu rata-rata 24 jam adalah 75 μg/m³.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> (Particulate Matter ≤2.5 µm):</strong> Partikel yang jauh lebih halus dan berbahaya karena dapat menembus hingga ke alveolus paru-paru bahkan masuk ke aliran darah. <strong>Sumber:</strong> pembakaran bahan bakar fosil, asap kendaraan diesel, dan pembakaran terbuka (misalnya pembakaran sampah/lahan). Baku mutu rata-rata 24 jam adalah 55 μg/m³, dan termasuk polutan yang paling banyak dikaitkan dengan risiko penyakit jantung dan kanker paru dalam studi epidemiologi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">O3</span></code> (Ozon Permukaan):</strong> Berbeda dengan lapisan ozon stratosfer yang melindungi bumi, ozon permukaan bersifat berbahaya bagi kesehatan. <strong>Terbentuk</strong> dari reaksi fotokimia antara sinar matahari dengan polutan prekursor seperti NO2 dan senyawa organik volatil (VOC), sehingga konsentrasinya cenderung lebih tinggi pada siang hari yang cerah. <strong>Dampak kesehatan:</strong> mengiritasi saluran pernapasan dan memperparah kondisi asma. Baku mutu rata-rata 1 jam adalah 150 μg/m³.</p></li>
 </ul>
-<p><strong>Pengecekan Data Aneh (Anomali):</strong>
-Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
+</section>
+<section id="eksplorasi-data-pengecekan-anomali">
+<h3>2.4 Eksplorasi Data &amp; Pengecekan Anomali<a class="headerlink" href="#eksplorasi-data-pengecekan-anomali" title="Link to this heading">#</a></h3>
+<p>Sebelum data dibersihkan, penting untuk melakukan eksplorasi awal guna mengetahui kondisi data secara umum: tipe data, jumlah baris, rentang nilai, serta indikasi anomali seperti data kosong (<em>missing values</em>), nilai negatif, atau outlier ekstrem.</p>
+<p>Berikut adalah kode eksplorasi tambahan yang dilakukan <strong>sebelum tahap pembersihan</strong> pada bagian 3:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contoh eksplorasi awal (dijalankan setelah df terbentuk dari hasil crawling di bagian 3.C)</span>
+<span class="c1"># Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Contoh eksplorasi awal (dijalankan setelah df terbentuk dari hasil crawling di bagian 3.C)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Statistik deskriptif untuk melihat rentang nilai (min, max, mean, std) tiap polutan</span>
+<span class="c1"># Berguna untuk mendeteksi kejanggalan, misalnya nilai minimum yang negatif</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cek jumlah missing values (NaN) di setiap kolom</span>
+<span class="n">missing_summary</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah data kosong (missing values) per kolom:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cek jumlah nilai negatif per kolom SEBELUM dibersihkan</span>
+<span class="c1"># Nilai negatif secara logika fisika tidak mungkin terjadi pada konsentrasi gas/partikel</span>
+<span class="n">kolom_polutan</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pm10&#39;</span><span class="p">,</span> <span class="s1">&#39;pm2_5&#39;</span><span class="p">,</span> <span class="s1">&#39;carbon_monoxide&#39;</span><span class="p">,</span> <span class="s1">&#39;nitrogen_dioxide&#39;</span><span class="p">,</span> <span class="s1">&#39;ozone&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">kolom_polutan</span><span class="p">:</span>
+    <span class="n">jumlah_negatif</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah nilai negatif pada </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">jumlah_negatif</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kolom_polutan</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#3498db&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Deteksi Outlier per Jenis Polutan (Sebelum Dibersihkan)&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dari eksplorasi di atas, kita bisa memutuskan tiga jenis penanganan anomali:</p>
 <ol class="arabic simple">
-<li><p><strong>Missing Values (NaN):</strong> Data kosong pada jam tertentu, biasanya terjadi saat alat sedang pemeliharaan (<em>maintenance</em>).</p></li>
-<li><p><strong>Nilai Negatif:</strong> Secara logika, konsentrasi gas di udara tidak mungkin di bawah 0. Jika ada nilai negatif, itu merupakan <em>error</em> sensor yang harus ditangani (diubah menjadi NaN).</p></li>
-<li><p><strong>Lonjakan Ekstrem (Outlier):</strong> Nilai yang mendadak sangat tinggi dalam rentang waktu yang terlalu singkat.</p></li>
+<li><p><strong>Missing Values (NaN):</strong> Data kosong pada jam tertentu, biasanya terjadi saat sensor atau model reanalisis sedang tidak memiliki data (<em>gap</em>) untuk lokasi/waktu tersebut.</p></li>
+<li><p><strong>Nilai Negatif:</strong> Secara logika, konsentrasi gas atau partikel di udara tidak mungkin bernilai di bawah 0. Jika ditemukan, nilai tersebut merupakan <em>error</em> numerik model/sensor dan harus ditangani (diubah menjadi NaN, lalu dapat diisi ulang dengan interpolasi jika diperlukan).</p></li>
+<li><p><strong>Lonjakan Ekstrem (Outlier):</strong> Nilai yang mendadak sangat tinggi dibanding nilai di sekitarnya dalam rentang waktu singkat. Outlier tidak selalu berarti error — bisa juga mengindikasikan kejadian nyata seperti kebakaran lahan atau kemacetan ekstrem — sehingga perlu diverifikasi lebih lanjut sebelum dihapus.</p></li>
 </ol>
+</section>
 </section>
 <hr class="docutils" />
 <section id="proses-crawling-pemrosesan-data">
@@ -497,8 +656,33 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Titik Pusat Penarikan Data -&gt; Latitude: -7.15842, Longitude: 112.65617
+</div>
+<p>Untuk memastikan batas wilayah yang dipakai sudah sesuai (bukan hanya berupa angka koordinat), kita bisa memvisualisasikan poligon tersebut di atas peta interaktif menggunakan <code class="docutils literal notranslate"><span class="pre">folium</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+
+<span class="c1"># Membuat peta terpusat di centroid wilayah kajian</span>
+<span class="n">peta_wilayah</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">centroid_lat</span><span class="p">,</span> <span class="n">centroid_lon</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+
+<span class="c1"># Menambahkan poligon batas wilayah Gresik ke peta</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
+    <span class="n">locations</span><span class="o">=</span><span class="p">[(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span> <span class="k">for</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="ow">in</span> <span class="n">geojson_coords</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#e74c3c&#39;</span><span class="p">,</span>
+    <span class="n">weight</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Batas Wilayah Kajian - Gresik&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta_wilayah</span><span class="p">)</span>
+
+<span class="c1"># Menandai titik pusat (centroid) tempat data ditarik</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">centroid_lat</span><span class="p">,</span> <span class="n">centroid_lon</span><span class="p">],</span>
+    <span class="n">popup</span><span class="o">=</span><span class="s1">&#39;Titik Pengambilan Data API&#39;</span><span class="p">,</span>
+    <span class="n">icon</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">Icon</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;cloud&#39;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta_wilayah</span><span class="p">)</span>
+
+<span class="n">peta_wilayah</span>
 </pre></div>
 </div>
 </div>
@@ -542,18 +726,10 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memulai proses crawling...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data API berhasil ditarik!
-</pre></div>
-</div>
-</div>
 </div>
 <section id="c-data-preparation-penyesuaian-urutan">
 <h2>C. Data Preparation &amp; Penyesuaian Urutan<a class="headerlink" href="#c-data-preparation-penyesuaian-urutan" title="Link to this heading">#</a></h2>
-<p>Setelah data JSON ditarik dari API, kita ubah menjadi DataFrame. Kita juga akan menghapus anomali nilai negatif dan memastikan urutan data diatur dari yang terlama ke yang terbaru (ascending).</p>
+<p>Setelah data JSON ditarik dari API, kita ubah menjadi DataFrame. Kita juga akan melakukan eksplorasi awal (lihat Bagian 2.4), lalu menghapus anomali nilai negatif, mengisi data yang hilang, dan memastikan urutan data diatur dari yang terlama ke yang terbaru (ascending).</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="memasukkan-data-ke-dalam-pandas-dataframe">
@@ -562,6 +738,15 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hourly&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Eksplorasi awal sebelum pembersihan (lihat penjelasan Bagian 2.4) ---</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -593,6 +778,22 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengisi missing values (NaN) menggunakan interpolasi linear berbasis waktu</span>
+<span class="c1"># Interpolasi dipilih karena data bersifat time-series dan nilai polutan</span>
+<span class="c1"># cenderung berubah secara gradual antar-jam, bukan melompat drastis</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Verifikasi ulang tidak ada lagi missing values setelah interpolasi</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sisa missing values setelah interpolasi:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas">
 <h1>Mengurutkan waktu secara ASCENDING agar runtun waktu rapi (Data terlama di atas)<a class="headerlink" href="#mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas" title="Link to this heading">#</a></h1>
@@ -614,11 +815,6 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data disimpan ke dalam bentuk file: polutan_gresik_2025_2026.csv
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="menampilkan-cuplikan-data-teratas">
@@ -629,83 +825,8 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>time</th>
-      <th>PM10</th>
-      <th>PM2.5</th>
-      <th>CO</th>
-      <th>NO2</th>
-      <th>O3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2025-08-31 00:00:00</td>
-      <td>30.7</td>
-      <td>29.5</td>
-      <td>860.0</td>
-      <td>27.3</td>
-      <td>35.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2025-08-31 01:00:00</td>
-      <td>39.1</td>
-      <td>37.6</td>
-      <td>911.0</td>
-      <td>29.3</td>
-      <td>30.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2025-08-31 02:00:00</td>
-      <td>49.1</td>
-      <td>47.5</td>
-      <td>1077.0</td>
-      <td>31.7</td>
-      <td>24.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2025-08-31 03:00:00</td>
-      <td>55.3</td>
-      <td>53.4</td>
-      <td>1303.0</td>
-      <td>34.4</td>
-      <td>17.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2025-08-31 04:00:00</td>
-      <td>58.9</td>
-      <td>56.8</td>
-      <td>1507.0</td>
-      <td>36.9</td>
-      <td>16.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
+<hr class="docutils" />
 <section id="visualisasi-grafik-time-series">
 <h2>4. Visualisasi Grafik (Time Series)<a class="headerlink" href="#visualisasi-grafik-time-series" title="Link to this heading">#</a></h2>
 <p>Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya.</p>
@@ -740,9 +861,6 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/18c6d19a966a8c5174f528e9e2d939bacbc1a4a18e1a4a1ab1392423276289ce.png" src="_images/18c6d19a966a8c5174f528e9e2d939bacbc1a4a18e1a4a1ab1392423276289ce.png" />
-</div>
 </div>
 <section id="b-grafik-partikel-berbahaya-pm10-dan-pm2-5">
 <h2>B. Grafik Partikel Berbahaya (PM10 dan PM2.5)<a class="headerlink" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5" title="Link to this heading">#</a></h2>
@@ -771,10 +889,50 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/169cf0368b338affb3b14a73795dfeec507303858a3089bf241106dff143e344.png" src="_images/169cf0368b338affb3b14a73795dfeec507303858a3089bf241106dff143e344.png" />
+</div>
+<section id="c-grafik-ozon-permukaan-o3">
+<h2>C. Grafik Ozon Permukaan (O3)<a class="headerlink" href="#c-grafik-ozon-permukaan-o3" title="Link to this heading">#</a></h2>
+<p>Karena O3 terbentuk dari reaksi fotokimia, polanya cenderung berbeda dengan polutan hasil emisi langsung (CO, NO2), sehingga divisualisasikan secara terpisah.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;O3&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;O3 (Ozon Permukaan)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f39c12&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Ozon Permukaan (O3) di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tingkat Konsentrasi (μg/m³)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
+</div>
+</section>
+<section id="d-ringkasan-statistik-akhir">
+<h2>D. Ringkasan Statistik Akhir<a class="headerlink" href="#d-ringkasan-statistik-akhir" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ringkasan statistik harian dari seluruh polutan setelah proses pembersihan</span>
+<span class="n">df_daily</span><span class="p">[[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan-sementara">
+<h2>5. Kesimpulan Sementara<a class="headerlink" href="#kesimpulan-sementara" title="Link to this heading">#</a></h2>
+<p>Berdasarkan eksplorasi dan visualisasi di atas, beberapa hal yang dapat disimpulkan (silakan sesuaikan dengan hasil aktual dari data yang ditarik):</p>
+<ul class="simple">
+<li><p>Tren konsentrasi masing-masing polutan selama satu tahun terakhir dapat diamati melalui grafik time series di Bagian 4.</p></li>
+<li><p>Proses pembersihan data (penanganan nilai negatif dan missing values melalui interpolasi) memastikan data yang dianalisis lebih valid secara logis.</p></li>
+<li><p>Hasil analisis ini dapat menjadi acuan awal bagi masyarakat dan pemerintah setempat dalam memahami pola kualitas udara di Gresik, serta menjadi dasar untuk kajian lanjutan seperti pemodelan prediksi (forecasting) polutan.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -842,8 +1000,20 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.2 Tujuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumusan-masalah">1.3 Rumusan Masalah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">1.4 Manfaat</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-data">2.1 Sumber Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-data">2.2 Struktur Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur-polutan">2.3 Deskripsi Fitur (Polutan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-pengecekan-anomali">2.4 Eksplorasi Data &amp; Pengecekan Anomali</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-crawling-pemrosesan-data">3. Proses Crawling &amp; Pemrosesan Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-setup-batas-wilayah-geojson">A. Setup Batas Wilayah GeoJSON</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengunduh-data-dari-api">B. Mengunduh Data dari API</a></li>
@@ -872,7 +1042,12 @@ Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5">B. Grafik Partikel Berbahaya (PM10 dan PM2.5)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-grafik-ozon-permukaan-o3">C. Grafik Ozon Permukaan (O3)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-ringkasan-statistik-akhir">D. Ringkasan Statistik Akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-sementara">5. Kesimpulan Sementara</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
