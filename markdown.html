@@ -547,62 +547,29 @@ document.write(`
 <section id="eksplorasi-data-pengecekan-anomali">
 <h3>2.4 Eksplorasi Data &amp; Pengecekan Anomali<a class="headerlink" href="#eksplorasi-data-pengecekan-anomali" title="Link to this heading">#</a></h3>
 <p>Sebelum data dibersihkan, penting untuk melakukan eksplorasi awal guna mengetahui kondisi data secara umum: tipe data, jumlah baris, rentang nilai, serta indikasi anomali seperti data kosong (<em>missing values</em>), nilai negatif, atau outlier ekstrem.</p>
-<p>Berikut adalah kode eksplorasi tambahan yang dilakukan <strong>sebelum tahap pembersihan</strong> pada bagian 3:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contoh eksplorasi awal (dijalankan setelah df terbentuk dari hasil crawling di bagian 3.C)</span>
-<span class="c1"># Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori</span>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Kode di bawah ini hanya <strong>contoh ilustrasi</strong> cara melakukan pengecekan (belum dieksekusi di sini karena <code class="docutils literal notranslate"><span class="pre">df</span></code> belum tersedia — variabel <code class="docutils literal notranslate"><span class="pre">df</span></code> baru terbentuk setelah proses crawling di Bagian 3.B). Kode yang benar-benar dijalankan (executable) ada di <strong>Bagian 3.C</strong>, tepat setelah data hasil crawling dimasukkan ke DataFrame.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Contoh eksplorasi awal (dijalankan setelah df terbentuk dari hasil crawling di bagian 3.C)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Statistik deskriptif untuk melihat rentang nilai (min, max, mean, std) tiap polutan</span>
+<span class="c1"># Statistik deskriptif untuk melihat rentang nilai (min, max, mean, std) tiap polutan</span>
 <span class="c1"># Berguna untuk mendeteksi kejanggalan, misalnya nilai minimum yang negatif</span>
 <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cek jumlah missing values (NaN) di setiap kolom</span>
-<span class="n">missing_summary</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Cek jumlah missing values (NaN) di setiap kolom</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah data kosong (missing values) per kolom:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">missing_summary</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cek jumlah nilai negatif per kolom SEBELUM dibersihkan</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># Cek jumlah nilai negatif per kolom SEBELUM dibersihkan</span>
 <span class="c1"># Nilai negatif secara logika fisika tidak mungkin terjadi pada konsentrasi gas/partikel</span>
 <span class="n">kolom_polutan</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pm10&#39;</span><span class="p">,</span> <span class="s1">&#39;pm2_5&#39;</span><span class="p">,</span> <span class="s1">&#39;carbon_monoxide&#39;</span><span class="p">,</span> <span class="s1">&#39;nitrogen_dioxide&#39;</span><span class="p">,</span> <span class="s1">&#39;ozone&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">kolom_polutan</span><span class="p">:</span>
     <span class="n">jumlah_negatif</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah nilai negatif pada </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">jumlah_negatif</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan</span>
+
+<span class="c1"># Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kolom_polutan</span><span class="p">):</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#3498db&#39;</span><span class="p">)</span>
@@ -611,8 +578,6 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
 </div>
 <p>Dari eksplorasi di atas, kita bisa memutuskan tiga jenis penanganan anomali:</p>
 <ol class="arabic simple">
@@ -656,6 +621,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Titik Pusat Penarikan Data -&gt; Latitude: -7.15842, Longitude: 112.65617
+</pre></div>
+</div>
+</div>
 </div>
 <p>Untuk memastikan batas wilayah yang dipakai sudah sesuai (bukan hanya berupa angka koordinat), kita bisa memvisualisasikan poligon tersebut di atas peta interaktif menggunakan <code class="docutils literal notranslate"><span class="pre">folium</span></code>:</p>
 <div class="cell docutils container">
@@ -686,6 +656,162 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_726023fbfd03cf799a31bfeb13b6b9ca {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+
+            &lt;style&gt;html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            &lt;/style&gt;
+
+            &lt;style&gt;#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            &lt;/style&gt;
+
+            &lt;script&gt;
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            &lt;/script&gt;
+
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_726023fbfd03cf799a31bfeb13b6b9ca&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_726023fbfd03cf799a31bfeb13b6b9ca = L.map(
+                &quot;map_726023fbfd03cf799a31bfeb13b6b9ca&quot;,
+                {
+                    center: [-7.158422392571495, 112.6561724712801],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 13,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7305db9ccba6b0853d9cb3900499910d = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_7305db9ccba6b0853d9cb3900499910d.addTo(map_726023fbfd03cf799a31bfeb13b6b9ca);
+        
+    
+            var polygon_39fee717bc49cbea58718354ce484f02 = L.polygon(
+                [[-7.1481289, 112.6568922], [-7.1509091, 112.6482448], [-7.1672063, 112.6525927], [-7.1655766, 112.6657812], [-7.1481289, 112.6568922]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#e74c3c&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#e74c3c&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_726023fbfd03cf799a31bfeb13b6b9ca);
+        
+    
+            polygon_39fee717bc49cbea58718354ce484f02.bindTooltip(
+                `&lt;div&gt;
+                     Batas Wilayah Kajian - Gresik
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_d2be4d9dee013433daf9de24269ac5f4 = L.marker(
+                [-7.158422392571495, 112.6561724712801],
+                {
+}
+            ).addTo(map_726023fbfd03cf799a31bfeb13b6b9ca);
+        
+    
+            var icon_f2a887879ba6ccbb5c2e06cc024a598f = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;blue&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;cloud&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_ce7c4a7dfeae976617b54da756fb09ee = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_86939b3c327b11a257f172caf2bfcdda = $(`&lt;div id=&quot;html_86939b3c327b11a257f172caf2bfcdda&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
+                popup_ce7c4a7dfeae976617b54da756fb09ee.setContent(html_86939b3c327b11a257f172caf2bfcdda);
+            
+        
+
+        marker_d2be4d9dee013433daf9de24269ac5f4.bindPopup(popup_ce7c4a7dfeae976617b54da756fb09ee)
+        ;
+
+        
+    
+    
+                marker_d2be4d9dee013433daf9de24269ac5f4.setIcon(icon_f2a887879ba6ccbb5c2e06cc024a598f);
+            
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
 </div>
 </section>
 <section id="b-mengunduh-data-dari-api">
@@ -726,6 +852,14 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memulai proses crawling...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data API berhasil ditarik!
+</pre></div>
+</div>
+</div>
 </div>
 <section id="c-data-preparation-penyesuaian-urutan">
 <h2>C. Data Preparation &amp; Penyesuaian Urutan<a class="headerlink" href="#c-data-preparation-penyesuaian-urutan" title="Link to this heading">#</a></h2>
@@ -746,9 +880,194 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Eksplorasi awal sebelum pembersihan (lihat penjelasan Bagian 2.4) ---</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 8784 entries, 0 to 8783
+Data columns (total 6 columns):
+ #   Column            Non-Null Count  Dtype         
+---  ------            --------------  -----         
+ 0   time              8784 non-null   datetime64[ns]
+ 1   pm10              8756 non-null   float64       
+ 2   pm2_5             8756 non-null   float64       
+ 3   carbon_monoxide   8756 non-null   float64       
+ 4   nitrogen_dioxide  8756 non-null   float64       
+ 5   ozone             8756 non-null   float64       
+dtypes: datetime64[ns](1), float64(5)
+memory usage: 411.9 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>pm10</th>
+      <th>pm2_5</th>
+      <th>carbon_monoxide</th>
+      <th>nitrogen_dioxide</th>
+      <th>ozone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>8784</td>
+      <td>8756.000000</td>
+      <td>8756.000000</td>
+      <td>8756.000000</td>
+      <td>8756.000000</td>
+      <td>8756.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2026-03-01 23:30:00</td>
+      <td>42.773196</td>
+      <td>41.282652</td>
+      <td>1055.944929</td>
+      <td>33.842908</td>
+      <td>69.873572</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>2025-08-31 00:00:00</td>
+      <td>6.300000</td>
+      <td>6.100000</td>
+      <td>81.000000</td>
+      <td>2.700000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2025-11-30 11:45:00</td>
+      <td>23.200000</td>
+      <td>21.700000</td>
+      <td>497.000000</td>
+      <td>16.200000</td>
+      <td>28.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2026-03-01 23:30:00</td>
+      <td>33.800000</td>
+      <td>32.100000</td>
+      <td>761.000000</td>
+      <td>28.500000</td>
+      <td>52.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2026-06-01 11:15:00</td>
+      <td>52.200000</td>
+      <td>50.800000</td>
+      <td>1276.250000</td>
+      <td>46.100000</td>
+      <td>107.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2026-08-31 23:00:00</td>
+      <td>275.700000</td>
+      <td>275.700000</td>
+      <td>8484.000000</td>
+      <td>195.500000</td>
+      <td>289.000000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>29.920780</td>
+      <td>29.750471</td>
+      <td>903.234992</td>
+      <td>23.481805</td>
+      <td>54.668438</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cek jumlah missing values (NaN) di setiap kolom</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah data kosong (missing values) per kolom:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah data kosong (missing values) per kolom:
+time                 0
+pm10                28
+pm2_5               28
+carbon_monoxide     28
+nitrogen_dioxide    28
+ozone               28
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cek jumlah nilai negatif per kolom SEBELUM dibersihkan</span>
+<span class="c1"># (nama kolom masih format asli dari API: pm10, pm2_5, carbon_monoxide, nitrogen_dioxide, ozone)</span>
+<span class="n">kolom_polutan</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pm10&#39;</span><span class="p">,</span> <span class="s1">&#39;pm2_5&#39;</span><span class="p">,</span> <span class="s1">&#39;carbon_monoxide&#39;</span><span class="p">,</span> <span class="s1">&#39;nitrogen_dioxide&#39;</span><span class="p">,</span> <span class="s1">&#39;ozone&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">kolom_polutan</span><span class="p">:</span>
+    <span class="n">jumlah_negatif</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah nilai negatif pada </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">jumlah_negatif</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah nilai negatif pada pm10: 0
+Jumlah nilai negatif pada pm2_5: 0
+Jumlah nilai negatif pada carbon_monoxide: 0
+Jumlah nilai negatif pada nitrogen_dioxide: 0
+Jumlah nilai negatif pada ozone: 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kolom_polutan</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#3498db&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Deteksi Outlier per Jenis Polutan (Sebelum Dibersihkan)&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b7ca8bd9e08629feffb8f2b691bb37e756b4fd5dc4c31ca58ce585798db7afef.png" src="_images/b7ca8bd9e08629feffb8f2b691bb37e756b4fd5dc4c31ca58ce585798db7afef.png" />
 </div>
 </div>
 </section>
@@ -793,6 +1112,18 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sisa missing values setelah interpolasi:
+time     0
+PM10     0
+PM2.5    0
+CO       0
+NO2      0
+O3       0
+dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas">
@@ -815,6 +1146,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data disimpan ke dalam bentuk file: polutan_gresik_2025_2026.csv
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="menampilkan-cuplikan-data-teratas">
@@ -825,6 +1161,82 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>PM10</th>
+      <th>PM2.5</th>
+      <th>CO</th>
+      <th>NO2</th>
+      <th>O3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-08-31 00:00:00</td>
+      <td>30.7</td>
+      <td>29.5</td>
+      <td>860.0</td>
+      <td>27.3</td>
+      <td>35.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2025-08-31 01:00:00</td>
+      <td>39.1</td>
+      <td>37.6</td>
+      <td>911.0</td>
+      <td>29.3</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025-08-31 02:00:00</td>
+      <td>49.1</td>
+      <td>47.5</td>
+      <td>1077.0</td>
+      <td>31.7</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2025-08-31 03:00:00</td>
+      <td>55.3</td>
+      <td>53.4</td>
+      <td>1303.0</td>
+      <td>34.4</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025-08-31 04:00:00</td>
+      <td>58.9</td>
+      <td>56.8</td>
+      <td>1507.0</td>
+      <td>36.9</td>
+      <td>16.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <hr class="docutils" />
 <section id="visualisasi-grafik-time-series">
@@ -861,6 +1273,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/c7e2e2dd887100f72e9e27fcfbbdc03652bdaee09b4786051fe3cc4b29b39738.png" src="_images/c7e2e2dd887100f72e9e27fcfbbdc03652bdaee09b4786051fe3cc4b29b39738.png" />
+</div>
 </div>
 <section id="b-grafik-partikel-berbahaya-pm10-dan-pm2-5">
 <h2>B. Grafik Partikel Berbahaya (PM10 dan PM2.5)<a class="headerlink" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5" title="Link to this heading">#</a></h2>
@@ -889,6 +1304,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/87bf6957854fdd4b634677dab78b2823e5930b8644ed3d34d8f4a842b54050b1.png" src="_images/87bf6957854fdd4b634677dab78b2823e5930b8644ed3d34d8f4a842b54050b1.png" />
+</div>
 </div>
 <section id="c-grafik-ozon-permukaan-o3">
 <h2>C. Grafik Ozon Permukaan (O3)<a class="headerlink" href="#c-grafik-ozon-permukaan-o3" title="Link to this heading">#</a></h2>
@@ -910,6 +1328,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/c895812af95182c16bcda9ce71fcd24632f27bb2a2e0504a2d2ef18e09c97e23.png" src="_images/c895812af95182c16bcda9ce71fcd24632f27bb2a2e0504a2d2ef18e09c97e23.png" />
+</div>
 </div>
 </section>
 <section id="d-ringkasan-statistik-akhir">
@@ -921,6 +1342,100 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CO</th>
+      <th>NO2</th>
+      <th>PM10</th>
+      <th>PM2.5</th>
+      <th>O3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>366.000000</td>
+      <td>366.000000</td>
+      <td>366.000000</td>
+      <td>366.000000</td>
+      <td>366.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1053.503393</td>
+      <td>33.780931</td>
+      <td>42.694228</td>
+      <td>41.200148</td>
+      <td>69.803848</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>478.154732</td>
+      <td>13.178619</td>
+      <td>19.025179</td>
+      <td>19.149613</td>
+      <td>15.497494</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>290.000000</td>
+      <td>10.295833</td>
+      <td>13.295833</td>
+      <td>11.700000</td>
+      <td>30.625000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>705.864583</td>
+      <td>23.357292</td>
+      <td>29.182292</td>
+      <td>27.607292</td>
+      <td>60.791667</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>928.479167</td>
+      <td>31.531250</td>
+      <td>37.091667</td>
+      <td>35.581250</td>
+      <td>69.937500</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1277.750000</td>
+      <td>42.361458</td>
+      <td>53.157292</td>
+      <td>52.200000</td>
+      <td>78.708333</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>3202.875000</td>
+      <td>90.745833</td>
+      <td>121.845833</td>
+      <td>119.529167</td>
+      <td>118.750000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <hr class="docutils" />

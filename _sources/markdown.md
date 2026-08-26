@@ -79,37 +79,29 @@ Data yang digunakan merupakan rangkaian *time-series* polutan udara per jam, den
 
 Sebelum data dibersihkan, penting untuk melakukan eksplorasi awal guna mengetahui kondisi data secara umum: tipe data, jumlah baris, rentang nilai, serta indikasi anomali seperti data kosong (*missing values*), nilai negatif, atau outlier ekstrem.
 
-Berikut adalah kode eksplorasi tambahan yang dilakukan **sebelum tahap pembersihan** pada bagian 3:
-
-```{code-cell} ipython3
-# Contoh eksplorasi awal (dijalankan setelah df terbentuk dari hasil crawling di bagian 3.C)
-# Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori
-df.info()
+```{note}
+Kode di bawah ini hanya **contoh ilustrasi** cara melakukan pengecekan (belum dieksekusi di sini karena `df` belum tersedia — variabel `df` baru terbentuk setelah proses crawling di Bagian 3.B). Kode yang benar-benar dijalankan (executable) ada di **Bagian 3.C**, tepat setelah data hasil crawling dimasukkan ke DataFrame.
 ```
 
-```{code-cell} ipython3
+```python
+# Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori
+df.info()
+
 # Statistik deskriptif untuk melihat rentang nilai (min, max, mean, std) tiap polutan
 # Berguna untuk mendeteksi kejanggalan, misalnya nilai minimum yang negatif
 df.describe()
-```
 
-```{code-cell} ipython3
 # Cek jumlah missing values (NaN) di setiap kolom
-missing_summary = df.isna().sum()
 print("Jumlah data kosong (missing values) per kolom:")
-print(missing_summary)
-```
+print(df.isna().sum())
 
-```{code-cell} ipython3
 # Cek jumlah nilai negatif per kolom SEBELUM dibersihkan
 # Nilai negatif secara logika fisika tidak mungkin terjadi pada konsentrasi gas/partikel
 kolom_polutan = ['pm10', 'pm2_5', 'carbon_monoxide', 'nitrogen_dioxide', 'ozone']
 for col in kolom_polutan:
     jumlah_negatif = (df[col] < 0).sum()
     print(f"Jumlah nilai negatif pada {col}: {jumlah_negatif}")
-```
 
-```{code-cell} ipython3
 # Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan
 fig, axes = plt.subplots(1, 5, figsize=(20, 5))
 for i, col in enumerate(kolom_polutan):
@@ -224,7 +216,36 @@ df['time'] = pd.to_datetime(df['time'])
 ```{code-cell} ipython3
 # --- Eksplorasi awal sebelum pembersihan (lihat penjelasan Bagian 2.4) ---
 df.info()
+```
+
+```{code-cell} ipython3
 df.describe()
+```
+
+```{code-cell} ipython3
+# Cek jumlah missing values (NaN) di setiap kolom
+print("Jumlah data kosong (missing values) per kolom:")
+print(df.isna().sum())
+```
+
+```{code-cell} ipython3
+# Cek jumlah nilai negatif per kolom SEBELUM dibersihkan
+# (nama kolom masih format asli dari API: pm10, pm2_5, carbon_monoxide, nitrogen_dioxide, ozone)
+kolom_polutan = ['pm10', 'pm2_5', 'carbon_monoxide', 'nitrogen_dioxide', 'ozone']
+for col in kolom_polutan:
+    jumlah_negatif = (df[col] < 0).sum()
+    print(f"Jumlah nilai negatif pada {col}: {jumlah_negatif}")
+```
+
+```{code-cell} ipython3
+# Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan
+fig, axes = plt.subplots(1, 5, figsize=(20, 5))
+for i, col in enumerate(kolom_polutan):
+    sns.boxplot(y=df[col], ax=axes[i], color='#3498db')
+    axes[i].set_title(col)
+plt.suptitle('Deteksi Outlier per Jenis Polutan (Sebelum Dibersihkan)', fontweight='bold')
+plt.tight_layout()
+plt.show()
 ```
 
 # Mengubah nama kolom agar lebih ringkas
