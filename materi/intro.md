@@ -60,6 +60,3 @@ Beberapa hal yang dapat Anda lakukan:
 - 📥 **Mengunduh**: Anda dapat mengunduh halaman dalam format `.ipynb` (Jupyter Notebook) atau `.pdf` melalui ikon unduhan di kanan atas.
 
 Mari kita mulai perjalanan belajar yang menyenangkan ini!
-
-```{tableofcontents}
-```
