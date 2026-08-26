@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Markdown Files &#8212; My sample book</title>
+    <title>Analisis Kualitas Udara (Polutan) di Kawasan Gresik &#8212; My sample book</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Content with notebooks" href="notebooks.html" />
-    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+    <link rel="prev" title="🚀 Selamat Datang di Mata Kuliah Proyek Sains Data (PSD)" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,12 +175,22 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    🚀 Selamat Datang di Mata Kuliah Proyek Sains Data (PSD)
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Markdown Files</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a></li>
+
+
+
+
+
+
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
@@ -368,7 +378,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Markdown Files</h1>
+    <h1>Analisis Kualitas Udara (Polutan) di Kawasan Gresik</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -378,11 +388,40 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-crawling-pemrosesan-data">3. Proses Crawling &amp; Pemrosesan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-setup-batas-wilayah-geojson">A. Setup Batas Wilayah GeoJSON</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengunduh-data-dari-api">B. Mengunduh Data dari API</a></li>
 </ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-parameter-tanggal-dan-url-sampai-31-agustus-2026">Setup Parameter Tanggal dan URL (Sampai 31 Agustus 2026)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#request-data">Request data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-data-preparation-penyesuaian-urutan">C. Data Preparation &amp; Penyesuaian Urutan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#memasukkan-data-ke-dalam-pandas-dataframe">Memasukkan data ke dalam Pandas DataFrame</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengubah-nama-kolom-agar-lebih-ringkas">Mengubah nama kolom agar lebih ringkas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas">Mengurutkan waktu secara ASCENDING agar runtun waktu rapi (Data terlama di atas)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-menjadi-csv">Menyimpan Data menjadi CSV</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-grafik-time-series">4. Visualisasi Grafik (Time Series)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-grafik-gas-emisi-co-dan-no2">A. Grafik Gas Emisi (CO dan NO2)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-data-per-jam-menjadi-rata-rata-harian-d-daily">Resample data per jam menjadi rata-rata harian (D = Daily)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5">B. Grafik Partikel Berbahaya (PM10 dan PM2.5)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -393,60 +432,349 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="markdown-files">
-<h1>Markdown Files<a class="headerlink" href="#markdown-files" title="Link to this heading">#</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.
-This is a simple file to help you get started and show off some syntax.</p>
-<section id="what-is-myst">
-<h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Link to this heading">#</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
-<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-kualitas-udara-polutan-di-kawasan-gresik">
+<h1>Analisis Kualitas Udara (Polutan) di Kawasan Gresik<a class="headerlink" href="#analisis-kualitas-udara-polutan-di-kawasan-gresik" title="Link to this heading">#</a></h1>
+<section id="business-understanding">
+<h2>1. Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h2>
+<p><strong>Tujuan:</strong>
+Proyek ini bertujuan untuk mengekstraksi, menganalisis, dan mengetahui tren kualitas udara (tingkat polutan) di area spesifik Kabupaten Gresik selama kurun waktu satu tahun terakhir. Analisis ini menggunakan data historis yang ditarik hingga 31 Agustus 2026.</p>
+<p><strong>Manfaat:</strong></p>
+<ul class="simple">
+<li><p><strong>Bagi Masyarakat:</strong> Meningkatkan kesadaran akan kualitas udara sehingga masyarakat bisa mengambil langkah preventif kesehatan (misalnya mengurangi kegiatan luar ruangan atau memakai masker saat polutan tinggi).</p></li>
+<li><p><strong>Bagi Pemerintah:</strong> Mengingat Gresik adalah kawasan perindustrian padat, data ini bisa menjadi landasan atau acuan untuk mengevaluasi kebijakan pengendalian emisi dari pabrik dan lalu lintas jalan.</p></li>
+</ul>
 </section>
-<section id="sample-roles-and-directives">
-<h2>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Link to this heading">#</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<p>Here is a “note” directive:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>It will be rendered in a special box when you build your book.</p>
-<p>Here is an inline directive to refer to a document: <a class="reference internal" href="markdown-notebooks.html"><span class="doc">Notebooks with MyST Markdown</span></a>.</p>
+<hr class="docutils" />
+<section id="data-understanding">
+<h2>2. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
+<p>Data yang digunakan merupakan rangkaian <em>time-series</em> polutan udara per jam. Berikut adalah rincian fitur dan sumbernya:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">time</span></code></strong>: Waktu pencatatan (tanggal dan jam) dari sensor.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">CO</span></code> (Karbon Monoksida):</strong> Gas beracun yang tidak memiliki warna maupun bau. <strong>Sumber utama:</strong> Berasal dari pembakaran yang tidak sempurna, umumnya diproduksi paling banyak oleh asap knalpot kendaraan bermotor.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">NO2</span></code> (Nitrogen Dioksida):</strong> Gas yang memiliki bau tajam menyengat dan berwarna cokelat kemerahan. <strong>Sumber utama:</strong> Mesin kendaraan bermotor (terutama diesel), pembangkit listrik, dan pembuangan asap pabrik.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">PM10</span></code> (Particulate Matter):</strong> Partikel udara debu atau asap yang berukuran mikroskopis (kurang dari 2,5 dan 10 mikrometer) dan dapat masuk ke saluran pernapasan. <strong>Sumber:</strong> Asap cerobong pabrik, debu aktivitas konstruksi, dan pembakaran terbuka.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">O3</span></code> (Ozon Permukaan):</strong> Ozon di permukaan tanah yang bisa membahayakan paru-paru. Terbentuk dari reaksi kimia antara sinar matahari dan polutan lain (seperti NO2).</p></li>
+</ul>
+<p><strong>Pengecekan Data Aneh (Anomali):</strong>
+Dalam mengeksplorasi sensor alam, kita patut memperhatikan kondisi berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>Missing Values (NaN):</strong> Data kosong pada jam tertentu, biasanya terjadi saat alat sedang pemeliharaan (<em>maintenance</em>).</p></li>
+<li><p><strong>Nilai Negatif:</strong> Secara logika, konsentrasi gas di udara tidak mungkin di bawah 0. Jika ada nilai negatif, itu merupakan <em>error</em> sensor yang harus ditangani (diubah menjadi NaN).</p></li>
+<li><p><strong>Lonjakan Ekstrem (Outlier):</strong> Nilai yang mendadak sangat tinggi dalam rentang waktu yang terlalu singkat.</p></li>
+</ol>
 </section>
-<section id="citations">
-<h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">#</a></h2>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="#id3" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
-<p>Moreover, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
-<div class="docutils container" id="id2">
-<div role="list" class="citation-list">
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HdHPK14</a><span class="fn-bracket">]</span></span>
-<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
+<hr class="docutils" />
+<section id="proses-crawling-pemrosesan-data">
+<h2>3. Proses Crawling &amp; Pemrosesan Data<a class="headerlink" href="#proses-crawling-pemrosesan-data" title="Link to this heading">#</a></h2>
+<p>Tahapan ini mencakup pengumpulan data dari API berdasarkan batas wilayah spasial, hingga pembersihan dan penyimpanan data ke dalam format CSV.</p>
+<section id="a-setup-batas-wilayah-geojson">
+<h3>A. Setup Batas Wilayah GeoJSON<a class="headerlink" href="#a-setup-batas-wilayah-geojson" title="Link to this heading">#</a></h3>
+<p>Kita mulai dengan mendefinisikan batas poligon (<em>Polygon</em>) wilayah Gresik yang telah disiapkan, lalu mencari titik tengah (<em>centroid</em>) dari area tersebut untuk parameter API.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polygon</span>
+
+<span class="c1"># Definisi koordinat batas wilayah (Gresik) menggunakan GeoJSON</span>
+<span class="n">geojson_coords</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mf">112.6568922</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.1481289</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">112.6482448</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.1509091</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">112.6525927</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.1672063</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">112.6657812</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.1655766</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">112.6568922</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.1481289</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="c1"># Konversi ke bentuk Poligon</span>
+<span class="n">area_polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">geojson_coords</span><span class="p">)</span>
+
+<span class="c1"># Mendapatkan koordinat pusat (centroid) untuk API</span>
+<span class="n">centroid_lon</span> <span class="o">=</span> <span class="n">area_polygon</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span>
+<span class="n">centroid_lat</span> <span class="o">=</span> <span class="n">area_polygon</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Titik Pusat Penarikan Data -&gt; Latitude: </span><span class="si">{</span><span class="n">centroid_lat</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">, Longitude: </span><span class="si">{</span><span class="n">centroid_lon</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Titik Pusat Penarikan Data -&gt; Latitude: -7.15842, Longitude: 112.65617
+</pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
-<p>This is just a simple starter to get you started.
-You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
+<section id="b-mengunduh-data-dari-api">
+<h3>B. Mengunduh Data dari API<a class="headerlink" href="#b-mengunduh-data-dari-api" title="Link to this heading">#</a></h3>
+<p>Menggunakan titik pusat tadi, kita menarik data kualitas udara secara historis selama satu tahun ke belakang.</p>
 </section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="setup-parameter-tanggal-dan-url-sampai-31-agustus-2026">
+<h1>Setup Parameter Tanggal dan URL (Sampai 31 Agustus 2026)<a class="headerlink" href="#setup-parameter-tanggal-dan-url-sampai-31-agustus-2026" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2025-08-31&quot;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2026-08-31&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://air-quality-api.open-meteo.com/v1/air-quality&quot;</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">centroid_lat</span><span class="p">,</span>
+    <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">centroid_lon</span><span class="p">,</span>
+    <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="n">start_date</span><span class="p">,</span>
+    <span class="s2">&quot;end_date&quot;</span><span class="p">:</span> <span class="n">end_date</span><span class="p">,</span>
+    <span class="s2">&quot;hourly&quot;</span><span class="p">:</span> <span class="s2">&quot;pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,ozone&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timezone&quot;</span><span class="p">:</span> <span class="s2">&quot;Asia/Jakarta&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="request-data">
+<h1>Request data<a class="headerlink" href="#request-data" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Memulai proses crawling...&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data API berhasil ditarik!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memulai proses crawling...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data API berhasil ditarik!
+</pre></div>
+</div>
+</div>
+</div>
+<section id="c-data-preparation-penyesuaian-urutan">
+<h2>C. Data Preparation &amp; Penyesuaian Urutan<a class="headerlink" href="#c-data-preparation-penyesuaian-urutan" title="Link to this heading">#</a></h2>
+<p>Setelah data JSON ditarik dari API, kita ubah menjadi DataFrame. Kita juga akan menghapus anomali nilai negatif dan memastikan urutan data diatur dari yang terlama ke yang terbaru (ascending).</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="memasukkan-data-ke-dalam-pandas-dataframe">
+<h1>Memasukkan data ke dalam Pandas DataFrame<a class="headerlink" href="#memasukkan-data-ke-dalam-pandas-dataframe" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hourly&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mengubah-nama-kolom-agar-lebih-ringkas">
+<h1>Mengubah nama kolom agar lebih ringkas<a class="headerlink" href="#mengubah-nama-kolom-agar-lebih-ringkas" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;carbon_monoxide&#39;</span><span class="p">:</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;nitrogen_dioxide&#39;</span><span class="p">:</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pm10&#39;</span><span class="p">:</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pm2_5&#39;</span><span class="p">:</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ozone&#39;</span><span class="p">:</span> <span class="s1">&#39;O3&#39;</span>
+<span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">
+<h1>Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)<a class="headerlink" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]:</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas">
+<h1>Mengurutkan waktu secara ASCENDING agar runtun waktu rapi (Data terlama di atas)<a class="headerlink" href="#mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="menyimpan-data-menjadi-csv">
+<h1>Menyimpan Data menjadi CSV<a class="headerlink" href="#menyimpan-data-menjadi-csv" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">csv_filename</span> <span class="o">=</span> <span class="s2">&quot;polutan_gresik_2025_2026.csv&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data disimpan ke dalam bentuk file: </span><span class="si">{</span><span class="n">csv_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data disimpan ke dalam bentuk file: polutan_gresik_2025_2026.csv
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="menampilkan-cuplikan-data-teratas">
+<h1>Menampilkan cuplikan data teratas<a class="headerlink" href="#menampilkan-cuplikan-data-teratas" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>PM10</th>
+      <th>PM2.5</th>
+      <th>CO</th>
+      <th>NO2</th>
+      <th>O3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-08-31 00:00:00</td>
+      <td>30.7</td>
+      <td>29.5</td>
+      <td>860.0</td>
+      <td>27.3</td>
+      <td>35.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2025-08-31 01:00:00</td>
+      <td>39.1</td>
+      <td>37.6</td>
+      <td>911.0</td>
+      <td>29.3</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025-08-31 02:00:00</td>
+      <td>49.1</td>
+      <td>47.5</td>
+      <td>1077.0</td>
+      <td>31.7</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2025-08-31 03:00:00</td>
+      <td>55.3</td>
+      <td>53.4</td>
+      <td>1303.0</td>
+      <td>34.4</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025-08-31 04:00:00</td>
+      <td>58.9</td>
+      <td>56.8</td>
+      <td>1507.0</td>
+      <td>36.9</td>
+      <td>16.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="visualisasi-grafik-time-series">
+<h2>4. Visualisasi Grafik (Time Series)<a class="headerlink" href="#visualisasi-grafik-time-series" title="Link to this heading">#</a></h2>
+<p>Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya.</p>
+<section id="a-grafik-gas-emisi-co-dan-no2">
+<h3>A. Grafik Gas Emisi (CO dan NO2)<a class="headerlink" href="#a-grafik-gas-emisi-co-dan-no2" title="Link to this heading">#</a></h3>
+<p>Kita me-resample datanya menjadi rata-rata harian agar grafik lebih mudah dibaca dan tidak terlalu menumpuk.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="resample-data-per-jam-menjadi-rata-rata-harian-d-daily">
+<h1>Resample data per jam menjadi rata-rata harian (D = Daily)<a class="headerlink" href="#resample-data-per-jam-menjadi-rata-rata-harian-d-daily" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_daily</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Konfigurasi kanvas Matplotlib</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Plot Garis untuk Karbon Monoksida dan Nitrogen Dioksida</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CO (Karbon Monoksida)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#d35400&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NO2 (Nitrogen Dioksida)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2980b9&#39;</span><span class="p">)</span>
+
+<span class="c1"># Styling Grafik</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Karbon Monoksida &amp; Nitrogen Dioksida di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tingkat Konsentrasi (μg/m³)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18c6d19a966a8c5174f528e9e2d939bacbc1a4a18e1a4a1ab1392423276289ce.png" src="_images/18c6d19a966a8c5174f528e9e2d939bacbc1a4a18e1a4a1ab1392423276289ce.png" />
+</div>
+</div>
+<section id="b-grafik-partikel-berbahaya-pm10-dan-pm2-5">
+<h2>B. Grafik Partikel Berbahaya (PM10 dan PM2.5)<a class="headerlink" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5" title="Link to this heading">#</a></h2>
+<p>Partikulat sangat penting dipantau di wilayah pabrik dan kendaraan berat karena bentuk fisiknya berupa debu mikro yang berbahaya bagi pernapasan.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="konfigurasi-kanvas-matplotlib">
+<h1>Konfigurasi kanvas Matplotlib<a class="headerlink" href="#konfigurasi-kanvas-matplotlib" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Plot Garis untuk Partikulat</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PM 10 (Partikel &lt;10µm)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#8e44ad&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PM 2.5 (Partikel &lt;2.5µm)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#27ae60&#39;</span><span class="p">)</span>
+
+<span class="c1"># Styling Grafik</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Partikulat PM10 dan PM2.5 di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tingkat Konsentrasi (μg/m³)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/169cf0368b338affb3b14a73795dfeec507303858a3089bf241106dff143e344.png" src="_images/169cf0368b338affb3b14a73795dfeec507303858a3089bf241106dff143e344.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -485,7 +813,7 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+        <p class="prev-next-title">🚀 Selamat Datang di Mata Kuliah Proyek Sains Data (PSD)</p>
       </div>
     </a>
     <a class="right-next"
@@ -513,11 +841,40 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-crawling-pemrosesan-data">3. Proses Crawling &amp; Pemrosesan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-setup-batas-wilayah-geojson">A. Setup Batas Wilayah GeoJSON</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengunduh-data-dari-api">B. Mengunduh Data dari API</a></li>
 </ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-parameter-tanggal-dan-url-sampai-31-agustus-2026">Setup Parameter Tanggal dan URL (Sampai 31 Agustus 2026)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#request-data">Request data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-data-preparation-penyesuaian-urutan">C. Data Preparation &amp; Penyesuaian Urutan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#memasukkan-data-ke-dalam-pandas-dataframe">Memasukkan data ke dalam Pandas DataFrame</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengubah-nama-kolom-agar-lebih-ringkas">Mengubah nama kolom agar lebih ringkas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas">Mengurutkan waktu secara ASCENDING agar runtun waktu rapi (Data terlama di atas)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-menjadi-csv">Menyimpan Data menjadi CSV</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-grafik-time-series">4. Visualisasi Grafik (Time Series)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-grafik-gas-emisi-co-dan-no2">A. Grafik Gas Emisi (CO dan NO2)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-data-per-jam-menjadi-rata-rata-harian-d-daily">Resample data per jam menjadi rata-rata harian (D = Daily)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5">B. Grafik Partikel Berbahaya (PM10 dan PM2.5)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
