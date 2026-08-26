@@ -28,18 +28,20 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Contoh eksplorasi awal (dijalankan setelah df terbentuk dari hasil crawling di bagian 3.C)
-# Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori
-df.info()
+# Cek jumlah missing values (NaN) di setiap kolom
+missing_summary = df.isna().sum()
+print("Jumlah data kosong (missing values) per kolom:")
+print(missing_summary)
 ------------------
 
 
 [31m---------------------------------------------------------------------------[39m
 [31mNameError[39m                                 Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 3[39m
-[32m      1[39m [38;5;66;03m# Contoh eksplorasi awal (dijalankan setelah df terbentuk dari hasil crawling di bagian 3.C)[39;00m
-[32m      2[39m [38;5;66;03m# Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori[39;00m
-[32m----> [39m[32m3[39m [43mdf[49m.info()
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 2[39m
+[32m      1[39m [38;5;66;03m# Cek jumlah missing values (NaN) di setiap kolom[39;00m
+[32m----> [39m[32m2[39m missing_summary = [43mdf[49m.isna().sum()
+[32m      3[39m [38;5;28mprint[39m([33m"[39m[33mJumlah data kosong (missing values) per kolom:[39m[33m"[39m)
+[32m      4[39m [38;5;28mprint[39m(missing_summary)
 
 [31mNameError[39m: name 'df' is not defined
 
