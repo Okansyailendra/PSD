@@ -28,60 +28,18 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-print("Memulai proses crawling...")
-response = requests.get(url, params=params)
-data = response.json()
-print("Data API berhasil ditarik!")
+# Contoh eksplorasi awal (dijalankan setelah df terbentuk dari hasil crawling di bagian 3.C)
+# Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori
+df.info()
 ------------------
 
------ stdout -----
-Memulai proses crawling...
-------------------
 
 [31m---------------------------------------------------------------------------[39m
-[31mInvalidSchema[39m                             Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 2[39m
-[32m      1[39m [38;5;28mprint[39m([33m"[39m[33mMemulai proses crawling...[39m[33m"[39m)
-[32m----> [39m[32m2[39m response = [43mrequests[49m[43m.[49m[43mget[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mparams[49m[43m=[49m[43mparams[49m[43m)[49m
-[32m      3[39m data = response.json()
-[32m      4[39m [38;5;28mprint[39m([33m"[39m[33mData API berhasil ditarik![39m[33m"[39m)
+[31mNameError[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 3[39m
+[32m      1[39m [38;5;66;03m# Contoh eksplorasi awal (dijalankan setelah df terbentuk dari hasil crawling di bagian 3.C)[39;00m
+[32m      2[39m [38;5;66;03m# Informasi umum struktur data: tipe kolom, jumlah non-null, penggunaan memori[39;00m
+[32m----> [39m[32m3[39m [43mdf[49m.info()
 
-[36mFile [39m[32m~\AppData\Local\Programs\Python\Python314\Lib\site-packages\requests\api.py:73[39m, in [36mget[39m[34m(url, params, **kwargs)[39m
-[32m     62[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget[39m(url, params=[38;5;28;01mNone[39;00m, **kwargs):
-[32m     63[39m [38;5;250m    [39m[33mr[39m[33;03m"""Sends a GET request.[39;00m
-[32m     64[39m 
-[32m     65[39m [33;03m    :param url: URL for the new :class:`Request` object.[39;00m
-[32m   (...)[39m[32m     70[39m [33;03m    :rtype: requests.Response[39;00m
-[32m     71[39m [33;03m    """[39;00m
-[32m---> [39m[32m73[39m     [38;5;28;01mreturn[39;00m [43mrequest[49m[43m([49m[33;43m"[39;49m[33;43mget[39;49m[33;43m"[39;49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43mparams[49m[43m=[49m[43mparams[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
-
-[36mFile [39m[32m~\AppData\Local\Programs\Python\Python314\Lib\site-packages\requests\api.py:59[39m, in [36mrequest[39m[34m(method, url, **kwargs)[39m
-[32m     55[39m [38;5;66;03m# By using the 'with' statement we are sure the session is closed, thus we[39;00m
-[32m     56[39m [38;5;66;03m# avoid leaving sockets open which can trigger a ResourceWarning in some[39;00m
-[32m     57[39m [38;5;66;03m# cases, and look like a memory leak in others.[39;00m
-[32m     58[39m [38;5;28;01mwith[39;00m sessions.Session() [38;5;28;01mas[39;00m session:
-[32m---> [39m[32m59[39m     [38;5;28;01mreturn[39;00m [43msession[49m[43m.[49m[43mrequest[49m[43m([49m[43mmethod[49m[43m=[49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m=[49m[43murl[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
-
-[36mFile [39m[32m~\AppData\Local\Programs\Python\Python314\Lib\site-packages\requests\sessions.py:589[39m, in [36mSession.request[39m[34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[39m
-[32m    584[39m send_kwargs = {
-[32m    585[39m     [33m"[39m[33mtimeout[39m[33m"[39m: timeout,
-[32m    586[39m     [33m"[39m[33mallow_redirects[39m[33m"[39m: allow_redirects,
-[32m    587[39m }
-[32m    588[39m send_kwargs.update(settings)
-[32m--> [39m[32m589[39m resp = [38;5;28;43mself[39;49m[43m.[49m[43msend[49m[43m([49m[43mprep[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43msend_kwargs[49m[43m)[49m
-[32m    591[39m [38;5;28;01mreturn[39;00m resp
-
-[36mFile [39m[32m~\AppData\Local\Programs\Python\Python314\Lib\site-packages\requests\sessions.py:697[39m, in [36mSession.send[39m[34m(self, request, **kwargs)[39m
-[32m    694[39m hooks = request.hooks
-[32m    696[39m [38;5;66;03m# Get the appropriate adapter to use[39;00m
-[32m--> [39m[32m697[39m adapter = [38;5;28;43mself[39;49m[43m.[49m[43mget_adapter[49m[43m([49m[43murl[49m[43m=[49m[43mrequest[49m[43m.[49m[43murl[49m[43m)[49m
-[32m    699[39m [38;5;66;03m# Start time (approximately) of the request[39;00m
-[32m    700[39m start = preferred_clock()
-
-[36mFile [39m[32m~\AppData\Local\Programs\Python\Python314\Lib\site-packages\requests\sessions.py:792[39m, in [36mSession.get_adapter[39m[34m(self, url)[39m
-[32m    789[39m         [38;5;28;01mreturn[39;00m adapter
-[32m    791[39m [38;5;66;03m# Nothing matches :-/[39;00m
-[32m--> [39m[32m792[39m [38;5;28;01mraise[39;00m InvalidSchema([33mf[39m[33m"[39m[33mNo connection adapters were found for [39m[38;5;132;01m{[39;00murl[38;5;132;01m!r}[39;00m[33m"[39m)
-
-[31mInvalidSchema[39m: No connection adapters were found for '[https://air-quality-api.open-meteo.com/v1/air-quality](https://air-quality-api.open-meteo.com/v1/air-quality)'
+[31mNameError[39m: name 'df' is not defined
 
