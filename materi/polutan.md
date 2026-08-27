@@ -67,13 +67,17 @@ Data yang digunakan merupakan rangkaian *time-series* polutan udara per jam, den
 | `PM2.5` | float | Konsentrasi partikel < 2.5 mikrometer (μg/m³) |
 | `O3` | float | Konsentrasi Ozon permukaan (μg/m³) |
 
-### 2.3 Deskripsi Fitur (Polutan)
+### 2.3 Deskripsi Fitur (Polutan) & Baku Mutu
 
-*   **`CO` (Karbon Monoksida):** Gas beracun yang tidak berwarna maupun berbau, dihasilkan dari pembakaran bahan bakar fosil yang tidak sempurna. **Sumber utama:** asap knalpot kendaraan bermotor, pembakaran industri, dan pembakaran biomassa. **Dampak kesehatan:** mengikat hemoglobin dalam darah menggantikan oksigen, sehingga dalam konsentrasi tinggi dapat menyebabkan pusing, mual, hingga keracunan yang berakibat fatal. Baku mutu udara ambien nasional (PP No. 22 Tahun 2021) untuk CO rata-rata 1 jam adalah 10.000 μg/m³.
-*   **`NO2` (Nitrogen Dioksida):** Gas berwarna cokelat kemerahan dengan bau tajam menyengat. **Sumber utama:** mesin kendaraan bermotor (terutama diesel), pembangkit listrik tenaga bahan bakar fosil, dan cerobong asap pabrik. **Dampak kesehatan:** mengiritasi saluran pernapasan, memperparah asma, dan dalam jangka panjang menurunkan fungsi paru-paru. Baku mutu rata-rata 1 jam menurut PP No. 22 Tahun 2021 adalah 200 μg/m³.
-*   **`PM10` (Particulate Matter ≤10 µm):** Partikel debu/asap berukuran di bawah 10 mikrometer yang dapat masuk ke saluran pernapasan bagian atas. **Sumber:** debu jalan, aktivitas konstruksi, dan asap cerobong pabrik. Baku mutu rata-rata 24 jam adalah 75 μg/m³.
-*   **`PM2.5` (Particulate Matter ≤2.5 µm):** Partikel yang jauh lebih halus dan berbahaya karena dapat menembus hingga ke alveolus paru-paru bahkan masuk ke aliran darah. **Sumber:** pembakaran bahan bakar fosil, asap kendaraan diesel, dan pembakaran terbuka (misalnya pembakaran sampah/lahan). Baku mutu rata-rata 24 jam adalah 55 μg/m³, dan termasuk polutan yang paling banyak dikaitkan dengan risiko penyakit jantung dan kanker paru dalam studi epidemiologi.
-*   **`O3` (Ozon Permukaan):** Berbeda dengan lapisan ozon stratosfer yang melindungi bumi, ozon permukaan bersifat berbahaya bagi kesehatan. **Terbentuk** dari reaksi fotokimia antara sinar matahari dengan polutan prekursor seperti NO2 dan senyawa organik volatil (VOC), sehingga konsentrasinya cenderung lebih tinggi pada siang hari yang cerah. **Dampak kesehatan:** mengiritasi saluran pernapasan dan memperparah kondisi asma. Baku mutu rata-rata 1 jam adalah 150 μg/m³.
+Tabel berikut merangkum sumber, dampak kesehatan, dan baku mutu udara ambien nasional (PP No. 22 Tahun 2021) untuk tiap polutan. Baku mutu ini nantinya dipakai kembali di Bagian 4.D untuk menghitung seberapa sering tiap polutan melewati ambang batas aman.
+
+| Polutan | Deskripsi Singkat | Sumber Utama | Dampak Kesehatan | Baku Mutu (PP No. 22/2021) |
+|---|---|---|---|---|
+| **CO** (Karbon Monoksida) | Gas beracun, tidak berwarna maupun berbau, dihasilkan dari pembakaran bahan bakar fosil yang tidak sempurna | Asap knalpot kendaraan bermotor, pembakaran industri, pembakaran biomassa | Mengikat hemoglobin dalam darah menggantikan oksigen; pusing, mual, hingga keracunan fatal pada konsentrasi tinggi | 10.000 μg/m³ (rata-rata 1 jam) |
+| **NO2** (Nitrogen Dioksida) | Gas berwarna cokelat kemerahan dengan bau tajam menyengat | Mesin kendaraan bermotor (terutama diesel), pembangkit listrik berbahan bakar fosil, cerobong asap pabrik | Mengiritasi saluran pernapasan, memperparah asma, menurunkan fungsi paru-paru jangka panjang | 200 μg/m³ (rata-rata 1 jam) |
+| **PM10** (Particulate Matter ≤10 µm) | Partikel debu/asap yang dapat masuk ke saluran pernapasan atas | Debu jalan, aktivitas konstruksi, asap cerobong pabrik | Iritasi saluran pernapasan atas, memperparah gangguan paru | 75 μg/m³ (rata-rata 24 jam) |
+| **PM2.5** (Particulate Matter ≤2.5 µm) | Partikel jauh lebih halus, dapat menembus alveolus paru bahkan masuk aliran darah | Pembakaran bahan bakar fosil, asap kendaraan diesel, pembakaran terbuka (sampah/lahan) | Paling banyak dikaitkan dengan risiko penyakit jantung dan kanker paru dalam studi epidemiologi | 55 μg/m³ (rata-rata 24 jam) |
+| **O3** (Ozon Permukaan) | Berbeda dari lapisan ozon stratosfer; ozon permukaan berbahaya bagi kesehatan, terbentuk dari reaksi fotokimia sinar matahari dengan NO2 dan VOC, sehingga cenderung lebih tinggi di siang hari cerah | Reaksi fotokimia sekunder (bukan emisi langsung) | Mengiritasi saluran pernapasan, memperparah asma | 150 μg/m³ (rata-rata 1 jam) |
 
 ### 2.4 Eksplorasi Data & Pengecekan Anomali
 
@@ -115,7 +119,7 @@ plt.show()
 Dari eksplorasi di atas, kita bisa memutuskan tiga jenis penanganan anomali:
 1.  **Missing Values (NaN):** Data kosong pada jam tertentu, biasanya terjadi saat sensor atau model reanalisis sedang tidak memiliki data (*gap*) untuk lokasi/waktu tersebut.
 2.  **Nilai Negatif:** Secara logika, konsentrasi gas atau partikel di udara tidak mungkin bernilai di bawah 0. Jika ditemukan, nilai tersebut merupakan *error* numerik model/sensor dan harus ditangani (diubah menjadi NaN, lalu dapat diisi ulang dengan interpolasi jika diperlukan).
-3.  **Lonjakan Ekstrem (Outlier):** Nilai yang mendadak sangat tinggi dibanding nilai di sekitarnya dalam rentang waktu singkat. Outlier tidak selalu berarti error — bisa juga mengindikasikan kejadian nyata seperti kebakaran lahan atau kemacetan ekstrem — sehingga perlu diverifikasi lebih lanjut sebelum dihapus.
+3.  **Lonjakan Ekstrem (Outlier):** Nilai yang mendadak sangat tinggi dibanding nilai di sekitarnya dalam rentang waktu singkat. Outlier tidak selalu berarti error — bisa juga mengindikasikan kejadian nyata seperti kebakaran lahan atau kemacetan ekstrem — sehingga perlu diverifikasi lebih lanjut sebelum dihapus. Pada Bagian 3.C, boxplot juga akan dibandingkan **sebelum vs sesudah** pembersihan untuk melihat apakah sebaran outlier berkurang setelah nilai negatif ditangani.
 
 ---
 
@@ -149,6 +153,10 @@ area_polygon = Polygon(geojson_coords)
 centroid_lon = area_polygon.centroid.x
 centroid_lat = area_polygon.centroid.y
 print(f"Titik Pusat Penarikan Data -> Latitude: {centroid_lat:.5f}, Longitude: {centroid_lon:.5f}")
+```
+
+```{note}
+Ganti daftar `geojson_coords` di atas dengan titik-titik batas wilayah domisili/kajian Anda masing-masing (bukan Gresik) jika tugas mensyaratkan wilayah yang berbeda. Koordinat bisa diambil dari geojson.io atau batas administratif resmi.
 ```
 
 Untuk memastikan batas wilayah yang dipakai sudah sesuai (bukan hanya berupa angka koordinat), kita bisa memvisualisasikan poligon tersebut di atas peta interaktif menggunakan `folium`:
@@ -238,7 +246,7 @@ for col in kolom_polutan:
 ```
 
 ```{code-cell} ipython3
-# Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan
+# Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan (SEBELUM dibersihkan)
 fig, axes = plt.subplots(1, 5, figsize=(20, 5))
 for i, col in enumerate(kolom_polutan):
     sns.boxplot(y=df[col], ax=axes[i], color='#3498db')
@@ -268,13 +276,41 @@ for col in ['PM10', 'PM2.5', 'CO', 'NO2', 'O3']:
 # Mengisi missing values (NaN) menggunakan interpolasi linear berbasis waktu
 # Interpolasi dipilih karena data bersifat time-series dan nilai polutan
 # cenderung berubah secara gradual antar-jam, bukan melompat drastis
+#
+# CATATAN PENTING: method='time' saja TIDAK bisa mengisi NaN yang berada di
+# ujung awal atau ujung akhir deret waktu (leading/trailing NaN), karena tidak
+# ada titik data di salah satu sisinya untuk diinterpolasi. Oleh karena itu
+# ditambahkan limit_direction='both' agar NaN di kedua ujung juga tertangani
+# (menggunakan nilai valid terdekat sebagai isian/extrapolasi sederhana).
 df = df.set_index('time')
-df[['PM10', 'PM2.5', 'CO', 'NO2', 'O3']] = df[['PM10', 'PM2.5', 'CO', 'NO2', 'O3']].interpolate(method='time')
+df[['PM10', 'PM2.5', 'CO', 'NO2', 'O3']] = df[['PM10', 'PM2.5', 'CO', 'NO2', 'O3']].interpolate(
+    method='time', limit_direction='both'
+)
 df = df.reset_index()
 
 # Verifikasi ulang tidak ada lagi missing values setelah interpolasi
 print("Sisa missing values setelah interpolasi:")
 print(df.isna().sum())
+```
+
+```{code-cell} ipython3
+# Deteksi outlier SESUDAH dibersihkan, sebagai pembanding terhadap boxplot sebelumnya.
+# Perbandingan ini penting untuk melihat apakah pembersihan nilai negatif juga
+# berdampak pada sebaran/outlier data secara keseluruhan.
+kolom_polutan_bersih = ['PM10', 'PM2.5', 'CO', 'NO2', 'O3']
+fig, axes = plt.subplots(1, 5, figsize=(20, 5))
+for i, col in enumerate(kolom_polutan_bersih):
+    sns.boxplot(y=df[col], ax=axes[i], color='#2ecc71')
+    axes[i].set_title(col)
+plt.suptitle('Deteksi Outlier per Jenis Polutan (Sesudah Dibersihkan)', fontweight='bold')
+plt.tight_layout()
+plt.show()
+
+# Catatan interpretasi: outlier yang masih tersisa setelah pembersihan nilai
+# negatif tidak serta-merta dihapus, karena bisa jadi merupakan kejadian nyata
+# (misalnya lonjakan PM2.5 akibat kebakaran lahan/kemacetan ekstrem), bukan
+# error pengukuran. Outlier semacam ini dibiarkan dalam data namun dicatat
+# sebagai catatan analisis lanjutan.
 ```
 
 # Mengurutkan waktu secara ASCENDING agar runtun waktu rapi (Data terlama di atas)
@@ -295,7 +331,7 @@ df.head()
 ---
 
 ## 4. Visualisasi Grafik (Time Series)
-Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya.
+Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya, sekaligus menjawab keempat pertanyaan pada Bagian 1.3: tren umum, pola harian, pola musiman, dan frekuensi pelanggaran ambang batas.
 
 ### A. Grafik Gas Emisi (CO dan NO2)
 Kita me-resample datanya menjadi rata-rata harian agar grafik lebih mudah dibaca dan tidak terlalu menumpuk.
@@ -361,7 +397,143 @@ plt.tight_layout()
 plt.show()
 ```
 
-### D. Ringkasan Statistik Akhir
+### D. Pola Harian (Jam Sibuk Lalu Lintas)
+
+Grafik pada Bagian A–C menggunakan rata-rata harian sehingga pola dalam satu hari (24 jam) tidak terlihat. Bagian ini secara khusus menjawab pertanyaan riset "apakah polusi lebih tinggi di jam sibuk lalu lintas?" dengan mengelompokkan data berdasarkan jam (0–23) tanpa memandang tanggal.
+
+```{code-cell} ipython3
+# Ekstrak jam dari kolom waktu (0-23)
+df['hour'] = df['time'].dt.hour
+
+# Rata-rata konsentrasi per jam sepanjang periode data
+df_hourly_pattern = df.groupby('hour')[['CO', 'NO2', 'PM10', 'PM2.5', 'O3']].mean()
+
+fig, axes = plt.subplots(1, 2, figsize=(18, 6))
+
+# Panel kiri: polutan emisi langsung dari kendaraan (CO, NO2, PM10, PM2.5)
+df_hourly_pattern[['CO', 'NO2', 'PM10', 'PM2.5']].plot(ax=axes[0], marker='o')
+axes[0].set_title('Rata-rata Polutan Emisi per Jam dalam Sehari', fontweight='bold')
+axes[0].set_xlabel('Jam (0-23)')
+axes[0].set_ylabel('Konsentrasi (μg/m³)')
+axes[0].axvspan(6, 9, color='red', alpha=0.1, label='Jam sibuk pagi')
+axes[0].axvspan(16, 19, color='red', alpha=0.1, label='Jam sibuk sore')
+axes[0].legend()
+axes[0].grid(True, linestyle='--', alpha=0.5)
+
+# Panel kanan: O3 dipisah karena polanya dibentuk oleh sinar matahari, bukan emisi langsung
+df_hourly_pattern[['O3']].plot(ax=axes[1], marker='o', color='#f39c12')
+axes[1].set_title('Rata-rata Ozon (O3) per Jam dalam Sehari', fontweight='bold')
+axes[1].set_xlabel('Jam (0-23)')
+axes[1].set_ylabel('Konsentrasi (μg/m³)')
+axes[1].axvspan(11, 15, color='orange', alpha=0.1, label='Siang hari (puncak sinar matahari)')
+axes[1].legend()
+axes[1].grid(True, linestyle='--', alpha=0.5)
+
+plt.tight_layout()
+plt.show()
+
+df_hourly_pattern
+```
+
+Interpretasi yang diharapkan: polutan emisi langsung (CO, NO2, PM10, PM2.5) umumnya menunjukkan dua puncak yang berdekatan dengan jam sibuk lalu lintas (pagi dan sore), sedangkan O3 memuncak di siang hari karena terbentuk dari reaksi fotokimia yang membutuhkan intensitas sinar matahari tinggi.
+
+### E. Pola Musiman (Kemarau vs Penghujan)
+
+Untuk melihat pola musiman, data di-resample menjadi rata-rata bulanan, kemudian dikelompokkan ke musim kemarau (April–Oktober) dan musim hujan (November–Maret) sesuai pola iklim umum di Jawa Timur.
+
+```{code-cell} ipython3
+# Resample menjadi rata-rata bulanan untuk melihat tren musiman
+df_monthly = df.resample('M', on='time').mean(numeric_only=True).reset_index()
+
+plt.figure(figsize=(15, 6))
+for col, color in zip(['CO', 'NO2', 'PM10', 'PM2.5', 'O3'],
+                       ['#d35400', '#2980b9', '#8e44ad', '#27ae60', '#f39c12']):
+    sns.lineplot(data=df_monthly, x='time', y=col, label=col, color=color, marker='o')
+
+plt.title('Rata-rata Bulanan Tiap Polutan (Pola Musiman)', fontsize=14, fontweight='bold')
+plt.xlabel('Bulan', fontsize=12)
+plt.ylabel('Konsentrasi (μg/m³)', fontsize=12)
+plt.legend()
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.tight_layout()
+plt.show()
+```
+
+```{code-cell} ipython3
+# Klasifikasi musim: Kemarau (Apr-Okt) vs Hujan (Nov-Mar), pola umum Jawa Timur
+def klasifikasi_musim(bulan):
+    return 'Kemarau' if bulan in [4, 5, 6, 7, 8, 9, 10] else 'Hujan'
+
+df['musim'] = df['time'].dt.month.apply(klasifikasi_musim)
+
+# Perbandingan rata-rata konsentrasi tiap polutan antar musim
+perbandingan_musim = df.groupby('musim')[['CO', 'NO2', 'PM10', 'PM2.5', 'O3']].mean()
+print("Rata-rata konsentrasi polutan per musim:")
+perbandingan_musim
+```
+
+```{code-cell} ipython3
+perbandingan_musim.T.plot(kind='bar', figsize=(10, 6), color=['#e67e22', '#3498db'])
+plt.title('Perbandingan Rata-rata Polutan: Musim Kemarau vs Hujan', fontweight='bold')
+plt.ylabel('Konsentrasi (μg/m³)')
+plt.xlabel('Polutan')
+plt.xticks(rotation=0)
+plt.legend(title='Musim')
+plt.grid(True, axis='y', linestyle='--', alpha=0.5)
+plt.tight_layout()
+plt.show()
+```
+
+### F. Frekuensi Pelanggaran Ambang Batas Aman
+
+Bagian ini menjawab pertanyaan riset terakhir: "polutan mana yang paling sering melebihi ambang batas aman?", menggunakan baku mutu udara ambien nasional (PP No. 22 Tahun 2021) yang sudah dijelaskan pada Bagian 2.3.
+
+```{code-cell} ipython3
+# Baku mutu udara ambien nasional (PP No. 22 Tahun 2021), dalam μg/m³
+baku_mutu = {
+    'CO': 10000,     # rata-rata 1 jam
+    'NO2': 200,      # rata-rata 1 jam
+    'PM10': 75,      # rata-rata 24 jam
+    'PM2.5': 55,     # rata-rata 24 jam
+    'O3': 150        # rata-rata 1 jam
+}
+
+hasil_pelanggaran = []
+for polutan, batas in baku_mutu.items():
+    jumlah_lewat = (df[polutan] > batas).sum()
+    total_data = df[polutan].notna().sum()
+    persen_lewat = (jumlah_lewat / total_data) * 100
+    hasil_pelanggaran.append({
+        'Polutan': polutan,
+        'Baku Mutu (μg/m³)': batas,
+        'Jumlah Jam Melebihi': jumlah_lewat,
+        'Persentase Waktu Melebihi (%)': round(persen_lewat, 2)
+    })
+
+df_pelanggaran = pd.DataFrame(hasil_pelanggaran).sort_values(
+    by='Persentase Waktu Melebihi (%)', ascending=False
+).reset_index(drop=True)
+
+print("Ringkasan frekuensi pelanggaran ambang batas per polutan:")
+df_pelanggaran
+```
+
+```{code-cell} ipython3
+plt.figure(figsize=(10, 6))
+sns.barplot(data=df_pelanggaran, x='Polutan', y='Persentase Waktu Melebihi (%)', palette='Reds_r')
+plt.title('Persentase Waktu Konsentrasi Melebihi Ambang Batas Aman', fontweight='bold')
+plt.ylabel('Persentase Waktu (%)')
+plt.xlabel('Polutan')
+plt.grid(True, axis='y', linestyle='--', alpha=0.5)
+plt.tight_layout()
+plt.show()
+```
+
+```{note}
+Perlu diperhatikan bahwa baku mutu PM10, PM2.5 (rata-rata 24 jam) dan CO, NO2, O3 (rata-rata 1 jam) memiliki basis waktu rata-rata yang berbeda. Perhitungan di atas menerapkan ambang batas langsung pada data per jam sebagai pendekatan sederhana (screening); untuk kesimpulan yang lebih presisi terhadap PM10/PM2.5, idealnya dihitung dari rata-rata bergerak 24 jam (`df[col].rolling('24H').mean()`) sebelum dibandingkan dengan baku mutunya.
+```
+
+### G. Ringkasan Statistik Akhir
 
 ```{code-cell} ipython3
 # Ringkasan statistik harian dari seluruh polutan setelah proses pembersihan
@@ -370,9 +542,12 @@ df_daily[['CO', 'NO2', 'PM10', 'PM2.5', 'O3']].describe()
 
 ---
 
-## 5. Kesimpulan Sementara
+## 5. Kesimpulan
 
-Berdasarkan eksplorasi dan visualisasi di atas, beberapa hal yang dapat disimpulkan (silakan sesuaikan dengan hasil aktual dari data yang ditarik):
-*   Tren konsentrasi masing-masing polutan selama satu tahun terakhir dapat diamati melalui grafik time series di Bagian 4.
-*   Proses pembersihan data (penanganan nilai negatif dan missing values melalui interpolasi) memastikan data yang dianalisis lebih valid secara logis.
+Berdasarkan eksplorasi dan visualisasi di atas, beberapa hal yang dapat disimpulkan (silakan sesuaikan dengan hasil aktual dari data yang ditarik setelah kode dijalankan):
+*   **Tren umum:** Tren konsentrasi masing-masing polutan selama satu tahun terakhir dapat diamati melalui grafik time series harian di Bagian 4.A–4.C.
+*   **Pola harian:** Bagian 4.D menunjukkan apakah polutan emisi kendaraan (CO, NO2, PM10, PM2.5) memuncak di jam sibuk lalu lintas (pagi/sore), sementara O3 diperkirakan memuncak siang hari akibat proses fotokimia.
+*   **Pola musiman:** Bagian 4.E membandingkan rata-rata bulanan dan rata-rata musim kemarau vs hujan; secara umum diharapkan konsentrasi partikulat (PM10/PM2.5) lebih tinggi di musim kemarau karena kondisi udara lebih kering dan minim hujan yang biasanya "mencuci" partikel di udara.
+*   **Anomali data:** Proses pembersihan data (penanganan nilai negatif dan missing values melalui interpolasi dua arah) memastikan data yang dianalisis lebih valid secara logis; boxplot sebelum/sesudah pembersihan di Bagian 3.C digunakan untuk memverifikasi hal ini.
+*   **Pelanggaran ambang batas:** Bagian 4.F menjawab polutan mana yang paling sering melewati baku mutu nasional, sebagai indikator prioritas polutan yang perlu diwaspadai di wilayah kajian.
 *   Hasil analisis ini dapat menjadi acuan awal bagi masyarakat dan pemerintah setempat dalam memahami pola kualitas udara di Gresik, serta menjadi dasar untuk kajian lanjutan seperti pemodelan prediksi (forecasting) polutan.
