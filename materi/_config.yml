@@ -3,7 +3,7 @@
 
 title: PSD - Materi
 author: Okan Syailendra Wahyudi
-logo: foto.webp
+logo: images/foto.webp
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
