@@ -104,7 +104,7 @@ data = response.json()
 print("Data API berhasil ditarik!")
 ```
 ## C. Data Preparation & Penyesuaian Urutan
-Setelah data JSON ditarik dari API, kita ubah menjadi DataFrame. Kita juga akan melakukan eksplorasi awal (lihat Bagian 2.4), lalu menghapus anomali nilai negatif, mengisi data yang hilang, dan memastikan urutan data diatur dari yang terlama ke yang terbaru (ascending).
+Setelah data JSON ditarik dari API, kita ubah menjadi DataFrame. Kita juga akan melakukan eksplorasi awal (lihat Bagian 2.4), menghapus anomali nilai negatif, dan mengisi data yang hilang. Karena data dari API per jam, kita akan langsung merata-ratakannya menjadi data harian (daily) untuk menyederhanakan analisis dan memperkecil ukuran data.
 
 # Memasukkan data ke dalam Pandas DataFrame
 ```{code-cell} ipython3
@@ -204,8 +204,9 @@ plt.show()
 # sebagai catatan analisis lanjutan.
 ```
 
-# Mengurutkan waktu secara ASCENDING agar runtun waktu rapi (Data terlama di atas)
+# Agregasi ke harian dan mengurutkan waktu secara ASCENDING
 ```{code-cell} ipython3
+df = df.resample('D', on='time').mean().reset_index()
 df = df.sort_values(by='time', ascending=True).reset_index(drop=True)
 ```
 # Menyimpan Data menjadi CSV
@@ -222,21 +223,17 @@ df.head()
 ---
 
 ## B. Visualisasi Grafik (Time Series)
-Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya, sekaligus menjawab keempat pertanyaan pada Bagian 1.3: tren umum, pola harian, pola musiman, dan frekuensi pelanggaran ambang batas.
+Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya, sekaligus menjawab ketiga pertanyaan pada Bagian 1.3: tren umum, pola musiman, dan frekuensi pelanggaran ambang batas.
 
 ## A. Grafik Gas Emisi (CO dan NO2)
-Kita me-resample datanya menjadi rata-rata harian agar grafik lebih mudah dibaca dan tidak terlalu menumpuk.
-
-# Resample data per jam menjadi rata-rata harian (D = Daily)
-```{code-cell} ipython3
-df_daily = df.resample('D', on='time').mean().reset_index()
 
 # Konfigurasi kanvas Matplotlib
+```{code-cell} ipython3
 plt.figure(figsize=(15, 6))
 
 # Plot Garis untuk Karbon Monoksida dan Nitrogen Dioksida
-sns.lineplot(data=df_daily, x='time', y='CO', label='CO (Karbon Monoksida)', color='#d35400')
-sns.lineplot(data=df_daily, x='time', y='NO2', label='NO2 (Nitrogen Dioksida)', color='#2980b9')
+sns.lineplot(data=df, x='time', y='CO', label='CO (Karbon Monoksida)', color='#d35400')
+sns.lineplot(data=df, x='time', y='NO2', label='NO2 (Nitrogen Dioksida)', color='#2980b9')
 
 # Styling Grafik
 plt.title('Tren Karbon Monoksida & Nitrogen Dioksida di Gresik', fontsize=14, fontweight='bold')
@@ -256,8 +253,8 @@ Partikulat sangat penting dipantau di wilayah pabrik dan kendaraan berat karena 
 plt.figure(figsize=(15, 6))
 
 # Plot Garis untuk Partikulat
-sns.lineplot(data=df_daily, x='time', y='PM10', label='PM 10 (Partikel <10µm)', color='#8e44ad')
-sns.lineplot(data=df_daily, x='time', y='PM2.5', label='PM 2.5 (Partikel <2.5µm)', color='#27ae60')
+sns.lineplot(data=df, x='time', y='PM10', label='PM 10 (Partikel <10µm)', color='#8e44ad')
+sns.lineplot(data=df, x='time', y='PM2.5', label='PM 2.5 (Partikel <2.5µm)', color='#27ae60')
 
 # Styling Grafik
 plt.title('Tren Partikulat PM10 dan PM2.5 di Gresik', fontsize=14, fontweight='bold')
@@ -276,7 +273,7 @@ Karena O3 terbentuk dari reaksi fotokimia, polanya cenderung berbeda dengan polu
 ```{code-cell} ipython3
 plt.figure(figsize=(15, 6))
 
-sns.lineplot(data=df_daily, x='time', y='O3', label='O3 (Ozon Permukaan)', color='#f39c12')
+sns.lineplot(data=df, x='time', y='O3', label='O3 (Ozon Permukaan)', color='#f39c12')
 
 plt.title('Tren Ozon Permukaan (O3) di Gresik', fontsize=14, fontweight='bold')
 plt.xlabel('Waktu', fontsize=12)
@@ -288,47 +285,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-## D. Pola Harian (Jam Sibuk Lalu Lintas)
-
-Grafik pada Bagian A–C menggunakan rata-rata harian sehingga pola dalam satu hari (24 jam) tidak terlihat. Bagian ini secara khusus menjawab pertanyaan riset "apakah polusi lebih tinggi di jam sibuk lalu lintas?" dengan mengelompokkan data berdasarkan jam (0–23) tanpa memandang tanggal.
-
-```{code-cell} ipython3
-# Ekstrak jam dari kolom waktu (0-23)
-df['hour'] = df['time'].dt.hour
-
-# Rata-rata konsentrasi per jam sepanjang periode data
-df_hourly_pattern = df.groupby('hour')[['CO', 'NO2', 'PM10', 'PM2.5', 'O3']].mean()
-
-fig, axes = plt.subplots(1, 2, figsize=(18, 6))
-
-# Panel kiri: polutan emisi langsung dari kendaraan (CO, NO2, PM10, PM2.5)
-df_hourly_pattern[['CO', 'NO2', 'PM10', 'PM2.5']].plot(ax=axes[0], marker='o')
-axes[0].set_title('Rata-rata Polutan Emisi per Jam dalam Sehari', fontweight='bold')
-axes[0].set_xlabel('Jam (0-23)')
-axes[0].set_ylabel('Konsentrasi (μg/m³)')
-axes[0].axvspan(6, 9, color='red', alpha=0.1, label='Jam sibuk pagi')
-axes[0].axvspan(16, 19, color='red', alpha=0.1, label='Jam sibuk sore')
-axes[0].legend()
-axes[0].grid(True, linestyle='--', alpha=0.5)
-
-# Panel kanan: O3 dipisah karena polanya dibentuk oleh sinar matahari, bukan emisi langsung
-df_hourly_pattern[['O3']].plot(ax=axes[1], marker='o', color='#f39c12')
-axes[1].set_title('Rata-rata Ozon (O3) per Jam dalam Sehari', fontweight='bold')
-axes[1].set_xlabel('Jam (0-23)')
-axes[1].set_ylabel('Konsentrasi (μg/m³)')
-axes[1].axvspan(11, 15, color='orange', alpha=0.1, label='Siang hari (puncak sinar matahari)')
-axes[1].legend()
-axes[1].grid(True, linestyle='--', alpha=0.5)
-
-plt.tight_layout()
-plt.show()
-
-df_hourly_pattern
-```
-
-Interpretasi yang diharapkan: polutan emisi langsung (CO, NO2, PM10, PM2.5) umumnya menunjukkan dua puncak yang berdekatan dengan jam sibuk lalu lintas (pagi dan sore), sedangkan O3 memuncak di siang hari karena terbentuk dari reaksi fotokimia yang membutuhkan intensitas sinar matahari tinggi.
-
-## E. Pola Musiman (Kemarau vs Penghujan)
+## D. Pola Musiman (Kemarau vs Penghujan)
 
 Untuk melihat pola musiman, data di-resample menjadi rata-rata bulanan, kemudian dikelompokkan ke musim kemarau (April–Oktober) dan musim hujan (November–Maret) sesuai pola iklim umum di Jawa Timur.
 
@@ -375,7 +332,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-## F. Frekuensi Pelanggaran Ambang Batas Aman
+## E. Frekuensi Pelanggaran Ambang Batas Aman
 
 Bagian ini menjawab pertanyaan riset terakhir: "polutan mana yang paling sering melebihi ambang batas aman?", menggunakan baku mutu udara ambien nasional (PP No. 22 Tahun 2021) yang sudah dijelaskan pada Bagian 2.3.
 
@@ -421,14 +378,14 @@ plt.show()
 ```
 
 ```{note}
-Perlu diperhatikan bahwa baku mutu PM10, PM2.5 (rata-rata 24 jam) dan CO, NO2, O3 (rata-rata 1 jam) memiliki basis waktu rata-rata yang berbeda. Perhitungan di atas menerapkan ambang batas langsung pada data per jam sebagai pendekatan sederhana (screening); untuk kesimpulan yang lebih presisi terhadap PM10/PM2.5, idealnya dihitung dari rata-rata bergerak 24 jam (`df[col].rolling('24H').mean()`) sebelum dibandingkan dengan baku mutunya.
+Perlu diperhatikan bahwa baku mutu untuk PM10 dan PM2.5 (rata-rata 24 jam) sangat cocok untuk dibandingkan langsung dengan data harian kita. Namun untuk CO, NO2, dan O3 yang baku mutunya berbasis rata-rata 1 jam, pembandingan dengan data harian merupakan *screening* awal dan cenderung *underestimate* nilai puncak harian.
 ```
 
-## G. Ringkasan Statistik Akhir
+## F. Ringkasan Statistik Akhir
 
 ```{code-cell} ipython3
 # Ringkasan statistik harian dari seluruh polutan setelah proses pembersihan
-df_daily[['CO', 'NO2', 'PM10', 'PM2.5', 'O3']].describe()
+df[['CO', 'NO2', 'PM10', 'PM2.5', 'O3']].describe()
 ```
 
 ---

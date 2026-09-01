@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,7 +60,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'perhitungan';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Content with notebooks" href="notebooks.html" />
     <link rel="prev" title="2. Data Understanding" href="data_understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -196,7 +195,6 @@
 
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
 
@@ -407,23 +405,22 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#memasukkan-data-ke-dalam-pandas-dataframe">Memasukkan data ke dalam Pandas DataFrame</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengubah-nama-kolom-agar-lebih-ringkas">Mengubah nama kolom agar lebih ringkas</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas">Mengurutkan waktu secara ASCENDING agar runtun waktu rapi (Data terlama di atas)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-ke-harian-dan-mengurutkan-waktu-secara-ascending">Agregasi ke harian dan mengurutkan waktu secara ASCENDING</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-menjadi-csv">Menyimpan Data menjadi CSV</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-visualisasi-grafik-time-series">B. Visualisasi Grafik (Time Series)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-grafik-gas-emisi-co-dan-no2">A. Grafik Gas Emisi (CO dan NO2)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-data-per-jam-menjadi-rata-rata-harian-d-daily">Resample data per jam menjadi rata-rata harian (D = Daily)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5">B. Grafik Partikel Berbahaya (PM10 dan PM2.5)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-grafik-ozon-permukaan-o3">C. Grafik Ozon Permukaan (O3)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pola-harian-jam-sibuk-lalu-lintas">D. Pola Harian (Jam Sibuk Lalu Lintas)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-pola-musiman-kemarau-vs-penghujan">E. Pola Musiman (Kemarau vs Penghujan)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-frekuensi-pelanggaran-ambang-batas-aman">F. Frekuensi Pelanggaran Ambang Batas Aman</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-ringkasan-statistik-akhir">G. Ringkasan Statistik Akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pola-musiman-kemarau-vs-penghujan">D. Pola Musiman (Kemarau vs Penghujan)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-frekuensi-pelanggaran-ambang-batas-aman">E. Frekuensi Pelanggaran Ambang Batas Aman</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ringkasan-statistik-akhir">F. Ringkasan Statistik Akhir</a></li>
 </ul>
 </li>
 </ul>
@@ -533,7 +530,7 @@ document.write(`
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_98fa85ee4f2f12ff8c21cfce8d2ae935 {
+                #map_8a48f270cdf9d3fb094d7ed81043d983 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -570,14 +567,14 @@ document.write(`
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_98fa85ee4f2f12ff8c21cfce8d2ae935&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_8a48f270cdf9d3fb094d7ed81043d983&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_98fa85ee4f2f12ff8c21cfce8d2ae935 = L.map(
-                &quot;map_98fa85ee4f2f12ff8c21cfce8d2ae935&quot;,
+            var map_8a48f270cdf9d3fb094d7ed81043d983 = L.map(
+                &quot;map_8a48f270cdf9d3fb094d7ed81043d983&quot;,
                 {
                     center: [-7.158422392571495, 112.6561724712801],
                     crs: L.CRS.EPSG3857,
@@ -594,7 +591,7 @@ document.write(`
 
         
     
-            var tile_layer_6ba2e51615939629e6e21e71a0a758d8 = L.tileLayer(
+            var tile_layer_0489150e71d80509e864927a1dc69524 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -611,16 +608,16 @@ document.write(`
             );
         
     
-            tile_layer_6ba2e51615939629e6e21e71a0a758d8.addTo(map_98fa85ee4f2f12ff8c21cfce8d2ae935);
+            tile_layer_0489150e71d80509e864927a1dc69524.addTo(map_8a48f270cdf9d3fb094d7ed81043d983);
         
     
-            var polygon_a276b4bb6eaa88db4b5e2e89f39f7e70 = L.polygon(
+            var polygon_7beb69ab6b625a5ccd00a0ca2f7cf693 = L.polygon(
                 [[-7.1481289, 112.6568922], [-7.1509091, 112.6482448], [-7.1672063, 112.6525927], [-7.1655766, 112.6657812], [-7.1481289, 112.6568922]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#e74c3c&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#e74c3c&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_98fa85ee4f2f12ff8c21cfce8d2ae935);
+            ).addTo(map_8a48f270cdf9d3fb094d7ed81043d983);
         
     
-            polygon_a276b4bb6eaa88db4b5e2e89f39f7e70.bindTooltip(
+            polygon_7beb69ab6b625a5ccd00a0ca2f7cf693.bindTooltip(
                 `&lt;div&gt;
                      Batas Wilayah Kajian - Gresik
                  &lt;/div&gt;`,
@@ -630,14 +627,14 @@ document.write(`
             );
         
     
-            var marker_483375110beb464544a316c78ecc24d7 = L.marker(
+            var marker_b0bccf85902fb9b744e29b7fc48eedc6 = L.marker(
                 [-7.158422392571495, 112.6561724712801],
                 {
 }
-            ).addTo(map_98fa85ee4f2f12ff8c21cfce8d2ae935);
+            ).addTo(map_8a48f270cdf9d3fb094d7ed81043d983);
         
     
-            var icon_30f785eb2d4a92889f63bb6919a2fed5 = L.AwesomeMarkers.icon(
+            var icon_0faa03726214b16b8324805cb7416571 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;blue&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -648,24 +645,24 @@ document.write(`
             );
         
     
-        var popup_0d36f641a91c92bf6db55da5316f4191 = L.popup({
+        var popup_fcf492cd8e10a89b68a1c7d1ba71c7e6 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_dfb5d4a5b5275a7f62f1e01ffe7fc71c = $(`&lt;div id=&quot;html_dfb5d4a5b5275a7f62f1e01ffe7fc71c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
-                popup_0d36f641a91c92bf6db55da5316f4191.setContent(html_dfb5d4a5b5275a7f62f1e01ffe7fc71c);
+                var html_ba31526982e194215ea15bbc2e2ed256 = $(`&lt;div id=&quot;html_ba31526982e194215ea15bbc2e2ed256&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
+                popup_fcf492cd8e10a89b68a1c7d1ba71c7e6.setContent(html_ba31526982e194215ea15bbc2e2ed256);
             
         
 
-        marker_483375110beb464544a316c78ecc24d7.bindPopup(popup_0d36f641a91c92bf6db55da5316f4191)
+        marker_b0bccf85902fb9b744e29b7fc48eedc6.bindPopup(popup_fcf492cd8e10a89b68a1c7d1ba71c7e6)
         ;
 
         
     
     
-                marker_483375110beb464544a316c78ecc24d7.setIcon(icon_30f785eb2d4a92889f63bb6919a2fed5);
+                marker_b0bccf85902fb9b744e29b7fc48eedc6.setIcon(icon_0faa03726214b16b8324805cb7416571);
             
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
@@ -719,7 +716,7 @@ document.write(`
 </div>
 <section id="c-data-preparation-penyesuaian-urutan">
 <h2>C. Data Preparation &amp; Penyesuaian Urutan<a class="headerlink" href="#c-data-preparation-penyesuaian-urutan" title="Link to this heading">#</a></h2>
-<p>Setelah data JSON ditarik dari API, kita ubah menjadi DataFrame. Kita juga akan melakukan eksplorasi awal (lihat Bagian 2.4), lalu menghapus anomali nilai negatif, mengisi data yang hilang, dan memastikan urutan data diatur dari yang terlama ke yang terbaru (ascending).</p>
+<p>Setelah data JSON ditarik dari API, kita ubah menjadi DataFrame. Kita juga akan melakukan eksplorasi awal (lihat Bagian 2.4), menghapus anomali nilai negatif, dan mengisi data yang hilang. Karena data dari API per jam, kita akan langsung merata-ratakannya menjadi data harian (daily) untuk menyederhanakan analisis dan memperkecil ukuran data.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="memasukkan-data-ke-dalam-pandas-dataframe">
@@ -795,35 +792,35 @@ memory usage: 411.9 KB
       <th>count</th>
       <td>8784</td>
       <td>8784.000000</td>
-      <td>8784.000000</td>
       <td>8784.00000</td>
+      <td>8784.000000</td>
       <td>8784.000000</td>
       <td>8784.000000</td>
     </tr>
     <tr>
       <th>mean</th>
       <td>2026-03-01 23:30:00</td>
-      <td>42.603723</td>
-      <td>41.114857</td>
-      <td>1053.38536</td>
-      <td>33.711737</td>
-      <td>69.815005</td>
+      <td>42.583413</td>
+      <td>41.09589</td>
+      <td>1053.421107</td>
+      <td>33.701673</td>
+      <td>69.781421</td>
     </tr>
     <tr>
       <th>min</th>
       <td>2025-08-31 00:00:00</td>
       <td>6.300000</td>
-      <td>6.100000</td>
-      <td>81.00000</td>
+      <td>6.10000</td>
+      <td>81.000000</td>
       <td>2.700000</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>25%</th>
       <td>2025-11-30 11:45:00</td>
-      <td>23.100000</td>
-      <td>21.500000</td>
-      <td>494.00000</td>
+      <td>23.000000</td>
+      <td>21.40000</td>
+      <td>494.000000</td>
       <td>16.000000</td>
       <td>28.000000</td>
     </tr>
@@ -831,8 +828,8 @@ memory usage: 411.9 KB
       <th>50%</th>
       <td>2026-03-01 23:30:00</td>
       <td>33.600000</td>
-      <td>31.900000</td>
-      <td>758.00000</td>
+      <td>31.90000</td>
+      <td>758.000000</td>
       <td>28.200000</td>
       <td>53.000000</td>
     </tr>
@@ -840,8 +837,8 @@ memory usage: 411.9 KB
       <th>75%</th>
       <td>2026-06-01 11:15:00</td>
       <td>51.800000</td>
-      <td>50.500000</td>
-      <td>1273.25000</td>
+      <td>50.50000</td>
+      <td>1273.250000</td>
       <td>45.900000</td>
       <td>107.000000</td>
     </tr>
@@ -849,19 +846,19 @@ memory usage: 411.9 KB
       <th>max</th>
       <td>2026-08-31 23:00:00</td>
       <td>275.700000</td>
-      <td>275.700000</td>
-      <td>8484.00000</td>
+      <td>275.70000</td>
+      <td>8484.000000</td>
       <td>195.500000</td>
       <td>289.000000</td>
     </tr>
     <tr>
       <th>std</th>
       <td>NaN</td>
-      <td>29.907019</td>
-      <td>29.741924</td>
-      <td>902.83143</td>
-      <td>23.489916</td>
-      <td>54.557600</td>
+      <td>29.919020</td>
+      <td>29.75372</td>
+      <td>902.804363</td>
+      <td>23.497939</td>
+      <td>54.558147</td>
     </tr>
   </tbody>
 </table>
@@ -923,7 +920,7 @@ Jumlah nilai negatif pada ozone: 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cd36b167f0cdabd40e70d5822344a502f881523be95d03e5650ddb81786b62c7.png" src="_images/cd36b167f0cdabd40e70d5822344a502f881523be95d03e5650ddb81786b62c7.png" />
+<img alt="_images/d08fc6e65c5928faf22bb046ad6599537f5dd90e30a59c2f059c98de8b141a50.png" src="_images/d08fc6e65c5928faf22bb046ad6599537f5dd90e30a59c2f059c98de8b141a50.png" />
 </div>
 </div>
 </section>
@@ -1012,15 +1009,16 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fc3fba63a5e95f50a0055f86c247f70687241aa8be0f7af2f208e0e8b4a0db52.png" src="_images/fc3fba63a5e95f50a0055f86c247f70687241aa8be0f7af2f208e0e8b4a0db52.png" />
+<img alt="_images/4078f6cf8be11042e7748a925578a5414c42f0ae0b78906634d7f0936f90efdc.png" src="_images/4078f6cf8be11042e7748a925578a5414c42f0ae0b78906634d7f0936f90efdc.png" />
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas">
-<h1>Mengurutkan waktu secara ASCENDING agar runtun waktu rapi (Data terlama di atas)<a class="headerlink" href="#mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="agregasi-ke-harian-dan-mengurutkan-waktu-secara-ascending">
+<h1>Agregasi ke harian dan mengurutkan waktu secara ASCENDING<a class="headerlink" href="#agregasi-ke-harian-dan-mengurutkan-waktu-secara-ascending" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1081,48 +1079,48 @@ dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>2025-08-31 00:00:00</td>
-      <td>30.7</td>
-      <td>29.5</td>
-      <td>860.0</td>
-      <td>27.3</td>
-      <td>35.0</td>
+      <td>2025-08-31</td>
+      <td>32.870833</td>
+      <td>31.466667</td>
+      <td>901.083333</td>
+      <td>22.666667</td>
+      <td>70.666667</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2025-08-31 01:00:00</td>
-      <td>39.1</td>
-      <td>37.6</td>
-      <td>911.0</td>
-      <td>29.3</td>
-      <td>30.0</td>
+      <td>2025-09-01</td>
+      <td>23.466667</td>
+      <td>21.725000</td>
+      <td>777.708333</td>
+      <td>16.229167</td>
+      <td>69.416667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2025-08-31 02:00:00</td>
-      <td>49.1</td>
-      <td>47.5</td>
-      <td>1077.0</td>
-      <td>31.7</td>
-      <td>24.0</td>
+      <td>2025-09-02</td>
+      <td>16.350000</td>
+      <td>14.316667</td>
+      <td>421.583333</td>
+      <td>11.108333</td>
+      <td>59.708333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2025-08-31 03:00:00</td>
-      <td>55.3</td>
-      <td>53.4</td>
-      <td>1303.0</td>
-      <td>34.4</td>
-      <td>17.0</td>
+      <td>2025-09-03</td>
+      <td>21.000000</td>
+      <td>19.700000</td>
+      <td>510.125000</td>
+      <td>14.937500</td>
+      <td>65.166667</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2025-08-31 04:00:00</td>
-      <td>58.9</td>
-      <td>56.8</td>
-      <td>1507.0</td>
-      <td>36.9</td>
-      <td>16.0</td>
+      <td>2025-09-04</td>
+      <td>31.200000</td>
+      <td>29.887500</td>
+      <td>637.458333</td>
+      <td>22.116667</td>
+      <td>85.083333</td>
     </tr>
   </tbody>
 </table>
@@ -1131,25 +1129,21 @@ dtype: int64
 <hr class="docutils" />
 <section id="b-visualisasi-grafik-time-series">
 <h2>B. Visualisasi Grafik (Time Series)<a class="headerlink" href="#b-visualisasi-grafik-time-series" title="Link to this heading">#</a></h2>
-<p>Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya, sekaligus menjawab keempat pertanyaan pada Bagian 1.3: tren umum, pola harian, pola musiman, dan frekuensi pelanggaran ambang batas.</p>
+<p>Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya, sekaligus menjawab ketiga pertanyaan pada Bagian 1.3: tren umum, pola musiman, dan frekuensi pelanggaran ambang batas.</p>
 </section>
 <section id="a-grafik-gas-emisi-co-dan-no2">
 <h2>A. Grafik Gas Emisi (CO dan NO2)<a class="headerlink" href="#a-grafik-gas-emisi-co-dan-no2" title="Link to this heading">#</a></h2>
-<p>Kita me-resample datanya menjadi rata-rata harian agar grafik lebih mudah dibaca dan tidak terlalu menumpuk.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="resample-data-per-jam-menjadi-rata-rata-harian-d-daily">
-<h1>Resample data per jam menjadi rata-rata harian (D = Daily)<a class="headerlink" href="#resample-data-per-jam-menjadi-rata-rata-harian-d-daily" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="konfigurasi-kanvas-matplotlib">
+<h1>Konfigurasi kanvas Matplotlib<a class="headerlink" href="#konfigurasi-kanvas-matplotlib" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_daily</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-
-<span class="c1"># Konfigurasi kanvas Matplotlib</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># Plot Garis untuk Karbon Monoksida dan Nitrogen Dioksida</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CO (Karbon Monoksida)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#d35400&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NO2 (Nitrogen Dioksida)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2980b9&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CO (Karbon Monoksida)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#d35400&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NO2 (Nitrogen Dioksida)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2980b9&#39;</span><span class="p">)</span>
 
 <span class="c1"># Styling Grafik</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Karbon Monoksida &amp; Nitrogen Dioksida di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
@@ -1164,7 +1158,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f05f9ede9866e109a440e7748e798c0f715d5ecc26932e4250c735ddcece2289.png" src="_images/f05f9ede9866e109a440e7748e798c0f715d5ecc26932e4250c735ddcece2289.png" />
+<img alt="_images/35e545168f702fe50c89a40c8a3c3adcc1629a6ae97acc4df4426ee562e7e18e.png" src="_images/35e545168f702fe50c89a40c8a3c3adcc1629a6ae97acc4df4426ee562e7e18e.png" />
 </div>
 </div>
 <section id="b-grafik-partikel-berbahaya-pm10-dan-pm2-5">
@@ -1172,15 +1166,15 @@ dtype: int64
 <p>Partikulat sangat penting dipantau di wilayah pabrik dan kendaraan berat karena bentuk fisiknya berupa debu mikro yang berbahaya bagi pernapasan.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="konfigurasi-kanvas-matplotlib">
-<h1>Konfigurasi kanvas Matplotlib<a class="headerlink" href="#konfigurasi-kanvas-matplotlib" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Konfigurasi kanvas Matplotlib<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># Plot Garis untuk Partikulat</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PM 10 (Partikel &lt;10µm)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#8e44ad&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PM 2.5 (Partikel &lt;2.5µm)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#27ae60&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PM 10 (Partikel &lt;10µm)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#8e44ad&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PM 2.5 (Partikel &lt;2.5µm)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#27ae60&#39;</span><span class="p">)</span>
 
 <span class="c1"># Styling Grafik</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Partikulat PM10 dan PM2.5 di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
@@ -1195,7 +1189,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/723db3b71e5fb5bb2a939d8c70bcfd04893b58a007c498b74a988e6b5a36b6da.png" src="_images/723db3b71e5fb5bb2a939d8c70bcfd04893b58a007c498b74a988e6b5a36b6da.png" />
+<img alt="_images/694f09076a4a29a8b6bf7eb988422ed6e1766c4596cf10bc51bb0e9b9dd55c0b.png" src="_images/694f09076a4a29a8b6bf7eb988422ed6e1766c4596cf10bc51bb0e9b9dd55c0b.png" />
 </div>
 </div>
 <section id="c-grafik-ozon-permukaan-o3">
@@ -1205,7 +1199,7 @@ dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_daily</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;O3&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;O3 (Ozon Permukaan)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f39c12&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;O3&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;O3 (Ozon Permukaan)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f39c12&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Ozon Permukaan (O3) di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -1219,285 +1213,12 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2563235cbeed6d87c0194739144821981c72eb156dfd942915344a5200aecd91.png" src="_images/2563235cbeed6d87c0194739144821981c72eb156dfd942915344a5200aecd91.png" />
+<img alt="_images/bc3abed1a902384ceeb86f71c8ae818b84296a34ec68fa1862b48a7c6d61ebd9.png" src="_images/bc3abed1a902384ceeb86f71c8ae818b84296a34ec68fa1862b48a7c6d61ebd9.png" />
 </div>
 </div>
 </section>
-<section id="d-pola-harian-jam-sibuk-lalu-lintas">
-<h2>D. Pola Harian (Jam Sibuk Lalu Lintas)<a class="headerlink" href="#d-pola-harian-jam-sibuk-lalu-lintas" title="Link to this heading">#</a></h2>
-<p>Grafik pada Bagian A–C menggunakan rata-rata harian sehingga pola dalam satu hari (24 jam) tidak terlihat. Bagian ini secara khusus menjawab pertanyaan riset “apakah polusi lebih tinggi di jam sibuk lalu lintas?” dengan mengelompokkan data berdasarkan jam (0–23) tanpa memandang tanggal.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ekstrak jam dari kolom waktu (0-23)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span>
-
-<span class="c1"># Rata-rata konsentrasi per jam sepanjang periode data</span>
-<span class="n">df_hourly_pattern</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)[[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
-<span class="c1"># Panel kiri: polutan emisi langsung dari kendaraan (CO, NO2, PM10, PM2.5)</span>
-<span class="n">df_hourly_pattern</span><span class="p">[[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Rata-rata Polutan Emisi per Jam dalam Sehari&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jam (0-23)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Konsentrasi (μg/m³)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Jam sibuk pagi&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Jam sibuk sore&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-<span class="c1"># Panel kanan: O3 dipisah karena polanya dibentuk oleh sinar matahari, bukan emisi langsung</span>
-<span class="n">df_hourly_pattern</span><span class="p">[[</span><span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f39c12&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Rata-rata Ozon (O3) per Jam dalam Sehari&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jam (0-23)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Konsentrasi (μg/m³)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Siang hari (puncak sinar matahari)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">df_hourly_pattern</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/02d14f556b282ff95924e90d8983e664669e23d24f88f4639ebfd3c4a08b4fd7.png" src="_images/02d14f556b282ff95924e90d8983e664669e23d24f88f4639ebfd3c4a08b4fd7.png" />
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>CO</th>
-      <th>NO2</th>
-      <th>PM10</th>
-      <th>PM2.5</th>
-      <th>O3</th>
-    </tr>
-    <tr>
-      <th>hour</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1128.816940</td>
-      <td>45.653005</td>
-      <td>53.005464</td>
-      <td>51.517486</td>
-      <td>27.893443</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>971.319672</td>
-      <td>44.200000</td>
-      <td>54.681967</td>
-      <td>53.181967</td>
-      <td>26.426230</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>837.715847</td>
-      <td>43.240164</td>
-      <td>56.562842</td>
-      <td>55.054372</td>
-      <td>23.669399</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>737.065574</td>
-      <td>42.567486</td>
-      <td>58.638525</td>
-      <td>57.109836</td>
-      <td>20.877049</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>747.934426</td>
-      <td>42.182787</td>
-      <td>60.980874</td>
-      <td>59.435519</td>
-      <td>20.418033</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>997.090164</td>
-      <td>43.132514</td>
-      <td>64.839891</td>
-      <td>63.265574</td>
-      <td>23.448087</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>1357.808743</td>
-      <td>44.371311</td>
-      <td>72.777596</td>
-      <td>71.066120</td>
-      <td>29.560109</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>1528.644809</td>
-      <td>40.974044</td>
-      <td>57.071311</td>
-      <td>55.066393</td>
-      <td>44.532787</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>1316.475410</td>
-      <td>34.332514</td>
-      <td>37.822131</td>
-      <td>35.673497</td>
-      <td>64.734973</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>914.456284</td>
-      <td>25.074590</td>
-      <td>30.184699</td>
-      <td>28.046175</td>
-      <td>93.010929</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>600.341530</td>
-      <td>17.516940</td>
-      <td>26.794536</td>
-      <td>24.857923</td>
-      <td>117.207650</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>479.218579</td>
-      <td>13.061475</td>
-      <td>25.204098</td>
-      <td>23.576503</td>
-      <td>134.579235</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>446.038251</td>
-      <td>10.302186</td>
-      <td>24.490984</td>
-      <td>23.152186</td>
-      <td>147.893443</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>463.330601</td>
-      <td>9.319399</td>
-      <td>24.242896</td>
-      <td>23.080328</td>
-      <td>153.379781</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>507.841530</td>
-      <td>9.776503</td>
-      <td>24.115574</td>
-      <td>23.031694</td>
-      <td>148.614754</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>602.866120</td>
-      <td>12.011202</td>
-      <td>23.884153</td>
-      <td>22.828689</td>
-      <td>136.038251</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>780.784153</td>
-      <td>17.094809</td>
-      <td>24.433607</td>
-      <td>23.369126</td>
-      <td>119.103825</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>1132.650273</td>
-      <td>27.554372</td>
-      <td>28.543989</td>
-      <td>27.451913</td>
-      <td>95.437158</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>1567.486339</td>
-      <td>40.862022</td>
-      <td>37.407650</td>
-      <td>36.187705</td>
-      <td>67.426230</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>1844.688525</td>
-      <td>50.183880</td>
-      <td>43.050273</td>
-      <td>41.672404</td>
-      <td>44.516393</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>1837.685792</td>
-      <td>49.963934</td>
-      <td>44.846448</td>
-      <td>43.482240</td>
-      <td>40.696721</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>1673.081967</td>
-      <td>49.548907</td>
-      <td>47.220219</td>
-      <td>45.831421</td>
-      <td>35.581967</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>1490.040984</td>
-      <td>48.774317</td>
-      <td>50.038251</td>
-      <td>48.621311</td>
-      <td>31.325137</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>1317.866120</td>
-      <td>47.383333</td>
-      <td>51.651366</td>
-      <td>50.196175</td>
-      <td>29.188525</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>Interpretasi yang diharapkan: polutan emisi langsung (CO, NO2, PM10, PM2.5) umumnya menunjukkan dua puncak yang berdekatan dengan jam sibuk lalu lintas (pagi dan sore), sedangkan O3 memuncak di siang hari karena terbentuk dari reaksi fotokimia yang membutuhkan intensitas sinar matahari tinggi.</p>
-</section>
-<section id="e-pola-musiman-kemarau-vs-penghujan">
-<h2>E. Pola Musiman (Kemarau vs Penghujan)<a class="headerlink" href="#e-pola-musiman-kemarau-vs-penghujan" title="Link to this heading">#</a></h2>
+<section id="d-pola-musiman-kemarau-vs-penghujan">
+<h2>D. Pola Musiman (Kemarau vs Penghujan)<a class="headerlink" href="#d-pola-musiman-kemarau-vs-penghujan" title="Link to this heading">#</a></h2>
 <p>Untuk melihat pola musiman, data di-resample menjadi rata-rata bulanan, kemudian dikelompokkan ke musim kemarau (April–Oktober) dan musim hujan (November–Maret) sesuai pola iklim umum di Jawa Timur.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1520,11 +1241,11 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_13980\2125794572.py:2: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_20832\2125794572.py:2: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
   df_monthly = df.resample(&#39;M&#39;, on=&#39;time&#39;).mean(numeric_only=True).reset_index()
 </pre></div>
 </div>
-<img alt="_images/b16c0439fe7a3f319739cea9c22b71d17a00e60f6b920c2d7d13561cc8f76492.png" src="_images/b16c0439fe7a3f319739cea9c22b71d17a00e60f6b920c2d7d13561cc8f76492.png" />
+<img alt="_images/2857e26a0c0b33fc2e3db71a59ccea69df886f385f20487161f5436f29bbac14.png" src="_images/2857e26a0c0b33fc2e3db71a59ccea69df886f385f20487161f5436f29bbac14.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1590,11 +1311,11 @@ dtype: int64
     </tr>
     <tr>
       <th>Kemarau</th>
-      <td>991.464729</td>
-      <td>29.750194</td>
-      <td>36.199922</td>
-      <td>34.271492</td>
-      <td>68.514922</td>
+      <td>991.525581</td>
+      <td>29.733062</td>
+      <td>36.165349</td>
+      <td>34.239205</td>
+      <td>68.457752</td>
     </tr>
   </tbody>
 </table>
@@ -1615,12 +1336,12 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a8023afd16935eac7a0867a0e842089ad7acf0cb1948fd6bb274bdf91451a8f5.png" src="_images/a8023afd16935eac7a0867a0e842089ad7acf0cb1948fd6bb274bdf91451a8f5.png" />
+<img alt="_images/4c418f094ff7faadce67f72d3d30da4eb426eee56d8c3a0462f5cd57039dd362.png" src="_images/4c418f094ff7faadce67f72d3d30da4eb426eee56d8c3a0462f5cd57039dd362.png" />
 </div>
 </div>
 </section>
-<section id="f-frekuensi-pelanggaran-ambang-batas-aman">
-<h2>F. Frekuensi Pelanggaran Ambang Batas Aman<a class="headerlink" href="#f-frekuensi-pelanggaran-ambang-batas-aman" title="Link to this heading">#</a></h2>
+<section id="e-frekuensi-pelanggaran-ambang-batas-aman">
+<h2>E. Frekuensi Pelanggaran Ambang Batas Aman<a class="headerlink" href="#e-frekuensi-pelanggaran-ambang-batas-aman" title="Link to this heading">#</a></h2>
 <p>Bagian ini menjawab pertanyaan riset terakhir: “polutan mana yang paling sering melebihi ambang batas aman?”, menggunakan baku mutu udara ambien nasional (PP No. 22 Tahun 2021) yang sudah dijelaskan pada Bagian 2.3.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1687,34 +1408,34 @@ dtype: int64
       <th>0</th>
       <td>PM2.5</td>
       <td>55</td>
-      <td>1867</td>
-      <td>21.25</td>
+      <td>81</td>
+      <td>22.13</td>
     </tr>
     <tr>
       <th>1</th>
       <td>PM10</td>
       <td>75</td>
-      <td>1049</td>
-      <td>11.94</td>
+      <td>29</td>
+      <td>7.92</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>O3</td>
-      <td>150</td>
-      <td>902</td>
-      <td>10.27</td>
-    </tr>
-    <tr>
-      <th>3</th>
       <td>CO</td>
       <td>10000</td>
       <td>0</td>
       <td>0.00</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>3</th>
       <td>NO2</td>
       <td>200</td>
+      <td>0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>O3</td>
+      <td>150</td>
       <td>0</td>
       <td>0.00</td>
     </tr>
@@ -1736,27 +1457,27 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_13980\859491421.py:2: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_20832\859491421.py:2: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
   sns.barplot(data=df_pelanggaran, x=&#39;Polutan&#39;, y=&#39;Persentase Waktu Melebihi (%)&#39;, palette=&#39;Reds_r&#39;)
 </pre></div>
 </div>
-<img alt="_images/5a1daaaeadf16a5983f6a2bea8bb7bbbd606f03572e464d2c5e6cdfbc0f6ecdb.png" src="_images/5a1daaaeadf16a5983f6a2bea8bb7bbbd606f03572e464d2c5e6cdfbc0f6ecdb.png" />
+<img alt="_images/f11d7a0f3183887cdf95510b61bed540e429d491df8a0409867b88bcb5c7571b.png" src="_images/f11d7a0f3183887cdf95510b61bed540e429d491df8a0409867b88bcb5c7571b.png" />
 </div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Perlu diperhatikan bahwa baku mutu PM10, PM2.5 (rata-rata 24 jam) dan CO, NO2, O3 (rata-rata 1 jam) memiliki basis waktu rata-rata yang berbeda. Perhitungan di atas menerapkan ambang batas langsung pada data per jam sebagai pendekatan sederhana (screening); untuk kesimpulan yang lebih presisi terhadap PM10/PM2.5, idealnya dihitung dari rata-rata bergerak 24 jam (<code class="docutils literal notranslate"><span class="pre">df[col].rolling('24H').mean()</span></code>) sebelum dibandingkan dengan baku mutunya.</p>
+<p>Perlu diperhatikan bahwa baku mutu untuk PM10 dan PM2.5 (rata-rata 24 jam) sangat cocok untuk dibandingkan langsung dengan data harian kita. Namun untuk CO, NO2, dan O3 yang baku mutunya berbasis rata-rata 1 jam, pembandingan dengan data harian merupakan <em>screening</em> awal dan cenderung <em>underestimate</em> nilai puncak harian.</p>
 </div>
 </section>
-<section id="g-ringkasan-statistik-akhir">
-<h2>G. Ringkasan Statistik Akhir<a class="headerlink" href="#g-ringkasan-statistik-akhir" title="Link to this heading">#</a></h2>
+<section id="f-ringkasan-statistik-akhir">
+<h2>F. Ringkasan Statistik Akhir<a class="headerlink" href="#f-ringkasan-statistik-akhir" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ringkasan statistik harian dari seluruh polutan setelah proses pembersihan</span>
-<span class="n">df_daily</span><span class="p">[[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1797,24 +1518,24 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
     </tr>
     <tr>
       <th>mean</th>
-      <td>1053.385360</td>
-      <td>33.711737</td>
-      <td>42.603723</td>
-      <td>41.114857</td>
-      <td>69.815005</td>
+      <td>1053.421107</td>
+      <td>33.701673</td>
+      <td>42.583413</td>
+      <td>41.095890</td>
+      <td>69.781421</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>478.200720</td>
-      <td>13.249563</td>
-      <td>19.071423</td>
-      <td>19.200405</td>
-      <td>15.514450</td>
+      <td>478.147019</td>
+      <td>13.265975</td>
+      <td>19.096136</td>
+      <td>19.224333</td>
+      <td>15.567215</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>317.041667</td>
-      <td>10.295833</td>
+      <td>321.458333</td>
+      <td>9.158333</td>
       <td>13.295833</td>
       <td>11.700000</td>
       <td>30.625000</td>
@@ -1898,15 +1619,6 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
         <p class="prev-next-title">2. Data Understanding</p>
       </div>
     </a>
-    <a class="right-next"
-       href="notebooks.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Content with notebooks</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -1937,23 +1649,22 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#memasukkan-data-ke-dalam-pandas-dataframe">Memasukkan data ke dalam Pandas DataFrame</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengubah-nama-kolom-agar-lebih-ringkas">Mengubah nama kolom agar lebih ringkas</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-waktu-secara-ascending-agar-runtun-waktu-rapi-data-terlama-di-atas">Mengurutkan waktu secara ASCENDING agar runtun waktu rapi (Data terlama di atas)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-ke-harian-dan-mengurutkan-waktu-secara-ascending">Agregasi ke harian dan mengurutkan waktu secara ASCENDING</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-menjadi-csv">Menyimpan Data menjadi CSV</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-visualisasi-grafik-time-series">B. Visualisasi Grafik (Time Series)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-grafik-gas-emisi-co-dan-no2">A. Grafik Gas Emisi (CO dan NO2)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-data-per-jam-menjadi-rata-rata-harian-d-daily">Resample data per jam menjadi rata-rata harian (D = Daily)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5">B. Grafik Partikel Berbahaya (PM10 dan PM2.5)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-grafik-ozon-permukaan-o3">C. Grafik Ozon Permukaan (O3)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pola-harian-jam-sibuk-lalu-lintas">D. Pola Harian (Jam Sibuk Lalu Lintas)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-pola-musiman-kemarau-vs-penghujan">E. Pola Musiman (Kemarau vs Penghujan)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-frekuensi-pelanggaran-ambang-batas-aman">F. Frekuensi Pelanggaran Ambang Batas Aman</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-ringkasan-statistik-akhir">G. Ringkasan Statistik Akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pola-musiman-kemarau-vs-penghujan">D. Pola Musiman (Kemarau vs Penghujan)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-frekuensi-pelanggaran-ambang-batas-aman">E. Frekuensi Pelanggaran Ambang Batas Aman</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ringkasan-statistik-akhir">F. Ringkasan Statistik Akhir</a></li>
 </ul>
 </li>
 </ul>
