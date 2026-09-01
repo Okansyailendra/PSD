@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Business Understanding &#8212; PSD - Materi</title>
+    <title>Analisis Time Series: Persiapan Data Polutan Gresik &#8212; PSD - Materi</title>
   
   
   
@@ -57,11 +57,9 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'business_understanding';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'time_series';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Data Understanding" href="data_understanding.html" />
-    <link rel="prev" title="Analisis Kualitas Udara (Polutan) di Kawasan Gresik" href="polutan.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,9 +179,9 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="polutan.html">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1. Business Understanding</a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="polutan.html">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="business_understanding.html">1. Business Understanding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="perhitungan.html">3. Perhitungan &amp; Visualisasi</a></li>
 
@@ -268,7 +268,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fbusiness_understanding.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftime_series.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -298,7 +298,7 @@
       
       
       
-      <li><a href="_sources/business_understanding.md" target="_blank"
+      <li><a href="_sources/time_series.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -382,7 +382,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1. Business Understanding</h1>
+    <h1>Analisis Time Series: Persiapan Data Polutan Gresik</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,10 +392,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.2 Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumusan-masalah">1.3 Rumusan Masalah</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">1.4 Manfaat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migrasi-data-ke-aiven-postgresql-via-dbeaver">1. Migrasi Data ke Aiven PostgreSQL (via DBeaver)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuatan-struktur-tabel">Pembuatan Struktur Tabel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-dan-pengolahan-time-series-di-knime">2. Integrasi dan Pengolahan Time Series di KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-knime-ke-database">Menghubungkan KNIME ke Database</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pra-pemrosesan-time-series">Pra-pemrosesan Time Series</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -407,41 +412,69 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="business-understanding">
-<h1>1. Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h1>
-<section id="latar-belakang">
-<h2>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
-<p>Kabupaten Gresik merupakan salah satu kawasan industri terpadat di Provinsi Jawa Timur, dengan konsentrasi pabrik semen, petrokimia, baja, dan pelabuhan yang tinggi. Aktivitas industri ini, ditambah dengan kepadatan lalu lintas kendaraan bermotor, berpotensi menghasilkan emisi gas buang dan partikulat dalam jumlah besar. Kualitas udara yang buruk secara langsung berdampak pada kesehatan masyarakat sekitar, mulai dari gangguan pernapasan ringan hingga penyakit kronis seperti asma, bronkitis, dan penyakit kardiovaskular jika terpapar dalam jangka panjang.</p>
-<p>Sayangnya, informasi mengenai kondisi kualitas udara di tingkat kabupaten/kota seringkali tidak tersedia secara real-time atau mudah diakses oleh masyarakat umum. Oleh karena itu, proyek ini mencoba menjawab kebutuhan tersebut dengan memanfaatkan data satelit dan sensor kualitas udara yang tersedia secara terbuka (open data).</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-time-series-persiapan-data-polutan-gresik">
+<h1>Analisis Time Series: Persiapan Data Polutan Gresik<a class="headerlink" href="#analisis-time-series-persiapan-data-polutan-gresik" title="Link to this heading">#</a></h1>
+<p>Dalam proyek ini, kita menggunakan data historis kualitas udara (polutan) yang direkam berdasarkan urutan waktu. Sebelum melakukan pemodelan dan peramalan tren <em>time series</em>, data mentah dikelola di dalam <em>cloud database</em> agar proses penarikan data ke sistem analitik menjadi lebih efisien dan terpusat.</p>
+<p>Dokumen ini mencakup alur lengkap mulai dari migrasi data awal hingga pengolahan dasar menggunakan KNIME Analytics Platform.</p>
+<section id="migrasi-data-ke-aiven-postgresql-via-dbeaver">
+<h2>1. Migrasi Data ke Aiven PostgreSQL (via DBeaver)<a class="headerlink" href="#migrasi-data-ke-aiven-postgresql-via-dbeaver" title="Link to this heading">#</a></h2>
+<p>Tahap pertama bertujuan untuk memindahkan data historis (<code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code>) ke dalam layanan <em>database</em> Aiven agar siap diakses secara daring.</p>
+<section id="pembuatan-struktur-tabel">
+<h3>Pembuatan Struktur Tabel<a class="headerlink" href="#pembuatan-struktur-tabel" title="Link to this heading">#</a></h3>
+<p>Karena ini adalah analisis runtun waktu, tipe data untuk kolom waktu (<code class="docutils literal notranslate"><span class="pre">time</span></code>) wajib didefinisikan sebagai <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code>. Melalui SQL Editor di aplikasi <strong>DBeaver</strong>, struktur tabel penampung dibuat menggunakan perintah berikut:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">polutan_gresik</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;PM10&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;PM2.5&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;CO&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;NO2&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;O3&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Konfigurasi Koneksi dan Import CSV
+Koneksi Database: DBeaver dihubungkan ke server Aiven PostgreSQL dengan memasukkan Service URI dari dashboard Aiven. Parameter sslmode=require wajib ditambahkan pada pengaturan URL JDBC untuk menjamin keamanan koneksi (SSL).</p>
+<p>Import Data: Setelah terhubung ke database defaultdb dan tabel berhasil dibuat pada skema public, proses import data dilakukan dengan menu Import Data (format CSV) langsung pada tabel polutan_gresik.</p>
+<p>Verifikasi: Mengecek total baris data yang berhasil diunggah dengan menjalankan query:</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">polutan_gresik</span><span class="p">;</span>
+</pre></div>
+</div>
 </section>
-<section id="tujuan">
-<h2>1.2 Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
-<p>Proyek ini bertujuan untuk:</p>
-<ol class="arabic simple">
-<li><p><strong>Mengekstraksi</strong> data historis kualitas udara (level polutan) di wilayah spesifik Kabupaten Gresik selama kurun waktu satu tahun terakhir (31 Agustus 2025 – 31 Agustus 2026) menggunakan API publik.</p></li>
-<li><p><strong>Menganalisis</strong> karakteristik statistik dari setiap jenis polutan (CO, NO2, PM10, PM2.5, dan O3), termasuk mendeteksi adanya data yang hilang (<em>missing values</em>), nilai negatif, dan outlier.</p></li>
-<li><p><strong>Mengetahui tren</strong> pergerakan kualitas udara dari waktu ke waktu (time series) untuk melihat pola musiman atau lonjakan konsentrasi tertentu.</p></li>
-<li><p><strong>Menyajikan</strong> hasil analisis dalam bentuk visualisasi yang mudah dipahami oleh berbagai kalangan, baik akademisi, masyarakat umum, maupun pengambil kebijakan.</p></li>
-</ol>
 </section>
-<section id="rumusan-masalah">
-<h2>1.3 Rumusan Masalah<a class="headerlink" href="#rumusan-masalah" title="Link to this heading">#</a></h2>
-<p>Berdasarkan tujuan di atas, terdapat beberapa pertanyaan yang ingin dijawab melalui analisis ini:</p>
-<ul class="simple">
-<li><p>Bagaimana tren konsentrasi CO, NO2, PM10, PM2.5, dan O3 di Gresik selama satu tahun terakhir?</p></li>
-<li><p>Apakah terdapat pola musiman (misalnya perbedaan antara musim kemarau dan penghujan)?</p></li>
-<li><p>Apakah ada indikasi anomali data (nilai negatif, data hilang, atau lonjakan ekstrem) yang perlu ditangani sebelum analisis lanjutan?</p></li>
-<li><p>Polutan mana yang paling sering melebihi ambang batas aman menurut standar kesehatan?</p></li>
+<section id="integrasi-dan-pengolahan-time-series-di-knime">
+<h2>2. Integrasi dan Pengolahan Time Series di KNIME<a class="headerlink" href="#integrasi-dan-pengolahan-time-series-di-knime" title="Link to this heading">#</a></h2>
+<p>Setelah data siap di cloud database, tahapan selanjutnya adalah menarik data tersebut ke ruang kerja lokal untuk pra-pemrosesan dan analisis tren.</p>
+<section id="menghubungkan-knime-ke-database">
+<h3>Menghubungkan KNIME ke Database<a class="headerlink" href="#menghubungkan-knime-ke-database" title="Link to this heading">#</a></h3>
+<p>Untuk menarik data secara langsung dari cloud, alur koneksi (workflow) di KNIME dibangun menggunakan beberapa node utama secara berurutan:</p>
+<ul>
+<li><p><strong>PostgreSQL Connector</strong>: Diatur menggunakan detail host, port, dan kredensial server Aiven. Pada tab JDBC Parameters, properti tambahan <code class="docutils literal notranslate"><span class="pre">sslmode</span></code> dengan nilai <code class="docutils literal notranslate"><span class="pre">require</span></code> dikonfigurasi agar node dapat terhubung.</p>
+<p><img alt="Konfigurasi PostgreSQL Connector" src="_images/gambar2.png" />
+<em>(Keterangan: Jendela konfigurasi PostgreSQL Connector di mana kredensial database dimasukkan)</em></p>
+</li>
+<li><p><strong>DB Table Selector</strong>: Diarahkan ke skema <code class="docutils literal notranslate"><span class="pre">public</span></code> untuk menyeleksi tabel <code class="docutils literal notranslate"><span class="pre">polutan_gresik</span></code>.</p>
+<p><img alt="DB Table Selector" src="_images/gambar1.png" />
+<em>(Keterangan: Keseluruhan workflow KNIME beserta cuplikan hasil pemilihan tabel)</em></p>
+</li>
+<li><p><strong>DB Reader</strong>: Mengeksekusi penarikan data dari database ke dalam memori KNIME agar siap diolah lebih lanjut.</p>
+<p><img alt="Hasil DB Reader" src="_images/gambar3.png" />
+<em>(Keterangan: Cuplikan data polutan yang berhasil ditarik ke dalam KNIME melalui node DB Reader)</em></p>
+</li>
+<li><p><strong>Statistics</strong>: Node ini ditambahkan setelah DB Reader untuk memverifikasi data dan melihat ringkasan statistik deskriptif dasar, seperti nilai minimum, maksimum, dan rata-rata (<em>mean</em>).</p>
+<p><img alt="Ringkasan Statistik" src="_images/gambar4.png" />
+<em>(Keterangan: Output node Statistics yang menampilkan perhitungan statistik untuk setiap jenis polutan)</em></p>
+</li>
 </ul>
 </section>
-<section id="manfaat">
-<h2>1.4 Manfaat<a class="headerlink" href="#manfaat" title="Link to this heading">#</a></h2>
+<section id="pra-pemrosesan-time-series">
+<h3>Pra-pemrosesan Time Series<a class="headerlink" href="#pra-pemrosesan-time-series" title="Link to this heading">#</a></h3>
+<p>Setelah data berhasil ditarik, langkah pra-pemrosesan yang dilakukan untuk menyesuaikan format runtun waktu meliputi:</p>
 <ul class="simple">
-<li><p><strong>Bagi Masyarakat:</strong> Meningkatkan kesadaran akan kondisi kualitas udara di lingkungan sekitar, sehingga masyarakat dapat mengambil langkah preventif (misalnya mengurangi aktivitas luar ruangan atau memakai masker saat konsentrasi polutan tinggi), terutama bagi kelompok rentan seperti anak-anak, lansia, dan penderita gangguan pernapasan.</p></li>
-<li><p><strong>Bagi Pemerintah:</strong> Mengingat Gresik adalah kawasan perindustrian padat, data ini dapat menjadi landasan atau acuan untuk mengevaluasi efektivitas kebijakan pengendalian emisi dari pabrik dan lalu lintas jalan, serta menjadi dasar untuk perencanaan tata ruang yang lebih ramah lingkungan.</p></li>
-<li><p><strong>Bagi Akademisi/Peneliti:</strong> Data dan hasil analisis ini dapat menjadi baseline atau titik awal untuk penelitian lanjutan, misalnya pemodelan prediksi kualitas udara (forecasting) atau studi korelasi antara aktivitas industri dan tingkat polusi.</p></li>
+<li><p>String to Date&amp;Time: Digunakan untuk memastikan kolom time dikenali sebagai format waktu yang valid oleh KNIME, sehingga pengurutan kronologis data tetap konsisten.</p></li>
+<li><p>Missing Value: Menangani data polutan yang mungkin kosong akibat kegagalan sensor pada hari-hari tertentu, umumnya menggunakan metode interpolasi linear agar pola data tidak terputus.</p></li>
+<li><p>Time Series Aggregation / GroupBy: Mengelompokkan data berskala harian menjadi rata-rata mingguan atau bulanan untuk mempermudah pengamatan tren jangka panjang.</p></li>
 </ul>
-<hr class="docutils" />
+</section>
 </section>
 </section>
 
@@ -475,24 +508,6 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="polutan.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="data_understanding.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">2. Data Understanding</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -509,10 +524,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.2 Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumusan-masalah">1.3 Rumusan Masalah</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">1.4 Manfaat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migrasi-data-ke-aiven-postgresql-via-dbeaver">1. Migrasi Data ke Aiven PostgreSQL (via DBeaver)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuatan-struktur-tabel">Pembuatan Struktur Tabel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-dan-pengolahan-time-series-di-knime">2. Integrasi dan Pengolahan Time Series di KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-knime-ke-database">Menghubungkan KNIME ke Database</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pra-pemrosesan-time-series">Pra-pemrosesan Time Series</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
