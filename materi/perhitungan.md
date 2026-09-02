@@ -12,9 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# 3. Perhitungan & Visualisasi
-
-## A. Proses Crawling & Pemrosesan Data
+# 3. Proses Crawling & Pemrosesan Data
 
 Tahapan ini mencakup pengumpulan data dari API berdasarkan batas wilayah spasial, hingga pembersihan dan penyimpanan data ke dalam format CSV.
 
@@ -222,7 +220,7 @@ df.head()
 
 ---
 
-## B. Visualisasi Grafik (Time Series)
+# 4. Visualisasi Grafik (Time Series)
 Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya, sekaligus menjawab ketiga pertanyaan pada Bagian 1.3: tren umum, pola musiman, dan frekuensi pelanggaran ambang batas.
 
 ## A. Grafik Gas Emisi (CO dan NO2)
@@ -354,12 +352,12 @@ for polutan, batas in baku_mutu.items():
     hasil_pelanggaran.append({
         'Polutan': polutan,
         'Baku Mutu (μg/m³)': batas,
-        'Jumlah Jam Melebihi': jumlah_lewat,
-        'Persentase Waktu Melebihi (%)': round(persen_lewat, 2)
+        'Jumlah Hari Melebihi': jumlah_lewat,
+        'Persentase Hari Melebihi (%)': round(persen_lewat, 2)
     })
 
 df_pelanggaran = pd.DataFrame(hasil_pelanggaran).sort_values(
-    by='Persentase Waktu Melebihi (%)', ascending=False
+    by='Persentase Hari Melebihi (%)', ascending=False
 ).reset_index(drop=True)
 
 print("Ringkasan frekuensi pelanggaran ambang batas per polutan:")
@@ -368,9 +366,9 @@ df_pelanggaran
 
 ```{code-cell} ipython3
 plt.figure(figsize=(10, 6))
-sns.barplot(data=df_pelanggaran, x='Polutan', y='Persentase Waktu Melebihi (%)', palette='Reds_r')
-plt.title('Persentase Waktu Konsentrasi Melebihi Ambang Batas Aman', fontweight='bold')
-plt.ylabel('Persentase Waktu (%)')
+sns.barplot(data=df_pelanggaran, x='Polutan', y='Persentase Hari Melebihi (%)', palette='Reds_r')
+plt.title('Persentase Hari Konsentrasi Melebihi Ambang Batas Aman', fontweight='bold')
+plt.ylabel('Persentase Hari (%)')
 plt.xlabel('Polutan')
 plt.grid(True, axis='y', linestyle='--', alpha=0.5)
 plt.tight_layout()
@@ -387,5 +385,3 @@ Perlu diperhatikan bahwa baku mutu untuk PM10 dan PM2.5 (rata-rata 24 jam) sanga
 # Ringkasan statistik harian dari seluruh polutan setelah proses pembersihan
 df[['CO', 'NO2', 'PM10', 'PM2.5', 'O3']].describe()
 ```
-
----
