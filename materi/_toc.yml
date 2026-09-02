@@ -9,5 +9,5 @@ chapters:
   - file: business_understanding
   - file: data_understanding
   - file: perhitungan
-- file: notebooks
+- file: time_series
 - file: markdown-notebooks
