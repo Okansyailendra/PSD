@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'perhitungan';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Analisis Time Series: Persiapan Data Polutan Gresik" href="time_series.html" />
     <link rel="prev" title="2. Data Understanding" href="data_understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -195,6 +196,7 @@
 
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series: Persiapan Data Polutan Gresik</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
 
@@ -530,7 +532,7 @@ document.write(`
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_8a48f270cdf9d3fb094d7ed81043d983 {
+                #map_7a7ef0e7ca31436e4a933c445ff7cdf3 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -567,14 +569,14 @@ document.write(`
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_8a48f270cdf9d3fb094d7ed81043d983&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_7a7ef0e7ca31436e4a933c445ff7cdf3&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_8a48f270cdf9d3fb094d7ed81043d983 = L.map(
-                &quot;map_8a48f270cdf9d3fb094d7ed81043d983&quot;,
+            var map_7a7ef0e7ca31436e4a933c445ff7cdf3 = L.map(
+                &quot;map_7a7ef0e7ca31436e4a933c445ff7cdf3&quot;,
                 {
                     center: [-7.158422392571495, 112.6561724712801],
                     crs: L.CRS.EPSG3857,
@@ -591,7 +593,7 @@ document.write(`
 
         
     
-            var tile_layer_0489150e71d80509e864927a1dc69524 = L.tileLayer(
+            var tile_layer_f75cb33bbaee8b8b56c38df7572c6a31 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -608,16 +610,16 @@ document.write(`
             );
         
     
-            tile_layer_0489150e71d80509e864927a1dc69524.addTo(map_8a48f270cdf9d3fb094d7ed81043d983);
+            tile_layer_f75cb33bbaee8b8b56c38df7572c6a31.addTo(map_7a7ef0e7ca31436e4a933c445ff7cdf3);
         
     
-            var polygon_7beb69ab6b625a5ccd00a0ca2f7cf693 = L.polygon(
+            var polygon_9478626799267a1188c42cc2661e920b = L.polygon(
                 [[-7.1481289, 112.6568922], [-7.1509091, 112.6482448], [-7.1672063, 112.6525927], [-7.1655766, 112.6657812], [-7.1481289, 112.6568922]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#e74c3c&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#e74c3c&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_8a48f270cdf9d3fb094d7ed81043d983);
+            ).addTo(map_7a7ef0e7ca31436e4a933c445ff7cdf3);
         
     
-            polygon_7beb69ab6b625a5ccd00a0ca2f7cf693.bindTooltip(
+            polygon_9478626799267a1188c42cc2661e920b.bindTooltip(
                 `&lt;div&gt;
                      Batas Wilayah Kajian - Gresik
                  &lt;/div&gt;`,
@@ -627,14 +629,14 @@ document.write(`
             );
         
     
-            var marker_b0bccf85902fb9b744e29b7fc48eedc6 = L.marker(
+            var marker_5c0c65c715b9fe6f235c6eb36882510c = L.marker(
                 [-7.158422392571495, 112.6561724712801],
                 {
 }
-            ).addTo(map_8a48f270cdf9d3fb094d7ed81043d983);
+            ).addTo(map_7a7ef0e7ca31436e4a933c445ff7cdf3);
         
     
-            var icon_0faa03726214b16b8324805cb7416571 = L.AwesomeMarkers.icon(
+            var icon_29aa04ff4bc0c7183e3317402a75a0b8 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;blue&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -645,24 +647,24 @@ document.write(`
             );
         
     
-        var popup_fcf492cd8e10a89b68a1c7d1ba71c7e6 = L.popup({
+        var popup_5fe8e3c1fb982e045bd8ccd88ef5ecfe = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_ba31526982e194215ea15bbc2e2ed256 = $(`&lt;div id=&quot;html_ba31526982e194215ea15bbc2e2ed256&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
-                popup_fcf492cd8e10a89b68a1c7d1ba71c7e6.setContent(html_ba31526982e194215ea15bbc2e2ed256);
+                var html_48448e6897f82354220c8ec0c24f4cb7 = $(`&lt;div id=&quot;html_48448e6897f82354220c8ec0c24f4cb7&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
+                popup_5fe8e3c1fb982e045bd8ccd88ef5ecfe.setContent(html_48448e6897f82354220c8ec0c24f4cb7);
             
         
 
-        marker_b0bccf85902fb9b744e29b7fc48eedc6.bindPopup(popup_fcf492cd8e10a89b68a1c7d1ba71c7e6)
+        marker_5c0c65c715b9fe6f235c6eb36882510c.bindPopup(popup_5fe8e3c1fb982e045bd8ccd88ef5ecfe)
         ;
 
         
     
     
-                marker_b0bccf85902fb9b744e29b7fc48eedc6.setIcon(icon_0faa03726214b16b8324805cb7416571);
+                marker_5c0c65c715b9fe6f235c6eb36882510c.setIcon(icon_29aa04ff4bc0c7183e3317402a75a0b8);
             
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
@@ -1241,7 +1243,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_20832\2125794572.py:2: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_30844\2125794572.py:2: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
   df_monthly = df.resample(&#39;M&#39;, on=&#39;time&#39;).mean(numeric_only=True).reset_index()
 </pre></div>
 </div>
@@ -1457,7 +1459,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_20832\859491421.py:2: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_30844\859491421.py:2: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
@@ -1618,6 +1620,15 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">2. Data Understanding</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="time_series.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Analisis Time Series: Persiapan Data Polutan Gresik</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
