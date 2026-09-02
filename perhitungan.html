@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Perhitungan &amp; Visualisasi &#8212; PSD - Materi</title>
+    <title>3. Proses Crawling &amp; Pemrosesan Data &#8212; PSD - Materi</title>
   
   
   
@@ -183,7 +183,8 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="polutan.html">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="business_understanding.html">1. Business Understanding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3. Perhitungan &amp; Visualisasi</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3. Proses Crawling &amp; Pemrosesan Data</a></li>
+
 
 
 
@@ -383,7 +384,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>3. Perhitungan & Visualisasi</h1>
+    <h1>3. Proses Crawling & Pemrosesan Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -393,8 +394,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3. Perhitungan &amp; Visualisasi</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-proses-crawling-pemrosesan-data">A. Proses Crawling &amp; Pemrosesan Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3. Proses Crawling &amp; Pemrosesan Data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-setup-batas-wilayah-geojson">A. Setup Batas Wilayah GeoJSON</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengunduh-data-dari-api">B. Mengunduh Data dari API</a></li>
 </ul>
@@ -409,8 +409,8 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-ke-harian-dan-mengurutkan-waktu-secara-ascending">Agregasi ke harian dan mengurutkan waktu secara ASCENDING</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-menjadi-csv">Menyimpan Data menjadi CSV</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-visualisasi-grafik-time-series">B. Visualisasi Grafik (Time Series)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-grafik-time-series">4. Visualisasi Grafik (Time Series)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-grafik-gas-emisi-co-dan-no2">A. Grafik Gas Emisi (CO dan NO2)</a></li>
 </ul>
 </li>
@@ -437,12 +437,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="perhitungan-visualisasi">
-<h1>3. Perhitungan &amp; Visualisasi<a class="headerlink" href="#perhitungan-visualisasi" title="Link to this heading">#</a></h1>
-<section id="a-proses-crawling-pemrosesan-data">
-<h2>A. Proses Crawling &amp; Pemrosesan Data<a class="headerlink" href="#a-proses-crawling-pemrosesan-data" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="proses-crawling-pemrosesan-data">
+<h1>3. Proses Crawling &amp; Pemrosesan Data<a class="headerlink" href="#proses-crawling-pemrosesan-data" title="Link to this heading">#</a></h1>
 <p>Tahapan ini mencakup pengumpulan data dari API berdasarkan batas wilayah spasial, hingga pembersihan dan penyimpanan data ke dalam format CSV.</p>
-</section>
 <section id="a-setup-batas-wilayah-geojson">
 <h2>A. Setup Batas Wilayah GeoJSON<a class="headerlink" href="#a-setup-batas-wilayah-geojson" title="Link to this heading">#</a></h2>
 <p>Kita mulai dengan mendefinisikan batas poligon (<em>Polygon</em>) wilayah Gresik yang telah disiapkan, lalu mencari titik tengah (<em>centroid</em>) dari area tersebut untuk parameter API.</p>
@@ -532,7 +529,7 @@ document.write(`
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_7a7ef0e7ca31436e4a933c445ff7cdf3 {
+                #map_74446d84a0be07b381825583faabc50f {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -569,14 +566,14 @@ document.write(`
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_7a7ef0e7ca31436e4a933c445ff7cdf3&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_74446d84a0be07b381825583faabc50f&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_7a7ef0e7ca31436e4a933c445ff7cdf3 = L.map(
-                &quot;map_7a7ef0e7ca31436e4a933c445ff7cdf3&quot;,
+            var map_74446d84a0be07b381825583faabc50f = L.map(
+                &quot;map_74446d84a0be07b381825583faabc50f&quot;,
                 {
                     center: [-7.158422392571495, 112.6561724712801],
                     crs: L.CRS.EPSG3857,
@@ -593,7 +590,7 @@ document.write(`
 
         
     
-            var tile_layer_f75cb33bbaee8b8b56c38df7572c6a31 = L.tileLayer(
+            var tile_layer_4ca64c786779163ec4b4acf05547b790 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -610,16 +607,16 @@ document.write(`
             );
         
     
-            tile_layer_f75cb33bbaee8b8b56c38df7572c6a31.addTo(map_7a7ef0e7ca31436e4a933c445ff7cdf3);
+            tile_layer_4ca64c786779163ec4b4acf05547b790.addTo(map_74446d84a0be07b381825583faabc50f);
         
     
-            var polygon_9478626799267a1188c42cc2661e920b = L.polygon(
+            var polygon_6c9f30fe771ade4570ef57686c5198d5 = L.polygon(
                 [[-7.1481289, 112.6568922], [-7.1509091, 112.6482448], [-7.1672063, 112.6525927], [-7.1655766, 112.6657812], [-7.1481289, 112.6568922]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#e74c3c&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#e74c3c&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_7a7ef0e7ca31436e4a933c445ff7cdf3);
+            ).addTo(map_74446d84a0be07b381825583faabc50f);
         
     
-            polygon_9478626799267a1188c42cc2661e920b.bindTooltip(
+            polygon_6c9f30fe771ade4570ef57686c5198d5.bindTooltip(
                 `&lt;div&gt;
                      Batas Wilayah Kajian - Gresik
                  &lt;/div&gt;`,
@@ -629,14 +626,14 @@ document.write(`
             );
         
     
-            var marker_5c0c65c715b9fe6f235c6eb36882510c = L.marker(
+            var marker_2b67a031b85627d5d3af896c97b2bcc2 = L.marker(
                 [-7.158422392571495, 112.6561724712801],
                 {
 }
-            ).addTo(map_7a7ef0e7ca31436e4a933c445ff7cdf3);
+            ).addTo(map_74446d84a0be07b381825583faabc50f);
         
     
-            var icon_29aa04ff4bc0c7183e3317402a75a0b8 = L.AwesomeMarkers.icon(
+            var icon_e2c48333f4656eb717e243599ff61b32 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;blue&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -647,24 +644,24 @@ document.write(`
             );
         
     
-        var popup_5fe8e3c1fb982e045bd8ccd88ef5ecfe = L.popup({
+        var popup_04862fb7fec5369a55523d5e433c5f74 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_48448e6897f82354220c8ec0c24f4cb7 = $(`&lt;div id=&quot;html_48448e6897f82354220c8ec0c24f4cb7&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
-                popup_5fe8e3c1fb982e045bd8ccd88ef5ecfe.setContent(html_48448e6897f82354220c8ec0c24f4cb7);
+                var html_0cc7efae401efc9a037e608b0fa9fb72 = $(`&lt;div id=&quot;html_0cc7efae401efc9a037e608b0fa9fb72&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
+                popup_04862fb7fec5369a55523d5e433c5f74.setContent(html_0cc7efae401efc9a037e608b0fa9fb72);
             
         
 
-        marker_5c0c65c715b9fe6f235c6eb36882510c.bindPopup(popup_5fe8e3c1fb982e045bd8ccd88ef5ecfe)
+        marker_2b67a031b85627d5d3af896c97b2bcc2.bindPopup(popup_04862fb7fec5369a55523d5e433c5f74)
         ;
 
         
     
     
-                marker_5c0c65c715b9fe6f235c6eb36882510c.setIcon(icon_29aa04ff4bc0c7183e3317402a75a0b8);
+                marker_2b67a031b85627d5d3af896c97b2bcc2.setIcon(icon_e2c48333f4656eb717e243599ff61b32);
             
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
@@ -1128,11 +1125,11 @@ dtype: int64
 </table>
 </div></div></div>
 </div>
-<hr class="docutils" />
-<section id="b-visualisasi-grafik-time-series">
-<h2>B. Visualisasi Grafik (Time Series)<a class="headerlink" href="#b-visualisasi-grafik-time-series" title="Link to this heading">#</a></h2>
-<p>Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya, sekaligus menjawab ketiga pertanyaan pada Bagian 1.3: tren umum, pola musiman, dan frekuensi pelanggaran ambang batas.</p>
 </section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="visualisasi-grafik-time-series">
+<h1>4. Visualisasi Grafik (Time Series)<a class="headerlink" href="#visualisasi-grafik-time-series" title="Link to this heading">#</a></h1>
+<p>Langkah terakhir adalah memvisualisasikan data runtun waktu yang telah bersih untuk melihat pergerakan tren kualitas udaranya, sekaligus menjawab ketiga pertanyaan pada Bagian 1.3: tren umum, pola musiman, dan frekuensi pelanggaran ambang batas.</p>
 <section id="a-grafik-gas-emisi-co-dan-no2">
 <h2>A. Grafik Gas Emisi (CO dan NO2)<a class="headerlink" href="#a-grafik-gas-emisi-co-dan-no2" title="Link to this heading">#</a></h2>
 </section>
@@ -1243,7 +1240,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_30844\2125794572.py:2: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_19324\2125794572.py:2: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
   df_monthly = df.resample(&#39;M&#39;, on=&#39;time&#39;).mean(numeric_only=True).reset_index()
 </pre></div>
 </div>
@@ -1364,12 +1361,12 @@ dtype: int64
     <span class="n">hasil_pelanggaran</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
         <span class="s1">&#39;Polutan&#39;</span><span class="p">:</span> <span class="n">polutan</span><span class="p">,</span>
         <span class="s1">&#39;Baku Mutu (μg/m³)&#39;</span><span class="p">:</span> <span class="n">batas</span><span class="p">,</span>
-        <span class="s1">&#39;Jumlah Jam Melebihi&#39;</span><span class="p">:</span> <span class="n">jumlah_lewat</span><span class="p">,</span>
-        <span class="s1">&#39;Persentase Waktu Melebihi (%)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">persen_lewat</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="s1">&#39;Jumlah Hari Melebihi&#39;</span><span class="p">:</span> <span class="n">jumlah_lewat</span><span class="p">,</span>
+        <span class="s1">&#39;Persentase Hari Melebihi (%)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">persen_lewat</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="p">})</span>
 
 <span class="n">df_pelanggaran</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">hasil_pelanggaran</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
-    <span class="n">by</span><span class="o">=</span><span class="s1">&#39;Persentase Waktu Melebihi (%)&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
+    <span class="n">by</span><span class="o">=</span><span class="s1">&#39;Persentase Hari Melebihi (%)&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ringkasan frekuensi pelanggaran ambang batas per polutan:&quot;</span><span class="p">)</span>
@@ -1401,8 +1398,8 @@ dtype: int64
       <th></th>
       <th>Polutan</th>
       <th>Baku Mutu (μg/m³)</th>
-      <th>Jumlah Jam Melebihi</th>
-      <th>Persentase Waktu Melebihi (%)</th>
+      <th>Jumlah Hari Melebihi</th>
+      <th>Persentase Hari Melebihi (%)</th>
     </tr>
   </thead>
   <tbody>
@@ -1448,9 +1445,9 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_pelanggaran</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Polutan&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Persentase Waktu Melebihi (%)&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Reds_r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Persentase Waktu Konsentrasi Melebihi Ambang Batas Aman&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Persentase Waktu (%)&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_pelanggaran</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Polutan&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Persentase Hari Melebihi (%)&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Reds_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Persentase Hari Konsentrasi Melebihi Ambang Batas Aman&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Persentase Hari (%)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Polutan&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -1459,14 +1456,14 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_30844\859491421.py:2: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_19324\3674972740.py:2: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
-  sns.barplot(data=df_pelanggaran, x=&#39;Polutan&#39;, y=&#39;Persentase Waktu Melebihi (%)&#39;, palette=&#39;Reds_r&#39;)
+  sns.barplot(data=df_pelanggaran, x=&#39;Polutan&#39;, y=&#39;Persentase Hari Melebihi (%)&#39;, palette=&#39;Reds_r&#39;)
 </pre></div>
 </div>
-<img alt="_images/f11d7a0f3183887cdf95510b61bed540e429d491df8a0409867b88bcb5c7571b.png" src="_images/f11d7a0f3183887cdf95510b61bed540e429d491df8a0409867b88bcb5c7571b.png" />
+<img alt="_images/557ab1bbc45f58999d04d9ba7c808816a097c380efb11beb6dc5219cc3d844b6.png" src="_images/557ab1bbc45f58999d04d9ba7c808816a097c380efb11beb6dc5219cc3d844b6.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1578,7 +1575,6 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </table>
 </div></div></div>
 </div>
-<hr class="docutils" />
 </section>
 </section>
 
@@ -1646,8 +1642,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3. Perhitungan &amp; Visualisasi</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-proses-crawling-pemrosesan-data">A. Proses Crawling &amp; Pemrosesan Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3. Proses Crawling &amp; Pemrosesan Data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-setup-batas-wilayah-geojson">A. Setup Batas Wilayah GeoJSON</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengunduh-data-dari-api">B. Mengunduh Data dari API</a></li>
 </ul>
@@ -1662,8 +1657,8 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-ke-harian-dan-mengurutkan-waktu-secara-ascending">Agregasi ke harian dan mengurutkan waktu secara ASCENDING</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-menjadi-csv">Menyimpan Data menjadi CSV</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-visualisasi-grafik-time-series">B. Visualisasi Grafik (Time Series)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-grafik-time-series">4. Visualisasi Grafik (Time Series)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-grafik-gas-emisi-co-dan-no2">A. Grafik Gas Emisi (CO dan NO2)</a></li>
 </ul>
 </li>

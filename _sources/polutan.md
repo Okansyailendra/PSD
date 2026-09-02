@@ -1,6 +1,6 @@
 # Analisis Kualitas Udara (Polutan) di Kawasan Gresik
 
-## 4. Kesimpulan
+## 5. Kesimpulan
 
 Berdasarkan eksplorasi dan visualisasi di atas, beberapa hal yang dapat disimpulkan (silakan sesuaikan dengan hasil aktual dari data yang ditarik setelah kode dijalankan):
 *   **Tren umum:** Tren konsentrasi masing-masing polutan selama satu tahun terakhir dapat diamati melalui grafik time series harian di Bagian 4.A–4.C.
