@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'time_series';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -402,7 +404,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-dan-pengolahan-time-series-di-knime">2. Integrasi dan Pengolahan Time Series di KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-aiven-ke-knime">Menghubungkan Aiven ke KNIME</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pra-pemrosesan-time-series">Pra-pemrosesan Time Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-rumus-dan-contoh-perhitungan-fitur-pada-node-statistics">2.1. Penjelasan Rumus dan Contoh Perhitungan Fitur pada Node Statistics</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-hasil-pre-processing">3. Kesimpulan &amp; Hasil Pre-processing</a></li>
@@ -420,7 +422,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-time-series-persiapan-data-polutan-gresik">
 <h1>Analisis Time Series: Persiapan Data Polutan Gresik<a class="headerlink" href="#analisis-time-series-persiapan-data-polutan-gresik" title="Link to this heading">#</a></h1>
 <p>Dalam proyek ini, kita menggunakan data historis kualitas udara (polutan) yang direkam berdasarkan urutan waktu. Sebelum melakukan pemodelan dan peramalan tren <em>time series</em>, data mentah dikelola di dalam <em>cloud database</em> agar proses penarikan data ke sistem analitik menjadi lebih efisien dan terpusat.</p>
-<p>Dokumen ini mencakup alur lengkap mulai dari migrasi data awal hingga pengolahan dasar menggunakan KNIME Analytics Platform.</p>
+<p>Dokumen ini mencakup alur lengkap mulai dari migrasi data awal hingga pengolahan dasar menggunakan KNIME Analytics Platform, termasuk penjelasan matematis di balik setiap fitur statistik yang dihasilkan.</p>
 <section id="migrasi-data-ke-aiven-postgresql-via-dbeaver">
 <h2>1. Migrasi Data ke Aiven PostgreSQL (via DBeaver)<a class="headerlink" href="#migrasi-data-ke-aiven-postgresql-via-dbeaver" title="Link to this heading">#</a></h2>
 <p>Tahap pertama bertujuan untuk memindahkan data historis (<code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code>) ke dalam layanan <em>cloud database</em> Aiven agar siap diakses secara daring dari berbagai platform, termasuk DBeaver dan KNIME.</p>
@@ -504,31 +506,188 @@ Anda bisa mengecek total baris data yang berhasil diunggah dengan menjalankan qu
 <p><img alt="DB Table Selector" src="_images/gambar1.png" />
 <em>(Keterangan: Keseluruhan workflow KNIME beserta cuplikan hasil pemilihan tabel)</em></p>
 </li>
-<li><p><strong>DB Reader</strong>: Mengeksekusi penarikan data dari database ke dalam memori KNIME agar siap diolah lebih lanjut.</p>
+<li><p><strong>DB Reader</strong>: Mengeksekusi penarikan data dari database ke dalam memori KNIME agar siap diolah lebih lanjut. Total data yang berhasil ditarik berjumlah 366 baris.</p>
 <p><img alt="Hasil DB Reader" src="_images/gambar3.png" />
 <em>(Keterangan: Cuplikan data polutan yang berhasil ditarik ke dalam KNIME melalui node DB Reader)</em></p>
 </li>
 <li><p><strong>Statistics</strong>: Node ini ditambahkan setelah <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> dan berfungsi sebagai langkah awal yang sangat krusial untuk <strong>Eksplorasi Data (Exploratory Data Analysis)</strong>.
-Alih-alih mengecek polutan satu per satu, node <em>Statistics</em> akan secara otomatis memproses seluruh kolom numerik (PM10, PM2.5, CO, NO2, O3) secara bersamaan dan menghasilkan ringkasan statistik deskriptif.
-Beberapa hal penting yang bisa kita amati dari output node ini meliputi:</p>
-<ul class="simple">
-<li><p><strong>Min &amp; Max</strong>: Memeriksa apakah ada nilai anomali (outlier). Misalnya, memastikan tidak ada nilai konsentrasi polutan yang minus/negatif.</p></li>
-<li><p><strong>Mean &amp; Median</strong>: Melihat nilai rata-rata konsentrasi polutan secara keseluruhan untuk memahami tingkat dasar polusi di Gresik.</p></li>
-<li><p><strong>Missing Values</strong>: Mengetahui dengan cepat persisnya berapa jumlah baris data yang kosong (hilang) pada setiap jenis polutan, sehingga kita bisa menentukan strategi penanganan (<em>imputation</em>) yang tepat pada tahap selanjutnya.</p></li>
-</ul>
+Alih-alih mengecek polutan satu per satu, node <em>Statistics</em> akan secara otomatis memproses seluruh kolom numerik (PM10, PM2.5, CO, NO2, O3) secara bersamaan dan menghasilkan ringkasan statistik deskriptif.</p>
 <p><img alt="Ringkasan Statistik" src="_images/gambar4.png" />
 <em>(Keterangan: Output tabel dari node Statistics yang merangkum perhitungan statistik deskriptif untuk seluruh kolom polutan secara bersamaan dalam satu tampilan)</em></p>
 </li>
 </ul>
 </section>
-<section id="pra-pemrosesan-time-series">
-<h3>Pra-pemrosesan Time Series<a class="headerlink" href="#pra-pemrosesan-time-series" title="Link to this heading">#</a></h3>
-<p>Setelah data berhasil ditarik, langkah pra-pemrosesan yang dilakukan untuk menyesuaikan format runtun waktu meliputi:</p>
-<ul class="simple">
-<li><p>String to Date&amp;Time: Digunakan untuk memastikan kolom time dikenali sebagai format waktu yang valid oleh KNIME, sehingga pengurutan kronologis data tetap konsisten.</p></li>
-<li><p>Missing Value: Menangani data polutan yang mungkin kosong akibat kegagalan sensor pada hari-hari tertentu, umumnya menggunakan metode interpolasi linear agar pola data tidak terputus.</p></li>
-<li><p>Time Series Aggregation / GroupBy: Mengelompokkan data berskala harian menjadi rata-rata mingguan atau bulanan untuk mempermudah pengamatan tren jangka panjang.</p></li>
-</ul>
+<section id="penjelasan-rumus-dan-contoh-perhitungan-fitur-pada-node-statistics">
+<h3>2.1. Penjelasan Rumus dan Contoh Perhitungan Fitur pada Node Statistics<a class="headerlink" href="#penjelasan-rumus-dan-contoh-perhitungan-fitur-pada-node-statistics" title="Link to this heading">#</a></h3>
+<p>Bagian ini menjelaskan makna, rumus matematis, dan contoh perhitungan manual untuk tiap fitur statistik yang muncul di output node <em>Statistics</em>. Sebagai contoh perhitungan, digunakan 5 data PM10 pertama dari file <code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code> yang sebenarnya dipakai pada proyek ini (tanggal 2025-08-31 s.d. 2025-09-04):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tanggal</p></th>
+<th class="head"><p>Nilai PM10</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2025-08-31</p></td>
+<td><p>32.87</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-01</p></td>
+<td><p>23.47</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-02</p></td>
+<td><p>16.35</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-03</p></td>
+<td><p>21.00</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-04</p></td>
+<td><p>31.20</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Jumlah data <span class="math notranslate nohighlight">\(n = 5\)</span>, dan setelah diurutkan: <strong>16.35, 21.00, 23.47, 31.20, 32.87</strong></p>
+<hr class="docutils" />
+<p><strong>a) Missing Values (Jumlah Data Kosong)</strong></p>
+<p>Menghitung berapa baris data yang bernilai kosong (<code class="docutils literal notranslate"><span class="pre">NULL</span></code>) pada suatu kolom. Berguna untuk menentukan strategi imputasi (misalnya interpolasi linear) sebelum data dianalisis lebih lanjut, karena data kosong bisa terjadi akibat kegagalan sensor pada hari tertentu.</p>
+<div class="math notranslate nohighlight">
+\[\text{Missing Values} = \text{jumlah baris dengan nilai kosong pada kolom tersebut}\]</div>
+<p><em>Contoh:</em> Berdasarkan pengecekan langsung pada file <code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code> (366 baris), <strong>tidak ditemukan nilai kosong</strong> pada kolom manapun — PM10, PM2.5, CO, NO2, maupun O3 sama-sama memiliki Missing Values = 0. Artinya sensor tidak pernah gagal mencatat data selama periode tersebut, sehingga node <em>Missing Value</em> untuk data historis ini sebenarnya tidak wajib dijalankan (tetap berguna sebagai antisipasi jika suatu saat ada data baru yang kosong).</p>
+<hr class="docutils" />
+<p><strong>b) Minimum &amp; Maximum</strong></p>
+<p>Nilai terkecil dan terbesar dalam suatu kolom. Digunakan untuk mendeteksi anomali/outlier, misalnya memastikan tidak ada nilai polutan yang negatif atau nilai yang jauh di luar kewajaran.</p>
+<div class="math notranslate nohighlight">
+\[\text{Min} = \min(x_1, x_2, \dots, x_n) \qquad \text{Max} = \max(x_1, x_2, \dots, x_n)\]</div>
+<p><em>Contoh (5 data di atas):</em>
+$<span class="math notranslate nohighlight">\(\text{Min} = 16.35 \qquad \text{Max} = 32.87\)</span>$</p>
+<hr class="docutils" />
+<p><strong>c) Mean (Rata-rata)</strong></p>
+<p>Nilai tengah dari seluruh data, dihitung dengan menjumlahkan semua nilai lalu membaginya dengan jumlah data.</p>
+<div class="math notranslate nohighlight">
+\[\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i\]</div>
+<p><em>Contoh:</em>
+$<span class="math notranslate nohighlight">\(\bar{x} = \frac{32.87+23.47+16.35+21.00+31.20}{5} = \frac{124.89}{5} = 24.98\)</span>$</p>
+<hr class="docutils" />
+<p><strong>d) Median (50% Quantile)</strong></p>
+<p>Nilai tengah setelah data diurutkan. Lebih tahan terhadap outlier dibanding Mean, karena tidak terpengaruh oleh nilai ekstrem.</p>
+<div class="math notranslate nohighlight">
+\[\text{Median} = x_{\left(\frac{n+1}{2}\right)} \quad \text{(untuk } n \text{ ganjil)}\]</div>
+<p><em>Contoh:</em> Data terurut: 16.35, 21.00, <strong>23.47</strong>, 31.20, 32.87 → nilai tengah (posisi ke-3) adalah <strong>23.47</strong>.</p>
+<hr class="docutils" />
+<p><strong>e) Overall Sum (Jumlah Total)</strong></p>
+<p>Total penjumlahan seluruh nilai dalam kolom.</p>
+<div class="math notranslate nohighlight">
+\[\text{Sum} = \sum_{i=1}^{n} x_i\]</div>
+<p><em>Contoh:</em>
+$<span class="math notranslate nohighlight">\(\text{Sum} = 32.87+23.47+16.35+21.00+31.20 = 124.89\)</span>$</p>
+<hr class="docutils" />
+<p><strong>f) Variance (Varians)</strong></p>
+<p>Mengukur seberapa jauh sebaran data dari nilai rata-ratanya. Semakin besar variance, semakin bervariasi/tersebar datanya.</p>
+<div class="math notranslate nohighlight">
+\[s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2\]</div>
+<p><em>Contoh (menggunakan <span class="math notranslate nohighlight">\(\bar{x}=24.98\)</span>):</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x_i\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_i - \bar{x}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\((x_i-\bar{x})^2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>32.87</p></td>
+<td><p>7.89</p></td>
+<td><p>62.25</p></td>
+</tr>
+<tr class="row-odd"><td><p>23.47</p></td>
+<td><p>-1.51</p></td>
+<td><p>2.28</p></td>
+</tr>
+<tr class="row-even"><td><p>16.35</p></td>
+<td><p>-8.63</p></td>
+<td><p>74.48</p></td>
+</tr>
+<tr class="row-odd"><td><p>21.00</p></td>
+<td><p>-3.98</p></td>
+<td><p>15.84</p></td>
+</tr>
+<tr class="row-even"><td><p>31.20</p></td>
+<td><p>6.22</p></td>
+<td><p>38.69</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="math notranslate nohighlight">
+\[s^2 = \frac{62.25+2.28+74.48+15.84+38.69}{5-1} = \frac{193.54}{4} = 48.39\]</div>
+<hr class="docutils" />
+<p><strong>g) Standard Deviation (Simpangan Baku)</strong></p>
+<p>Akar kuadrat dari variance. Satuannya sama dengan satuan data asli (µg/m³), sehingga lebih mudah diinterpretasikan dibanding variance.</p>
+<div class="math notranslate nohighlight">
+\[s = \sqrt{s^2}\]</div>
+<p><em>Contoh:</em>
+$<span class="math notranslate nohighlight">\(s = \sqrt{48.39} = 6.96\)</span>$</p>
+<p>Artinya, secara rata-rata nilai PM10 menyimpang sekitar <strong>6.96 µg/m³</strong> dari rata-ratanya (24.98).</p>
+<hr class="docutils" />
+<p><strong>h) Skewness (Kemencengan Distribusi)</strong></p>
+<p>Mengukur simetri sebaran data. Bila skewness ≈ 0, distribusi cenderung simetris. Bila positif, ekor distribusi condong ke kanan (banyak nilai kecil, sedikit nilai sangat besar). Bila negatif, ekor condong ke kiri.</p>
+<div class="math notranslate nohighlight">
+\[\text{Skewness} = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^3}{\sigma^3}\]</div>
+<p><em>Contoh (menggunakan simpangan baku populasi <span class="math notranslate nohighlight">\(\sigma = 6.22\)</span>):</em></p>
+<p>Menghitung <span class="math notranslate nohighlight">\((x_i-\bar{x})^3\)</span> untuk tiap data, dijumlahkan, dibagi <span class="math notranslate nohighlight">\(n\)</span>, lalu dibagi <span class="math notranslate nohighlight">\(\sigma^3\)</span>, menghasilkan:</p>
+<div class="math notranslate nohighlight">
+\[\text{Skewness} \approx 0.02\]</div>
+<p>Nilai yang sangat dekat dengan 0 ini menunjukkan 5 data contoh di atas tersebar hampir simetris, tidak condong ke kiri maupun ke kanan.</p>
+<hr class="docutils" />
+<p><strong>i) Kurtosis (Keruncingan Distribusi)</strong></p>
+<p>Mengukur seberapa “runcing” atau “landai” distribusi data dibandingkan distribusi normal. Kurtosis &gt; 0 berarti distribusi lebih runcing (banyak nilai ekstrem/outlier), kurtosis &lt; 0 berarti lebih landai/merata.</p>
+<div class="math notranslate nohighlight">
+\[\text{Kurtosis} = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^4}{\sigma^4} - 3\]</div>
+<p><em>Contoh:</em>
+$<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -1.51\)</span>$</p>
+<p>Nilai negatif menunjukkan sebaran 5 data contoh ini lebih landai (lebih merata, tidak ada nilai yang terlalu ekstrem) dibanding distribusi normal.</p>
+<blockquote>
+<div><p><strong>Catatan:</strong> Contoh perhitungan di atas disederhanakan dengan 5 data agar mudah dipahami langkah demi langkah. Berikut adalah hasil perhitungan <strong>aktual</strong> untuk kolom PM10 dari <strong>keseluruhan 366 baris</strong> pada file <code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code>, sebagai pembanding terhadap output node <em>Statistics</em> di KNIME (Gambar 4):</p>
+</div></blockquote>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Nilai Aktual (PM10, 366 data)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Missing Values</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Minimum</p></td>
+<td><p>13.30</p></td>
+</tr>
+<tr class="row-even"><td><p>Maximum</p></td>
+<td><p>121.85</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mean</p></td>
+<td><p>42.58</p></td>
+</tr>
+<tr class="row-even"><td><p>Median</p></td>
+<td><p>36.66</p></td>
+</tr>
+<tr class="row-odd"><td><p>Standard Deviation</p></td>
+<td><p>19.10</p></td>
+</tr>
+<tr class="row-even"><td><p>Variance</p></td>
+<td><p>364.66</p></td>
+</tr>
+<tr class="row-odd"><td><p>Skewness</p></td>
+<td><p>1.21</p></td>
+</tr>
+<tr class="row-even"><td><p>Kurtosis (excess)</p></td>
+<td><p>1.40</p></td>
+</tr>
+<tr class="row-odd"><td><p>Overall Sum</p></td>
+<td><p>15,585.53</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Berbeda dengan contoh 5 data di atas (yang hampir simetris), skewness PM10 pada keseluruhan 366 data bernilai <strong>positif (1.21)</strong>, artinya distribusinya condong ke kanan — sebagian besar hari memiliki PM10 rendah-sedang, namun ada beberapa hari dengan lonjakan PM10 sangat tinggi (hingga 121.85) yang menarik ekor distribusi ke kanan. Kurtosis positif (1.40) juga menguatkan hal ini: distribusi lebih “runcing” dari normal karena adanya beberapa nilai ekstrem tersebut.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -537,9 +696,8 @@ Beberapa hal penting yang bisa kita amati dari output node ini meliputi:</p>
 <p>Dari tahapan pengumpulan data ke database <em>cloud</em> (Aiven) hingga proses transformasi di dalam KNIME, kita telah berhasil mempersiapkan data mentah menjadi himpunan data (dataset) runtun waktu yang berkualitas tinggi. Berikut adalah rangkuman dari hasil <em>pre-processing</em> ini:</p>
 <ol class="arabic simple">
 <li><p><strong>Sentralisasi Data yang Aman</strong>: Data historis polutan Gresik kini tersimpan dengan aman di Aiven PostgreSQL dan diakses menggunakan enkripsi SSL, memungkinkan kolaborasi atau penarikan data dari berbagai platform kapan saja tanpa harus memindahkan <em>file</em> CSV secara manual.</p></li>
-<li><p><strong>Kualitas Data Terjamin (Bebas Outlier/Gap)</strong>: Berkat node <em>Statistics</em> dan <em>Missing Value</em> di KNIME, anomali seperti nilai negatif (jika ada) dan kekosongan data akibat kegagalan sensor harian telah diatasi menggunakan metode interpolasi linear. Rangkaian waktu (time-series) sekarang menjadi utuh dan tidak terputus.</p></li>
-<li><p><strong>Format Waktu yang Valid</strong>: Transformasi menggunakan node <em>String to Date&amp;Time</em> memastikan KNIME dan algoritma analitik lainnya menganggap kolom waktu secara kronologis yang benar, bukan sekadar teks (<em>string</em>).</p></li>
-<li><p><strong>Siap untuk Analisis Lanjutan</strong>: Dengan selesainya tahap integrasi dan pra-pemrosesan ini, dataset sudah berada dalam kondisi yang sangat bersih (konsisten dan terstruktur). Data ini kini sepenuhnya siap digunakan untuk tugas <em>machine learning</em> seperti pemodelan peramalan (<em>forecasting</em>) kualitas udara di periode mendatang, ataupun analisis korelasi silang antar polutan.</p></li>
+<li><p><strong>Integrasi ke KNIME Berhasil</strong>: Melalui 4 node (PostgreSQL Connector, DB Table Selector, DB Reader, Statistics), seluruh 366 baris data polutan berhasil ditarik dari <em>cloud database</em> ke ruang kerja lokal KNIME tanpa kendala.</p></li>
+<li><p><strong>Pemahaman Statistik yang Terukur</strong>: Setiap fitur pada node Statistics (Min, Max, Mean, Median, Standard Deviation, Variance, Skewness, Kurtosis, dan Overall Sum) telah dijelaskan lengkap dengan rumus dan contoh perhitungan manual, sehingga hasil eksplorasi data tidak hanya dibaca sebagai angka, tapi juga dipahami maknanya. Dari hasil ini juga diketahui kolom <code class="docutils literal notranslate"><span class="pre">time</span></code> masih bertipe String dan perlu dikonversi pada tahap berikutnya.</p></li>
 </ol>
 </section>
 </section>
@@ -616,7 +774,7 @@ Beberapa hal penting yang bisa kita amati dari output node ini meliputi:</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-dan-pengolahan-time-series-di-knime">2. Integrasi dan Pengolahan Time Series di KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-aiven-ke-knime">Menghubungkan Aiven ke KNIME</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pra-pemrosesan-time-series">Pra-pemrosesan Time Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-rumus-dan-contoh-perhitungan-fitur-pada-node-statistics">2.1. Penjelasan Rumus dan Contoh Perhitungan Fitur pada Node Statistics</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-hasil-pre-processing">3. Kesimpulan &amp; Hasil Pre-processing</a></li>
