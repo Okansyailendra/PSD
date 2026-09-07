@@ -28,10 +28,26 @@ from shapely.geometry import Polygon
 
 # Definisi koordinat batas wilayah (Gresik) menggunakan GeoJSON
 geojson_coords = [
-    [112.612009,-7.1414293],
-    [112.6103364,-7.1443878],
-    [112.61613,-7.1482604],
-    [112.6184572,-7.1432573]
+     [
+              112.614066,
+              -7.1329581
+            ],
+            [
+              112.6038448,
+              -7.1448554
+            ],
+            [
+              112.6212602,
+              -7.1529688
+            ],
+            [
+              112.6303413,
+              -7.142593
+            ],
+            [
+              112.614066,
+              -7.1329581
+            ]
     ]
 
 # Konversi ke bentuk Poligon
