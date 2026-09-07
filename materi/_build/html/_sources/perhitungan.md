@@ -28,12 +28,11 @@ from shapely.geometry import Polygon
 
 # Definisi koordinat batas wilayah (Gresik) menggunakan GeoJSON
 geojson_coords = [
-    [112.6568922, -7.1481289],
-    [112.6482448, -7.1509091],
-    [112.6525927, -7.1672063],
-    [112.6657812, -7.1655766],
-    [112.6568922, -7.1481289]
-]
+    [112.612009,-7.1414293],
+    [112.6103364,-7.1443878],
+    [112.61613,-7.1482604],
+    [112.6184572,-7.1432573]
+    ]
 
 # Konversi ke bentuk Poligon
 area_polygon = Polygon(geojson_coords)
@@ -79,35 +78,69 @@ peta_wilayah
 ## B. Mengunduh Data dari API
 Menggunakan titik pusat tadi, kita menarik data kualitas udara secara historis selama satu tahun ke belakang.
 
-# Setup Parameter Tanggal dan URL (Sampai 31 Agustus 2026)
+# Inisialisasi Koneksi dan Parameter (OpenEO CDSE)
+
+
+```{code-cell} ipython3
+import openeo
+print("Menghubungkan ke OpenEO CDSE...")
+connection = openeo.connect("https://openeo.dataspace.copernicus.eu")
+
+# Otentikasi OIDC (Akan memunculkan prompt/URL untuk login)
+connection.authenticate_oidc()
+print("Koneksi berhasil.")
+```
+
+# Membangun Datacube dan Request
 ```{code-cell} ipython3
 start_date = "2025-08-31"
 end_date = "2026-08-31"
-url = "https://air-quality-api.open-meteo.com/v1/air-quality"
 
-params = {
-    "latitude": centroid_lat,
-    "longitude": centroid_lon,
-    "start_date": start_date,
-    "end_date": end_date,
-    "hourly": "pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,ozone",
-    "timezone": "Asia/Jakarta"
-}
+print("Memuat koleksi Sentinel-5P untuk NO2, CO, dan O3...")
+# Catatan: Sentinel-5P tidak menyediakan parameter PM10 dan PM2.5.
+# Oleh karena itu, kita akan fokus menarik data gas (NO2, CO, O3) yang tersedia.
+# Band names tergantung backend, di CDSE misalnya: 'NO2', 'CO', 'O3'.
+datacube = connection.load_collection(
+    "SENTINEL_5P_L2",
+    spatial_extent={"type": "Polygon", "coordinates": [geojson_coords]},
+    temporal_extent=[start_date, end_date],
+    bands=["NO2", "CO", "O3"] 
+)
+
+print("Membuat proses agregasi spasial...")
+# Rata-rata spasial per hari
+timeseries = datacube.aggregate_spatial(
+    geometries={"type": "Polygon", "coordinates": [geojson_coords]},
+    reducer="mean"
+)
+
+print("Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...")
+data = timeseries.execute()
+print("Data API OpenEO berhasil ditarik!")
 ```
-# Request data
-```{code-cell} ipython3
-print("Memulai proses crawling...")
-response = requests.get(url, params=params)
-data = response.json()
-print("Data API berhasil ditarik!")
-```
+
 ## C. Data Preparation & Penyesuaian Urutan
-Setelah data JSON ditarik dari API, kita ubah menjadi DataFrame. Kita juga akan melakukan eksplorasi awal (lihat Bagian 2.4), menghapus anomali nilai negatif, dan mengisi data yang hilang. Karena data dari API per jam, kita akan langsung merata-ratakannya menjadi data harian (daily) untuk menyederhanakan analisis dan memperkecil ukuran data.
+Setelah data JSON ditarik dari OpenEO, struktur data kembalian berupa *time-series agregat spasial*. Kita akan mengekstrak nilainya ke dalam DataFrame Pandas. Format ini berbeda dengan keluaran sederhana dari Open-Meteo.
 
 # Memasukkan data ke dalam Pandas DataFrame
 ```{code-cell} ipython3
-df = pd.DataFrame(data['hourly'])
-df['time'] = pd.to_datetime(df['time'])
+# Format hasil JSON aggregate_spatial OpenEO:
+# Kunci utama adalah tanggal (str), nilainya adalah list dari [ [val_no2, val_co, val_o3] ]
+records = []
+for date_str, values in data.items():
+    # Menghindari error list out of bounds jika data kosong pada tanggal tersebut
+    if len(values) > 0 and len(values[0]) >= 3:
+        records.append({
+            'time': date_str,
+            'nitrogen_dioxide': values[0][0],
+            'carbon_monoxide': values[0][1],
+            'ozone': values[0][2],
+            'pm10': None,   # PM10 tidak ada di Sentinel-5P
+            'pm2_5': None   # PM2.5 tidak ada di Sentinel-5P
+        })
+
+df = pd.DataFrame(records)
+df['time'] = pd.to_datetime(df['time']).dt.tz_localize(None) # Hilangkan zona waktu
 ```
 
 ```{code-cell} ipython3
@@ -202,9 +235,8 @@ plt.show()
 # sebagai catatan analisis lanjutan.
 ```
 
-# Agregasi ke harian dan mengurutkan waktu secara ASCENDING
+# Mengurutkan waktu secara ASCENDING (Data dari OpenEO sudah dalam bentuk harian)
 ```{code-cell} ipython3
-df = df.resample('D', on='time').mean().reset_index()
 df = df.sort_values(by='time', ascending=True).reset_index(drop=True)
 ```
 # Menyimpan Data menjadi CSV
