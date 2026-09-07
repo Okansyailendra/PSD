@@ -453,10 +453,26 @@ document.write(`
 
 <span class="c1"># Definisi koordinat batas wilayah (Gresik) menggunakan GeoJSON</span>
 <span class="n">geojson_coords</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="mf">112.612009</span><span class="p">,</span><span class="o">-</span><span class="mf">7.1414293</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">112.6103364</span><span class="p">,</span><span class="o">-</span><span class="mf">7.1443878</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">112.61613</span><span class="p">,</span><span class="o">-</span><span class="mf">7.1482604</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">112.6184572</span><span class="p">,</span><span class="o">-</span><span class="mf">7.1432573</span><span class="p">]</span>
+     <span class="p">[</span>
+              <span class="mf">112.614066</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1329581</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.6038448</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1448554</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.6212602</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1529688</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.6303413</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.142593</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.614066</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1329581</span>
+            <span class="p">]</span>
     <span class="p">]</span>
 
 <span class="c1"># Konversi ke bentuk Poligon</span>
@@ -470,7 +486,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Titik Pusat Penarikan Data -&gt; Latitude: -7.14446, Longitude: 112.61447
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Titik Pusat Penarikan Data -&gt; Latitude: -7.14324, Longitude: 112.61720
 </pre></div>
 </div>
 </div>
@@ -528,7 +544,7 @@ document.write(`
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_b3fe9894d666b6a0b65baf44a34961d8 {
+                #map_85b9f1637bf85b0621333e0fc10426a6 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -565,16 +581,16 @@ document.write(`
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_b3fe9894d666b6a0b65baf44a34961d8&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_85b9f1637bf85b0621333e0fc10426a6&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_b3fe9894d666b6a0b65baf44a34961d8 = L.map(
-                &quot;map_b3fe9894d666b6a0b65baf44a34961d8&quot;,
+            var map_85b9f1637bf85b0621333e0fc10426a6 = L.map(
+                &quot;map_85b9f1637bf85b0621333e0fc10426a6&quot;,
                 {
-                    center: [-7.144463671242808, 112.61446889500641],
+                    center: [-7.143240327161378, 112.61720027352304],
                     crs: L.CRS.EPSG3857,
                     ...{
   &quot;zoom&quot;: 13,
@@ -589,7 +605,7 @@ document.write(`
 
         
     
-            var tile_layer_96620f02500714fb3e4e29bbb99264c9 = L.tileLayer(
+            var tile_layer_423a3b4d3b58226c4425cd93e6c659a4 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -606,16 +622,16 @@ document.write(`
             );
         
     
-            tile_layer_96620f02500714fb3e4e29bbb99264c9.addTo(map_b3fe9894d666b6a0b65baf44a34961d8);
+            tile_layer_423a3b4d3b58226c4425cd93e6c659a4.addTo(map_85b9f1637bf85b0621333e0fc10426a6);
         
     
-            var polygon_dbea782bb93ea267d6ddf10969483437 = L.polygon(
-                [[-7.1414293, 112.612009], [-7.1443878, 112.6103364], [-7.1482604, 112.61613], [-7.1432573, 112.6184572]],
+            var polygon_c72ff170a9c5934699dc12d58d896e50 = L.polygon(
+                [[-7.1329581, 112.614066], [-7.1448554, 112.6038448], [-7.1529688, 112.6212602], [-7.142593, 112.6303413], [-7.1329581, 112.614066]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#e74c3c&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#e74c3c&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_b3fe9894d666b6a0b65baf44a34961d8);
+            ).addTo(map_85b9f1637bf85b0621333e0fc10426a6);
         
     
-            polygon_dbea782bb93ea267d6ddf10969483437.bindTooltip(
+            polygon_c72ff170a9c5934699dc12d58d896e50.bindTooltip(
                 `&lt;div&gt;
                      Batas Wilayah Kajian - Gresik
                  &lt;/div&gt;`,
@@ -625,14 +641,14 @@ document.write(`
             );
         
     
-            var marker_eac4a8e07e429379a238507b7593e9e7 = L.marker(
-                [-7.144463671242808, 112.61446889500641],
+            var marker_a45c1745e9e9241ea1475cc95a478a22 = L.marker(
+                [-7.143240327161378, 112.61720027352304],
                 {
 }
-            ).addTo(map_b3fe9894d666b6a0b65baf44a34961d8);
+            ).addTo(map_85b9f1637bf85b0621333e0fc10426a6);
         
     
-            var icon_6dede3449910a3a80902e3f7750b86df = L.AwesomeMarkers.icon(
+            var icon_95e4d57c583a23531a0001a4485d1bfb = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;blue&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -643,24 +659,24 @@ document.write(`
             );
         
     
-        var popup_1905fe6c7413329be3a23db14ef2578f = L.popup({
+        var popup_c91277b1a2e384fc3d1a3d25fb084bb7 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_9f69418fc783e1934f6c621681960da9 = $(`&lt;div id=&quot;html_9f69418fc783e1934f6c621681960da9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
-                popup_1905fe6c7413329be3a23db14ef2578f.setContent(html_9f69418fc783e1934f6c621681960da9);
+                var html_e002b465b867c6e44e7ffd1c4f6884b9 = $(`&lt;div id=&quot;html_e002b465b867c6e44e7ffd1c4f6884b9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
+                popup_c91277b1a2e384fc3d1a3d25fb084bb7.setContent(html_e002b465b867c6e44e7ffd1c4f6884b9);
             
         
 
-        marker_eac4a8e07e429379a238507b7593e9e7.bindPopup(popup_1905fe6c7413329be3a23db14ef2578f)
+        marker_a45c1745e9e9241ea1475cc95a478a22.bindPopup(popup_c91277b1a2e384fc3d1a3d25fb084bb7)
         ;
 
         
     
     
-                marker_eac4a8e07e429379a238507b7593e9e7.setIcon(icon_6dede3449910a3a80902e3f7750b86df);
+                marker_a45c1745e9e9241ea1475cc95a478a22.setIcon(icon_95e4d57c583a23531a0001a4485d1bfb);
             
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
@@ -689,7 +705,11 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Menghubungkan ke OpenEO CDSE...
 </pre></div>
 </div>
-<div class="output text_html">Visit <a href="https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=HCXA-OGFG" title="Authenticate at https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=HCXA-OGFG" target="_blank" rel="noopener noreferrer">https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=HCXA-OGFG</a> <a href="#" onclick="navigator.clipboard.writeText('https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=HCXA-OGFG');return false;" title="Copy authentication URL to clipboard">&#128203;</a> to authenticate.</div><div class="output text_html"><code>[-------------------------------------]</code> ⌛ Polling</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using refresh token.
+Koneksi berhasil.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="membangun-datacube-dan-request">
@@ -720,6 +740,103 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...&quot;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">timeseries</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data API OpenEO berhasil ditarik!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memuat koleksi Sentinel-5P untuk NO2, CO, dan O3...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membuat proses agregasi spasial...
+Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OpenEoApiError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">23</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">timeseries</span> <span class="o">=</span> <span class="n">datacube</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">geometries</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span> <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">geojson_coords</span><span class="p">]},</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...&quot;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">23</span> <span class="n">data</span> <span class="o">=</span> <span class="n">timeseries</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data API OpenEO berhasil ditarik!&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\vectorcube.py:241,</span> in <span class="ni">VectorCube.execute</span><span class="nt">(self, validate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span> <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">validate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">240</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Executes the process graph.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">241</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flat_graph</span><span class="p">(),</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\connection.py:1836,</span> in <span class="ni">Connection.execute</span><span class="nt">(self, process_graph, timeout, validate, auto_decode, additional, job_options, on_response_headers)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1832</span> <span class="n">pg_with_metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_request_with_process_graph</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1833</span>     <span class="n">process_graph</span><span class="o">=</span><span class="n">process_graph</span><span class="p">,</span> <span class="n">additional</span><span class="o">=</span><span class="n">additional</span><span class="p">,</span> <span class="n">job_options</span><span class="o">=</span><span class="n">job_options</span>
+<span class="g g-Whitespace">   </span><span class="mi">1834</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1835</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preflight_validation</span><span class="p">(</span><span class="n">pg_with_metadata</span><span class="o">=</span><span class="n">pg_with_metadata</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1836</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1837</span>     <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/result&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1838</span>     <span class="n">json</span><span class="o">=</span><span class="n">pg_with_metadata</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1839</span>     <span class="n">expected_status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1840</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span> <span class="ow">or</span> <span class="n">DEFAULT_TIMEOUT_SYNCHRONOUS_EXECUTE</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1841</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1843</span> <span class="c1"># TODO: deprecate on_response_headers in favor of self.events?</span>
+<span class="g g-Whitespace">   </span><span class="mi">1844</span> <span class="k">if</span> <span class="n">on_response_headers</span> <span class="o">:=</span> <span class="p">(</span><span class="n">on_response_headers</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_response_headers_sync</span><span class="p">):</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\_connection.py:232,</span> in <span class="ni">RestApiConnection.post</span><span class="nt">(self, path, json, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span> <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">json</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">225</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span><span class="sd">     Do POST request to REST API.</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span><span class="sd"> </span>
+<span class="sd">   (...)    230     :return: response: Response</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">232</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\connection.py:787,</span> in <span class="ni">Connection.request</span><span class="nt">(self, method, path, headers, auth, check_error, expected_status, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Connection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>         <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>         <span class="n">check_error</span><span class="o">=</span><span class="n">check_error</span><span class="p">,</span> <span class="n">expected_status</span><span class="o">=</span><span class="n">expected_status</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span>     <span class="c1"># Initial request attempt</span>
+<span class="ne">--&gt; </span><span class="mi">787</span>     <span class="k">return</span> <span class="n">_request</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">788</span> <span class="k">except</span> <span class="n">OpenEoApiError</span> <span class="k">as</span> <span class="n">api_exc</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">789</span>     <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span>         <span class="n">api_exc</span><span class="o">.</span><span class="n">http_status_code</span> <span class="ow">in</span> <span class="p">{</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">,</span> <span class="n">HTTP_403_FORBIDDEN</span><span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">791</span>         <span class="ow">and</span> <span class="n">api_exc</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="s2">&quot;TokenInvalid&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span>     <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">793</span>         <span class="c1"># Retry if we can refresh the access token</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\connection.py:780,</span> in <span class="ni">Connection.request.&lt;locals&gt;._request</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">779</span> <span class="k">def</span><span class="w"> </span><span class="nf">_request</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">780</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Connection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>         <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>         <span class="n">check_error</span><span class="o">=</span><span class="n">check_error</span><span class="p">,</span> <span class="n">expected_status</span><span class="o">=</span><span class="n">expected_status</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\_connection.py:141,</span> in <span class="ni">RestApiConnection.request</span><span class="nt">(self, method, path, params, headers, auth, check_error, expected_status, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span> <span class="n">expected_status</span> <span class="o">=</span> <span class="n">ensure_list</span><span class="p">(</span><span class="n">expected_status</span><span class="p">)</span> <span class="k">if</span> <span class="n">expected_status</span> <span class="k">else</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span> <span class="k">if</span> <span class="n">check_error</span> <span class="ow">and</span> <span class="n">status</span> <span class="o">&gt;=</span> <span class="mi">400</span> <span class="ow">and</span> <span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">expected_status</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">141</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_raise_api_error</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="k">if</span> <span class="n">expected_status</span> <span class="ow">and</span> <span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">expected_status</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">raise</span> <span class="n">OpenEoRestError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="s2">&quot;Got status code </span><span class="si">{s!r}</span><span class="s2"> for `</span><span class="si">{m}</span><span class="s2"> </span><span class="si">{p}</span><span class="s2">` (expected </span><span class="si">{e!r}</span><span class="s2">) with body </span><span class="si">{body}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>             <span class="n">m</span><span class="o">=</span><span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">p</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">status</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">expected_status</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\_connection.py:163,</span> in <span class="ni">RestApiConnection._raise_api_error</span><span class="nt">(self, response)</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span>     <span class="n">error_message</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="k">if</span> <span class="n">error_code</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">error_message</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error_message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">163</span>         <span class="k">raise</span> <span class="n">OpenEoApiError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span>             <span class="n">http_status_code</span><span class="o">=</span><span class="n">status_code</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span>             <span class="n">code</span><span class="o">=</span><span class="n">error_code</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">message</span><span class="o">=</span><span class="n">error_message</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>             <span class="nb">id</span><span class="o">=</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>             <span class="n">url</span><span class="o">=</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="c1"># Failed to parse it as a compliant openEO API error: show body as-is in the exception.</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="n">text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+
+<span class="ne">OpenEoApiError</span>: [400] Internal: Collection &#39;SENTINEL_5P_L2&#39; got requested with multiple bands: [&#39;NO2&#39;, &#39;CO&#39;, &#39;O3&#39;]. Only one band is supported, with or without the &#39;dataMask&#39; band. (ref: r-2609070919394d9fb3a9750577e78d09)
 </pre></div>
 </div>
 </div>
