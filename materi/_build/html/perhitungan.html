@@ -190,11 +190,6 @@
 
 
 
-
-
-
-
-
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series: Persiapan Data Polutan Gresik</a></li>
@@ -397,32 +392,22 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3. Proses Crawling &amp; Pemrosesan Data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-setup-batas-wilayah-geojson">A. Setup Batas Wilayah GeoJSON</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengunduh-data-dari-api">B. Mengunduh Data dari API</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-koneksi-dan-parameter-openeo-cdse">Inisialisasi Koneksi dan Parameter (OpenEO CDSE)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membangun-datacube-dan-request">Membangun Datacube dan Request</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-data-preparation-penyesuaian-urutan">C. Data Preparation &amp; Penyesuaian Urutan</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#memasukkan-data-ke-dalam-pandas-dataframe">Memasukkan data ke dalam Pandas DataFrame</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengubah-nama-kolom-agar-lebih-ringkas">Mengubah nama kolom agar lebih ringkas</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-waktu-secara-ascending-data-dari-openeo-sudah-dalam-bentuk-harian">Mengurutkan waktu secara ASCENDING (Data dari OpenEO sudah dalam bentuk harian)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-menjadi-csv">Menyimpan Data menjadi CSV</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-yang-sudah-dibersihkan-menjadi-csv">Menyimpan Data yang Sudah Dibersihkan menjadi CSV</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-grafik-time-series">4. Visualisasi Grafik (Time Series)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-grafik-gas-emisi-co-dan-no2">A. Grafik Gas Emisi (CO dan NO2)</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5">B. Grafik Partikel Berbahaya (PM10 dan PM2.5)</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-grafik-ozon-permukaan-o3">C. Grafik Ozon Permukaan (O3)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pola-musiman-kemarau-vs-penghujan">D. Pola Musiman (Kemarau vs Penghujan)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-frekuensi-pelanggaran-ambang-batas-aman">E. Frekuensi Pelanggaran Ambang Batas Aman</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ringkasan-statistik-akhir">F. Ringkasan Statistik Akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-ozon-permukaan-o3">B. Grafik Ozon Permukaan (O3)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-pola-musiman-kemarau-vs-penghujan">C. Pola Musiman (Kemarau vs Penghujan)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-frekuensi-hari-dengan-kolom-densitas-tinggi">D. Frekuensi Hari dengan Kolom Densitas Tinggi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-ringkasan-statistik-akhir">E. Ringkasan Statistik Akhir</a></li>
 </ul>
 </li>
 </ul>
@@ -454,24 +439,24 @@ document.write(`
 <span class="c1"># Definisi koordinat batas wilayah (Gresik) menggunakan GeoJSON</span>
 <span class="n">geojson_coords</span> <span class="o">=</span> <span class="p">[</span>
      <span class="p">[</span>
-              <span class="mf">112.614066</span><span class="p">,</span>
-              <span class="o">-</span><span class="mf">7.1329581</span>
+              <span class="mf">112.6124555</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1337934</span>
             <span class="p">],</span>
             <span class="p">[</span>
-              <span class="mf">112.6038448</span><span class="p">,</span>
-              <span class="o">-</span><span class="mf">7.1448554</span>
+              <span class="mf">112.6033317</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1496527</span>
             <span class="p">],</span>
             <span class="p">[</span>
-              <span class="mf">112.6212602</span><span class="p">,</span>
-              <span class="o">-</span><span class="mf">7.1529688</span>
+              <span class="mf">112.6203805</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1596966</span>
             <span class="p">],</span>
             <span class="p">[</span>
-              <span class="mf">112.6303413</span><span class="p">,</span>
-              <span class="o">-</span><span class="mf">7.142593</span>
+              <span class="mf">112.63683</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1370975</span>
             <span class="p">],</span>
             <span class="p">[</span>
-              <span class="mf">112.614066</span><span class="p">,</span>
-              <span class="o">-</span><span class="mf">7.1329581</span>
+              <span class="mf">112.6124555</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1337934</span>
             <span class="p">]</span>
     <span class="p">]</span>
 
@@ -486,7 +471,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Titik Pusat Penarikan Data -&gt; Latitude: -7.14324, Longitude: 112.61720
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Titik Pusat Penarikan Data -&gt; Latitude: -7.14510, Longitude: 112.61904
 </pre></div>
 </div>
 </div>
@@ -544,7 +529,7 @@ document.write(`
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_85b9f1637bf85b0621333e0fc10426a6 {
+                #map_3c37269fe37e182fb2e2e54562559b74 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -581,16 +566,16 @@ document.write(`
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_85b9f1637bf85b0621333e0fc10426a6&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_3c37269fe37e182fb2e2e54562559b74&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_85b9f1637bf85b0621333e0fc10426a6 = L.map(
-                &quot;map_85b9f1637bf85b0621333e0fc10426a6&quot;,
+            var map_3c37269fe37e182fb2e2e54562559b74 = L.map(
+                &quot;map_3c37269fe37e182fb2e2e54562559b74&quot;,
                 {
-                    center: [-7.143240327161378, 112.61720027352304],
+                    center: [-7.145095605516674, 112.61904261309026],
                     crs: L.CRS.EPSG3857,
                     ...{
   &quot;zoom&quot;: 13,
@@ -605,7 +590,7 @@ document.write(`
 
         
     
-            var tile_layer_423a3b4d3b58226c4425cd93e6c659a4 = L.tileLayer(
+            var tile_layer_721259f2872e76eaab8ded6866680c64 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -622,16 +607,16 @@ document.write(`
             );
         
     
-            tile_layer_423a3b4d3b58226c4425cd93e6c659a4.addTo(map_85b9f1637bf85b0621333e0fc10426a6);
+            tile_layer_721259f2872e76eaab8ded6866680c64.addTo(map_3c37269fe37e182fb2e2e54562559b74);
         
     
-            var polygon_c72ff170a9c5934699dc12d58d896e50 = L.polygon(
-                [[-7.1329581, 112.614066], [-7.1448554, 112.6038448], [-7.1529688, 112.6212602], [-7.142593, 112.6303413], [-7.1329581, 112.614066]],
+            var polygon_67bef9aa8694fa4ee71d2388b83129e6 = L.polygon(
+                [[-7.1337934, 112.6124555], [-7.1496527, 112.6033317], [-7.1596966, 112.6203805], [-7.1370975, 112.63683], [-7.1337934, 112.6124555]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#e74c3c&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#e74c3c&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_85b9f1637bf85b0621333e0fc10426a6);
+            ).addTo(map_3c37269fe37e182fb2e2e54562559b74);
         
     
-            polygon_c72ff170a9c5934699dc12d58d896e50.bindTooltip(
+            polygon_67bef9aa8694fa4ee71d2388b83129e6.bindTooltip(
                 `&lt;div&gt;
                      Batas Wilayah Kajian - Gresik
                  &lt;/div&gt;`,
@@ -641,14 +626,14 @@ document.write(`
             );
         
     
-            var marker_a45c1745e9e9241ea1475cc95a478a22 = L.marker(
-                [-7.143240327161378, 112.61720027352304],
+            var marker_97025b7c181f442bfcc5d48158ce8dad = L.marker(
+                [-7.145095605516674, 112.61904261309026],
                 {
 }
-            ).addTo(map_85b9f1637bf85b0621333e0fc10426a6);
+            ).addTo(map_3c37269fe37e182fb2e2e54562559b74);
         
     
-            var icon_95e4d57c583a23531a0001a4485d1bfb = L.AwesomeMarkers.icon(
+            var icon_061a047ede9a9f62f85653317835838a = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;blue&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -659,24 +644,24 @@ document.write(`
             );
         
     
-        var popup_c91277b1a2e384fc3d1a3d25fb084bb7 = L.popup({
+        var popup_ed80f53ef6dc19fd7999ecea16beda3e = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_e002b465b867c6e44e7ffd1c4f6884b9 = $(`&lt;div id=&quot;html_e002b465b867c6e44e7ffd1c4f6884b9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
-                popup_c91277b1a2e384fc3d1a3d25fb084bb7.setContent(html_e002b465b867c6e44e7ffd1c4f6884b9);
+                var html_2e733a7c6aac78af87fa54c647cd5989 = $(`&lt;div id=&quot;html_2e733a7c6aac78af87fa54c647cd5989&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
+                popup_ed80f53ef6dc19fd7999ecea16beda3e.setContent(html_2e733a7c6aac78af87fa54c647cd5989);
             
         
 
-        marker_a45c1745e9e9241ea1475cc95a478a22.bindPopup(popup_c91277b1a2e384fc3d1a3d25fb084bb7)
+        marker_97025b7c181f442bfcc5d48158ce8dad.bindPopup(popup_ed80f53ef6dc19fd7999ecea16beda3e)
         ;
 
         
     
     
-                marker_a45c1745e9e9241ea1475cc95a478a22.setIcon(icon_95e4d57c583a23531a0001a4485d1bfb);
+                marker_97025b7c181f442bfcc5d48158ce8dad.setIcon(icon_061a047ede9a9f62f85653317835838a);
             
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
@@ -684,197 +669,116 @@ document.write(`
 </section>
 <section id="b-mengunduh-data-dari-api">
 <h2>B. Mengunduh Data dari API<a class="headerlink" href="#b-mengunduh-data-dari-api" title="Link to this heading">#</a></h2>
-<p>Menggunakan titik pusat tadi, kita menarik data kualitas udara secara historis selama satu tahun ke belakang.</p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="inisialisasi-koneksi-dan-parameter-openeo-cdse">
-<h1>Inisialisasi Koneksi dan Parameter (OpenEO CDSE)<a class="headerlink" href="#inisialisasi-koneksi-dan-parameter-openeo-cdse" title="Link to this heading">#</a></h1>
+<p>Data kualitas udara (NO2, CO, O3) untuk wilayah kajian diperoleh dari citra satelit Sentinel-5P
+melalui proses crawling terpisah (<code class="docutils literal notranslate"><span class="pre">crawl_data.py</span></code>), lalu dimuat kembali di sini dari hasil yang
+sudah tersimpan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Menghubungkan ke OpenEO CDSE...&quot;</span><span class="p">)</span>
-<span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;https://openeo.dataspace.copernicus.eu&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">csv_mentah</span> <span class="o">=</span> <span class="s2">&quot;polutan_gresik_2025_2026.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_mentah</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
 
-<span class="c1"># Otentikasi OIDC (Akan memunculkan prompt/URL untuk login)</span>
-<span class="n">connection</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Koneksi berhasil.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data berhasil dimuat dari: </span><span class="si">{</span><span class="n">csv_mentah</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rentang waktu: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2"> s/d </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah baris: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Menghubungkan ke OpenEO CDSE...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data berhasil dimuat dari: polutan_gresik_2025_2026.csv
+Rentang waktu: 2025-08-31 00:00:00 s/d 2026-08-30 00:00:00
+Jumlah baris: 365
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using refresh token.
-Koneksi berhasil.
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>NO2</th>
+      <th>CO</th>
+      <th>O3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-08-31</td>
+      <td>0.000049</td>
+      <td>0.028270</td>
+      <td>0.114529</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2025-09-01</td>
+      <td>0.000045</td>
+      <td>0.023488</td>
+      <td>0.114932</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025-09-02</td>
+      <td>0.000038</td>
+      <td>0.025977</td>
+      <td>0.113915</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2025-09-03</td>
+      <td>0.000079</td>
+      <td>0.026092</td>
+      <td>0.113808</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025-09-04</td>
+      <td>0.000060</td>
+      <td>NaN</td>
+      <td>0.113487</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="membangun-datacube-dan-request">
-<h1>Membangun Datacube dan Request<a class="headerlink" href="#membangun-datacube-dan-request" title="Link to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2025-08-31&quot;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2026-08-31&quot;</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Memuat koleksi Sentinel-5P untuk NO2, CO, dan O3...&quot;</span><span class="p">)</span>
-<span class="c1"># Catatan: Sentinel-5P tidak menyediakan parameter PM10 dan PM2.5.</span>
-<span class="c1"># Oleh karena itu, kita akan fokus menarik data gas (NO2, CO, O3) yang tersedia.</span>
-<span class="c1"># Band names tergantung backend, di CDSE misalnya: &#39;NO2&#39;, &#39;CO&#39;, &#39;O3&#39;.</span>
-<span class="n">datacube</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
-    <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
-    <span class="n">spatial_extent</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span> <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">geojson_coords</span><span class="p">]},</span>
-    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">],</span>
-    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">,</span> <span class="s2">&quot;CO&quot;</span><span class="p">,</span> <span class="s2">&quot;O3&quot;</span><span class="p">]</span> 
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Membuat proses agregasi spasial...&quot;</span><span class="p">)</span>
-<span class="c1"># Rata-rata spasial per hari</span>
-<span class="n">timeseries</span> <span class="o">=</span> <span class="n">datacube</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span>
-    <span class="n">geometries</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span> <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">geojson_coords</span><span class="p">]},</span>
-    <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...&quot;</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">timeseries</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data API OpenEO berhasil ditarik!&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memuat koleksi Sentinel-5P untuk NO2, CO, dan O3...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membuat proses agregasi spasial...
-Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OpenEoApiError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">23</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">timeseries</span> <span class="o">=</span> <span class="n">datacube</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">geometries</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span> <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">geojson_coords</span><span class="p">]},</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">23</span> <span class="n">data</span> <span class="o">=</span> <span class="n">timeseries</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data API OpenEO berhasil ditarik!&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\vectorcube.py:241,</span> in <span class="ni">VectorCube.execute</span><span class="nt">(self, validate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">239</span> <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">validate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Executes the process graph.&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">241</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flat_graph</span><span class="p">(),</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\connection.py:1836,</span> in <span class="ni">Connection.execute</span><span class="nt">(self, process_graph, timeout, validate, auto_decode, additional, job_options, on_response_headers)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1832</span> <span class="n">pg_with_metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_request_with_process_graph</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1833</span>     <span class="n">process_graph</span><span class="o">=</span><span class="n">process_graph</span><span class="p">,</span> <span class="n">additional</span><span class="o">=</span><span class="n">additional</span><span class="p">,</span> <span class="n">job_options</span><span class="o">=</span><span class="n">job_options</span>
-<span class="g g-Whitespace">   </span><span class="mi">1834</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1835</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preflight_validation</span><span class="p">(</span><span class="n">pg_with_metadata</span><span class="o">=</span><span class="n">pg_with_metadata</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1836</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1837</span>     <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/result&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1838</span>     <span class="n">json</span><span class="o">=</span><span class="n">pg_with_metadata</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1839</span>     <span class="n">expected_status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1840</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span> <span class="ow">or</span> <span class="n">DEFAULT_TIMEOUT_SYNCHRONOUS_EXECUTE</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1841</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1843</span> <span class="c1"># TODO: deprecate on_response_headers in favor of self.events?</span>
-<span class="g g-Whitespace">   </span><span class="mi">1844</span> <span class="k">if</span> <span class="n">on_response_headers</span> <span class="o">:=</span> <span class="p">(</span><span class="n">on_response_headers</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_response_headers_sync</span><span class="p">):</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\_connection.py:232,</span> in <span class="ni">RestApiConnection.post</span><span class="nt">(self, path, json, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span> <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">json</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">225</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">226</span><span class="sd">     Do POST request to REST API.</span>
-<span class="g g-Whitespace">    </span><span class="mi">227</span><span class="sd"> </span>
-<span class="sd">   (...)    230     :return: response: Response</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">232</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\connection.py:787,</span> in <span class="ni">Connection.request</span><span class="nt">(self, method, path, headers, auth, check_error, expected_status, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Connection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">781</span>         <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">782</span>         <span class="n">check_error</span><span class="o">=</span><span class="n">check_error</span><span class="p">,</span> <span class="n">expected_status</span><span class="o">=</span><span class="n">expected_status</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span>     <span class="c1"># Initial request attempt</span>
-<span class="ne">--&gt; </span><span class="mi">787</span>     <span class="k">return</span> <span class="n">_request</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">788</span> <span class="k">except</span> <span class="n">OpenEoApiError</span> <span class="k">as</span> <span class="n">api_exc</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">789</span>     <span class="k">if</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>         <span class="n">api_exc</span><span class="o">.</span><span class="n">http_status_code</span> <span class="ow">in</span> <span class="p">{</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">,</span> <span class="n">HTTP_403_FORBIDDEN</span><span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>         <span class="ow">and</span> <span class="n">api_exc</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="s2">&quot;TokenInvalid&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>     <span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>         <span class="c1"># Retry if we can refresh the access token</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\connection.py:780,</span> in <span class="ni">Connection.request.&lt;locals&gt;._request</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">779</span> <span class="k">def</span><span class="w"> </span><span class="nf">_request</span><span class="p">():</span>
-<span class="ne">--&gt; </span><span class="mi">780</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Connection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">781</span>         <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">782</span>         <span class="n">check_error</span><span class="o">=</span><span class="n">check_error</span><span class="p">,</span> <span class="n">expected_status</span><span class="o">=</span><span class="n">expected_status</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\_connection.py:141,</span> in <span class="ni">RestApiConnection.request</span><span class="nt">(self, method, path, params, headers, auth, check_error, expected_status, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">139</span> <span class="n">expected_status</span> <span class="o">=</span> <span class="n">ensure_list</span><span class="p">(</span><span class="n">expected_status</span><span class="p">)</span> <span class="k">if</span> <span class="n">expected_status</span> <span class="k">else</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span> <span class="k">if</span> <span class="n">check_error</span> <span class="ow">and</span> <span class="n">status</span> <span class="o">&gt;=</span> <span class="mi">400</span> <span class="ow">and</span> <span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">expected_status</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">141</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_raise_api_error</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="k">if</span> <span class="n">expected_status</span> <span class="ow">and</span> <span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">expected_status</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">raise</span> <span class="n">OpenEoRestError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="s2">&quot;Got status code </span><span class="si">{s!r}</span><span class="s2"> for `</span><span class="si">{m}</span><span class="s2"> </span><span class="si">{p}</span><span class="s2">` (expected </span><span class="si">{e!r}</span><span class="s2">) with body </span><span class="si">{body}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span>             <span class="n">m</span><span class="o">=</span><span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">p</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">status</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">expected_status</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python314\Lib\site-packages\openeo\rest\_connection.py:163,</span> in <span class="ni">RestApiConnection._raise_api_error</span><span class="nt">(self, response)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span>     <span class="n">error_message</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="k">if</span> <span class="n">error_code</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">error_message</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error_message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">163</span>         <span class="k">raise</span> <span class="n">OpenEoApiError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span>             <span class="n">http_status_code</span><span class="o">=</span><span class="n">status_code</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span>             <span class="n">code</span><span class="o">=</span><span class="n">error_code</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">message</span><span class="o">=</span><span class="n">error_message</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>             <span class="nb">id</span><span class="o">=</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>             <span class="n">url</span><span class="o">=</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="c1"># Failed to parse it as a compliant openEO API error: show body as-is in the exception.</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="n">text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
-
-<span class="ne">OpenEoApiError</span>: [400] Internal: Collection &#39;SENTINEL_5P_L2&#39; got requested with multiple bands: [&#39;NO2&#39;, &#39;CO&#39;, &#39;O3&#39;]. Only one band is supported, with or without the &#39;dataMask&#39; band. (ref: r-2609070919394d9fb3a9750577e78d09)
-</pre></div>
-</div>
-</div>
-</div>
 <section id="c-data-preparation-penyesuaian-urutan">
 <h2>C. Data Preparation &amp; Penyesuaian Urutan<a class="headerlink" href="#c-data-preparation-penyesuaian-urutan" title="Link to this heading">#</a></h2>
-<p>Setelah data JSON ditarik dari OpenEO, struktur data kembalian berupa <em>time-series agregat spasial</em>. Kita akan mengekstrak nilainya ke dalam DataFrame Pandas. Format ini berbeda dengan keluaran sederhana dari Open-Meteo.</p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="memasukkan-data-ke-dalam-pandas-dataframe">
-<h1>Memasukkan data ke dalam Pandas DataFrame<a class="headerlink" href="#memasukkan-data-ke-dalam-pandas-dataframe" title="Link to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Format hasil JSON aggregate_spatial OpenEO:</span>
-<span class="c1"># Kunci utama adalah tanggal (str), nilainya adalah list dari [ [val_no2, val_co, val_o3] ]</span>
-<span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">date_str</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="c1"># Menghindari error list out of bounds jika data kosong pada tanggal tersebut</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">date_str</span><span class="p">,</span>
-            <span class="s1">&#39;nitrogen_dioxide&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
-            <span class="s1">&#39;carbon_monoxide&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
-            <span class="s1">&#39;ozone&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span>
-            <span class="s1">&#39;pm10&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>   <span class="c1"># PM10 tidak ada di Sentinel-5P</span>
-            <span class="s1">&#39;pm2_5&#39;</span><span class="p">:</span> <span class="kc">None</span>   <span class="c1"># PM2.5 tidak ada di Sentinel-5P</span>
-        <span class="p">})</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="c1"># Hilangkan zona waktu</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>Data mentah hasil crawling (kolom <code class="docutils literal notranslate"><span class="pre">time,</span> <span class="pre">NO2,</span> <span class="pre">CO,</span> <span class="pre">O3</span></code>) selanjutnya dibersihkan:
+pengecekan nilai kosong, nilai negatif, deteksi outlier, hingga interpolasi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Eksplorasi awal sebelum pembersihan (lihat penjelasan Bagian 2.4) ---</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 365 entries, 0 to 364
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype         
+---  ------  --------------  -----         
+ 0   time    365 non-null    datetime64[ns]
+ 1   NO2     188 non-null    float64       
+ 2   CO      200 non-null    float64       
+ 3   O3      361 non-null    float64       
+dtypes: datetime64[ns](1), float64(3)
+memory usage: 11.5 KB
 </pre></div>
 </div>
 </div>
@@ -885,6 +789,91 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>NO2</th>
+      <th>CO</th>
+      <th>O3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>365</td>
+      <td>188.000000</td>
+      <td>200.000000</td>
+      <td>361.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2026-03-01 00:00:00.000000256</td>
+      <td>0.000081</td>
+      <td>0.029156</td>
+      <td>0.115847</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>2025-08-31 00:00:00</td>
+      <td>0.000015</td>
+      <td>0.011331</td>
+      <td>0.110287</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2025-11-30 00:00:00</td>
+      <td>0.000048</td>
+      <td>0.026497</td>
+      <td>0.114258</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2026-03-01 00:00:00</td>
+      <td>0.000067</td>
+      <td>0.029116</td>
+      <td>0.115711</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2026-05-31 00:00:00</td>
+      <td>0.000098</td>
+      <td>0.031299</td>
+      <td>0.117357</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2026-08-30 00:00:00</td>
+      <td>0.000631</td>
+      <td>0.043723</td>
+      <td>0.123176</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>0.000064</td>
+      <td>0.004248</td>
+      <td>0.002435</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -894,15 +883,31 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah data kosong (missing values) per kolom:
+time      0
+NO2     177
+CO      165
+O3        4
+dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cek jumlah nilai negatif per kolom SEBELUM dibersihkan</span>
-<span class="c1"># (nama kolom masih format asli dari API: pm10, pm2_5, carbon_monoxide, nitrogen_dioxide, ozone)</span>
-<span class="n">kolom_polutan</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pm10&#39;</span><span class="p">,</span> <span class="s1">&#39;pm2_5&#39;</span><span class="p">,</span> <span class="s1">&#39;carbon_monoxide&#39;</span><span class="p">,</span> <span class="s1">&#39;nitrogen_dioxide&#39;</span><span class="p">,</span> <span class="s1">&#39;ozone&#39;</span><span class="p">]</span>
+<span class="n">kolom_polutan</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">kolom_polutan</span><span class="p">:</span>
     <span class="n">jumlah_negatif</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah nilai negatif pada </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">jumlah_negatif</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah nilai negatif pada CO: 0
+Jumlah nilai negatif pada NO2: 0
+Jumlah nilai negatif pada O3: 0
 </pre></div>
 </div>
 </div>
@@ -910,7 +915,7 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan (SEBELUM dibersihkan)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kolom_polutan</span><span class="p">):</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#3498db&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
@@ -920,29 +925,17 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/bd7f15a73e1391ea2a4ed88fbed2b6c3d476aec1edeea1b55989f462fd5a3cb1.png" src="_images/bd7f15a73e1391ea2a4ed88fbed2b6c3d476aec1edeea1b55989f462fd5a3cb1.png" />
+</div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="mengubah-nama-kolom-agar-lebih-ringkas">
-<h1>Mengubah nama kolom agar lebih ringkas<a class="headerlink" href="#mengubah-nama-kolom-agar-lebih-ringkas" title="Link to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
-    <span class="s1">&#39;carbon_monoxide&#39;</span><span class="p">:</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;nitrogen_dioxide&#39;</span><span class="p">:</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;pm10&#39;</span><span class="p">:</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;pm2_5&#39;</span><span class="p">:</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;ozone&#39;</span><span class="p">:</span> <span class="s1">&#39;O3&#39;</span>
-<span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">
 <h1>Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)<a class="headerlink" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]:</span>
     <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -952,7 +945,7 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengisi missing values (NaN) menggunakan interpolasi linear berbasis waktu</span>
 <span class="c1"># Interpolasi dipilih karena data bersifat time-series dan nilai polutan</span>
-<span class="c1"># cenderung berubah secara gradual antar-jam, bukan melompat drastis</span>
+<span class="c1"># cenderung berubah secara gradual antar-hari, bukan melompat drastis</span>
 <span class="c1">#</span>
 <span class="c1"># CATATAN PENTING: method=&#39;time&#39; saja TIDAK bisa mengisi NaN yang berada di</span>
 <span class="c1"># ujung awal atau ujung akhir deret waktu (leading/trailing NaN), karena tidak</span>
@@ -960,7 +953,8 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 <span class="c1"># ditambahkan limit_direction=&#39;both&#39; agar NaN di kedua ujung juga tertangani</span>
 <span class="c1"># (menggunakan nilai valid terdekat sebagai isian/extrapolasi sederhana).</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
+<span class="n">kolom_gas_tersedia</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="n">kolom_gas_tersedia</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">kolom_gas_tersedia</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
     <span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;both&#39;</span>
 <span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
@@ -971,14 +965,22 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sisa missing values setelah interpolasi:
+time    0
+NO2     0
+CO      0
+O3      0
+dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deteksi outlier SESUDAH dibersihkan, sebagai pembanding terhadap boxplot sebelumnya.</span>
-<span class="c1"># Perbandingan ini penting untuk melihat apakah pembersihan nilai negatif juga</span>
-<span class="c1"># berdampak pada sebaran/outlier data secara keseluruhan.</span>
-<span class="n">kolom_polutan_bersih</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">kolom_polutan_bersih</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kolom_polutan_bersih</span><span class="p">):</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2ecc71&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
@@ -988,11 +990,14 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 
 <span class="c1"># Catatan interpretasi: outlier yang masih tersisa setelah pembersihan nilai</span>
 <span class="c1"># negatif tidak serta-merta dihapus, karena bisa jadi merupakan kejadian nyata</span>
-<span class="c1"># (misalnya lonjakan PM2.5 akibat kebakaran lahan/kemacetan ekstrem), bukan</span>
+<span class="c1"># (misalnya lonjakan akibat kebakaran lahan/kemacetan ekstrem), bukan</span>
 <span class="c1"># error pengukuran. Outlier semacam ini dibiarkan dalam data namun dicatat</span>
 <span class="c1"># sebagai catatan analisis lanjutan.</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/876beed2ddf84812137a25cfcb80d8e8d971485ae04ce981863048bf42534949.png" src="_images/876beed2ddf84812137a25cfcb80d8e8d971485ae04ce981863048bf42534949.png" />
 </div>
 </div>
 </section>
@@ -1006,13 +1011,20 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="menyimpan-data-menjadi-csv">
-<h1>Menyimpan Data menjadi CSV<a class="headerlink" href="#menyimpan-data-menjadi-csv" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="menyimpan-data-yang-sudah-dibersihkan-menjadi-csv">
+<h1>Menyimpan Data yang Sudah Dibersihkan menjadi CSV<a class="headerlink" href="#menyimpan-data-yang-sudah-dibersihkan-menjadi-csv" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">csv_filename</span> <span class="o">=</span> <span class="s2">&quot;polutan_gresik_2025_2026.csv&quot;</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data disimpan ke dalam bentuk file: </span><span class="si">{</span><span class="n">csv_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disimpan dengan nama berbeda dari CSV mentah hasil crawling (polutan_gresik_2025_2026.csv)</span>
+<span class="c1"># supaya data mentah dan data yang sudah dibersihkan tetap bisa dibedakan/ditelusuri.</span>
+<span class="n">csv_filename_bersih</span> <span class="o">=</span> <span class="s2">&quot;polutan_gresik_2025_2026_bersih.csv&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filename_bersih</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data yang sudah dibersihkan disimpan ke dalam bentuk file: </span><span class="si">{</span><span class="n">csv_filename_bersih</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data yang sudah dibersihkan disimpan ke dalam bentuk file: polutan_gresik_2025_2026_bersih.csv
 </pre></div>
 </div>
 </div>
@@ -1026,6 +1038,70 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>NO2</th>
+      <th>CO</th>
+      <th>O3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-08-31</td>
+      <td>0.000049</td>
+      <td>0.028270</td>
+      <td>0.114529</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2025-09-01</td>
+      <td>0.000045</td>
+      <td>0.023488</td>
+      <td>0.114932</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025-09-02</td>
+      <td>0.000038</td>
+      <td>0.025977</td>
+      <td>0.113915</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2025-09-03</td>
+      <td>0.000079</td>
+      <td>0.026092</td>
+      <td>0.113808</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025-09-04</td>
+      <td>0.000060</td>
+      <td>0.027812</td>
+      <td>0.113487</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <hr class="docutils" />
@@ -1049,7 +1125,7 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 <span class="c1"># Styling Grafik</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Karbon Monoksida &amp; Nitrogen Dioksida di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tingkat Konsentrasi (μg/m³)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Kolom Densitas (mol/m²)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -1058,37 +1134,12 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </pre></div>
 </div>
 </div>
-</div>
-<section id="b-grafik-partikel-berbahaya-pm10-dan-pm2-5">
-<h2>B. Grafik Partikel Berbahaya (PM10 dan PM2.5)<a class="headerlink" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5" title="Link to this heading">#</a></h2>
-<p>Partikulat sangat penting dipantau di wilayah pabrik dan kendaraan berat karena bentuk fisiknya berupa debu mikro yang berbahaya bagi pernapasan.</p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Konfigurasi kanvas Matplotlib<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
-<span class="c1"># Plot Garis untuk Partikulat</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PM 10 (Partikel &lt;10µm)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#8e44ad&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PM 2.5 (Partikel &lt;2.5µm)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#27ae60&#39;</span><span class="p">)</span>
-
-<span class="c1"># Styling Grafik</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Partikulat PM10 dan PM2.5 di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tingkat Konsentrasi (μg/m³)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
+<div class="cell_output docutils container">
+<img alt="_images/0c67c4dcf40429271bd19d795c916f6ee9ea7240e1b26957d39f72b4ad18b010.png" src="_images/0c67c4dcf40429271bd19d795c916f6ee9ea7240e1b26957d39f72b4ad18b010.png" />
 </div>
 </div>
-</div>
-<section id="c-grafik-ozon-permukaan-o3">
-<h2>C. Grafik Ozon Permukaan (O3)<a class="headerlink" href="#c-grafik-ozon-permukaan-o3" title="Link to this heading">#</a></h2>
+<section id="b-grafik-ozon-permukaan-o3">
+<h2>B. Grafik Ozon Permukaan (O3)<a class="headerlink" href="#b-grafik-ozon-permukaan-o3" title="Link to this heading">#</a></h2>
 <p>Karena O3 terbentuk dari reaksi fotokimia, polanya cenderung berbeda dengan polutan hasil emisi langsung (CO, NO2), sehingga divisualisasikan secara terpisah.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1098,7 +1149,7 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Ozon Permukaan (O3) di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tingkat Konsentrasi (μg/m³)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Kolom Densitas (mol/m²)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -1107,10 +1158,13 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/b77cd1b6c350de7f0fde3aaef1e88cc4219e065ceb8864a8c63b32779de33180.png" src="_images/b77cd1b6c350de7f0fde3aaef1e88cc4219e065ceb8864a8c63b32779de33180.png" />
+</div>
 </div>
 </section>
-<section id="d-pola-musiman-kemarau-vs-penghujan">
-<h2>D. Pola Musiman (Kemarau vs Penghujan)<a class="headerlink" href="#d-pola-musiman-kemarau-vs-penghujan" title="Link to this heading">#</a></h2>
+<section id="c-pola-musiman-kemarau-vs-penghujan">
+<h2>C. Pola Musiman (Kemarau vs Penghujan)<a class="headerlink" href="#c-pola-musiman-kemarau-vs-penghujan" title="Link to this heading">#</a></h2>
 <p>Untuk melihat pola musiman, data di-resample menjadi rata-rata bulanan, kemudian dikelompokkan ke musim kemarau (April–Oktober) dan musim hujan (November–Maret) sesuai pola iklim umum di Jawa Timur.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1118,19 +1172,26 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 <span class="n">df_monthly</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">],</span>
-                       <span class="p">[</span><span class="s1">&#39;#d35400&#39;</span><span class="p">,</span> <span class="s1">&#39;#2980b9&#39;</span><span class="p">,</span> <span class="s1">&#39;#8e44ad&#39;</span><span class="p">,</span> <span class="s1">&#39;#27ae60&#39;</span><span class="p">,</span> <span class="s1">&#39;#f39c12&#39;</span><span class="p">]):</span>
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">],</span>
+                       <span class="p">[</span><span class="s1">&#39;#d35400&#39;</span><span class="p">,</span> <span class="s1">&#39;#2980b9&#39;</span><span class="p">,</span> <span class="s1">&#39;#f39c12&#39;</span><span class="p">]):</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_monthly</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rata-rata Bulanan Tiap Polutan (Pola Musiman)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Bulan&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Konsentrasi (μg/m³)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Kolom Densitas (mol/m²)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_11728\285632328.py:2: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
+  df_monthly = df.resample(&#39;M&#39;, on=&#39;time&#39;).mean(numeric_only=True).reset_index()
+</pre></div>
+</div>
+<img alt="_images/1566707db591f6203bc0a3e0c9a4b482735b50bdf7df6e55b5c0294fb4969491.png" src="_images/1566707db591f6203bc0a3e0c9a4b482735b50bdf7df6e55b5c0294fb4969491.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1142,18 +1203,67 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;musim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">klasifikasi_musim</span><span class="p">)</span>
 
 <span class="c1"># Perbandingan rata-rata konsentrasi tiap polutan antar musim</span>
-<span class="n">perbandingan_musim</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;musim&#39;</span><span class="p">)[[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">perbandingan_musim</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;musim&#39;</span><span class="p">)[[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rata-rata konsentrasi polutan per musim:&quot;</span><span class="p">)</span>
 <span class="n">perbandingan_musim</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rata-rata konsentrasi polutan per musim:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CO</th>
+      <th>NO2</th>
+      <th>O3</th>
+    </tr>
+    <tr>
+      <th>musim</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Hujan</th>
+      <td>0.028502</td>
+      <td>0.000053</td>
+      <td>0.114458</td>
+    </tr>
+    <tr>
+      <th>Kemarau</th>
+      <td>0.029108</td>
+      <td>0.000092</td>
+      <td>0.116830</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perbandingan_musim</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#e67e22&#39;</span><span class="p">,</span> <span class="s1">&#39;#3498db&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Perbandingan Rata-rata Polutan: Musim Kemarau vs Hujan&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Konsentrasi (μg/m³)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Kolom Densitas (mol/m²)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Polutan&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Musim&#39;</span><span class="p">)</span>
@@ -1163,30 +1273,37 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/bd1e18f31189e8395756d4f9f80b2829c39b320f0dffe2a0d5f1397ea9411c67.png" src="_images/bd1e18f31189e8395756d4f9f80b2829c39b320f0dffe2a0d5f1397ea9411c67.png" />
+</div>
 </div>
 </section>
-<section id="e-frekuensi-pelanggaran-ambang-batas-aman">
-<h2>E. Frekuensi Pelanggaran Ambang Batas Aman<a class="headerlink" href="#e-frekuensi-pelanggaran-ambang-batas-aman" title="Link to this heading">#</a></h2>
-<p>Bagian ini menjawab pertanyaan riset terakhir: “polutan mana yang paling sering melebihi ambang batas aman?”, menggunakan baku mutu udara ambien nasional (PP No. 22 Tahun 2021) yang sudah dijelaskan pada Bagian 2.3.</p>
+<section id="d-frekuensi-hari-dengan-kolom-densitas-tinggi">
+<h2>D. Frekuensi Hari dengan Kolom Densitas Tinggi<a class="headerlink" href="#d-frekuensi-hari-dengan-kolom-densitas-tinggi" title="Link to this heading">#</a></h2>
+<p>Bagian ini menjawab pertanyaan riset terakhir: “polutan mana yang paling sering berada pada level tinggi?”.
+Baku mutu udara ambien nasional (PP No. 22 Tahun 2021) tidak dipakai di bagian ini karena baku mutu
+tersebut mengatur <strong>konsentrasi permukaan</strong> (µg/m³) hasil pengukuran ground-station, sedangkan data
+Sentinel-5P yang dipakai di sini mengukur <strong>kolom densitas atmosfer</strong> (mol/m²) dari luar angkasa — dua
+besaran fisik yang berbeda dan tidak bisa dibandingkan langsung tanpa model konversi atmosfer tambahan.</p>
+<p>Sebagai gantinya, “level tinggi” didefinisikan secara statistik: hari-hari dengan nilai berada di atas
+persentil ke-90 dari data setahun untuk masing-masing polutan. Pendekatan ini tetap menjawab pertanyaan
+riset (polutan mana yang paling sering “memuncak”) tanpa mengklaim kepatuhan terhadap baku mutu resmi
+yang sebenarnya tidak berlaku untuk jenis data ini.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Baku mutu udara ambien nasional (PP No. 22 Tahun 2021), dalam μg/m³</span>
-<span class="n">baku_mutu</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;CO&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>     <span class="c1"># rata-rata 1 jam</span>
-    <span class="s1">&#39;NO2&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>      <span class="c1"># rata-rata 1 jam</span>
-    <span class="s1">&#39;PM10&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>      <span class="c1"># rata-rata 24 jam</span>
-    <span class="s1">&#39;PM2.5&#39;</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span>     <span class="c1"># rata-rata 24 jam</span>
-    <span class="s1">&#39;O3&#39;</span><span class="p">:</span> <span class="mi">150</span>        <span class="c1"># rata-rata 1 jam</span>
-<span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ambang referensi statistik: persentil ke-90 dari data masing-masing polutan</span>
+<span class="c1"># (bukan baku mutu resmi, karena tidak ada standar nasional untuk kolom densitas atmosfer)</span>
+<span class="n">kolom_gas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]</span>
+<span class="n">ambang_referensi</span> <span class="o">=</span> <span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.90</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">kolom_gas</span><span class="p">}</span>
 
 <span class="n">hasil_pelanggaran</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">polutan</span><span class="p">,</span> <span class="n">batas</span> <span class="ow">in</span> <span class="n">baku_mutu</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">polutan</span><span class="p">,</span> <span class="n">batas</span> <span class="ow">in</span> <span class="n">ambang_referensi</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">jumlah_lewat</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">polutan</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">batas</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="n">total_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">polutan</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">persen_lewat</span> <span class="o">=</span> <span class="p">(</span><span class="n">jumlah_lewat</span> <span class="o">/</span> <span class="n">total_data</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">persen_lewat</span> <span class="o">=</span> <span class="p">(</span><span class="n">jumlah_lewat</span> <span class="o">/</span> <span class="n">total_data</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="k">if</span> <span class="n">total_data</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
     <span class="n">hasil_pelanggaran</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
         <span class="s1">&#39;Polutan&#39;</span><span class="p">:</span> <span class="n">polutan</span><span class="p">,</span>
-        <span class="s1">&#39;Baku Mutu (μg/m³)&#39;</span><span class="p">:</span> <span class="n">batas</span><span class="p">,</span>
+        <span class="s1">&#39;Ambang Referensi P90 (mol/m²)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">batas</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
         <span class="s1">&#39;Jumlah Hari Melebihi&#39;</span><span class="p">:</span> <span class="n">jumlah_lewat</span><span class="p">,</span>
         <span class="s1">&#39;Persentase Hari Melebihi (%)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">persen_lewat</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="p">})</span>
@@ -1195,17 +1312,71 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
     <span class="n">by</span><span class="o">=</span><span class="s1">&#39;Persentase Hari Melebihi (%)&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ringkasan frekuensi pelanggaran ambang batas per polutan:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ringkasan frekuensi hari dengan kolom densitas tinggi (di atas persentil ke-90) per polutan:&quot;</span><span class="p">)</span>
 <span class="n">df_pelanggaran</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ringkasan frekuensi hari dengan kolom densitas tinggi (di atas persentil ke-90) per polutan:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Polutan</th>
+      <th>Ambang Referensi P90 (mol/m²)</th>
+      <th>Jumlah Hari Melebihi</th>
+      <th>Persentase Hari Melebihi (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CO</td>
+      <td>0.032771</td>
+      <td>37</td>
+      <td>10.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NO2</td>
+      <td>0.000133</td>
+      <td>37</td>
+      <td>10.14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>O3</td>
+      <td>0.118914</td>
+      <td>37</td>
+      <td>10.14</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_pelanggaran</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Polutan&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Persentase Hari Melebihi (%)&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Reds_r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Persentase Hari Konsentrasi Melebihi Ambang Batas Aman&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_pelanggaran</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Polutan&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Persentase Hari Melebihi (%)&#39;</span><span class="p">,</span>
+            <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Polutan&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Reds_r&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Persentase Hari dengan Kolom Densitas di Atas Persentil ke-90&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Persentase Hari (%)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Polutan&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -1214,21 +1385,103 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/ad3f4dc20de20e05ba841bbfe9b9e210a2fcbe880bc9b28ce62840cb13119481.png" src="_images/ad3f4dc20de20e05ba841bbfe9b9e210a2fcbe880bc9b28ce62840cb13119481.png" />
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Perlu diperhatikan bahwa baku mutu untuk PM10 dan PM2.5 (rata-rata 24 jam) sangat cocok untuk dibandingkan langsung dengan data harian kita. Namun untuk CO, NO2, dan O3 yang baku mutunya berbasis rata-rata 1 jam, pembandingan dengan data harian merupakan <em>screening</em> awal dan cenderung <em>underestimate</em> nilai puncak harian.</p>
+<p>Persentil ke-90 dihitung secara terpisah untuk masing-masing polutan berdasarkan data satu tahun
+di wilayah kajian ini sendiri (bersifat relatif, bukan ambang mutlak). Artinya “level tinggi” di
+sini menunjukkan hari-hari dengan kolom densitas tertinggi dibanding kondisi normal wilayah yang
+sama, bukan indikasi berbahaya/tidaknya secara kesehatan seperti pada baku mutu ambien nasional.</p>
 </div>
 </section>
-<section id="f-ringkasan-statistik-akhir">
-<h2>F. Ringkasan Statistik Akhir<a class="headerlink" href="#f-ringkasan-statistik-akhir" title="Link to this heading">#</a></h2>
+<section id="e-ringkasan-statistik-akhir">
+<h2>E. Ringkasan Statistik Akhir<a class="headerlink" href="#e-ringkasan-statistik-akhir" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ringkasan statistik harian dari seluruh polutan setelah proses pembersihan</span>
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;PM10&#39;</span><span class="p">,</span> <span class="s1">&#39;PM2.5&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CO</th>
+      <th>NO2</th>
+      <th>O3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>365.000000</td>
+      <td>365.000000</td>
+      <td>365.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.028857</td>
+      <td>0.000076</td>
+      <td>0.115849</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.003732</td>
+      <td>0.000055</td>
+      <td>0.002430</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.011331</td>
+      <td>0.000015</td>
+      <td>0.110287</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.026708</td>
+      <td>0.000045</td>
+      <td>0.114258</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.028897</td>
+      <td>0.000062</td>
+      <td>0.115720</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.030774</td>
+      <td>0.000090</td>
+      <td>0.117357</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.043723</td>
+      <td>0.000631</td>
+      <td>0.123176</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -1300,32 +1553,22 @@ Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3. Proses Crawling &amp; Pemrosesan Data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-setup-batas-wilayah-geojson">A. Setup Batas Wilayah GeoJSON</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengunduh-data-dari-api">B. Mengunduh Data dari API</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-koneksi-dan-parameter-openeo-cdse">Inisialisasi Koneksi dan Parameter (OpenEO CDSE)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membangun-datacube-dan-request">Membangun Datacube dan Request</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-data-preparation-penyesuaian-urutan">C. Data Preparation &amp; Penyesuaian Urutan</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#memasukkan-data-ke-dalam-pandas-dataframe">Memasukkan data ke dalam Pandas DataFrame</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengubah-nama-kolom-agar-lebih-ringkas">Mengubah nama kolom agar lebih ringkas</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-anomali-mengubah-konsentrasi-negatif-menjadi-missing-values-nan">Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-waktu-secara-ascending-data-dari-openeo-sudah-dalam-bentuk-harian">Mengurutkan waktu secara ASCENDING (Data dari OpenEO sudah dalam bentuk harian)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-menjadi-csv">Menyimpan Data menjadi CSV</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-yang-sudah-dibersihkan-menjadi-csv">Menyimpan Data yang Sudah Dibersihkan menjadi CSV</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-cuplikan-data-teratas">Menampilkan cuplikan data teratas</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-grafik-time-series">4. Visualisasi Grafik (Time Series)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-grafik-gas-emisi-co-dan-no2">A. Grafik Gas Emisi (CO dan NO2)</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-kanvas-matplotlib">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-partikel-berbahaya-pm10-dan-pm2-5">B. Grafik Partikel Berbahaya (PM10 dan PM2.5)</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Konfigurasi kanvas Matplotlib</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-grafik-ozon-permukaan-o3">C. Grafik Ozon Permukaan (O3)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pola-musiman-kemarau-vs-penghujan">D. Pola Musiman (Kemarau vs Penghujan)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-frekuensi-pelanggaran-ambang-batas-aman">E. Frekuensi Pelanggaran Ambang Batas Aman</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ringkasan-statistik-akhir">F. Ringkasan Statistik Akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-grafik-ozon-permukaan-o3">B. Grafik Ozon Permukaan (O3)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-pola-musiman-kemarau-vs-penghujan">C. Pola Musiman (Kemarau vs Penghujan)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-frekuensi-hari-dengan-kolom-densitas-tinggi">D. Frekuensi Hari dengan Kolom Densitas Tinggi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-ringkasan-statistik-akhir">E. Ringkasan Statistik Akhir</a></li>
 </ul>
 </li>
 </ul>

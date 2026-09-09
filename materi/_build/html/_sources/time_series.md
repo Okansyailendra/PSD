@@ -20,8 +20,6 @@ Melalui fitur **PG Studio** di *dashboard* Aiven, kita dapat membuat tabel denga
 ```sql
 CREATE TABLE polutan_gresik (
     time TIMESTAMP,
-    "PM10" NUMERIC,
-    "PM2.5" NUMERIC,
     "CO" NUMERIC,
     "NO2" NUMERIC,
     "O3" NUMERIC
@@ -75,12 +73,12 @@ Proses menghubungkan KNIME ke Aiven pada prinsipnya mirip dengan menghubungkan D
 
 * **PostgreSQL Connector**: Diatur menggunakan detail host, port, dan kredensial server Aiven. Pada tab JDBC Parameters, properti tambahan `sslmode` dengan nilai `require` dikonfigurasi agar node dapat terhubung. Hal ini penting karena Aiven menuntut koneksi SSL.
 
-  ![Konfigurasi PostgreSQL Connector](images/gambar2.png)
+  ![Konfigurasi PostgreSQL Connector](images/gambar1.png)
   *(Keterangan: Jendela konfigurasi PostgreSQL Connector di mana kredensial database dimasukkan)*
 
 * **DB Table Selector**: Diarahkan ke skema `public` untuk menyeleksi tabel `polutan_gresik`.
 
-  ![DB Table Selector](images/gambar1.png)
+  ![DB Table Selector](images/gambar2.png)
   *(Keterangan: Keseluruhan workflow KNIME beserta cuplikan hasil pemilihan tabel)*
 
 * **DB Reader**: Mengeksekusi penarikan data dari database ke dalam memori KNIME agar siap diolah lebih lanjut. Total data yang berhasil ditarik berjumlah 366 baris.

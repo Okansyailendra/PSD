@@ -192,11 +192,6 @@
 
 
 
-
-
-
-
-
 </ul>
 </details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Time Series: Persiapan Data Polutan Gresik</a></li>
@@ -438,8 +433,6 @@ document.write(`
 </ol>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">polutan_gresik</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="k">time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span>
-<span class="w">    </span><span class="ss">&quot;PM10&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
-<span class="w">    </span><span class="ss">&quot;PM2.5&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
 <span class="w">    </span><span class="ss">&quot;CO&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
 <span class="w">    </span><span class="ss">&quot;NO2&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
 <span class="w">    </span><span class="ss">&quot;O3&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span>
@@ -499,11 +492,11 @@ Anda bisa mengecek total baris data yang berhasil diunggah dengan menjalankan qu
 <p>Proses menghubungkan KNIME ke Aiven pada prinsipnya mirip dengan menghubungkan DBeaver. KNIME akan mengambil data secara langsung dari <em>cloud</em>. Alur koneksinya (<em>workflow</em>) dibangun menggunakan beberapa node utama secara berurutan:</p>
 <ul>
 <li><p><strong>PostgreSQL Connector</strong>: Diatur menggunakan detail host, port, dan kredensial server Aiven. Pada tab JDBC Parameters, properti tambahan <code class="docutils literal notranslate"><span class="pre">sslmode</span></code> dengan nilai <code class="docutils literal notranslate"><span class="pre">require</span></code> dikonfigurasi agar node dapat terhubung. Hal ini penting karena Aiven menuntut koneksi SSL.</p>
-<p><img alt="Konfigurasi PostgreSQL Connector" src="_images/gambar2.png" />
+<p><img alt="Konfigurasi PostgreSQL Connector" src="_images/gambar1.png" />
 <em>(Keterangan: Jendela konfigurasi PostgreSQL Connector di mana kredensial database dimasukkan)</em></p>
 </li>
 <li><p><strong>DB Table Selector</strong>: Diarahkan ke skema <code class="docutils literal notranslate"><span class="pre">public</span></code> untuk menyeleksi tabel <code class="docutils literal notranslate"><span class="pre">polutan_gresik</span></code>.</p>
-<p><img alt="DB Table Selector" src="_images/gambar1.png" />
+<p><img alt="DB Table Selector" src="_images/gambar2.png" />
 <em>(Keterangan: Keseluruhan workflow KNIME beserta cuplikan hasil pemilihan tabel)</em></p>
 </li>
 <li><p><strong>DB Reader</strong>: Mengeksekusi penarikan data dari database ke dalam memori KNIME agar siap diolah lebih lanjut. Total data yang berhasil ditarik berjumlah 366 baris.</p>
