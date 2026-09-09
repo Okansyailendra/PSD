@@ -29,24 +29,24 @@ from shapely.geometry import Polygon
 # Definisi koordinat batas wilayah (Gresik) menggunakan GeoJSON
 geojson_coords = [
      [
-              112.614066,
-              -7.1329581
+              112.6124555,
+              -7.1337934
             ],
             [
-              112.6038448,
-              -7.1448554
+              112.6033317,
+              -7.1496527
             ],
             [
-              112.6212602,
-              -7.1529688
+              112.6203805,
+              -7.1596966
             ],
             [
-              112.6303413,
-              -7.142593
+              112.63683,
+              -7.1370975
             ],
             [
-              112.614066,
-              -7.1329581
+              112.6124555,
+              -7.1337934
             ]
     ]
 
@@ -92,72 +92,24 @@ peta_wilayah
 ```
 
 ## B. Mengunduh Data dari API
-Menggunakan titik pusat tadi, kita menarik data kualitas udara secara historis selama satu tahun ke belakang.
-
-# Inisialisasi Koneksi dan Parameter (OpenEO CDSE)
-
+Data kualitas udara (NO2, CO, O3) untuk wilayah kajian diperoleh dari citra satelit Sentinel-5P
+melalui proses crawling terpisah (`crawl_data.py`), lalu dimuat kembali di sini dari hasil yang
+sudah tersimpan.
 
 ```{code-cell} ipython3
-import openeo
-print("Menghubungkan ke OpenEO CDSE...")
-connection = openeo.connect("https://openeo.dataspace.copernicus.eu")
+csv_mentah = "polutan_gresik_2025_2026.csv"
+df = pd.read_csv(csv_mentah)
+df['time'] = pd.to_datetime(df['time'])
 
-# Otentikasi OIDC (Akan memunculkan prompt/URL untuk login)
-connection.authenticate_oidc()
-print("Koneksi berhasil.")
-```
-
-# Membangun Datacube dan Request
-```{code-cell} ipython3
-start_date = "2025-08-31"
-end_date = "2026-08-31"
-
-print("Memuat koleksi Sentinel-5P untuk NO2, CO, dan O3...")
-# Catatan: Sentinel-5P tidak menyediakan parameter PM10 dan PM2.5.
-# Oleh karena itu, kita akan fokus menarik data gas (NO2, CO, O3) yang tersedia.
-# Band names tergantung backend, di CDSE misalnya: 'NO2', 'CO', 'O3'.
-datacube = connection.load_collection(
-    "SENTINEL_5P_L2",
-    spatial_extent={"type": "Polygon", "coordinates": [geojson_coords]},
-    temporal_extent=[start_date, end_date],
-    bands=["NO2", "CO", "O3"] 
-)
-
-print("Membuat proses agregasi spasial...")
-# Rata-rata spasial per hari
-timeseries = datacube.aggregate_spatial(
-    geometries={"type": "Polygon", "coordinates": [geojson_coords]},
-    reducer="mean"
-)
-
-print("Mengunduh data (ini akan memakan waktu karena memproses citra satelit)...")
-data = timeseries.execute()
-print("Data API OpenEO berhasil ditarik!")
+print(f"Data berhasil dimuat dari: {csv_mentah}")
+print(f"Rentang waktu: {df['time'].min()} s/d {df['time'].max()}")
+print(f"Jumlah baris: {len(df)}")
+df.head()
 ```
 
 ## C. Data Preparation & Penyesuaian Urutan
-Setelah data JSON ditarik dari OpenEO, struktur data kembalian berupa *time-series agregat spasial*. Kita akan mengekstrak nilainya ke dalam DataFrame Pandas. Format ini berbeda dengan keluaran sederhana dari Open-Meteo.
-
-# Memasukkan data ke dalam Pandas DataFrame
-```{code-cell} ipython3
-# Format hasil JSON aggregate_spatial OpenEO:
-# Kunci utama adalah tanggal (str), nilainya adalah list dari [ [val_no2, val_co, val_o3] ]
-records = []
-for date_str, values in data.items():
-    # Menghindari error list out of bounds jika data kosong pada tanggal tersebut
-    if len(values) > 0 and len(values[0]) >= 3:
-        records.append({
-            'time': date_str,
-            'nitrogen_dioxide': values[0][0],
-            'carbon_monoxide': values[0][1],
-            'ozone': values[0][2],
-            'pm10': None,   # PM10 tidak ada di Sentinel-5P
-            'pm2_5': None   # PM2.5 tidak ada di Sentinel-5P
-        })
-
-df = pd.DataFrame(records)
-df['time'] = pd.to_datetime(df['time']).dt.tz_localize(None) # Hilangkan zona waktu
-```
+Data mentah hasil crawling (kolom `time, NO2, CO, O3`) selanjutnya dibersihkan:
+pengecekan nilai kosong, nilai negatif, deteksi outlier, hingga interpolasi.
 
 ```{code-cell} ipython3
 # --- Eksplorasi awal sebelum pembersihan (lihat penjelasan Bagian 2.4) ---
@@ -176,8 +128,7 @@ print(df.isna().sum())
 
 ```{code-cell} ipython3
 # Cek jumlah nilai negatif per kolom SEBELUM dibersihkan
-# (nama kolom masih format asli dari API: pm10, pm2_5, carbon_monoxide, nitrogen_dioxide, ozone)
-kolom_polutan = ['pm10', 'pm2_5', 'carbon_monoxide', 'nitrogen_dioxide', 'ozone']
+kolom_polutan = ['CO', 'NO2', 'O3']
 for col in kolom_polutan:
     jumlah_negatif = (df[col] < 0).sum()
     print(f"Jumlah nilai negatif pada {col}: {jumlah_negatif}")
@@ -185,7 +136,7 @@ for col in kolom_polutan:
 
 ```{code-cell} ipython3
 # Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan (SEBELUM dibersihkan)
-fig, axes = plt.subplots(1, 5, figsize=(20, 5))
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 for i, col in enumerate(kolom_polutan):
     sns.boxplot(y=df[col], ax=axes[i], color='#3498db')
     axes[i].set_title(col)
@@ -194,26 +145,16 @@ plt.tight_layout()
 plt.show()
 ```
 
-# Mengubah nama kolom agar lebih ringkas
-```{code-cell} ipython3
-df.rename(columns={
-    'carbon_monoxide': 'CO',
-    'nitrogen_dioxide': 'NO2',
-    'pm10': 'PM10',
-    'pm2_5': 'PM2.5',
-    'ozone': 'O3'
-}, inplace=True)
-```
 # Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)
 ```{code-cell} ipython3
-for col in ['PM10', 'PM2.5', 'CO', 'NO2', 'O3']:
+for col in ['CO', 'NO2', 'O3']:
     df.loc[df[col] < 0, col] = None
 ```
 
 ```{code-cell} ipython3
 # Mengisi missing values (NaN) menggunakan interpolasi linear berbasis waktu
 # Interpolasi dipilih karena data bersifat time-series dan nilai polutan
-# cenderung berubah secara gradual antar-jam, bukan melompat drastis
+# cenderung berubah secara gradual antar-hari, bukan melompat drastis
 #
 # CATATAN PENTING: method='time' saja TIDAK bisa mengisi NaN yang berada di
 # ujung awal atau ujung akhir deret waktu (leading/trailing NaN), karena tidak
@@ -221,7 +162,8 @@ for col in ['PM10', 'PM2.5', 'CO', 'NO2', 'O3']:
 # ditambahkan limit_direction='both' agar NaN di kedua ujung juga tertangani
 # (menggunakan nilai valid terdekat sebagai isian/extrapolasi sederhana).
 df = df.set_index('time')
-df[['PM10', 'PM2.5', 'CO', 'NO2', 'O3']] = df[['PM10', 'PM2.5', 'CO', 'NO2', 'O3']].interpolate(
+kolom_gas_tersedia = ['CO', 'NO2', 'O3']
+df[kolom_gas_tersedia] = df[kolom_gas_tersedia].interpolate(
     method='time', limit_direction='both'
 )
 df = df.reset_index()
@@ -233,10 +175,8 @@ print(df.isna().sum())
 
 ```{code-cell} ipython3
 # Deteksi outlier SESUDAH dibersihkan, sebagai pembanding terhadap boxplot sebelumnya.
-# Perbandingan ini penting untuk melihat apakah pembersihan nilai negatif juga
-# berdampak pada sebaran/outlier data secara keseluruhan.
-kolom_polutan_bersih = ['PM10', 'PM2.5', 'CO', 'NO2', 'O3']
-fig, axes = plt.subplots(1, 5, figsize=(20, 5))
+kolom_polutan_bersih = ['CO', 'NO2', 'O3']
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 for i, col in enumerate(kolom_polutan_bersih):
     sns.boxplot(y=df[col], ax=axes[i], color='#2ecc71')
     axes[i].set_title(col)
@@ -246,7 +186,7 @@ plt.show()
 
 # Catatan interpretasi: outlier yang masih tersisa setelah pembersihan nilai
 # negatif tidak serta-merta dihapus, karena bisa jadi merupakan kejadian nyata
-# (misalnya lonjakan PM2.5 akibat kebakaran lahan/kemacetan ekstrem), bukan
+# (misalnya lonjakan akibat kebakaran lahan/kemacetan ekstrem), bukan
 # error pengukuran. Outlier semacam ini dibiarkan dalam data namun dicatat
 # sebagai catatan analisis lanjutan.
 ```
@@ -255,11 +195,13 @@ plt.show()
 ```{code-cell} ipython3
 df = df.sort_values(by='time', ascending=True).reset_index(drop=True)
 ```
-# Menyimpan Data menjadi CSV
+# Menyimpan Data yang Sudah Dibersihkan menjadi CSV
 ```{code-cell} ipython3
-csv_filename = "polutan_gresik_2025_2026.csv"
-df.to_csv(csv_filename, index=False)
-print(f"Data disimpan ke dalam bentuk file: {csv_filename}")
+# Disimpan dengan nama berbeda dari CSV mentah hasil crawling (polutan_gresik_2025_2026.csv)
+# supaya data mentah dan data yang sudah dibersihkan tetap bisa dibedakan/ditelusuri.
+csv_filename_bersih = "polutan_gresik_2025_2026_bersih.csv"
+df.to_csv(csv_filename_bersih, index=False)
+print(f"Data yang sudah dibersihkan disimpan ke dalam bentuk file: {csv_filename_bersih}")
 ```
 # Menampilkan cuplikan data teratas
 ```{code-cell} ipython3
@@ -284,36 +226,14 @@ sns.lineplot(data=df, x='time', y='NO2', label='NO2 (Nitrogen Dioksida)', color=
 # Styling Grafik
 plt.title('Tren Karbon Monoksida & Nitrogen Dioksida di Gresik', fontsize=14, fontweight='bold')
 plt.xlabel('Waktu', fontsize=12)
-plt.ylabel('Tingkat Konsentrasi (μg/m³)', fontsize=12)
+plt.ylabel('Kolom Densitas (mol/m²)', fontsize=12)
 plt.legend()
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.tight_layout()
 
 plt.show()
 ```
-## B. Grafik Partikel Berbahaya (PM10 dan PM2.5)
-Partikulat sangat penting dipantau di wilayah pabrik dan kendaraan berat karena bentuk fisiknya berupa debu mikro yang berbahaya bagi pernapasan.
-
-# Konfigurasi kanvas Matplotlib
-```{code-cell} ipython3
-plt.figure(figsize=(15, 6))
-
-# Plot Garis untuk Partikulat
-sns.lineplot(data=df, x='time', y='PM10', label='PM 10 (Partikel <10µm)', color='#8e44ad')
-sns.lineplot(data=df, x='time', y='PM2.5', label='PM 2.5 (Partikel <2.5µm)', color='#27ae60')
-
-# Styling Grafik
-plt.title('Tren Partikulat PM10 dan PM2.5 di Gresik', fontsize=14, fontweight='bold')
-plt.xlabel('Waktu', fontsize=12)
-plt.ylabel('Tingkat Konsentrasi (μg/m³)', fontsize=12)
-plt.legend()
-plt.grid(True, linestyle='--', alpha=0.5)
-plt.tight_layout()
-
-plt.show()
-```
-
-## C. Grafik Ozon Permukaan (O3)
+## B. Grafik Ozon Permukaan (O3)
 Karena O3 terbentuk dari reaksi fotokimia, polanya cenderung berbeda dengan polutan hasil emisi langsung (CO, NO2), sehingga divisualisasikan secara terpisah.
 
 ```{code-cell} ipython3
@@ -323,7 +243,7 @@ sns.lineplot(data=df, x='time', y='O3', label='O3 (Ozon Permukaan)', color='#f39
 
 plt.title('Tren Ozon Permukaan (O3) di Gresik', fontsize=14, fontweight='bold')
 plt.xlabel('Waktu', fontsize=12)
-plt.ylabel('Tingkat Konsentrasi (μg/m³)', fontsize=12)
+plt.ylabel('Kolom Densitas (mol/m²)', fontsize=12)
 plt.legend()
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.tight_layout()
@@ -331,7 +251,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-## D. Pola Musiman (Kemarau vs Penghujan)
+## C. Pola Musiman (Kemarau vs Penghujan)
 
 Untuk melihat pola musiman, data di-resample menjadi rata-rata bulanan, kemudian dikelompokkan ke musim kemarau (April–Oktober) dan musim hujan (November–Maret) sesuai pola iklim umum di Jawa Timur.
 
@@ -340,13 +260,13 @@ Untuk melihat pola musiman, data di-resample menjadi rata-rata bulanan, kemudian
 df_monthly = df.resample('M', on='time').mean(numeric_only=True).reset_index()
 
 plt.figure(figsize=(15, 6))
-for col, color in zip(['CO', 'NO2', 'PM10', 'PM2.5', 'O3'],
-                       ['#d35400', '#2980b9', '#8e44ad', '#27ae60', '#f39c12']):
+for col, color in zip(['CO', 'NO2', 'O3'],
+                       ['#d35400', '#2980b9', '#f39c12']):
     sns.lineplot(data=df_monthly, x='time', y=col, label=col, color=color, marker='o')
 
 plt.title('Rata-rata Bulanan Tiap Polutan (Pola Musiman)', fontsize=14, fontweight='bold')
 plt.xlabel('Bulan', fontsize=12)
-plt.ylabel('Konsentrasi (μg/m³)', fontsize=12)
+plt.ylabel('Kolom Densitas (mol/m²)', fontsize=12)
 plt.legend()
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.tight_layout()
@@ -361,7 +281,7 @@ def klasifikasi_musim(bulan):
 df['musim'] = df['time'].dt.month.apply(klasifikasi_musim)
 
 # Perbandingan rata-rata konsentrasi tiap polutan antar musim
-perbandingan_musim = df.groupby('musim')[['CO', 'NO2', 'PM10', 'PM2.5', 'O3']].mean()
+perbandingan_musim = df.groupby('musim')[['CO', 'NO2', 'O3']].mean()
 print("Rata-rata konsentrasi polutan per musim:")
 perbandingan_musim
 ```
@@ -369,7 +289,7 @@ perbandingan_musim
 ```{code-cell} ipython3
 perbandingan_musim.T.plot(kind='bar', figsize=(10, 6), color=['#e67e22', '#3498db'])
 plt.title('Perbandingan Rata-rata Polutan: Musim Kemarau vs Hujan', fontweight='bold')
-plt.ylabel('Konsentrasi (μg/m³)')
+plt.ylabel('Kolom Densitas (mol/m²)')
 plt.xlabel('Polutan')
 plt.xticks(rotation=0)
 plt.legend(title='Musim')
@@ -378,28 +298,33 @@ plt.tight_layout()
 plt.show()
 ```
 
-## E. Frekuensi Pelanggaran Ambang Batas Aman
+## D. Frekuensi Hari dengan Kolom Densitas Tinggi
 
-Bagian ini menjawab pertanyaan riset terakhir: "polutan mana yang paling sering melebihi ambang batas aman?", menggunakan baku mutu udara ambien nasional (PP No. 22 Tahun 2021) yang sudah dijelaskan pada Bagian 2.3.
+Bagian ini menjawab pertanyaan riset terakhir: "polutan mana yang paling sering berada pada level tinggi?".
+Baku mutu udara ambien nasional (PP No. 22 Tahun 2021) tidak dipakai di bagian ini karena baku mutu
+tersebut mengatur **konsentrasi permukaan** (µg/m³) hasil pengukuran ground-station, sedangkan data
+Sentinel-5P yang dipakai di sini mengukur **kolom densitas atmosfer** (mol/m²) dari luar angkasa — dua
+besaran fisik yang berbeda dan tidak bisa dibandingkan langsung tanpa model konversi atmosfer tambahan.
+
+Sebagai gantinya, "level tinggi" didefinisikan secara statistik: hari-hari dengan nilai berada di atas
+persentil ke-90 dari data setahun untuk masing-masing polutan. Pendekatan ini tetap menjawab pertanyaan
+riset (polutan mana yang paling sering "memuncak") tanpa mengklaim kepatuhan terhadap baku mutu resmi
+yang sebenarnya tidak berlaku untuk jenis data ini.
 
 ```{code-cell} ipython3
-# Baku mutu udara ambien nasional (PP No. 22 Tahun 2021), dalam μg/m³
-baku_mutu = {
-    'CO': 10000,     # rata-rata 1 jam
-    'NO2': 200,      # rata-rata 1 jam
-    'PM10': 75,      # rata-rata 24 jam
-    'PM2.5': 55,     # rata-rata 24 jam
-    'O3': 150        # rata-rata 1 jam
-}
+# Ambang referensi statistik: persentil ke-90 dari data masing-masing polutan
+# (bukan baku mutu resmi, karena tidak ada standar nasional untuk kolom densitas atmosfer)
+kolom_gas = ['CO', 'NO2', 'O3']
+ambang_referensi = {col: df[col].quantile(0.90) for col in kolom_gas}
 
 hasil_pelanggaran = []
-for polutan, batas in baku_mutu.items():
+for polutan, batas in ambang_referensi.items():
     jumlah_lewat = (df[polutan] > batas).sum()
     total_data = df[polutan].notna().sum()
-    persen_lewat = (jumlah_lewat / total_data) * 100
+    persen_lewat = (jumlah_lewat / total_data) * 100 if total_data > 0 else 0
     hasil_pelanggaran.append({
         'Polutan': polutan,
-        'Baku Mutu (μg/m³)': batas,
+        'Ambang Referensi P90 (mol/m²)': round(batas, 6),
         'Jumlah Hari Melebihi': jumlah_lewat,
         'Persentase Hari Melebihi (%)': round(persen_lewat, 2)
     })
@@ -408,14 +333,15 @@ df_pelanggaran = pd.DataFrame(hasil_pelanggaran).sort_values(
     by='Persentase Hari Melebihi (%)', ascending=False
 ).reset_index(drop=True)
 
-print("Ringkasan frekuensi pelanggaran ambang batas per polutan:")
+print("Ringkasan frekuensi hari dengan kolom densitas tinggi (di atas persentil ke-90) per polutan:")
 df_pelanggaran
 ```
 
 ```{code-cell} ipython3
 plt.figure(figsize=(10, 6))
-sns.barplot(data=df_pelanggaran, x='Polutan', y='Persentase Hari Melebihi (%)', palette='Reds_r')
-plt.title('Persentase Hari Konsentrasi Melebihi Ambang Batas Aman', fontweight='bold')
+sns.barplot(data=df_pelanggaran, x='Polutan', y='Persentase Hari Melebihi (%)',
+            hue='Polutan', palette='Reds_r', legend=False)
+plt.title('Persentase Hari dengan Kolom Densitas di Atas Persentil ke-90', fontweight='bold')
 plt.ylabel('Persentase Hari (%)')
 plt.xlabel('Polutan')
 plt.grid(True, axis='y', linestyle='--', alpha=0.5)
@@ -424,12 +350,15 @@ plt.show()
 ```
 
 ```{note}
-Perlu diperhatikan bahwa baku mutu untuk PM10 dan PM2.5 (rata-rata 24 jam) sangat cocok untuk dibandingkan langsung dengan data harian kita. Namun untuk CO, NO2, dan O3 yang baku mutunya berbasis rata-rata 1 jam, pembandingan dengan data harian merupakan *screening* awal dan cenderung *underestimate* nilai puncak harian.
+Persentil ke-90 dihitung secara terpisah untuk masing-masing polutan berdasarkan data satu tahun
+di wilayah kajian ini sendiri (bersifat relatif, bukan ambang mutlak). Artinya "level tinggi" di
+sini menunjukkan hari-hari dengan kolom densitas tertinggi dibanding kondisi normal wilayah yang
+sama, bukan indikasi berbahaya/tidaknya secara kesehatan seperti pada baku mutu ambien nasional.
 ```
 
-## F. Ringkasan Statistik Akhir
+## E. Ringkasan Statistik Akhir
 
 ```{code-cell} ipython3
 # Ringkasan statistik harian dari seluruh polutan setelah proses pembersihan
-df[['CO', 'NO2', 'PM10', 'PM2.5', 'O3']].describe()
+df[['CO', 'NO2', 'O3']].describe()
 ```
