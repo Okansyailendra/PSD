@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'perhitungan';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Analisis Time Series: Persiapan Data Polutan Gresik" href="time_series.html" />
+    <link rel="next" title="Analisis Time Series: Persiapan Data Polutan Manyar" href="time_series.html" />
     <link rel="prev" title="2. Data Understanding" href="data_understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -192,8 +192,12 @@
 
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series: Persiapan Data Polutan Gresik</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series: Persiapan Data Polutan Manyar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_NO2.html">Tahap 1: Inisialisasi dan Memuat Data</a></li>
+
+
+
+
 </ul>
 
     </div>
@@ -427,7 +431,7 @@ document.write(`
 <p>Tahapan ini mencakup pengumpulan data dari API berdasarkan batas wilayah spasial, hingga pembersihan dan penyimpanan data ke dalam format CSV.</p>
 <section id="a-setup-batas-wilayah-geojson">
 <h2>A. Setup Batas Wilayah GeoJSON<a class="headerlink" href="#a-setup-batas-wilayah-geojson" title="Link to this heading">#</a></h2>
-<p>Kita mulai dengan mendefinisikan batas poligon (<em>Polygon</em>) wilayah Gresik yang telah disiapkan, lalu mencari titik tengah (<em>centroid</em>) dari area tersebut untuk parameter API.</p>
+<p>Kita mulai dengan mendefinisikan batas poligon (<em>Polygon</em>) wilayah Manyar yang telah disiapkan, lalu mencari titik tengah (<em>centroid</em>) dari area tersebut untuk parameter API.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -436,7 +440,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polygon</span>
 
-<span class="c1"># Definisi koordinat batas wilayah (Gresik) menggunakan GeoJSON</span>
+<span class="c1"># Definisi koordinat batas wilayah (Manyar) menggunakan GeoJSON</span>
 <span class="n">geojson_coords</span> <span class="o">=</span> <span class="p">[</span>
      <span class="p">[</span>
               <span class="mf">112.6124555</span><span class="p">,</span>
@@ -478,7 +482,7 @@ document.write(`
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Ganti daftar <code class="docutils literal notranslate"><span class="pre">geojson_coords</span></code> di atas dengan titik-titik batas wilayah domisili/kajian Anda masing-masing (bukan Gresik) jika tugas mensyaratkan wilayah yang berbeda. Koordinat bisa diambil dari <a class="reference external" href="http://geojson.io">geojson.io</a> atau batas administratif resmi.</p>
+<p>Ganti daftar <code class="docutils literal notranslate"><span class="pre">geojson_coords</span></code> di atas dengan titik-titik batas wilayah domisili/kajian Anda masing-masing (bukan Manyar) jika tugas mensyaratkan wilayah yang berbeda. Koordinat bisa diambil dari <a class="reference external" href="http://geojson.io">geojson.io</a> atau batas administratif resmi.</p>
 </div>
 <p>Untuk memastikan batas wilayah yang dipakai sudah sesuai (bukan hanya berupa angka koordinat), kita bisa memvisualisasikan poligon tersebut di atas peta interaktif menggunakan <code class="docutils literal notranslate"><span class="pre">folium</span></code>:</p>
 <div class="cell docutils container">
@@ -488,14 +492,14 @@ document.write(`
 <span class="c1"># Membuat peta terpusat di centroid wilayah kajian</span>
 <span class="n">peta_wilayah</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">centroid_lat</span><span class="p">,</span> <span class="n">centroid_lon</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
 
-<span class="c1"># Menambahkan poligon batas wilayah Gresik ke peta</span>
+<span class="c1"># Menambahkan poligon batas wilayah Manyar ke peta</span>
 <span class="n">folium</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
     <span class="n">locations</span><span class="o">=</span><span class="p">[(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span> <span class="k">for</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="ow">in</span> <span class="n">geojson_coords</span><span class="p">],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#e74c3c&#39;</span><span class="p">,</span>
     <span class="n">weight</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
     <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
-    <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Batas Wilayah Kajian - Gresik&#39;</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Batas Wilayah Kajian - Manyar&#39;</span>
 <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta_wilayah</span><span class="p">)</span>
 
 <span class="c1"># Menandai titik pusat (centroid) tempat data ditarik</span>
@@ -529,7 +533,7 @@ document.write(`
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_3c37269fe37e182fb2e2e54562559b74 {
+                #map_3117709914bb5c43f5fd02724553d521 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -566,14 +570,14 @@ document.write(`
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_3c37269fe37e182fb2e2e54562559b74&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_3117709914bb5c43f5fd02724553d521&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_3c37269fe37e182fb2e2e54562559b74 = L.map(
-                &quot;map_3c37269fe37e182fb2e2e54562559b74&quot;,
+            var map_3117709914bb5c43f5fd02724553d521 = L.map(
+                &quot;map_3117709914bb5c43f5fd02724553d521&quot;,
                 {
                     center: [-7.145095605516674, 112.61904261309026],
                     crs: L.CRS.EPSG3857,
@@ -590,7 +594,7 @@ document.write(`
 
         
     
-            var tile_layer_721259f2872e76eaab8ded6866680c64 = L.tileLayer(
+            var tile_layer_7a9796e07820798500f015654e262fcf = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -607,18 +611,18 @@ document.write(`
             );
         
     
-            tile_layer_721259f2872e76eaab8ded6866680c64.addTo(map_3c37269fe37e182fb2e2e54562559b74);
+            tile_layer_7a9796e07820798500f015654e262fcf.addTo(map_3117709914bb5c43f5fd02724553d521);
         
     
-            var polygon_67bef9aa8694fa4ee71d2388b83129e6 = L.polygon(
+            var polygon_fc08466c22fde6216898a8355b331a88 = L.polygon(
                 [[-7.1337934, 112.6124555], [-7.1496527, 112.6033317], [-7.1596966, 112.6203805], [-7.1370975, 112.63683], [-7.1337934, 112.6124555]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#e74c3c&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#e74c3c&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_3c37269fe37e182fb2e2e54562559b74);
+            ).addTo(map_3117709914bb5c43f5fd02724553d521);
         
     
-            polygon_67bef9aa8694fa4ee71d2388b83129e6.bindTooltip(
+            polygon_fc08466c22fde6216898a8355b331a88.bindTooltip(
                 `&lt;div&gt;
-                     Batas Wilayah Kajian - Gresik
+                     Batas Wilayah Kajian - Manyar
                  &lt;/div&gt;`,
                 {
   &quot;sticky&quot;: true,
@@ -626,14 +630,14 @@ document.write(`
             );
         
     
-            var marker_97025b7c181f442bfcc5d48158ce8dad = L.marker(
+            var marker_5319ae63948ef391cab673108b767922 = L.marker(
                 [-7.145095605516674, 112.61904261309026],
                 {
 }
-            ).addTo(map_3c37269fe37e182fb2e2e54562559b74);
+            ).addTo(map_3117709914bb5c43f5fd02724553d521);
         
     
-            var icon_061a047ede9a9f62f85653317835838a = L.AwesomeMarkers.icon(
+            var icon_b914fe21c6b9dfe78e58a323d96b770a = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;blue&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -644,24 +648,24 @@ document.write(`
             );
         
     
-        var popup_ed80f53ef6dc19fd7999ecea16beda3e = L.popup({
+        var popup_c67872bc31b33d389c3de4e35b776005 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_2e733a7c6aac78af87fa54c647cd5989 = $(`&lt;div id=&quot;html_2e733a7c6aac78af87fa54c647cd5989&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
-                popup_ed80f53ef6dc19fd7999ecea16beda3e.setContent(html_2e733a7c6aac78af87fa54c647cd5989);
+                var html_fc6bd219a47d8dd867d9866c4b08b02d = $(`&lt;div id=&quot;html_fc6bd219a47d8dd867d9866c4b08b02d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Titik Pengambilan Data API&lt;/div&gt;`)[0];
+                popup_c67872bc31b33d389c3de4e35b776005.setContent(html_fc6bd219a47d8dd867d9866c4b08b02d);
             
         
 
-        marker_97025b7c181f442bfcc5d48158ce8dad.bindPopup(popup_ed80f53ef6dc19fd7999ecea16beda3e)
+        marker_5319ae63948ef391cab673108b767922.bindPopup(popup_c67872bc31b33d389c3de4e35b776005)
         ;
 
         
     
     
-                marker_97025b7c181f442bfcc5d48158ce8dad.setIcon(icon_061a047ede9a9f62f85653317835838a);
+                marker_5319ae63948ef391cab673108b767922.setIcon(icon_b914fe21c6b9dfe78e58a323d96b770a);
             
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
@@ -674,7 +678,7 @@ melalui proses crawling terpisah (<code class="docutils literal notranslate"><sp
 sudah tersimpan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">csv_mentah</span> <span class="o">=</span> <span class="s2">&quot;polutan_gresik_2025_2026.csv&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">csv_mentah</span> <span class="o">=</span> <span class="s2">&quot;polutan_Manyar_2025_2026.csv&quot;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_mentah</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
 
@@ -686,7 +690,7 @@ sudah tersimpan.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data berhasil dimuat dari: polutan_gresik_2025_2026.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data berhasil dimuat dari: polutan_Manyar_2025_2026.csv
 Rentang waktu: 2025-08-31 00:00:00 s/d 2026-08-30 00:00:00
 Jumlah baris: 365
 </pre></div>
@@ -1015,16 +1019,16 @@ dtype: int64
 <h1>Menyimpan Data yang Sudah Dibersihkan menjadi CSV<a class="headerlink" href="#menyimpan-data-yang-sudah-dibersihkan-menjadi-csv" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disimpan dengan nama berbeda dari CSV mentah hasil crawling (polutan_gresik_2025_2026.csv)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disimpan dengan nama berbeda dari CSV mentah hasil crawling (polutan_Manyar_2025_2026.csv)</span>
 <span class="c1"># supaya data mentah dan data yang sudah dibersihkan tetap bisa dibedakan/ditelusuri.</span>
-<span class="n">csv_filename_bersih</span> <span class="o">=</span> <span class="s2">&quot;polutan_gresik_2025_2026_bersih.csv&quot;</span>
+<span class="n">csv_filename_bersih</span> <span class="o">=</span> <span class="s2">&quot;polutan_Manyar_2025_2026_bersih.csv&quot;</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filename_bersih</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data yang sudah dibersihkan disimpan ke dalam bentuk file: </span><span class="si">{</span><span class="n">csv_filename_bersih</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data yang sudah dibersihkan disimpan ke dalam bentuk file: polutan_gresik_2025_2026_bersih.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data yang sudah dibersihkan disimpan ke dalam bentuk file: polutan_Manyar_2025_2026_bersih.csv
 </pre></div>
 </div>
 </div>
@@ -1123,7 +1127,7 @@ dtype: int64
 <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NO2 (Nitrogen Dioksida)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2980b9&#39;</span><span class="p">)</span>
 
 <span class="c1"># Styling Grafik</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Karbon Monoksida &amp; Nitrogen Dioksida di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Karbon Monoksida &amp; Nitrogen Dioksida di Manyar&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Kolom Densitas (mol/m²)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1135,7 +1139,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0c67c4dcf40429271bd19d795c916f6ee9ea7240e1b26957d39f72b4ad18b010.png" src="_images/0c67c4dcf40429271bd19d795c916f6ee9ea7240e1b26957d39f72b4ad18b010.png" />
+<img alt="_images/aab541ec09e412a23d6967a6415ea38658eb6633b5eef64e3c0a903ea77a7b8d.png" src="_images/aab541ec09e412a23d6967a6415ea38658eb6633b5eef64e3c0a903ea77a7b8d.png" />
 </div>
 </div>
 <section id="b-grafik-ozon-permukaan-o3">
@@ -1147,7 +1151,7 @@ dtype: int64
 
 <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;O3&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;O3 (Ozon Permukaan)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f39c12&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Ozon Permukaan (O3) di Gresik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tren Ozon Permukaan (O3) di Manyar&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Kolom Densitas (mol/m²)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1159,7 +1163,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b77cd1b6c350de7f0fde3aaef1e88cc4219e065ceb8864a8c63b32779de33180.png" src="_images/b77cd1b6c350de7f0fde3aaef1e88cc4219e065ceb8864a8c63b32779de33180.png" />
+<img alt="_images/0f10fb2a2a29b0bb7e9091364384c4fa5bb0ec1c017d6450de74a2cd46376d70.png" src="_images/0f10fb2a2a29b0bb7e9091364384c4fa5bb0ec1c017d6450de74a2cd46376d70.png" />
 </div>
 </div>
 </section>
@@ -1187,7 +1191,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_11728\285632328.py:2: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\OKAN\AppData\Local\Temp\ipykernel_24548\285632328.py:2: FutureWarning: &#39;M&#39; is deprecated and will be removed in a future version, please use &#39;ME&#39; instead.
   df_monthly = df.resample(&#39;M&#39;, on=&#39;time&#39;).mean(numeric_only=True).reset_index()
 </pre></div>
 </div>
@@ -1530,7 +1534,7 @@ sama, bukan indikasi berbahaya/tidaknya secara kesehatan seperti pada baku mutu 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Analisis Time Series: Persiapan Data Polutan Gresik</p>
+        <p class="prev-next-title">Analisis Time Series: Persiapan Data Polutan Manyar</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

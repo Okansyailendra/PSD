@@ -28,16 +28,50 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# --- Eksplorasi awal sebelum pembersihan (lihat penjelasan Bagian 2.4) ---
-df.info()
+import pandas as pd
+import requests
+import matplotlib.pyplot as plt
+import seaborn as sns
+from shapely.geometry import Polygon
+
+# Definisi koordinat batas wilayah (Manyar
+) menggunakan GeoJSON
+geojson_coords = [
+     [
+              112.6124555,
+              -7.1337934
+            ],
+            [
+              112.6033317,
+              -7.1496527
+            ],
+            [
+              112.6203805,
+              -7.1596966
+            ],
+            [
+              112.63683,
+              -7.1370975
+            ],
+            [
+              112.6124555,
+              -7.1337934
+            ]
+    ]
+
+# Konversi ke bentuk Poligon
+area_polygon = Polygon(geojson_coords)
+
+# Mendapatkan koordinat pusat (centroid) untuk API
+centroid_lon = area_polygon.centroid.x
+centroid_lat = area_polygon.centroid.y
+print(f"Titik Pusat Penarikan Data -> Latitude: {centroid_lat:.5f}, Longitude: {centroid_lon:.5f}")
 ------------------
 
 
-[31m---------------------------------------------------------------------------[39m
-[31mNameError[39m                                 Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 2[39m
-[32m      1[39m [38;5;66;03m# --- Eksplorasi awal sebelum pembersihan (lihat penjelasan Bagian 2.4) ---[39;00m
-[32m----> [39m[32m2[39m [43mdf[49m.info()
+  [36mCell[39m[36m [39m[32mIn[1][39m[32m, line 8[39m
+[31m    [39m[31m) menggunakan GeoJSON[39m
+    ^
+[31mSyntaxError[39m[31m:[39m unmatched ')'
 
-[31mNameError[39m: name 'df' is not defined
 

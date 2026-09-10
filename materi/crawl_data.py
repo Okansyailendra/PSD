@@ -2,10 +2,6 @@ import pandas as pd
 from shapely.geometry import Polygon
 import openeo
 
-# ---------------------------------------------------------------------------
-# 1. Definisi wilayah kajian (harus SAMA dengan yang dipakai di perhitungan.md
-#    Bagian A, supaya peta & data yang dianalisis konsisten)
-# ---------------------------------------------------------------------------
 geojson_coords = [
     [112.6124555, -7.1337934],
     [112.6033317, -7.1496527],
@@ -19,18 +15,10 @@ centroid_lon = area_polygon.centroid.x
 centroid_lat = area_polygon.centroid.y
 print(f"Titik Pusat Penarikan Data -> Latitude: {centroid_lat:.5f}, Longitude: {centroid_lon:.5f}")
 
-# ---------------------------------------------------------------------------
-# 2. Koneksi & otentikasi ke OpenEO CDSE
-# ---------------------------------------------------------------------------
 print("Menghubungkan ke OpenEO CDSE...")
 connection = openeo.connect("https://openeo.dataspace.copernicus.eu")
 connection.authenticate_oidc()
 print("Koneksi berhasil.")
-
-# ---------------------------------------------------------------------------
-# 3. Tarik data per-gas (SATU BAND per request, karena SENTINEL_5P_L2 di CDSE
-#    menolak permintaan multi-band dalam satu load_collection())
-# ---------------------------------------------------------------------------
 start_date = "2025-08-31"
 end_date = "2026-08-31"
 
@@ -61,7 +49,7 @@ for band in daftar_band:
 
     # Batch job asinkron (bukan execute() sinkron) karena rentang 1 tahun
     # berisiko timeout kalau diproses secara synchronous.
-    job = timeseries.create_job(out_format="JSON", title=f"gresik_{band.lower()}")
+    job = timeseries.create_job(out_format="JSON", title=f"Manyar_{band.lower()}")
     job.start_and_wait()
 
     results = job.get_results()
@@ -71,10 +59,8 @@ for band in daftar_band:
 
 print("\nSemua band (NO2, CO, O3) berhasil ditarik dari OpenEO.")
 
+# Konversi JSON -> DataFrame per gas, lalu gabungkan jadi satu DataFrame
 
-# ---------------------------------------------------------------------------
-# 4. Konversi JSON -> DataFrame per gas, lalu gabungkan jadi satu DataFrame
-# ---------------------------------------------------------------------------
 def json_ke_dataframe(data_json, nama_kolom):
     """Mengubah hasil JSON aggregate_spatial (satu band) menjadi DataFrame [time, nama_kolom]."""
     records = []
@@ -98,10 +84,8 @@ print(f"\nJumlah baris -> NO2: {len(df_no2)}, CO: {len(df_co)}, O3: {len(df_o3)}
 df = df_no2.merge(df_co, on="time", how="outer").merge(df_o3, on="time", how="outer")
 df = df.sort_values("time").reset_index(drop=True)
 
-# ---------------------------------------------------------------------------
-# 5. Simpan sebagai CSV mentah -> ini yang akan dibaca oleh perhitungan.md
-# ---------------------------------------------------------------------------
-csv_filename = "polutan_gresik_2025_2026.csv"
+
+csv_filename = "polutan_Manyar_2025_2026.csv"
 df.to_csv(csv_filename, index=False)
 print(f"\nData mentah disimpan ke: {csv_filename}")
-print("Selesai! File CSV ini siap dipakai di perhitungan.md dan dicommit ke GitHub.")
+print("Selesai! File CSV ini siap dipakai di perhitungan.md.")

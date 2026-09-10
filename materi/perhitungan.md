@@ -17,7 +17,7 @@ kernelspec:
 Tahapan ini mencakup pengumpulan data dari API berdasarkan batas wilayah spasial, hingga pembersihan dan penyimpanan data ke dalam format CSV.
 
 ## A. Setup Batas Wilayah GeoJSON
-Kita mulai dengan mendefinisikan batas poligon (*Polygon*) wilayah Gresik yang telah disiapkan, lalu mencari titik tengah (*centroid*) dari area tersebut untuk parameter API.
+Kita mulai dengan mendefinisikan batas poligon (*Polygon*) wilayah Manyar yang telah disiapkan, lalu mencari titik tengah (*centroid*) dari area tersebut untuk parameter API.
 
 ```{code-cell} ipython3
 import pandas as pd
@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from shapely.geometry import Polygon
 
-# Definisi koordinat batas wilayah (Gresik) menggunakan GeoJSON
+# Definisi koordinat batas wilayah (Manyar) menggunakan GeoJSON
 geojson_coords = [
      [
               112.6124555,
@@ -60,7 +60,7 @@ print(f"Titik Pusat Penarikan Data -> Latitude: {centroid_lat:.5f}, Longitude: {
 ```
 
 ```{note}
-Ganti daftar `geojson_coords` di atas dengan titik-titik batas wilayah domisili/kajian Anda masing-masing (bukan Gresik) jika tugas mensyaratkan wilayah yang berbeda. Koordinat bisa diambil dari geojson.io atau batas administratif resmi.
+Ganti daftar `geojson_coords` di atas dengan titik-titik batas wilayah domisili/kajian Anda masing-masing (bukan Manyar) jika tugas mensyaratkan wilayah yang berbeda. Koordinat bisa diambil dari geojson.io atau batas administratif resmi.
 ```
 
 Untuk memastikan batas wilayah yang dipakai sudah sesuai (bukan hanya berupa angka koordinat), kita bisa memvisualisasikan poligon tersebut di atas peta interaktif menggunakan `folium`:
@@ -71,14 +71,14 @@ import folium
 # Membuat peta terpusat di centroid wilayah kajian
 peta_wilayah = folium.Map(location=[centroid_lat, centroid_lon], zoom_start=13)
 
-# Menambahkan poligon batas wilayah Gresik ke peta
+# Menambahkan poligon batas wilayah Manyar ke peta
 folium.Polygon(
     locations=[(lat, lon) for lon, lat in geojson_coords],
     color='#e74c3c',
     weight=3,
     fill=True,
     fill_opacity=0.2,
-    tooltip='Batas Wilayah Kajian - Gresik'
+    tooltip='Batas Wilayah Kajian - Manyar'
 ).add_to(peta_wilayah)
 
 # Menandai titik pusat (centroid) tempat data ditarik
@@ -97,7 +97,7 @@ melalui proses crawling terpisah (`crawl_data.py`), lalu dimuat kembali di sini 
 sudah tersimpan.
 
 ```{code-cell} ipython3
-csv_mentah = "polutan_gresik_2025_2026.csv"
+csv_mentah = "polutan_Manyar_2025_2026.csv"
 df = pd.read_csv(csv_mentah)
 df['time'] = pd.to_datetime(df['time'])
 
@@ -197,9 +197,9 @@ df = df.sort_values(by='time', ascending=True).reset_index(drop=True)
 ```
 # Menyimpan Data yang Sudah Dibersihkan menjadi CSV
 ```{code-cell} ipython3
-# Disimpan dengan nama berbeda dari CSV mentah hasil crawling (polutan_gresik_2025_2026.csv)
+# Disimpan dengan nama berbeda dari CSV mentah hasil crawling (polutan_Manyar_2025_2026.csv)
 # supaya data mentah dan data yang sudah dibersihkan tetap bisa dibedakan/ditelusuri.
-csv_filename_bersih = "polutan_gresik_2025_2026_bersih.csv"
+csv_filename_bersih = "polutan_Manyar_2025_2026_bersih.csv"
 df.to_csv(csv_filename_bersih, index=False)
 print(f"Data yang sudah dibersihkan disimpan ke dalam bentuk file: {csv_filename_bersih}")
 ```
@@ -224,7 +224,7 @@ sns.lineplot(data=df, x='time', y='CO', label='CO (Karbon Monoksida)', color='#d
 sns.lineplot(data=df, x='time', y='NO2', label='NO2 (Nitrogen Dioksida)', color='#2980b9')
 
 # Styling Grafik
-plt.title('Tren Karbon Monoksida & Nitrogen Dioksida di Gresik', fontsize=14, fontweight='bold')
+plt.title('Tren Karbon Monoksida & Nitrogen Dioksida di Manyar', fontsize=14, fontweight='bold')
 plt.xlabel('Waktu', fontsize=12)
 plt.ylabel('Kolom Densitas (mol/m²)', fontsize=12)
 plt.legend()
@@ -241,7 +241,7 @@ plt.figure(figsize=(15, 6))
 
 sns.lineplot(data=df, x='time', y='O3', label='O3 (Ozon Permukaan)', color='#f39c12')
 
-plt.title('Tren Ozon Permukaan (O3) di Gresik', fontsize=14, fontweight='bold')
+plt.title('Tren Ozon Permukaan (O3) di Manyar', fontsize=14, fontweight='bold')
 plt.xlabel('Waktu', fontsize=12)
 plt.ylabel('Kolom Densitas (mol/m²)', fontsize=12)
 plt.legend()

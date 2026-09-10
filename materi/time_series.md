@@ -1,4 +1,4 @@
-# Analisis Time Series: Persiapan Data Polutan Gresik
+# Analisis Time Series: Persiapan Data Polutan Manyar
 
 Dalam proyek ini, kita menggunakan data historis kualitas udara (polutan) yang direkam berdasarkan urutan waktu. Sebelum melakukan pemodelan dan peramalan tren _time series_, data mentah dikelola di dalam _cloud database_ agar proses penarikan data ke sistem analitik menjadi lebih efisien dan terpusat.
 
@@ -6,7 +6,7 @@ Dokumen ini mencakup alur lengkap mulai dari migrasi data awal hingga pengolahan
 
 ## 1. Migrasi Data ke Aiven PostgreSQL (via DBeaver)
 
-Tahap pertama bertujuan untuk memindahkan data historis (`polutan_gresik_2025_2026.csv`) ke dalam layanan _cloud database_ Aiven agar siap diakses secara daring dari berbagai platform, termasuk DBeaver dan KNIME.
+Tahap pertama bertujuan untuk memindahkan data historis (`polutan_Manyar_2025_2026.csv`) ke dalam layanan _cloud database_ Aiven agar siap diakses secara daring dari berbagai platform, termasuk DBeaver dan KNIME.
 
 ### 1.1. Pembuatan Struktur Tabel di Aiven
 
@@ -20,7 +20,7 @@ Melalui fitur **PG Studio** di _dashboard_ Aiven, kita dapat membuat tabel denga
 4. Ketikkan perintah SQL berikut pada editor:
 
 ```sql
-CREATE TABLE polutan_gresik (
+CREATE TABLE polutan_Manyar (
     time TIMESTAMP,
     "CO" NUMERIC,
     "NO2" NUMERIC,
@@ -28,7 +28,7 @@ CREATE TABLE polutan_gresik (
 );
 ```
 
-5. Klik tombol **Run** untuk mengeksekusi _query_. Tabel `polutan_gresik` kini telah berhasil dibuat di _cloud_.
+5. Klik tombol **Run** untuk mengeksekusi _query_. Tabel `polutan_Manyar` kini telah berhasil dibuat di _cloud_.
 
 ![Pembuatan Tabel di Aiven](images/gambar5.png)
 _(Keterangan: Tampilan PG Studio di Aiven saat pembuatan tabel)_
@@ -50,24 +50,24 @@ Agar kita bisa mengelola data dan mengimpor file CSV dengan mudah, kita akan men
 
 ### 1.3. Import Data CSV ke DBeaver
 
-Setelah DBeaver berhasil terhubung ke Aiven dan tabel `polutan_gresik` sudah terlihat di skema `public`, saatnya memasukkan data dari file CSV.
+Setelah DBeaver berhasil terhubung ke Aiven dan tabel `polutan_Manyar` sudah terlihat di skema `public`, saatnya memasukkan data dari file CSV.
 
 **Langkah-langkah import data:**
 
-1. Pada _Database Navigator_ di DBeaver, cari tabel `polutan_gresik` (`defaultdb` > `Schemas` > `public` > `Tables`).
-2. Klik kanan pada tabel `polutan_gresik`, lalu pilih **Import Data**.
-3. Pilih format **CSV** dan cari file `polutan_gresik_2025_2026.csv` di komputer lokal Anda.
+1. Pada _Database Navigator_ di DBeaver, cari tabel `polutan_Manyar` (`defaultdb` > `Schemas` > `public` > `Tables`).
+2. Klik kanan pada tabel `polutan_Manyar`, lalu pilih **Import Data**.
+3. Pilih format **CSV** dan cari file `polutan_Manyar_2025_2026.csv` di komputer lokal Anda.
 4. Ikuti instruksi pada layar (pastikan pemisah kolom/delimeter sesuai, biasanya koma `,`).
 5. Selesaikan proses import. Data dari CSV akan diunggah melalui DBeaver dan langsung masuk ke _cloud database_ Aiven.
 
 ![Data di DBeaver](images/gambar6.png)
-_(Keterangan: Tampilan DBeaver dengan data polutan_gresik yang berhasil diimport)_
+_(Keterangan: Tampilan DBeaver dengan data polutan_Manyar yang berhasil diimport)_
 
 **Verifikasi:**
 Anda bisa mengecek total baris data yang berhasil diunggah dengan menjalankan query SQL ini di DBeaver:
 
 ```sql
-SELECT COUNT(*) FROM polutan_gresik;
+SELECT COUNT(*) FROM polutan_Manyar;
 ```
 
 ---
@@ -85,7 +85,7 @@ Proses menghubungkan KNIME ke Aiven pada prinsipnya mirip dengan menghubungkan D
   ![Konfigurasi PostgreSQL Connector](images/gambar1.png)
   _(Keterangan: Jendela konfigurasi PostgreSQL Connector di mana kredensial database dimasukkan)_
 
-- **DB Table Selector**: Diarahkan ke skema `public` untuk menyeleksi tabel `polutan_gresik`.
+- **DB Table Selector**: Diarahkan ke skema `public` untuk menyeleksi tabel `polutan_Manyar`.
 
   ![DB Table Selector](images/gambar2.png)
   _(Keterangan: Keseluruhan workflow KNIME beserta cuplikan hasil pemilihan tabel)_
@@ -103,7 +103,7 @@ Proses menghubungkan KNIME ke Aiven pada prinsipnya mirip dengan menghubungkan D
 
 ### 2.1. Penjelasan Rumus dan Contoh Perhitungan Fitur pada Node Statistics
 
-Bagian ini menjelaskan makna, rumus matematis, dan contoh perhitungan manual untuk tiap fitur statistik yang muncul di output node _Statistics_. Sebagai contoh perhitungan, digunakan 5 data NO2 pertama dari file `polutan_gresik_2025_2026.csv` (tanggal 2025-08-31 s.d. 2025-09-04):
+Bagian ini menjelaskan makna, rumus matematis, dan contoh perhitungan manual untuk tiap fitur statistik yang muncul di output node _Statistics_. Sebagai contoh perhitungan, digunakan 5 data NO2 pertama dari file `polutan_Manyar_2025_2026.csv` (tanggal 2025-08-31 s.d. 2025-09-04):
 
 | Tanggal    | Nilai NO2     |
 | ---------- | ------------- |
@@ -123,7 +123,7 @@ Menghitung berapa baris data yang bernilai kosong (`NULL`) pada suatu kolom. Ber
 
 $$\text{Missing Values} = \text{jumlah baris dengan nilai kosong pada kolom tersebut}$$
 
-_Contoh:_ Berdasarkan pengecekan langsung pada file `polutan_gresik_2025_2026.csv` (365 baris), terdapat missing values pada kolom `NO2` sebanyak 177, `CO` sebanyak 165, dan `O3` sebanyak 4. Karena itu, node _Missing Value_ dan strategi imputasi perlu dijalankan sebelum analisis lanjutan.
+_Contoh:_ Berdasarkan pengecekan langsung pada file `polutan_Manyar_2025_2026.csv` (365 baris), terdapat missing values pada kolom `NO2` sebanyak 177, `CO` sebanyak 165, dan `O3` sebanyak 4. Karena itu, node _Missing Value_ dan strategi imputasi perlu dijalankan sebelum analisis lanjutan.
 
 ---
 
@@ -230,7 +230,7 @@ $$\text{Kurtosis} \approx -0.85$$
 
 Nilai negatif menunjukkan sebaran 5 data contoh ini lebih landai (lebih merata, tidak ada nilai yang terlalu ekstrem) dibanding distribusi normal.
 
-> **Catatan:** Contoh perhitungan di atas disederhanakan dengan 5 data agar mudah dipahami langkah demi langkah. Berikut adalah ringkasan hasil aktual dari **365 baris** pada file `polutan_gresik_2025_2026.csv`, sebagai pembanding terhadap output node _Statistics_ di KNIME (Gambar 4). Nilai statistik dihitung dari data yang tersedia pada masing-masing kolom; missing values tidak dihitung dalam Min, Max, Mean, Median, Variance, Skewness, Kurtosis, dan Overall Sum:
+> **Catatan:** Contoh perhitungan di atas disederhanakan dengan 5 data agar mudah dipahami langkah demi langkah. Berikut adalah ringkasan hasil aktual dari **365 baris** pada file `polutan_Manyar_2025_2026.csv`, sebagai pembanding terhadap output node _Statistics_ di KNIME (Gambar 4). Nilai statistik dihitung dari data yang tersedia pada masing-masing kolom; missing values tidak dihitung dalam Min, Max, Mean, Median, Variance, Skewness, Kurtosis, dan Overall Sum:
 
 | Fitur              | NO2 (188 tersedia) | CO (200 tersedia) | O3 (361 tersedia) |
 | ------------------ | -----------------: | ----------------: | ----------------: |
@@ -253,6 +253,6 @@ Data NO2 memiliki skewness **4.60** dan kurtosis excess **32.84**, yang menunjuk
 
 Dari tahapan pengumpulan data ke database _cloud_ (Aiven) hingga proses transformasi di dalam KNIME, kita telah berhasil mempersiapkan data mentah menjadi himpunan data (dataset) runtun waktu yang berkualitas tinggi. Berikut adalah rangkuman dari hasil _pre-processing_ ini:
 
-1. **Sentralisasi Data yang Aman**: Data historis polutan Gresik kini tersimpan dengan aman di Aiven PostgreSQL dan diakses menggunakan enkripsi SSL, memungkinkan kolaborasi atau penarikan data dari berbagai platform kapan saja tanpa harus memindahkan _file_ CSV secara manual.
+1. **Sentralisasi Data yang Aman**: Data historis polutan Manyar kini tersimpan dengan aman di Aiven PostgreSQL dan diakses menggunakan enkripsi SSL, memungkinkan kolaborasi atau penarikan data dari berbagai platform kapan saja tanpa harus memindahkan _file_ CSV secara manual.
 2. **Integrasi ke KNIME Berhasil**: Melalui 4 node (PostgreSQL Connector, DB Table Selector, DB Reader, Statistics), seluruh 365 baris data polutan berhasil ditarik dari _cloud database_ ke ruang kerja lokal KNIME tanpa kendala. Data terdiri atas kolom `time`, `NO2`, `CO`, dan `O3`, dengan missing values yang perlu ditangani sebelum analisis lanjutan.
 3. **Pemahaman Statistik yang Terukur**: Setiap fitur pada node Statistics (Min, Max, Mean, Median, Standard Deviation, Variance, Skewness, Kurtosis, dan Overall Sum) telah dijelaskan lengkap dengan rumus dan contoh perhitungan manual, sehingga hasil eksplorasi data tidak hanya dibaca sebagai angka, tapi juga dipahami maknanya. Dari hasil ini juga diketahui kolom `time` masih bertipe String dan perlu dikonversi pada tahap berikutnya.
