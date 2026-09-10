@@ -499,12 +499,12 @@ Anda bisa mengecek total baris data yang berhasil diunggah dengan menjalankan qu
 <p><img alt="DB Table Selector" src="_images/gambar2.png" />
 <em>(Keterangan: Keseluruhan workflow KNIME beserta cuplikan hasil pemilihan tabel)</em></p>
 </li>
-<li><p><strong>DB Reader</strong>: Mengeksekusi penarikan data dari database ke dalam memori KNIME agar siap diolah lebih lanjut. Total data yang berhasil ditarik berjumlah 366 baris.</p>
+<li><p><strong>DB Reader</strong>: Mengeksekusi penarikan data dari database ke dalam memori KNIME agar siap diolah lebih lanjut. Total data yang berhasil ditarik berjumlah 365 baris, dengan rentang waktu 2025-08-31 sampai 2026-08-30.</p>
 <p><img alt="Hasil DB Reader" src="_images/gambar3.png" />
 <em>(Keterangan: Cuplikan data polutan yang berhasil ditarik ke dalam KNIME melalui node DB Reader)</em></p>
 </li>
 <li><p><strong>Statistics</strong>: Node ini ditambahkan setelah <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> dan berfungsi sebagai langkah awal yang sangat krusial untuk <strong>Eksplorasi Data (Exploratory Data Analysis)</strong>.
-Alih-alih mengecek polutan satu per satu, node <em>Statistics</em> akan secara otomatis memproses seluruh kolom numerik (PM10, PM2.5, CO, NO2, O3) secara bersamaan dan menghasilkan ringkasan statistik deskriptif.</p>
+Alih-alih mengecek polutan satu per satu, node <em>Statistics</em> akan secara otomatis memproses seluruh kolom numerik (CO, NO2, O3) secara bersamaan dan menghasilkan ringkasan statistik deskriptif.</p>
 <p><img alt="Ringkasan Statistik" src="_images/gambar4.png" />
 <em>(Keterangan: Output tabel dari node Statistics yang merangkum perhitungan statistik deskriptif untuk seluruh kolom polutan secara bersamaan dalam satu tampilan)</em></p>
 </li>
@@ -512,72 +512,72 @@ Alih-alih mengecek polutan satu per satu, node <em>Statistics</em> akan secara o
 </section>
 <section id="penjelasan-rumus-dan-contoh-perhitungan-fitur-pada-node-statistics">
 <h3>2.1. Penjelasan Rumus dan Contoh Perhitungan Fitur pada Node Statistics<a class="headerlink" href="#penjelasan-rumus-dan-contoh-perhitungan-fitur-pada-node-statistics" title="Link to this heading">#</a></h3>
-<p>Bagian ini menjelaskan makna, rumus matematis, dan contoh perhitungan manual untuk tiap fitur statistik yang muncul di output node <em>Statistics</em>. Sebagai contoh perhitungan, digunakan 5 data PM10 pertama dari file <code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code> yang sebenarnya dipakai pada proyek ini (tanggal 2025-08-31 s.d. 2025-09-04):</p>
+<p>Bagian ini menjelaskan makna, rumus matematis, dan contoh perhitungan manual untuk tiap fitur statistik yang muncul di output node <em>Statistics</em>. Sebagai contoh perhitungan, digunakan 5 data NO2 pertama dari file <code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code> (tanggal 2025-08-31 s.d. 2025-09-04):</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Tanggal</p></th>
-<th class="head"><p>Nilai PM10</p></th>
+<th class="head"><p>Nilai NO2</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>2025-08-31</p></td>
-<td><p>32.87</p></td>
+<td><p>0.00004948597</p></td>
 </tr>
 <tr class="row-odd"><td><p>2025-09-01</p></td>
-<td><p>23.47</p></td>
+<td><p>0.00004543574</p></td>
 </tr>
 <tr class="row-even"><td><p>2025-09-02</p></td>
-<td><p>16.35</p></td>
+<td><p>0.00003819312</p></td>
 </tr>
 <tr class="row-odd"><td><p>2025-09-03</p></td>
-<td><p>21.00</p></td>
+<td><p>0.00007869070</p></td>
 </tr>
 <tr class="row-even"><td><p>2025-09-04</p></td>
-<td><p>31.20</p></td>
+<td><p>0.00006042393</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Jumlah data <span class="math notranslate nohighlight">\(n = 5\)</span>, dan setelah diurutkan: <strong>16.35, 21.00, 23.47, 31.20, 32.87</strong></p>
+<p>Jumlah data <span class="math notranslate nohighlight">\(n = 5\)</span>, dan setelah diurutkan: <strong>0.00003819312, 0.00004543574, 0.00004948597, 0.00006042393, 0.00007869070</strong></p>
 <hr class="docutils" />
 <p><strong>a) Missing Values (Jumlah Data Kosong)</strong></p>
 <p>Menghitung berapa baris data yang bernilai kosong (<code class="docutils literal notranslate"><span class="pre">NULL</span></code>) pada suatu kolom. Berguna untuk menentukan strategi imputasi (misalnya interpolasi linear) sebelum data dianalisis lebih lanjut, karena data kosong bisa terjadi akibat kegagalan sensor pada hari tertentu.</p>
 <div class="math notranslate nohighlight">
 \[\text{Missing Values} = \text{jumlah baris dengan nilai kosong pada kolom tersebut}\]</div>
-<p><em>Contoh:</em> Berdasarkan pengecekan langsung pada file <code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code> (366 baris), <strong>tidak ditemukan nilai kosong</strong> pada kolom manapun — PM10, PM2.5, CO, NO2, maupun O3 sama-sama memiliki Missing Values = 0. Artinya sensor tidak pernah gagal mencatat data selama periode tersebut, sehingga node <em>Missing Value</em> untuk data historis ini sebenarnya tidak wajib dijalankan (tetap berguna sebagai antisipasi jika suatu saat ada data baru yang kosong).</p>
+<p><em>Contoh:</em> Berdasarkan pengecekan langsung pada file <code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code> (365 baris), terdapat missing values pada kolom <code class="docutils literal notranslate"><span class="pre">NO2</span></code> sebanyak 177, <code class="docutils literal notranslate"><span class="pre">CO</span></code> sebanyak 165, dan <code class="docutils literal notranslate"><span class="pre">O3</span></code> sebanyak 4. Karena itu, node <em>Missing Value</em> dan strategi imputasi perlu dijalankan sebelum analisis lanjutan.</p>
 <hr class="docutils" />
 <p><strong>b) Minimum &amp; Maximum</strong></p>
 <p>Nilai terkecil dan terbesar dalam suatu kolom. Digunakan untuk mendeteksi anomali/outlier, misalnya memastikan tidak ada nilai polutan yang negatif atau nilai yang jauh di luar kewajaran.</p>
 <div class="math notranslate nohighlight">
 \[\text{Min} = \min(x_1, x_2, \dots, x_n) \qquad \text{Max} = \max(x_1, x_2, \dots, x_n)\]</div>
-<p><em>Contoh (5 data di atas):</em>
-$<span class="math notranslate nohighlight">\(\text{Min} = 16.35 \qquad \text{Max} = 32.87\)</span>$</p>
+<p><em>Contoh (5 data NO2 di atas):</em>
+$<span class="math notranslate nohighlight">\(\text{Min} = 0.00003819312 \qquad \text{Max} = 0.00007869070\)</span>$</p>
 <hr class="docutils" />
 <p><strong>c) Mean (Rata-rata)</strong></p>
 <p>Nilai tengah dari seluruh data, dihitung dengan menjumlahkan semua nilai lalu membaginya dengan jumlah data.</p>
 <div class="math notranslate nohighlight">
 \[\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i\]</div>
 <p><em>Contoh:</em>
-$<span class="math notranslate nohighlight">\(\bar{x} = \frac{32.87+23.47+16.35+21.00+31.20}{5} = \frac{124.89}{5} = 24.98\)</span>$</p>
+$<span class="math notranslate nohighlight">\(\bar{x} = \frac{0.00004948597+0.00004543574+0.00003819312+0.00007869070+0.00006042393}{5} = 0.00005444589\)</span>$</p>
 <hr class="docutils" />
 <p><strong>d) Median (50% Quantile)</strong></p>
 <p>Nilai tengah setelah data diurutkan. Lebih tahan terhadap outlier dibanding Mean, karena tidak terpengaruh oleh nilai ekstrem.</p>
 <div class="math notranslate nohighlight">
 \[\text{Median} = x_{\left(\frac{n+1}{2}\right)} \quad \text{(untuk } n \text{ ganjil)}\]</div>
-<p><em>Contoh:</em> Data terurut: 16.35, 21.00, <strong>23.47</strong>, 31.20, 32.87 → nilai tengah (posisi ke-3) adalah <strong>23.47</strong>.</p>
+<p><em>Contoh:</em> Data terurut: 0.00003819312, 0.00004543574, <strong>0.00004948597</strong>, 0.00006042393, 0.00007869070 → nilai tengah (posisi ke-3) adalah <strong>0.00004948597</strong>.</p>
 <hr class="docutils" />
 <p><strong>e) Overall Sum (Jumlah Total)</strong></p>
 <p>Total penjumlahan seluruh nilai dalam kolom.</p>
 <div class="math notranslate nohighlight">
 \[\text{Sum} = \sum_{i=1}^{n} x_i\]</div>
 <p><em>Contoh:</em>
-$<span class="math notranslate nohighlight">\(\text{Sum} = 32.87+23.47+16.35+21.00+31.20 = 124.89\)</span>$</p>
+$<span class="math notranslate nohighlight">\(\text{Sum} = 0.00004948597+0.00004543574+0.00003819312+0.00007869070+0.00006042393 = 0.00027222946\)</span>$</p>
 <hr class="docutils" />
 <p><strong>f) Variance (Varians)</strong></p>
 <p>Mengukur seberapa jauh sebaran data dari nilai rata-ratanya. Semakin besar variance, semakin bervariasi/tersebar datanya.</p>
 <div class="math notranslate nohighlight">
 \[s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2\]</div>
-<p><em>Contoh (menggunakan <span class="math notranslate nohighlight">\(\bar{x}=24.98\)</span>):</em></p>
+<p><em>Contoh (menggunakan <span class="math notranslate nohighlight">\(\bar{x}=0.00005444589\)</span>):</em></p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x_i\)</span></p></th>
@@ -586,101 +586,123 @@ $<span class="math notranslate nohighlight">\(\text{Sum} = 32.87+23.47+16.35+21.
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>32.87</p></td>
-<td><p>7.89</p></td>
-<td><p>62.25</p></td>
+<tr class="row-even"><td><p>0.00004948597</p></td>
+<td><p>-0.00000495992</p></td>
+<td><p>0.00000000002460</p></td>
 </tr>
-<tr class="row-odd"><td><p>23.47</p></td>
-<td><p>-1.51</p></td>
-<td><p>2.28</p></td>
+<tr class="row-odd"><td><p>0.00004543574</p></td>
+<td><p>-0.00000901055</p></td>
+<td><p>0.00000000008119</p></td>
 </tr>
-<tr class="row-even"><td><p>16.35</p></td>
-<td><p>-8.63</p></td>
-<td><p>74.48</p></td>
+<tr class="row-even"><td><p>0.00003819312</p></td>
+<td><p>-0.00001625277</p></td>
+<td><p>0.00000000026415</p></td>
 </tr>
-<tr class="row-odd"><td><p>21.00</p></td>
-<td><p>-3.98</p></td>
-<td><p>15.84</p></td>
+<tr class="row-odd"><td><p>0.00007869070</p></td>
+<td><p>0.00002424481</p></td>
+<td><p>0.00000000058781</p></td>
 </tr>
-<tr class="row-even"><td><p>31.20</p></td>
-<td><p>6.22</p></td>
-<td><p>38.69</p></td>
+<tr class="row-even"><td><p>0.00006042393</p></td>
+<td><p>0.00000597804</p></td>
+<td><p>0.00000000003574</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="math notranslate nohighlight">
-\[s^2 = \frac{62.25+2.28+74.48+15.84+38.69}{5-1} = \frac{193.54}{4} = 48.39\]</div>
+\[s^2 = \frac{0.00000000002460+0.00000000008119+0.00000000026415+0.00000000058781+0.00000000003574}{5-1} \approx 0.00000000024837\]</div>
 <hr class="docutils" />
 <p><strong>g) Standard Deviation (Simpangan Baku)</strong></p>
 <p>Akar kuadrat dari variance. Satuannya sama dengan satuan data asli (µg/m³), sehingga lebih mudah diinterpretasikan dibanding variance.</p>
 <div class="math notranslate nohighlight">
 \[s = \sqrt{s^2}\]</div>
 <p><em>Contoh:</em>
-$<span class="math notranslate nohighlight">\(s = \sqrt{48.39} = 6.96\)</span>$</p>
-<p>Artinya, secara rata-rata nilai PM10 menyimpang sekitar <strong>6.96 µg/m³</strong> dari rata-ratanya (24.98).</p>
+$<span class="math notranslate nohighlight">\(s = \sqrt{0.00000000024837} \approx 0.00001575979\)</span>$</p>
+<p>Artinya, secara rata-rata nilai NO2 menyimpang sekitar <strong>0.00001575979</strong> dari rata-ratanya (0.00005444589) pada contoh lima data tersebut.</p>
 <hr class="docutils" />
 <p><strong>h) Skewness (Kemencengan Distribusi)</strong></p>
 <p>Mengukur simetri sebaran data. Bila skewness ≈ 0, distribusi cenderung simetris. Bila positif, ekor distribusi condong ke kanan (banyak nilai kecil, sedikit nilai sangat besar). Bila negatif, ekor condong ke kiri.</p>
 <div class="math notranslate nohighlight">
 \[\text{Skewness} = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^3}{\sigma^3}\]</div>
-<p><em>Contoh (menggunakan simpangan baku populasi <span class="math notranslate nohighlight">\(\sigma = 6.22\)</span>):</em></p>
+<p><em>Contoh (menggunakan simpangan baku populasi <span class="math notranslate nohighlight">\(\sigma \approx 0.000014096\)</span>):</em></p>
 <p>Menghitung <span class="math notranslate nohighlight">\((x_i-\bar{x})^3\)</span> untuk tiap data, dijumlahkan, dibagi <span class="math notranslate nohighlight">\(n\)</span>, lalu dibagi <span class="math notranslate nohighlight">\(\sigma^3\)</span>, menghasilkan:</p>
 <div class="math notranslate nohighlight">
-\[\text{Skewness} \approx 0.02\]</div>
-<p>Nilai yang sangat dekat dengan 0 ini menunjukkan 5 data contoh di atas tersebar hampir simetris, tidak condong ke kiri maupun ke kanan.</p>
+\[\text{Skewness} \approx 0.67\]</div>
+<p>Nilai positif ini menunjukkan bahwa lima data contoh tersebut sedikit condong ke kanan.</p>
 <hr class="docutils" />
 <p><strong>i) Kurtosis (Keruncingan Distribusi)</strong></p>
 <p>Mengukur seberapa “runcing” atau “landai” distribusi data dibandingkan distribusi normal. Kurtosis &gt; 0 berarti distribusi lebih runcing (banyak nilai ekstrem/outlier), kurtosis &lt; 0 berarti lebih landai/merata.</p>
 <div class="math notranslate nohighlight">
 \[\text{Kurtosis} = \frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^4}{\sigma^4} - 3\]</div>
 <p><em>Contoh:</em>
-$<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -1.51\)</span>$</p>
+$<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -0.85\)</span>$</p>
 <p>Nilai negatif menunjukkan sebaran 5 data contoh ini lebih landai (lebih merata, tidak ada nilai yang terlalu ekstrem) dibanding distribusi normal.</p>
 <blockquote>
-<div><p><strong>Catatan:</strong> Contoh perhitungan di atas disederhanakan dengan 5 data agar mudah dipahami langkah demi langkah. Berikut adalah hasil perhitungan <strong>aktual</strong> untuk kolom PM10 dari <strong>keseluruhan 366 baris</strong> pada file <code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code>, sebagai pembanding terhadap output node <em>Statistics</em> di KNIME (Gambar 4):</p>
+<div><p><strong>Catatan:</strong> Contoh perhitungan di atas disederhanakan dengan 5 data agar mudah dipahami langkah demi langkah. Berikut adalah ringkasan hasil aktual dari <strong>365 baris</strong> pada file <code class="docutils literal notranslate"><span class="pre">polutan_gresik_2025_2026.csv</span></code>, sebagai pembanding terhadap output node <em>Statistics</em> di KNIME (Gambar 4). Nilai statistik dihitung dari data yang tersedia pada masing-masing kolom; missing values tidak dihitung dalam Min, Max, Mean, Median, Variance, Skewness, Kurtosis, dan Overall Sum:</p>
 </div></blockquote>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fitur</p></th>
-<th class="head"><p>Nilai Aktual (PM10, 366 data)</p></th>
+<th class="head text-right"><p>NO2 (188 tersedia)</p></th>
+<th class="head text-right"><p>CO (200 tersedia)</p></th>
+<th class="head text-right"><p>O3 (361 tersedia)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Missing Values</p></td>
-<td><p>0</p></td>
+<td class="text-right"><p>177</p></td>
+<td class="text-right"><p>165</p></td>
+<td class="text-right"><p>4</p></td>
 </tr>
 <tr class="row-odd"><td><p>Minimum</p></td>
-<td><p>13.30</p></td>
+<td class="text-right"><p>0.00001543805</p></td>
+<td class="text-right"><p>0.01133146</p></td>
+<td class="text-right"><p>0.11028662</p></td>
 </tr>
 <tr class="row-even"><td><p>Maximum</p></td>
-<td><p>121.85</p></td>
+<td class="text-right"><p>0.00063134</p></td>
+<td class="text-right"><p>0.04372259</p></td>
+<td class="text-right"><p>0.12317621</p></td>
 </tr>
 <tr class="row-odd"><td><p>Mean</p></td>
-<td><p>42.58</p></td>
+<td class="text-right"><p>0.00008140</p></td>
+<td class="text-right"><p>0.02915624</p></td>
+<td class="text-right"><p>0.11584706</p></td>
 </tr>
 <tr class="row-even"><td><p>Median</p></td>
-<td><p>36.66</p></td>
+<td class="text-right"><p>0.00006687</p></td>
+<td class="text-right"><p>0.02911604</p></td>
+<td class="text-right"><p>0.11571048</p></td>
 </tr>
 <tr class="row-odd"><td><p>Standard Deviation</p></td>
-<td><p>19.10</p></td>
+<td class="text-right"><p>0.00006376</p></td>
+<td class="text-right"><p>0.00424835</p></td>
+<td class="text-right"><p>0.00243485</p></td>
 </tr>
 <tr class="row-even"><td><p>Variance</p></td>
-<td><p>364.66</p></td>
+<td class="text-right"><p>0.00000000406541</p></td>
+<td class="text-right"><p>0.00001804847</p></td>
+<td class="text-right"><p>0.00000592852</p></td>
 </tr>
 <tr class="row-odd"><td><p>Skewness</p></td>
-<td><p>1.21</p></td>
+<td class="text-right"><p>4.60</p></td>
+<td class="text-right"><p>0.21</p></td>
+<td class="text-right"><p>0.33</p></td>
 </tr>
 <tr class="row-even"><td><p>Kurtosis (excess)</p></td>
-<td><p>1.40</p></td>
+<td class="text-right"><p>32.84</p></td>
+<td class="text-right"><p>2.30</p></td>
+<td class="text-right"><p>-0.01</p></td>
 </tr>
 <tr class="row-odd"><td><p>Overall Sum</p></td>
-<td><p>15,585.53</p></td>
+<td class="text-right"><p>0.01528314</p></td>
+<td class="text-right"><p>5.83124857</p></td>
+<td class="text-right"><p>41.82078750</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Berbeda dengan contoh 5 data di atas (yang hampir simetris), skewness PM10 pada keseluruhan 366 data bernilai <strong>positif (1.21)</strong>, artinya distribusinya condong ke kanan — sebagian besar hari memiliki PM10 rendah-sedang, namun ada beberapa hari dengan lonjakan PM10 sangat tinggi (hingga 121.85) yang menarik ekor distribusi ke kanan. Kurtosis positif (1.40) juga menguatkan hal ini: distribusi lebih “runcing” dari normal karena adanya beberapa nilai ekstrem tersebut.</p>
+<p>Data NO2 memiliki skewness <strong>4.60</strong> dan kurtosis excess <strong>32.84</strong>, yang menunjukkan ekor kanan sangat kuat dan adanya nilai ekstrem. CO dan O3 lebih mendekati distribusi simetris, dengan skewness masing-masing <strong>0.21</strong> dan <strong>0.33</strong>.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -689,7 +711,7 @@ $<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -1.51\)</s
 <p>Dari tahapan pengumpulan data ke database <em>cloud</em> (Aiven) hingga proses transformasi di dalam KNIME, kita telah berhasil mempersiapkan data mentah menjadi himpunan data (dataset) runtun waktu yang berkualitas tinggi. Berikut adalah rangkuman dari hasil <em>pre-processing</em> ini:</p>
 <ol class="arabic simple">
 <li><p><strong>Sentralisasi Data yang Aman</strong>: Data historis polutan Gresik kini tersimpan dengan aman di Aiven PostgreSQL dan diakses menggunakan enkripsi SSL, memungkinkan kolaborasi atau penarikan data dari berbagai platform kapan saja tanpa harus memindahkan <em>file</em> CSV secara manual.</p></li>
-<li><p><strong>Integrasi ke KNIME Berhasil</strong>: Melalui 4 node (PostgreSQL Connector, DB Table Selector, DB Reader, Statistics), seluruh 366 baris data polutan berhasil ditarik dari <em>cloud database</em> ke ruang kerja lokal KNIME tanpa kendala.</p></li>
+<li><p><strong>Integrasi ke KNIME Berhasil</strong>: Melalui 4 node (PostgreSQL Connector, DB Table Selector, DB Reader, Statistics), seluruh 365 baris data polutan berhasil ditarik dari <em>cloud database</em> ke ruang kerja lokal KNIME tanpa kendala. Data terdiri atas kolom <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">NO2</span></code>, <code class="docutils literal notranslate"><span class="pre">CO</span></code>, dan <code class="docutils literal notranslate"><span class="pre">O3</span></code>, dengan missing values yang perlu ditangani sebelum analisis lanjutan.</p></li>
 <li><p><strong>Pemahaman Statistik yang Terukur</strong>: Setiap fitur pada node Statistics (Min, Max, Mean, Median, Standard Deviation, Variance, Skewness, Kurtosis, dan Overall Sum) telah dijelaskan lengkap dengan rumus dan contoh perhitungan manual, sehingga hasil eksplorasi data tidak hanya dibaca sebagai angka, tapi juga dipahami maknanya. Dari hasil ini juga diketahui kolom <code class="docutils literal notranslate"><span class="pre">time</span></code> masih bertipe String dan perlu dikonversi pada tahap berikutnya.</p></li>
 </ol>
 </section>
