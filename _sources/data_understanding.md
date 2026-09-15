@@ -2,7 +2,7 @@
 
 ## 2.1 Sumber Data
 
-Data diperoleh dari **Open-Meteo Air Quality API**, yaitu layanan open data yang menyediakan estimasi konsentrasi polutan udara berbasis model reanalisis atmosfer (mengombinasikan data satelit, model kimia atmosfer CAMS milik Copernicus, dan data stasiun pemantauan darat). Data yang diambil berupa data per Hari (*Day*) selama satu tahun ke belakang, dibatasi pada satu titik koordinat yang mewakili pusat wilayah kajian (Kabupaten Gresik , Kecamatan Manyar), yang diperoleh dari titik tengah (*centroid*) poligon GeoJSON batas wilayah yang telah ditentukan.
+Data diperoleh dari **Open-EO Air Quality API**, yaitu layanan open data yang menyediakan estimasi konsentrasi polutan udara berbasis model reanalisis atmosfer (mengombinasikan data satelit, model kimia atmosfer CAMS milik Copernicus, dan data stasiun pemantauan darat). Data yang diambil berupa data per Hari (*Day*) selama satu tahun ke belakang, dibatasi pada satu titik koordinat yang mewakili pusat wilayah kajian (Kabupaten Gresik , Kecamatan Manyar), yang diperoleh dari titik tengah (*centroid*) poligon GeoJSON batas wilayah yang telah ditentukan.
 
 Karena sifatnya berbasis model estimasi (bukan pengukuran langsung dari satu alat sensor fisik di lokasi), nilai yang dihasilkan bisa dianggap sebagai representasi kondisi udara di area tersebut, bukan pengukuran presisi pada satu titik geografis yang sangat spesifik.
 
@@ -15,7 +15,7 @@ Data yang digunakan merupakan rangkaian *time-series* polutan udara per Hari, de
 | `time` | datetime | Waktu pencatatan (tanggal dan Hari) |
 | `CO` | float | Konsentrasi Karbon Monoksida (μg/m³) |
 | `NO2` | float | Konsentrasi Nitrogen Dioksida (μg/m³) |
-| `O3` | float | Konsentrasi Ozon permukaan (μg/m³) |
+| `SO2` | float | Konsentrasi Sulfur Dioksida (μg/m³) |
 
 ## 2.3 Deskripsi Fitur (Polutan) & Baku Mutu
 
@@ -25,7 +25,7 @@ Tabel berikut merangkum sumber, dampak kesehatan, dan baku mutu udara ambien nas
 |---|---|---|---|---|
 | **CO** (Karbon Monoksida) | Gas beracun, tidak berwarna maupun berbau, dihasilkan dari pembakaran bahan bakar fosil yang tidak sempurna | Asap knalpot kendaraan bermotor, pembakaran industri, pembakaran biomassa | Mengikat hemoglobin dalam darah menggantikan oksigen; pusing, mual, hingga keracunan fatal pada konsentrasi tinggi | 10.000 μg/m³ (rata-rata 1 Hari) |
 | **NO2** (Nitrogen Dioksida) | Gas berwarna cokelat kemerahan dengan bau taHari menyengat | Mesin kendaraan bermotor (terutama diesel), pembangkit listrik berbahan bakar fosil, cerobong asap pabrik | Mengiritasi saluran pernapasan, memperparah asma, menurunkan fungsi paru-paru jangka panjang | 200 μg/m³ (rata-rata 1 Hari) |
-| **O3** (Ozon Permukaan) | Berbeda dari lapisan ozon stratosfer; ozon permukaan berbahaya bagi kesehatan, terbentuk dari reaksi fotokimia sinar matahari dengan NO2 dan VOC, sehingga cenderung lebih tinggi di siang hari cerah | Reaksi fotokimia sekunder (bukan emisi langsung) | Mengiritasi saluran pernapasan, memperparah asma | 150 μg/m³ (rata-rata 1 Hari) |
+| **SO2** (Sulfur Dioksida) | Gas tidak berwarna dengan bau tajam dan menyengat, dihasilkan dari pembakaran bahan bakar fosil yang mengandung sulfur | Pembangkit listrik tenaga uap (PLTU), industri metalurgi, peleburan logam, industri kimia | Mengiritasi saluran pernapasan, menyebabkan bronkitis, memperburuk asma, dan menyebabkan hujan asam | 130 μg/m³ (rata-rata 1 Jam) | 570 μg/m³ (rata-rata 24 Jam) |
 
 ## 2.4 Eksplorasi Data & Pengecekan Anomali
 
@@ -49,13 +49,13 @@ print(df.isna().sum())
 
 # Cek jumlah nilai negatif per kolom SEBELUM dibersihkan
 # Nilai negatif secara logika fisika tidak mungkin terjadi pada konsentrasi gas/partikel
-kolom_polutan = ['carbon_monoxide', 'nitrogen_dioxide', 'ozone']
+kolom_polutan = ['carbon_monoxide', 'nitrogen_dioxide', 'sulfur_dioxide']
 for col in kolom_polutan:
     jumlah_negatif = (df[col] < 0).sum()
     print(f"Jumlah nilai negatif pada {col}: {jumlah_negatif}")
 
 # Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan
-fig, axes = plt.subplots(1, 5, figsize=(20, 5))
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 for i, col in enumerate(kolom_polutan):
     sns.boxplot(y=df[col], ax=axes[i], color='#3498db')
     axes[i].set_title(col)
@@ -69,4 +69,3 @@ Dari eksplorasi di atas, kita bisa memutuskan tiga jenis penanganan anomali:
 2.  **Nilai Negatif:** Secara logika, konsentrasi gas atau partikel di udara tidak mungkin bernilai di bawah 0. Jika ditemukan, nilai tersebut merupakan *error* numerik model/sensor dan harus ditangani (diubah menjadi NaN, lalu dapat diisi ulang dengan interpolasi jika diperlukan).
 3.  **Lonjakan Ekstrem (Outlier):** Nilai yang mendadak sangat tinggi dibanding nilai di sekitarnya dalam rentang waktu singkat. Outlier tidak selalu berarti error — bisa juga mengindikasikan kejadian nyata seperti kebakaran lahan atau kemacetan ekstrem — sehingga perlu diverifikasi lebih lanjut sebelum dihapus. Pada Bagian 3.C, boxplot juga akan dibandingkan **sebelum vs sesudah** pembersihan untuk melihat apakah sebaran outlier berkurang setelah nilai negatif ditangani.
 
----

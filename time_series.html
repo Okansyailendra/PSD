@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'time_series';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tahap 1: Inisialisasi dan Memuat Data" href="Ekstraksi_Fitur_NO2.html" />
+    <link rel="next" title="Data Preparation" href="Ekstraksi_Fitur_NO2.html" />
     <link rel="prev" title="3. Proses Crawling &amp; Pemrosesan Data" href="perhitungan.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -195,7 +195,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Time Series: Persiapan Data Polutan Manyar</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_NO2.html">Tahap 1: Inisialisasi dan Memuat Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_NO2.html">Data Preparation</a></li>
 
 
 
@@ -439,7 +439,7 @@ document.write(`
 <span class="w">    </span><span class="k">time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span>
 <span class="w">    </span><span class="ss">&quot;CO&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
 <span class="w">    </span><span class="ss">&quot;NO2&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
-<span class="w">    </span><span class="ss">&quot;O3&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span>
+<span class="w">    </span><span class="ss">&quot;SO2&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span>
 <span class="p">);</span>
 </pre></div>
 </div>
@@ -508,7 +508,7 @@ Anda bisa mengecek total baris data yang berhasil diunggah dengan menjalankan qu
 <em>(Keterangan: Cuplikan data polutan yang berhasil ditarik ke dalam KNIME melalui node DB Reader)</em></p>
 </li>
 <li><p><strong>Statistics</strong>: Node ini ditambahkan setelah <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> dan berfungsi sebagai langkah awal yang sangat krusial untuk <strong>Eksplorasi Data (Exploratory Data Analysis)</strong>.
-Alih-alih mengecek polutan satu per satu, node <em>Statistics</em> akan secara otomatis memproses seluruh kolom numerik (CO, NO2, O3) secara bersamaan dan menghasilkan ringkasan statistik deskriptif.</p>
+Alih-alih mengecek polutan satu per satu, node <em>Statistics</em> akan secara otomatis memproses seluruh kolom numerik (CO, NO2, SO2) secara bersamaan dan menghasilkan ringkasan statistik deskriptif.</p>
 <p><img alt="Ringkasan Statistik" src="_images/gambar4.png" />
 <em>(Keterangan: Output tabel dari node Statistics yang merangkum perhitungan statistik deskriptif untuk seluruh kolom polutan secara bersamaan dalam satu tampilan)</em></p>
 </li>
@@ -548,7 +548,7 @@ Alih-alih mengecek polutan satu per satu, node <em>Statistics</em> akan secara o
 <p>Menghitung berapa baris data yang bernilai kosong (<code class="docutils literal notranslate"><span class="pre">NULL</span></code>) pada suatu kolom. Berguna untuk menentukan strategi imputasi (misalnya interpolasi linear) sebelum data dianalisis lebih lanjut, karena data kosong bisa terjadi akibat kegagalan sensor pada hari tertentu.</p>
 <div class="math notranslate nohighlight">
 \[\text{Missing Values} = \text{jumlah baris dengan nilai kosong pada kolom tersebut}\]</div>
-<p><em>Contoh:</em> Berdasarkan pengecekan langsung pada file <code class="docutils literal notranslate"><span class="pre">polutan_Manyar_2025_2026.csv</span></code> (365 baris), terdapat missing values pada kolom <code class="docutils literal notranslate"><span class="pre">NO2</span></code> sebanyak 177, <code class="docutils literal notranslate"><span class="pre">CO</span></code> sebanyak 165, dan <code class="docutils literal notranslate"><span class="pre">O3</span></code> sebanyak 4. Karena itu, node <em>Missing Value</em> dan strategi imputasi perlu dijalankan sebelum analisis lanjutan.</p>
+<p><em>Contoh:</em> Berdasarkan pengecekan langsung pada file <code class="docutils literal notranslate"><span class="pre">polutan_Manyar_2025_2026.csv</span></code> (365 baris), terdapat missing values pada kolom <code class="docutils literal notranslate"><span class="pre">NO2</span></code> sebanyak 177, <code class="docutils literal notranslate"><span class="pre">CO</span></code> sebanyak 165, dan <code class="docutils literal notranslate"><span class="pre">SO2</span></code> sebanyak 4. Karena itu, node <em>Missing Value</em> dan strategi imputasi perlu dijalankan sebelum analisis lanjutan.</p>
 <hr class="docutils" />
 <p><strong>b) Minimum &amp; Maximum</strong></p>
 <p>Nilai terkecil dan terbesar dalam suatu kolom. Digunakan untuk mendeteksi anomali/outlier, misalnya memastikan tidak ada nilai polutan yang negatif atau nilai yang jauh di luar kewajaran.</p>
@@ -649,7 +649,7 @@ $<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -0.85\)</s
 <tr class="row-odd"><th class="head"><p>Fitur</p></th>
 <th class="head text-right"><p>NO2 (188 tersedia)</p></th>
 <th class="head text-right"><p>CO (200 tersedia)</p></th>
-<th class="head text-right"><p>O3 (361 tersedia)</p></th>
+<th class="head text-right"><p>SO2 (361 tersedia)</p></th>
 </tr>
 </thead>
 <tbody>
@@ -706,7 +706,7 @@ $<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -0.85\)</s
 </tbody>
 </table>
 </div>
-<p>Data NO2 memiliki skewness <strong>4.60</strong> dan kurtosis excess <strong>32.84</strong>, yang menunjukkan ekor kanan sangat kuat dan adanya nilai ekstrem. CO dan O3 lebih mendekati distribusi simetris, dengan skewness masing-masing <strong>0.21</strong> dan <strong>0.33</strong>.</p>
+<p>Data NO2 memiliki skewness <strong>4.60</strong> dan kurtosis excess <strong>32.84</strong>, yang menunjukkan ekor kanan sangat kuat dan adanya nilai ekstrem. CO dan SO2 lebih mendekati distribusi simetris, dengan skewness masing-masing <strong>0.21</strong> dan <strong>0.33</strong>.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -715,7 +715,7 @@ $<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -0.85\)</s
 <p>Dari tahapan pengumpulan data ke database <em>cloud</em> (Aiven) hingga proses transformasi di dalam KNIME, kita telah berhasil mempersiapkan data mentah menjadi himpunan data (dataset) runtun waktu yang berkualitas tinggi. Berikut adalah rangkuman dari hasil <em>pre-processing</em> ini:</p>
 <ol class="arabic simple">
 <li><p><strong>Sentralisasi Data yang Aman</strong>: Data historis polutan Manyar kini tersimpan dengan aman di Aiven PostgreSQL dan diakses menggunakan enkripsi SSL, memungkinkan kolaborasi atau penarikan data dari berbagai platform kapan saja tanpa harus memindahkan <em>file</em> CSV secara manual.</p></li>
-<li><p><strong>Integrasi ke KNIME Berhasil</strong>: Melalui 4 node (PostgreSQL Connector, DB Table Selector, DB Reader, Statistics), seluruh 365 baris data polutan berhasil ditarik dari <em>cloud database</em> ke ruang kerja lokal KNIME tanpa kendala. Data terdiri atas kolom <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">NO2</span></code>, <code class="docutils literal notranslate"><span class="pre">CO</span></code>, dan <code class="docutils literal notranslate"><span class="pre">O3</span></code>, dengan missing values yang perlu ditangani sebelum analisis lanjutan.</p></li>
+<li><p><strong>Integrasi ke KNIME Berhasil</strong>: Melalui 4 node (PostgreSQL Connector, DB Table Selector, DB Reader, Statistics), seluruh 365 baris data polutan berhasil ditarik dari <em>cloud database</em> ke ruang kerja lokal KNIME tanpa kendala. Data terdiri atas kolom <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">NO2</span></code>, <code class="docutils literal notranslate"><span class="pre">CO</span></code>, dan <code class="docutils literal notranslate"><span class="pre">SO2</span></code>, dengan missing values yang perlu ditangani sebelum analisis lanjutan.</p></li>
 <li><p><strong>Pemahaman Statistik yang Terukur</strong>: Setiap fitur pada node Statistics (Min, Max, Mean, Median, Standard Deviation, Variance, Skewness, Kurtosis, dan Overall Sum) telah dijelaskan lengkap dengan rumus dan contoh perhitungan manual, sehingga hasil eksplorasi data tidak hanya dibaca sebagai angka, tapi juga dipahami maknanya. Dari hasil ini juga diketahui kolom <code class="docutils literal notranslate"><span class="pre">time</span></code> masih bertipe String dan perlu dikonversi pada tahap berikutnya.</p></li>
 </ol>
 </section>
@@ -765,7 +765,7 @@ $<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -0.85\)</s
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tahap 1: Inisialisasi dan Memuat Data</p>
+        <p class="prev-next-title">Data Preparation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

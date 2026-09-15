@@ -193,7 +193,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series: Persiapan Data Polutan Manyar</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_NO2.html">Tahap 1: Inisialisasi dan Memuat Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_NO2.html">Data Preparation</a></li>
 
 
 
@@ -412,7 +412,7 @@ document.write(`
 <p>Berdasarkan eksplorasi dan visualisasi di atas, beberapa hal yang dapat disimpulkan (silakan sesuaikan dengan hasil aktual dari data yang ditarik setelah kode dijalankan):</p>
 <ul class="simple">
 <li><p><strong>Tren umum:</strong> Tren konsentrasi masing-masing polutan selama satu tahun terakhir dapat diamati melalui grafik time series harian di Bagian 4.A–4.C.</p></li>
-<li><p><strong>Pola harian:</strong> Bagian 4.D menunjukkan apakah polutan emisi kendaraan (CO, NO2, PM10, PM2.5) memuncak di jam sibuk lalu lintas (pagi/sore), sementara O3 diperkirakan memuncak siang hari akibat proses fotokimia.</p></li>
+<li><p><strong>Pola harian:</strong> Bagian 4.D menunjukkan apakah polutan emisi kendaraan (CO, NO2) memuncak di jam sibuk lalu lintas (pagi/sore), sementara SO2 yang bersumber dari industri dan PLTU cenderung berfluktuasi sesuai jam operasional fasilitas tersebut.</p></li>
 <li><p><strong>Pola musiman:</strong> Bagian 4.E membandingkan rata-rata bulanan dan rata-rata musim kemarau vs hujan; secara umum diharapkan konsentrasi partikulat (PM10/PM2.5) lebih tinggi di musim kemarau karena kondisi udara lebih kering dan minim hujan yang biasanya “mencuci” partikel di udara.</p></li>
 <li><p><strong>Anomali data:</strong> Proses pembersihan data (penanganan nilai negatif dan missing values melalui interpolasi dua arah) memastikan data yang dianalisis lebih valid secara logis; boxplot sebelum/sesudah pembersihan di Bagian 3.C digunakan untuk memverifikasi hal ini.</p></li>
 <li><p><strong>Pelanggaran ambang batas:</strong> Bagian 4.F menjawab polutan mana yang paling sering melewati baku mutu nasional, sebagai indikator prioritas polutan yang perlu diwaspadai di wilayah kajian.</p></li>

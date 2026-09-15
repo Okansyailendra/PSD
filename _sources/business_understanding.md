@@ -10,14 +10,14 @@ Sayangnya, informasi mengenai kondisi kualitas udara di tingkat kabupaten/kota s
 
 Proyek ini bertujuan untuk:
 1.  **Mengekstraksi** data historis kualitas udara (level polutan) di wilayah spesifik Kabupaten Gresik, Kecamatan Manyar selama kurun waktu satu tahun terakhir (31 Agustus 2025 – 31 Agustus 2026) menggunakan API publik.
-2.  **Menganalisis** karakteristik statistik dari setiap jenis polutan (CO, NO2, dan O3), termasuk mendeteksi adanya data yang hilang (*missing values*), nilai negatif, dan outlier.
+2.  **Menganalisis** karakteristik statistik dari setiap jenis polutan (CO, NO2, dan SO2), termasuk mendeteksi adanya data yang hilang (*missing values*), nilai negatif, dan outlier.
 3.  **Mengetahui tren** pergerakan kualitas udara dari waktu ke waktu (time series) untuk melihat pola musiman atau lonjakan konsentrasi tertentu.
 4.  **Menyajikan** hasil analisis dalam bentuk visualisasi yang mudah dipahami oleh berbagai kalangan, baik akademisi, masyarakat umum, maupun pengambil kebijakan.
 
 ## 1.3 Rumusan Masalah
 
 Berdasarkan tujuan di atas, terdapat beberapa pertanyaan yang ingin dijawab melalui analisis ini:
-*   Bagaimana tren konsentrasi CO, NO2, dan O3 di Manyar selama satu tahun terakhir?
+*   Bagaimana tren konsentrasi CO, NO2, dan SO2 di Manyar selama satu tahun terakhir?
 *   Apakah terdapat pola musiman (misalnya perbedaan antara musim kemarau dan penghujan)?
 *   Apakah ada indikasi anomali data (nilai negatif, data hilang, atau lonjakan ekstrem) yang perlu ditangani sebelum analisis lanjutan?
 *   Polutan mana yang paling sering melebihi ambang batas aman menurut standar kesehatan?
@@ -28,4 +28,3 @@ Berdasarkan tujuan di atas, terdapat beberapa pertanyaan yang ingin dijawab mela
 *   **Bagi Pemerintah:** Mengingat Gresik adalah kawasan perindustrian padat, data ini dapat menjadi landasan atau acuan untuk mengevaluasi efektivitas kebijakan pengendalian emisi dari pabrik dan lalu lintas jalan, serta menjadi dasar untuk perencanaan tata ruang yang lebih ramah lingkungan.
 *   **Bagi Akademisi/Peneliti:** Data dan hasil analisis ini dapat menjadi baseline atau titik awal untuk penelitian lanjutan, misalnya pemodelan prediksi kualitas udara (forecasting) atau studi korelasi antara aktivitas industri dan tingkat polusi.
 
----

@@ -193,7 +193,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series: Persiapan Data Polutan Manyar</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_NO2.html">Tahap 1: Inisialisasi dan Memuat Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_NO2.html">Data Preparation</a></li>
 
 
 
@@ -412,7 +412,7 @@ document.write(`
 <h1>2. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
 <section id="sumber-data">
 <h2>2.1 Sumber Data<a class="headerlink" href="#sumber-data" title="Link to this heading">#</a></h2>
-<p>Data diperoleh dari <strong>Open-Meteo Air Quality API</strong>, yaitu layanan open data yang menyediakan estimasi konsentrasi polutan udara berbasis model reanalisis atmosfer (mengombinasikan data satelit, model kimia atmosfer CAMS milik Copernicus, dan data stasiun pemantauan darat). Data yang diambil berupa data per Hari (<em>Day</em>) selama satu tahun ke belakang, dibatasi pada satu titik koordinat yang mewakili pusat wilayah kajian (Kabupaten Gresik , Kecamatan Manyar), yang diperoleh dari titik tengah (<em>centroid</em>) poligon GeoJSON batas wilayah yang telah ditentukan.</p>
+<p>Data diperoleh dari <strong>Open-EO Air Quality API</strong>, yaitu layanan open data yang menyediakan estimasi konsentrasi polutan udara berbasis model reanalisis atmosfer (mengombinasikan data satelit, model kimia atmosfer CAMS milik Copernicus, dan data stasiun pemantauan darat). Data yang diambil berupa data per Hari (<em>Day</em>) selama satu tahun ke belakang, dibatasi pada satu titik koordinat yang mewakili pusat wilayah kajian (Kabupaten Gresik , Kecamatan Manyar), yang diperoleh dari titik tengah (<em>centroid</em>) poligon GeoJSON batas wilayah yang telah ditentukan.</p>
 <p>Karena sifatnya berbasis model estimasi (bukan pengukuran langsung dari satu alat sensor fisik di lokasi), nilai yang dihasilkan bisa dianggap sebagai representasi kondisi udara di area tersebut, bukan pengukuran presisi pada satu titik geografis yang sangat spesifik.</p>
 </section>
 <section id="struktur-data">
@@ -438,9 +438,9 @@ document.write(`
 <td><p>float</p></td>
 <td><p>Konsentrasi Nitrogen Dioksida (μg/m³)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">O3</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SO2</span></code></p></td>
 <td><p>float</p></td>
-<td><p>Konsentrasi Ozon permukaan (μg/m³)</p></td>
+<td><p>Konsentrasi Sulfur Dioksida (μg/m³)</p></td>
 </tr>
 </tbody>
 </table>
@@ -471,11 +471,11 @@ document.write(`
 <td><p>Mengiritasi saluran pernapasan, memperparah asma, menurunkan fungsi paru-paru jangka panjang</p></td>
 <td><p>200 μg/m³ (rata-rata 1 Hari)</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>O3</strong> (Ozon Permukaan)</p></td>
-<td><p>Berbeda dari lapisan ozon stratosfer; ozon permukaan berbahaya bagi kesehatan, terbentuk dari reaksi fotokimia sinar matahari dengan NO2 dan VOC, sehingga cenderung lebih tinggi di siang hari cerah</p></td>
-<td><p>Reaksi fotokimia sekunder (bukan emisi langsung)</p></td>
-<td><p>Mengiritasi saluran pernapasan, memperparah asma</p></td>
-<td><p>150 μg/m³ (rata-rata 1 Hari)</p></td>
+<tr class="row-even"><td><p><strong>SO2</strong> (Sulfur Dioksida)</p></td>
+<td><p>Gas tidak berwarna dengan bau tajam dan menyengat, dihasilkan dari pembakaran bahan bakar fosil yang mengandung sulfur</p></td>
+<td><p>Pembangkit listrik tenaga uap (PLTU), industri metalurgi, peleburan logam, industri kimia</p></td>
+<td><p>Mengiritasi saluran pernapasan, menyebabkan bronkitis, memperburuk asma, dan menyebabkan hujan asam</p></td>
+<td><p>130 μg/m³ (rata-rata 1 Jam)</p></td>
 </tr>
 </tbody>
 </table>
@@ -501,13 +501,13 @@ document.write(`
 
 <span class="c1"># Cek jumlah nilai negatif per kolom SEBELUM dibersihkan</span>
 <span class="c1"># Nilai negatif secara logika fisika tidak mungkin terjadi pada konsentrasi gas/partikel</span>
-<span class="n">kolom_polutan</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;carbon_monoxide&#39;</span><span class="p">,</span> <span class="s1">&#39;nitrogen_dioxide&#39;</span><span class="p">,</span> <span class="s1">&#39;ozone&#39;</span><span class="p">]</span>
+<span class="n">kolom_polutan</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;carbon_monoxide&#39;</span><span class="p">,</span> <span class="s1">&#39;nitrogen_dioxide&#39;</span><span class="p">,</span> <span class="s1">&#39;sulfur_dioxide&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">kolom_polutan</span><span class="p">:</span>
     <span class="n">jumlah_negatif</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah nilai negatif pada </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">jumlah_negatif</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Deteksi outlier ekstrem menggunakan visualisasi boxplot per kolom polutan</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kolom_polutan</span><span class="p">):</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#3498db&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
@@ -522,7 +522,6 @@ document.write(`
 <li><p><strong>Nilai Negatif:</strong> Secara logika, konsentrasi gas atau partikel di udara tidak mungkin bernilai di bawah 0. Jika ditemukan, nilai tersebut merupakan <em>error</em> numerik model/sensor dan harus ditangani (diubah menjadi NaN, lalu dapat diisi ulang dengan interpolasi jika diperlukan).</p></li>
 <li><p><strong>Lonjakan Ekstrem (Outlier):</strong> Nilai yang mendadak sangat tinggi dibanding nilai di sekitarnya dalam rentang waktu singkat. Outlier tidak selalu berarti error — bisa juga mengindikasikan kejadian nyata seperti kebakaran lahan atau kemacetan ekstrem — sehingga perlu diverifikasi lebih lanjut sebelum dihapus. Pada Bagian 3.C, boxplot juga akan dibandingkan <strong>sebelum vs sesudah</strong> pembersihan untuk melihat apakah sebaran outlier berkurang setelah nilai negatif ditangani.</p></li>
 </ol>
-<hr class="docutils" />
 </section>
 </section>
 

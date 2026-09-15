@@ -92,7 +92,7 @@ peta_wilayah
 ```
 
 ## B. Mengunduh Data dari API
-Data kualitas udara (NO2, CO, O3) untuk wilayah kajian diperoleh dari citra satelit Sentinel-5P
+Data kualitas udara (NO2, CO, SO2) untuk wilayah kajian diperoleh dari citra satelit Sentinel-5P
 melalui proses crawling terpisah (`crawl_data.py`), lalu dimuat kembali di sini dari hasil yang
 sudah tersimpan.
 
@@ -108,7 +108,7 @@ df.head()
 ```
 
 ## C. Data Preparation & Penyesuaian Urutan
-Data mentah hasil crawling (kolom `time, NO2, CO, O3`) selanjutnya dibersihkan:
+Data mentah hasil crawling (kolom `time, NO2, CO, SO2`) selanjutnya dibersihkan:
 pengecekan nilai kosong, nilai negatif, deteksi outlier, hingga interpolasi.
 
 ```{code-cell} ipython3
@@ -128,7 +128,7 @@ print(df.isna().sum())
 
 ```{code-cell} ipython3
 # Cek jumlah nilai negatif per kolom SEBELUM dibersihkan
-kolom_polutan = ['CO', 'NO2', 'O3']
+kolom_polutan = ['CO', 'NO2', 'SO2']
 for col in kolom_polutan:
     jumlah_negatif = (df[col] < 0).sum()
     print(f"Jumlah nilai negatif pada {col}: {jumlah_negatif}")
@@ -147,7 +147,7 @@ plt.show()
 
 # Membersihkan anomali: mengubah konsentrasi negatif menjadi Missing Values (NaN)
 ```{code-cell} ipython3
-for col in ['CO', 'NO2', 'O3']:
+for col in ['CO', 'NO2', 'SO2']:
     df.loc[df[col] < 0, col] = None
 ```
 
@@ -162,7 +162,7 @@ for col in ['CO', 'NO2', 'O3']:
 # ditambahkan limit_direction='both' agar NaN di kedua ujung juga tertangani
 # (menggunakan nilai valid terdekat sebagai isian/extrapolasi sederhana).
 df = df.set_index('time')
-kolom_gas_tersedia = ['CO', 'NO2', 'O3']
+kolom_gas_tersedia = ['CO', 'NO2', 'SO2']
 df[kolom_gas_tersedia] = df[kolom_gas_tersedia].interpolate(
     method='time', limit_direction='both'
 )
@@ -175,7 +175,7 @@ print(df.isna().sum())
 
 ```{code-cell} ipython3
 # Deteksi outlier SESUDAH dibersihkan, sebagai pembanding terhadap boxplot sebelumnya.
-kolom_polutan_bersih = ['CO', 'NO2', 'O3']
+kolom_polutan_bersih = ['CO', 'NO2', 'SO2']
 fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 for i, col in enumerate(kolom_polutan_bersih):
     sns.boxplot(y=df[col], ax=axes[i], color='#2ecc71')
@@ -233,15 +233,15 @@ plt.tight_layout()
 
 plt.show()
 ```
-## B. Grafik Ozon Permukaan (O3)
-Karena O3 terbentuk dari reaksi fotokimia, polanya cenderung berbeda dengan polutan hasil emisi langsung (CO, NO2), sehingga divisualisasikan secara terpisah.
+## B. Grafik Sulfur Dioksida (SO2)
+Karena SO2 bersumber dari emisi industri dan PLTU, polanya cenderung berbeda dengan polutan emisi kendaraan (CO, NO2), sehingga divisualisasikan secara terpisah.
 
 ```{code-cell} ipython3
 plt.figure(figsize=(15, 6))
 
-sns.lineplot(data=df, x='time', y='O3', label='O3 (Ozon Permukaan)', color='#f39c12')
+sns.lineplot(data=df, x='time', y='SO2', label='SO2 (Sulfur Dioksida)', color='#f39c12')
 
-plt.title('Tren Ozon Permukaan (O3) di Manyar', fontsize=14, fontweight='bold')
+plt.title('Tren Sulfur Dioksida (SO2) di Manyar', fontsize=14, fontweight='bold')
 plt.xlabel('Waktu', fontsize=12)
 plt.ylabel('Kolom Densitas (mol/m²)', fontsize=12)
 plt.legend()
@@ -260,7 +260,7 @@ Untuk melihat pola musiman, data di-resample menjadi rata-rata bulanan, kemudian
 df_monthly = df.resample('M', on='time').mean(numeric_only=True).reset_index()
 
 plt.figure(figsize=(15, 6))
-for col, color in zip(['CO', 'NO2', 'O3'],
+for col, color in zip(['CO', 'NO2', 'SO2'],
                        ['#d35400', '#2980b9', '#f39c12']):
     sns.lineplot(data=df_monthly, x='time', y=col, label=col, color=color, marker='o')
 
@@ -281,7 +281,7 @@ def klasifikasi_musim(bulan):
 df['musim'] = df['time'].dt.month.apply(klasifikasi_musim)
 
 # Perbandingan rata-rata konsentrasi tiap polutan antar musim
-perbandingan_musim = df.groupby('musim')[['CO', 'NO2', 'O3']].mean()
+perbandingan_musim = df.groupby('musim')[['CO', 'NO2', 'SO2']].mean()
 print("Rata-rata konsentrasi polutan per musim:")
 perbandingan_musim
 ```
@@ -314,7 +314,7 @@ yang sebenarnya tidak berlaku untuk jenis data ini.
 ```{code-cell} ipython3
 # Ambang referensi statistik: persentil ke-90 dari data masing-masing polutan
 # (bukan baku mutu resmi, karena tidak ada standar nasional untuk kolom densitas atmosfer)
-kolom_gas = ['CO', 'NO2', 'O3']
+kolom_gas = ['CO', 'NO2', 'SO2']
 ambang_referensi = {col: df[col].quantile(0.90) for col in kolom_gas}
 
 hasil_pelanggaran = []
@@ -360,5 +360,5 @@ sama, bukan indikasi berbahaya/tidaknya secara kesehatan seperti pada baku mutu 
 
 ```{code-cell} ipython3
 # Ringkasan statistik harian dari seluruh polutan setelah proses pembersihan
-df[['CO', 'NO2', 'O3']].describe()
+df[['CO', 'NO2', 'SO2']].describe()
 ```
