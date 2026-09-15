@@ -24,7 +24,7 @@ CREATE TABLE polutan_Manyar (
     time TIMESTAMP,
     "CO" NUMERIC,
     "NO2" NUMERIC,
-    "O3" NUMERIC
+    "SO2" NUMERIC
 );
 ```
 
@@ -96,7 +96,7 @@ Proses menghubungkan KNIME ke Aiven pada prinsipnya mirip dengan menghubungkan D
   _(Keterangan: Cuplikan data polutan yang berhasil ditarik ke dalam KNIME melalui node DB Reader)_
 
 - **Statistics**: Node ini ditambahkan setelah `DB Reader` dan berfungsi sebagai langkah awal yang sangat krusial untuk **Eksplorasi Data (Exploratory Data Analysis)**.
-  Alih-alih mengecek polutan satu per satu, node _Statistics_ akan secara otomatis memproses seluruh kolom numerik (CO, NO2, O3) secara bersamaan dan menghasilkan ringkasan statistik deskriptif.
+  Alih-alih mengecek polutan satu per satu, node _Statistics_ akan secara otomatis memproses seluruh kolom numerik (CO, NO2, SO2) secara bersamaan dan menghasilkan ringkasan statistik deskriptif.
 
   ![Ringkasan Statistik](images/gambar4.png)
   _(Keterangan: Output tabel dari node Statistics yang merangkum perhitungan statistik deskriptif untuk seluruh kolom polutan secara bersamaan dalam satu tampilan)_
@@ -123,7 +123,7 @@ Menghitung berapa baris data yang bernilai kosong (`NULL`) pada suatu kolom. Ber
 
 $$\text{Missing Values} = \text{jumlah baris dengan nilai kosong pada kolom tersebut}$$
 
-_Contoh:_ Berdasarkan pengecekan langsung pada file `polutan_Manyar_2025_2026.csv` (365 baris), terdapat missing values pada kolom `NO2` sebanyak 177, `CO` sebanyak 165, dan `O3` sebanyak 4. Karena itu, node _Missing Value_ dan strategi imputasi perlu dijalankan sebelum analisis lanjutan.
+_Contoh:_ Berdasarkan pengecekan langsung pada file `polutan_Manyar_2025_2026.csv` (365 baris), terdapat missing values pada kolom `NO2` sebanyak 177, `CO` sebanyak 165, dan `SO2` sebanyak 4. Karena itu, node _Missing Value_ dan strategi imputasi perlu dijalankan sebelum analisis lanjutan.
 
 ---
 
@@ -232,20 +232,20 @@ Nilai negatif menunjukkan sebaran 5 data contoh ini lebih landai (lebih merata, 
 
 > **Catatan:** Contoh perhitungan di atas disederhanakan dengan 5 data agar mudah dipahami langkah demi langkah. Berikut adalah ringkasan hasil aktual dari **365 baris** pada file `polutan_Manyar_2025_2026.csv`, sebagai pembanding terhadap output node _Statistics_ di KNIME (Gambar 4). Nilai statistik dihitung dari data yang tersedia pada masing-masing kolom; missing values tidak dihitung dalam Min, Max, Mean, Median, Variance, Skewness, Kurtosis, dan Overall Sum:
 
-| Fitur              | NO2 (188 tersedia) | CO (200 tersedia) | O3 (361 tersedia) |
-| ------------------ | -----------------: | ----------------: | ----------------: |
-| Missing Values     |                177 |               165 |                 4 |
-| Minimum            |      0.00001543805 |        0.01133146 |        0.11028662 |
-| Maximum            |         0.00063134 |        0.04372259 |        0.12317621 |
-| Mean               |         0.00008140 |        0.02915624 |        0.11584706 |
-| Median             |         0.00006687 |        0.02911604 |        0.11571048 |
-| Standard Deviation |         0.00006376 |        0.00424835 |        0.00243485 |
-| Variance           |   0.00000000406541 |     0.00001804847 |     0.00000592852 |
-| Skewness           |               4.60 |              0.21 |              0.33 |
-| Kurtosis (excess)  |              32.84 |              2.30 |             -0.01 |
-| Overall Sum        |         0.01528314 |        5.83124857 |       41.82078750 |
+| Fitur              | NO2 (188 tersedia) | CO (200 tersedia) | SO2 (361 tersedia) |
+| ------------------ | -----------------: | ----------------: | -----------------: |
+| Missing Values     |                177 |               165 |                  4 |
+| Minimum            |      0.00001543805 |        0.01133146 |         0.11028662 |
+| Maximum            |         0.00063134 |        0.04372259 |         0.12317621 |
+| Mean               |         0.00008140 |        0.02915624 |         0.11584706 |
+| Median             |         0.00006687 |        0.02911604 |         0.11571048 |
+| Standard Deviation |         0.00006376 |        0.00424835 |         0.00243485 |
+| Variance           |   0.00000000406541 |     0.00001804847 |      0.00000592852 |
+| Skewness           |               4.60 |              0.21 |               0.33 |
+| Kurtosis (excess)  |              32.84 |              2.30 |              -0.01 |
+| Overall Sum        |         0.01528314 |        5.83124857 |        41.82078750 |
 
-Data NO2 memiliki skewness **4.60** dan kurtosis excess **32.84**, yang menunjukkan ekor kanan sangat kuat dan adanya nilai ekstrem. CO dan O3 lebih mendekati distribusi simetris, dengan skewness masing-masing **0.21** dan **0.33**.
+Data NO2 memiliki skewness **4.60** dan kurtosis excess **32.84**, yang menunjukkan ekor kanan sangat kuat dan adanya nilai ekstrem. CO dan SO2 lebih mendekati distribusi simetris, dengan skewness masing-masing **0.21** dan **0.33**.
 
 ---
 
@@ -254,5 +254,5 @@ Data NO2 memiliki skewness **4.60** dan kurtosis excess **32.84**, yang menunjuk
 Dari tahapan pengumpulan data ke database _cloud_ (Aiven) hingga proses transformasi di dalam KNIME, kita telah berhasil mempersiapkan data mentah menjadi himpunan data (dataset) runtun waktu yang berkualitas tinggi. Berikut adalah rangkuman dari hasil _pre-processing_ ini:
 
 1. **Sentralisasi Data yang Aman**: Data historis polutan Manyar kini tersimpan dengan aman di Aiven PostgreSQL dan diakses menggunakan enkripsi SSL, memungkinkan kolaborasi atau penarikan data dari berbagai platform kapan saja tanpa harus memindahkan _file_ CSV secara manual.
-2. **Integrasi ke KNIME Berhasil**: Melalui 4 node (PostgreSQL Connector, DB Table Selector, DB Reader, Statistics), seluruh 365 baris data polutan berhasil ditarik dari _cloud database_ ke ruang kerja lokal KNIME tanpa kendala. Data terdiri atas kolom `time`, `NO2`, `CO`, dan `O3`, dengan missing values yang perlu ditangani sebelum analisis lanjutan.
+2. **Integrasi ke KNIME Berhasil**: Melalui 4 node (PostgreSQL Connector, DB Table Selector, DB Reader, Statistics), seluruh 365 baris data polutan berhasil ditarik dari _cloud database_ ke ruang kerja lokal KNIME tanpa kendala. Data terdiri atas kolom `time`, `NO2`, `CO`, dan `SO2`, dengan missing values yang perlu ditangani sebelum analisis lanjutan.
 3. **Pemahaman Statistik yang Terukur**: Setiap fitur pada node Statistics (Min, Max, Mean, Median, Standard Deviation, Variance, Skewness, Kurtosis, dan Overall Sum) telah dijelaskan lengkap dengan rumus dan contoh perhitungan manual, sehingga hasil eksplorasi data tidak hanya dibaca sebagai angka, tapi juga dipahami maknanya. Dari hasil ini juga diketahui kolom `time` masih bertipe String dan perlu dikonversi pada tahap berikutnya.

@@ -6,3 +6,5 @@ requests
 seaborn
 shapely
 folium
+tsfel
+scikit-learn

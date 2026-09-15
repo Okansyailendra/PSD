@@ -29,7 +29,7 @@ west, south, east, north = area_polygon.bounds
 spatial_extent = {"west": west, "south": south, "east": east, "north": north}
 geometries = {"type": "Polygon", "coordinates": [geojson_coords]}
 
-daftar_band = ["NO2", "CO", "O3"]
+daftar_band = ["NO2", "CO", "SO2"]
 hasil_per_gas = {}
 
 for band in daftar_band:
@@ -57,7 +57,7 @@ for band in daftar_band:
 
     print(f"Data band {band} berhasil ditarik! ({len(hasil_per_gas[band])} entri tanggal)")
 
-print("\nSemua band (NO2, CO, O3) berhasil ditarik dari OpenEO.")
+print("\nSemua band (NO2, CO, SO2) berhasil ditarik dari OpenEO.")
 
 # Konversi JSON -> DataFrame per gas, lalu gabungkan jadi satu DataFrame
 
@@ -75,13 +75,13 @@ def json_ke_dataframe(data_json, nama_kolom):
 
 df_no2 = json_ke_dataframe(hasil_per_gas["NO2"], "NO2")
 df_co = json_ke_dataframe(hasil_per_gas["CO"], "CO")
-df_o3 = json_ke_dataframe(hasil_per_gas["O3"], "O3")
+df_SO2 = json_ke_dataframe(hasil_per_gas["SO2"], "SO2")
 
-print(f"\nJumlah baris -> NO2: {len(df_no2)}, CO: {len(df_co)}, O3: {len(df_o3)}")
+print(f"\nJumlah baris -> NO2: {len(df_no2)}, CO: {len(df_co)}, SO2: {len(df_SO2)}")
 
 # outer join supaya tanggal yang datanya hilang di salah satu gas tetap
 # tercatat (nanti diisi NaN & diinterpolasi di notebook perhitungan.md)
-df = df_no2.merge(df_co, on="time", how="outer").merge(df_o3, on="time", how="outer")
+df = df_no2.merge(df_co, on="time", how="outer").merge(df_SO2, on="time", how="outer")
 df = df.sort_values("time").reset_index(drop=True)
 
 

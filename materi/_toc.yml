@@ -11,3 +11,6 @@ chapters:
   - file: perhitungan
 - file: time_series
 - file: Ekstraksi_Fitur_NO2
+- file: Deskripsi_Fitur_TSFEL
+- file: Ekstraksi_Fitur_Lengkap
+- file: PCA_KMeans_Clustering
