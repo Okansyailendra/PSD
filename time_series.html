@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'time_series';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data Preparation" href="Ekstraksi_Fitur_NO2.html" />
+    <link rel="next" title="Data Preparation" href="Data_Preparation.html" />
     <link rel="prev" title="3. Proses Crawling &amp; Pemrosesan Data" href="perhitungan.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -195,11 +195,24 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Time Series: Persiapan Data Polutan Manyar</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_NO2.html">Data Preparation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Data_Preparation.html">Data Preparation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Ekstraksi_Fitur_NO2.html">Ekstraksi_Fitur_NO2</a></li>
 
 
 
 
+<li class="toctree-l2"><a class="reference internal" href="Ekstraksi_Fitur_CO.html">Ekstraksi_Fitur_CO</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Ekstraksi_Fitur_SO2.html">Ekstraksi_Fitur_SO2</a></li>
+
+
+
+
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -497,7 +510,7 @@ Anda bisa mengecek total baris data yang berhasil diunggah dengan menjalankan qu
 <ul>
 <li><p><strong>PostgreSQL Connector</strong>: Diatur menggunakan detail host, port, dan kredensial server Aiven. Pada tab JDBC Parameters, properti tambahan <code class="docutils literal notranslate"><span class="pre">sslmode</span></code> dengan nilai <code class="docutils literal notranslate"><span class="pre">require</span></code> dikonfigurasi agar node dapat terhubung. Hal ini penting karena Aiven menuntut koneksi SSL.</p>
 <p><img alt="Konfigurasi PostgreSQL Connector" src="_images/gambar1.png" />
-<em>(Keterangan: Jendela konfigurasi PostgreSQL Connector di mana kredensial database dimasukkan)</em></p>
+<em>(Keterangan: Jendela konfigurasi Post`greSQL Connector di mana kredensial database dimasukkan)</em></p>
 </li>
 <li><p><strong>DB Table Selector</strong>: Diarahkan ke skema <code class="docutils literal notranslate"><span class="pre">public</span></code> untuk menyeleksi tabel <code class="docutils literal notranslate"><span class="pre">polutan_Manyar</span></code>.</p>
 <p><img alt="DB Table Selector" src="_images/gambar2.png" />
@@ -761,7 +774,7 @@ $<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -0.85\)</s
       </div>
     </a>
     <a class="right-next"
-       href="Ekstraksi_Fitur_NO2.html"
+       href="Data_Preparation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>

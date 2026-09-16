@@ -83,7 +83,7 @@ Proses menghubungkan KNIME ke Aiven pada prinsipnya mirip dengan menghubungkan D
 - **PostgreSQL Connector**: Diatur menggunakan detail host, port, dan kredensial server Aiven. Pada tab JDBC Parameters, properti tambahan `sslmode` dengan nilai `require` dikonfigurasi agar node dapat terhubung. Hal ini penting karena Aiven menuntut koneksi SSL.
 
   ![Konfigurasi PostgreSQL Connector](images/gambar1.png)
-  _(Keterangan: Jendela konfigurasi PostgreSQL Connector di mana kredensial database dimasukkan)_
+  _(Keterangan: Jendela konfigurasi Post`greSQL Connector di mana kredensial database dimasukkan)_
 
 - **DB Table Selector**: Diarahkan ke skema `public` untuk menyeleksi tabel `polutan_Manyar`.
 
