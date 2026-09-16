@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Data Preparation &#8212; PSD - Materi</title>
+    <title>Ekstraksi_Fitur_NO2 &#8212; PSD - Materi</title>
   
   
   
@@ -62,7 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Ekstraksi_Fitur_NO2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Analisis Time Series: Persiapan Data Polutan Manyar" href="time_series.html" />
+    <link rel="next" title="Ekstraksi_Fitur_CO" href="Ekstraksi_Fitur_CO.html" />
+    <link rel="prev" title="Data Preparation" href="Data_Preparation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -194,11 +195,24 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series: Persiapan Data Polutan Manyar</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Preparation</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Data_Preparation.html">Data Preparation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ekstraksi_Fitur_NO2</a></li>
 
 
 
 
+<li class="toctree-l2"><a class="reference internal" href="Ekstraksi_Fitur_CO.html">Ekstraksi_Fitur_CO</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Ekstraksi_Fitur_SO2.html">Ekstraksi_Fitur_SO2</a></li>
+
+
+
+
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -384,7 +398,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Data Preparation</h1>
+    <h1>Ekstraksi_Fitur_NO2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,7 +408,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Preparation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Ekstraksi_Fitur_NO2</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-2-deteksi-outliers-pencilan-dengan-metode-iqr">Tahap 2: Deteksi Outliers (Pencilan) dengan Metode IQR</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-3-imputasi-missing-value">Tahap 3: Imputasi Missing Value</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-4-persiapan-data-untuk-tsfel">Tahap 4: Persiapan Data untuk TSFEL</a></li>
@@ -411,14 +425,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
-<h1>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ekstraksi-fitur-no2">
+<h1>Ekstraksi_Fitur_NO2<a class="headerlink" href="#ekstraksi-fitur-no2" title="Link to this heading">#</a></h1>
 <p>Bagian ini merupakan langkah awal dalam <em>pipeline</em> analisis. Kita mengimpor pustaka yang dibutuhkan seperti <code class="docutils literal notranslate"><span class="pre">pandas</span></code> untuk manipulasi data, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> untuk komputasi numerik, dan tentu saja modul dari <code class="docutils literal notranslate"><span class="pre">tsfel</span></code> untuk ekstraksi fitur nanti.</p>
 <p>Pada tahap ini, kita:</p>
 <ol class="arabic simple">
 <li><p>Membaca dataset CSV dari direktori penyimpanan.</p></li>
 <li><p>Memastikan kolom waktu (<code class="docutils literal notranslate"><span class="pre">time</span></code>) terformat sebagai tipe <code class="docutils literal notranslate"><span class="pre">datetime</span></code> agar dapat diurutkan secara kronologis.</p></li>
-<li><p>Melakukan pembersihan tipe data awal. Sangat penting untuk memaksa kolom target (<code class="docutils literal notranslate"><span class="pre">NO2</span></code>) menjadi tipe data numerik. Terkadang data dari sensor mengandung teks atau <em>error code</em>. Kode <code class="docutils literal notranslate"><span class="pre">pd.to_numeric(...,</span> <span class="pre">errors='coerce')</span></code> akan menyapu bersih nilai-nilai teks tersebut menjadi data kosong (<code class="docutils literal notranslate"><span class="pre">NaN</span></code>). Kita juga mencetak berapa banyak data awal yang terdeteksi sebagai bukan angka.</p></li>
+<li><p>Melakukan pembersihan tipe data awal. Sangat penting untuk memaksa kolom target (<code class="docutils literal notranslate"><span class="pre">SO2</span></code>) menjadi tipe data numerik. Terkadang data dari sensor mengandung teks atau <em>error code</em>. Kode <code class="docutils literal notranslate"><span class="pre">pd.to_numeric(...,</span> <span class="pre">errors='coerce')</span></code> akan menyapu bersih nilai-nilai teks tersebut menjadi data kosong (<code class="docutils literal notranslate"><span class="pre">NaN</span></code>). Kita juga mencetak berapa banyak data awal yang terdeteksi sebagai bukan angka.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -445,8 +459,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;time&#39;, &#39;NO2&#39;, &#39;CO&#39;, &#39;O3&#39;], dtype=&#39;object&#39;)
-Jumlah nilai non-numerik/kosong awal yang dikonversi jadi NaN: 177
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;time&#39;, &#39;NO2&#39;, &#39;CO&#39;, &#39;SO2&#39;], dtype=&#39;object&#39;)
+Jumlah nilai non-numerik/kosong awal yang dikonversi jadi NaN: 51
 </pre></div>
 </div>
 </div>
@@ -488,7 +502,7 @@ Jumlah nilai non-numerik/kosong awal yang dikonversi jadi NaN: 177
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Batas Bawah IQR: -0.00 | Batas Atas IQR: 0.00
-Jumlah outliers yang terdeteksi dan dikosongkan: 9
+Jumlah outliers yang terdeteksi dan dikosongkan: 15
 </pre></div>
 </div>
 </div>
@@ -644,13 +658,22 @@ File berhasil disimpan sebagai: NO2_Manyar_TSFEL.csv
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="time_series.html"
+       href="Data_Preparation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Analisis Time Series: Persiapan Data Polutan Manyar</p>
+        <p class="prev-next-title">Data Preparation</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Ekstraksi_Fitur_CO.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ekstraksi_Fitur_CO</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -668,7 +691,7 @@ File berhasil disimpan sebagai: NO2_Manyar_TSFEL.csv
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Preparation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Ekstraksi_Fitur_NO2</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-2-deteksi-outliers-pencilan-dengan-metode-iqr">Tahap 2: Deteksi Outliers (Pencilan) dengan Metode IQR</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-3-imputasi-missing-value">Tahap 3: Imputasi Missing Value</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-4-persiapan-data-untuk-tsfel">Tahap 4: Persiapan Data untuk TSFEL</a></li>
