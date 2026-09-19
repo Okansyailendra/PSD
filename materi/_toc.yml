@@ -15,3 +15,5 @@ chapters:
   - file: Ekstraksi_Fitur_NO2
   - file: Ekstraksi_Fitur_CO
   - file: Ekstraksi_Fitur_SO2
+- file : analisis_clustering
+- file : Deskripsi_fitur_perhitungan_manual_no2
