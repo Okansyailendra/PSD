@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'analisis_clustering';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Deskripsi Fitur, Rumus, dan Contoh Perhitungan Manual" href="Deskripsi_fitur_perhitungan_manual_no2.html" />
+    <link rel="next" title="Deskripsi Fitur &amp; Perhitungan Manual" href="Deskripsi_fitur_perhitungan_manual_no2.html" />
     <link rel="prev" title="Ekstraksi_Fitur_SO2" href="Ekstraksi_Fitur_SO2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -214,7 +214,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Penentuan Jumlah Cluster Optimal pada K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Deskripsi_fitur_perhitungan_manual_no2.html">Deskripsi Fitur, Rumus, dan Contoh Perhitungan Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deskripsi_fitur_perhitungan_manual_no2.html">Deskripsi Fitur &amp; Perhitungan Manual</a></li>
 </ul>
 
     </div>
@@ -443,6 +443,16 @@ document.write(`
 <section id="data-fitur-kualitas-udara-co-no2-so2-hasil-ekstraksi-tsfel-68-fitur">
 <h2>Data Fitur Kualitas Udara (CO, NO2, SO2) — Hasil Ekstraksi TSFEL (68 Fitur)<a class="headerlink" href="#data-fitur-kualitas-udara-co-no2-so2-hasil-ekstraksi-tsfel-68-fitur" title="Link to this heading">#</a></h2>
 <p><strong>Tujuan notebook ini:</strong></p>
+<ol class="arabic simple">
+<li><p>Melakukan reduksi dimensi dengan <strong>PCA</strong> dari 68 fitur menjadi (target) <strong>37 komponen</strong>.</p></li>
+<li><p>Menentukan <strong>jumlah cluster (k) terbaik</strong> untuk K-Means menggunakan <em>Elbow Method</em> dan <em>Silhouette Score</em>, pada data hasil PCA.</p></li>
+<li><p>Mengukur <strong>seberapa baik data dapat di-cluster</strong> (<em>clustering tendency</em>) menggunakan <strong>Hopkins Statistic</strong>.</p></li>
+<li><p>Mengulangi seluruh analisis di atas menggunakan <strong>68 fitur asli (tanpa PCA)</strong> sebagai pembanding.</p></li>
+<li><p>Membandingkan hasil PCA (37) vs 68 fitur asli, untuk ketiga polutan: <strong>CO, NO2, SO2</strong>.</p></li>
+</ol>
+<blockquote>
+<div><p><strong>Catatan penting soal data:</strong> File yang dianalisis (<code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_co.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_no2.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_so2.csv</span></code>) adalah data <strong>yang sudah diekstrak fiturnya</strong> (68 fitur TSFEL per baris/lokasi). Notebook ini fokus pada tahap <strong>setelah ekstraksi fitur</strong>, yaitu reduksi dimensi dan clustering. Data time series mentah per lokasi tidak tersedia, sehingga eksplorasi time series dan pembuktian perhitungan manual fitur TSFEL tidak termasuk dalam notebook ini (dibahas terpisah bila data mentahnya tersedia).</p>
+</div></blockquote>
 </section>
 <section id="konsep-dasar">
 <h2>1. Konsep Dasar<a class="headerlink" href="#konsep-dasar" title="Link to this heading">#</a></h2>
@@ -530,9 +540,9 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- CO ---
-  Jumlah baris (sampel/lokasi) : 35
+  Jumlah baris (sampel/lokasi) : 37
   Jumlah kolom fitur           : 68  (di luar id, nama, daerah)
-  Total nilai NaN              : 24
+  Total nilai NaN              : 0
 
 --- NO2 ---
   Jumlah baris (sampel/lokasi) : 37
@@ -540,9 +550,9 @@ document.write(`
   Total nilai NaN              : 0
 
 --- SO2 ---
-  Jumlah baris (sampel/lokasi) : 35
+  Jumlah baris (sampel/lokasi) : 37
   Jumlah kolom fitur           : 68  (di luar id, nama, daerah)
-  Total nilai NaN              : 24
+  Total nilai NaN              : 0
 </pre></div>
 </div>
 </div>
@@ -584,7 +594,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 65 fitur dipakai (dari 68) setelah membuang 3 fitur konstan -&gt; [&#39;human_range_energy&#39;, &#39;spectral_roll_on&#39;, &#39;zero_cross&#39;]
 NO2: 66 fitur dipakai (dari 68) setelah membuang 2 fitur konstan -&gt; [&#39;human_range_energy&#39;, &#39;spectral_roll_on&#39;]
-SO2: 67 fitur dipakai (dari 68) setelah membuang 1 fitur konstan -&gt; [&#39;human_range_energy&#39;]
+SO2: 66 fitur dipakai (dari 68) setelah membuang 2 fitur konstan -&gt; [&#39;human_range_energy&#39;, &#39;spectral_roll_on&#39;]
 </pre></div>
 </div>
 </div>
@@ -627,9 +637,11 @@ SO2: 67 fitur dipakai (dari 68) setelah membuang 1 fitur konstan -&gt; [&#39;hum
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: Hopkins Statistic = 0.909  -&gt; kecenderungan cluster KUAT
-NO2: Hopkins Statistic = 0.818  -&gt; kecenderungan cluster KUAT
-SO2: Hopkins Statistic = 0.907  -&gt; kecenderungan cluster KUAT
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: Hopkins Statistic = 0.880  -&gt; kecenderungan cluster KUAT
+NO2: Hopkins Statistic = 0.842  -&gt; kecenderungan cluster KUAT
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SO2: Hopkins Statistic = 0.886  -&gt; kecenderungan cluster KUAT
 </pre></div>
 </div>
 </div>
@@ -707,9 +719,9 @@ SO2: Hopkins Statistic = 0.907  -&gt; kecenderungan cluster KUAT
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 35 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%  (DIBATASI dari target 37 karena hanya ada 35 sampel)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 37 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%
 NO2: 37 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%
-SO2: 35 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%  (DIBATASI dari target 37 karena hanya ada 35 sampel)
+SO2: 37 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%
 </pre></div>
 </div>
 </div>
@@ -732,7 +744,7 @@ SO2: 35 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%  (DIBATASI da
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/42cd67656eeb087d923f19653cc5886c2474f86fc2040a05d5b4a1ebc974fead.png" src="_images/42cd67656eeb087d923f19653cc5886c2474f86fc2040a05d5b4a1ebc974fead.png" />
+<img alt="_images/c24d677b45d1e81b7b996f031bcd460be9212825b742fd965fa8f8284a2880cb.png" src="_images/c24d677b45d1e81b7b996f031bcd460be9212825b742fd965fa8f8284a2880cb.png" />
 </div>
 </div>
 </section>
@@ -750,16 +762,16 @@ SO2: 35 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%  (DIBATASI da
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d0a29f983c93ac70429b03cdf8c0f1996998bdb407d8c6e97a3a458c176815cd.png" src="_images/d0a29f983c93ac70429b03cdf8c0f1996998bdb407d8c6e97a3a458c176815cd.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: k terbaik = 2  (silhouette = 0.767)
+<img alt="_images/3c1d220e8faca032ca981a83369089d43c0be35ed08431477e525db9f42c30f2.png" src="_images/3c1d220e8faca032ca981a83369089d43c0be35ed08431477e525db9f42c30f2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: k terbaik = 2  (silhouette = 0.795)
 </pre></div>
 </div>
-<img alt="_images/b30f7f5b2dfead018501a930abd2730df4e312f79378065b3edef3d5c5b984ca.png" src="_images/b30f7f5b2dfead018501a930abd2730df4e312f79378065b3edef3d5c5b984ca.png" />
+<img alt="_images/d58183f54a79c5a854d02b73e1c796ad4b8d1cb53b857cae2b9758c95790edb9.png" src="_images/d58183f54a79c5a854d02b73e1c796ad4b8d1cb53b857cae2b9758c95790edb9.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NO2: k terbaik = 2  (silhouette = 0.745)
 </pre></div>
 </div>
-<img alt="_images/b2cea55ff14050a857deb3f0177b94ef054265786c46d161d451c3bed4ffb6e3.png" src="_images/b2cea55ff14050a857deb3f0177b94ef054265786c46d161d451c3bed4ffb6e3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SO2: k terbaik = 2  (silhouette = 0.774)
+<img alt="_images/c18fa7249f3693785cf4701e16208543ce5382b5ca2cf79f1872a50943345577.png" src="_images/c18fa7249f3693785cf4701e16208543ce5382b5ca2cf79f1872a50943345577.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SO2: k terbaik = 2  (silhouette = 0.789)
 </pre></div>
 </div>
 </div>
@@ -780,16 +792,16 @@ SO2: 35 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%  (DIBATASI da
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1b2ad9e4802a39c6b0b953a3e474ec87e87fc24861e12cee2fcbe20cdfce1a3f.png" src="_images/1b2ad9e4802a39c6b0b953a3e474ec87e87fc24861e12cee2fcbe20cdfce1a3f.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: k terbaik = 2  (silhouette = 0.767)
+<img alt="_images/b7e87c50623ce5941b3db01c247e9c49da78296fbb87908cc1ba8583bc67315b.png" src="_images/b7e87c50623ce5941b3db01c247e9c49da78296fbb87908cc1ba8583bc67315b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: k terbaik = 2  (silhouette = 0.795)
 </pre></div>
 </div>
-<img alt="_images/363a6efa3077172c9f2a5114081f70fe862fbab753d1d754aef6be06ab561802.png" src="_images/363a6efa3077172c9f2a5114081f70fe862fbab753d1d754aef6be06ab561802.png" />
+<img alt="_images/e2794918130717a1a28cb39bbff0031753c1c8bf3a8c28898c5d554ff7f00dcf.png" src="_images/e2794918130717a1a28cb39bbff0031753c1c8bf3a8c28898c5d554ff7f00dcf.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NO2: k terbaik = 2  (silhouette = 0.745)
 </pre></div>
 </div>
-<img alt="_images/2bfc186d1261d07f6b5a13214e8bb8f9cb922627afd976afaa20e8a5e6af83f5.png" src="_images/2bfc186d1261d07f6b5a13214e8bb8f9cb922627afd976afaa20e8a5e6af83f5.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SO2: k terbaik = 2  (silhouette = 0.774)
+<img alt="_images/1ae1e24477d1459e25725b4039eb092f3550b5bcbcd0003b7d91c67e411a5467.png" src="_images/1ae1e24477d1459e25725b4039eb092f3550b5bcbcd0003b7d91c67e411a5467.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SO2: k terbaik = 2  (silhouette = 0.789)
 </pre></div>
 </div>
 </div>
@@ -856,22 +868,22 @@ SO2: 35 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%  (DIBATASI da
     <tr>
       <th>0</th>
       <td>CO</td>
-      <td>35</td>
+      <td>37</td>
       <td>65</td>
-      <td>0.909</td>
-      <td>35</td>
+      <td>0.880</td>
+      <td>37</td>
       <td>100.0</td>
       <td>2</td>
-      <td>0.767</td>
+      <td>0.795</td>
       <td>2</td>
-      <td>0.767</td>
+      <td>0.795</td>
     </tr>
     <tr>
       <th>1</th>
       <td>NO2</td>
       <td>37</td>
       <td>66</td>
-      <td>0.818</td>
+      <td>0.842</td>
       <td>37</td>
       <td>100.0</td>
       <td>2</td>
@@ -882,15 +894,15 @@ SO2: 35 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%  (DIBATASI da
     <tr>
       <th>2</th>
       <td>SO2</td>
-      <td>35</td>
-      <td>67</td>
-      <td>0.907</td>
-      <td>35</td>
+      <td>37</td>
+      <td>66</td>
+      <td>0.886</td>
+      <td>37</td>
       <td>100.0</td>
       <td>2</td>
-      <td>0.774</td>
+      <td>0.789</td>
       <td>2</td>
-      <td>0.774</td>
+      <td>0.789</td>
     </tr>
   </tbody>
 </table>
@@ -922,12 +934,6 @@ SO2: 35 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%  (DIBATASI da
 </tbody>
 </table>
 </div>
-<p>Isi bagian ini setelah menjalankan seluruh sel di atas, mengacu ke tabel ringkasan pada Bagian 9 dan nilai Hopkins pada Bagian 4, dengan menjawab tiga pertanyaan berikut untuk <strong>setiap polutan</strong>:</p>
-<ol class="arabic simple">
-<li><p><strong>Berapa jumlah cluster terbaik?</strong> — lihat kolom <code class="docutils literal notranslate"><span class="pre">k_terbaik</span> <span class="pre">(PCA)</span></code> dan <code class="docutils literal notranslate"><span class="pre">k_terbaik</span> <span class="pre">(68</span> <span class="pre">fitur)</span></code>. Apakah keduanya konsisten (menghasilkan k yang sama)?</p></li>
-<li><p><strong>Seberapa baik data ini bisa di-cluster?</strong> — gabungkan nilai <code class="docutils literal notranslate"><span class="pre">Hopkins</span></code> (kecenderungan cluster) dengan nilai <code class="docutils literal notranslate"><span class="pre">Silhouette</span></code> pada k terbaik (kekuatan pemisahan cluster yang terbentuk), lalu cocokkan ke tabel interpretasi di atas.</p></li>
-<li><p><strong>Apakah reduksi dimensi ke 37 komponen mengubah hasil dibanding 68 fitur asli?</strong> — Perhatikan juga catatan teknis di Bagian 6: untuk dataset dengan jumlah sampel &lt; 37 (CO dan SO2), jumlah komponen PCA otomatis dibatasi sebesar jumlah sampel. Karena itu, komponen PCA yang terbentuk pada kedua dataset ini pada dasarnya adalah <strong>rotasi penuh</strong> dari 68 fitur asli (variansi yang dijelaskan mendekati 100%) — bukan reduksi dimensi yang sesungguhnya menghilangkan informasi. Reduksi dimensi yang benar-benar mengurangi informasi (variansi dijelaskan &lt; 100%) baru relevan dibahas untuk dataset dengan jumlah sampel yang cukup besar (di sini paling mendekati adalah NO2 dengan 37 sampel).</p></li>
-</ol>
 </section>
 </section>
 
@@ -975,7 +981,7 @@ SO2: 35 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%  (DIBATASI da
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Deskripsi Fitur, Rumus, dan Contoh Perhitungan Manual</p>
+        <p class="prev-next-title">Deskripsi Fitur &amp; Perhitungan Manual</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
