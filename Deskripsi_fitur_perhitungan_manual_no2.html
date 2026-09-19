@@ -535,6 +535,10 @@ document.write(`
 </pre></div>
 </div>
 <p>Hasil manual (4.7078) <strong>cocok</strong> dengan hasil fungsi TSFEL asli. ✅</p>
+<p><strong>Nilai aktual pada dataset (<code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_no2.csv</span></code>, id=7, Okan Syailendra wahyudi, Manyar):</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{calc\_centroid} = 186.075084\]</div>
+<p>Nilai ini adalah hasil ekstraksi TSFEL yang sesungguhnya, dihitung dari data time series NO2 harian asli milik lokasi tersebut (bukan dari sinyal ilustrasi di atas). Karena data time series mentahnya tidak tersedia untuk kita, angka 186.075084 ini <strong>tidak bisa ditelusuri ulang secara manual</strong> — perhitungan manual pada sinyal ilustrasi di atas hanya untuk <strong>membuktikan rumus dan langkah perhitungan calc_centroid sudah benar</strong>, bukan untuk mereproduksi angka 186.075084 tersebut. Nilainya jauh lebih besar dari contoh ilustrasi karena signal asli kemungkinan memiliki satuan/skala waktu (jumlah hari dalam setahun, fs, dan skala konsentrasi NO2 dalam mol/m²) yang jauh berbeda dari sinyal contoh 8 titik di atas.</p>
 </section>
 <hr class="docutils" />
 <section id="fitur-2-calc-max-signal">
@@ -556,6 +560,10 @@ document.write(`
 </pre></div>
 </div>
 <p>Hasil manual (8.0) <strong>cocok</strong> dengan hasil fungsi TSFEL asli. ✅</p>
+<p><strong>Nilai aktual pada dataset (<code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_no2.csv</span></code>, id=7, Okan Syailendra wahyudi, Manyar):</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{calc\_max} = 0.000168\]</div>
+<p>Ini adalah nilai konsentrasi NO2 harian <strong>tertinggi</strong> yang benar-benar tercatat sepanjang periode pengamatan untuk lokasi Manyar (satuan mengikuti satuan data Sentinel-5P, mol/m²). Sama seperti fitur sebelumnya, angka ini berasal dari data mentah asli yang tidak kita miliki, sehingga tidak bisa dihitung ulang manual — perhitungan manual di atas hanya menunjukkan bahwa metode <code class="docutils literal notranslate"><span class="pre">calc_max</span></code> (mengambil nilai terbesar dari seluruh titik sinyal) sudah diterapkan dengan benar oleh pipeline ekstraksi.</p>
 </section>
 <hr class="docutils" />
 <section id="ringkasan">
@@ -564,17 +572,20 @@ document.write(`
 <thead>
 <tr class="row-odd"><th class="head"><p>Fitur</p></th>
 <th class="head"><p>Rumus Singkat</p></th>
-<th class="head"><p>Hasil (sinyal contoh)</p></th>
+<th class="head"><p>Hasil (sinyal ilustrasi)</p></th>
+<th class="head"><p>Nilai aktual di dataset (id=7)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">calc_centroid(signal,</span> <span class="pre">fs)</span></code></p></td>
 <td><p><span class="math notranslate nohighlight">\(\sum t_i x_i^2 / \sum x_i^2\)</span></p></td>
 <td><p>4.7078</p></td>
+<td><p>186.075084</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">calc_max(signal)</span></code></p></td>
 <td><p><span class="math notranslate nohighlight">\(\max(x)\)</span></p></td>
 <td><p>8.0</p></td>
+<td><p>0.000168</p></td>
 </tr>
 </tbody>
 </table>

@@ -59,6 +59,12 @@ F.calc_centroid(signal, fs)   # -> 4.7078
 
 Hasil manual (4.7078) **cocok** dengan hasil fungsi TSFEL asli. ✅
 
+**Nilai aktual pada dataset (`ekstraksi_fitur_no2.csv`, id=7, Okan Syailendra wahyudi, Manyar):**
+
+$$\text{calc\_centroid} = 186.075084$$
+
+Nilai ini adalah hasil ekstraksi TSFEL yang sesungguhnya, dihitung dari data time series NO2 harian asli milik lokasi tersebut (bukan dari sinyal ilustrasi di atas). Karena data time series mentahnya tidak tersedia untuk kita, angka 186.075084 ini **tidak bisa ditelusuri ulang secara manual** — perhitungan manual pada sinyal ilustrasi di atas hanya untuk **membuktikan rumus dan langkah perhitungan calc_centroid sudah benar**, bukan untuk mereproduksi angka 186.075084 tersebut. Nilainya jauh lebih besar dari contoh ilustrasi karena signal asli kemungkinan memiliki satuan/skala waktu (jumlah hari dalam setahun, fs, dan skala konsentrasi NO2 dalam mol/m²) yang jauh berbeda dari sinyal contoh 8 titik di atas.
+
 ---
 
 ## Fitur 2: `calc_max(signal)`
@@ -90,11 +96,17 @@ F.calc_max(signal)   # -> 8.0000
 
 Hasil manual (8.0) **cocok** dengan hasil fungsi TSFEL asli. ✅
 
+**Nilai aktual pada dataset (`ekstraksi_fitur_no2.csv`, id=7, Okan Syailendra wahyudi, Manyar):**
+
+$$\text{calc\_max} = 0.000168$$
+
+Ini adalah nilai konsentrasi NO2 harian **tertinggi** yang benar-benar tercatat sepanjang periode pengamatan untuk lokasi Manyar (satuan mengikuti satuan data Sentinel-5P, mol/m²). Sama seperti fitur sebelumnya, angka ini berasal dari data mentah asli yang tidak kita miliki, sehingga tidak bisa dihitung ulang manual — perhitungan manual di atas hanya menunjukkan bahwa metode `calc_max` (mengambil nilai terbesar dari seluruh titik sinyal) sudah diterapkan dengan benar oleh pipeline ekstraksi.
+
 ---
 
 ## Ringkasan
 
-| Fitur | Rumus Singkat | Hasil (sinyal contoh) |
-|---|---|---|
-| `calc_centroid(signal, fs)` | $\sum t_i x_i^2 / \sum x_i^2$ | 4.7078 |
-| `calc_max(signal)` | $\max(x)$ | 8.0 |
+| Fitur | Rumus Singkat | Hasil (sinyal ilustrasi) | Nilai aktual di dataset (id=7) |
+|---|---|---|---|
+| `calc_centroid(signal, fs)` | $\sum t_i x_i^2 / \sum x_i^2$ | 4.7078 | 186.075084 |
+| `calc_max(signal)` | $\max(x)$ | 8.0 | 0.000168 |
