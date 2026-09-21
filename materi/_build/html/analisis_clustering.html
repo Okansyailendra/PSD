@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'analisis_clustering';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Deskripsi Fitur &amp; Perhitungan Manual" href="Deskripsi_fitur_perhitungan_manual_no2.html" />
-    <link rel="prev" title="Ekstraksi_Fitur_SO2" href="Ekstraksi_Fitur_SO2.html" />
+    <link rel="next" title="Penjelasan Proses Clustering Menggunakan KNIME" href="penjelasan_clustering_knime.html" />
+    <link rel="prev" title="Analisis Clustering" href="clustering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -213,7 +213,11 @@
 
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Penentuan Jumlah Cluster Optimal pada K-Means Clustering</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="clustering.html">Analisis Clustering</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Analisis Penentuan Jumlah Cluster Optimal pada K-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="penjelasan_clustering_knime.html">Penjelasan Proses Clustering Menggunakan KNIME</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="Deskripsi_fitur_perhitungan_manual_no2.html">Deskripsi Fitur &amp; Perhitungan Manual</a></li>
 </ul>
 
@@ -450,9 +454,6 @@ document.write(`
 <li><p>Mengulangi seluruh analisis di atas menggunakan <strong>68 fitur asli (tanpa PCA)</strong> sebagai pembanding.</p></li>
 <li><p>Membandingkan hasil PCA (37) vs 68 fitur asli, untuk ketiga polutan: <strong>CO, NO2, SO2</strong>.</p></li>
 </ol>
-<blockquote>
-<div><p><strong>Catatan penting soal data:</strong> File yang dianalisis (<code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_co.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_no2.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_so2.csv</span></code>) adalah data <strong>yang sudah diekstrak fiturnya</strong> (68 fitur TSFEL per baris/lokasi). Notebook ini fokus pada tahap <strong>setelah ekstraksi fitur</strong>, yaitu reduksi dimensi dan clustering. Data time series mentah per lokasi tidak tersedia, sehingga eksplorasi time series dan pembuktian perhitungan manual fitur TSFEL tidak termasuk dalam notebook ini (dibahas terpisah bila data mentahnya tersedia).</p>
-</div></blockquote>
 </section>
 <section id="konsep-dasar">
 <h2>1. Konsep Dasar<a class="headerlink" href="#konsep-dasar" title="Link to this heading">#</a></h2>
@@ -968,20 +969,20 @@ SO2: 37 komponen PCA -&gt; variansi kumulatif dijelaskan = 100.00%
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Ekstraksi_Fitur_SO2.html"
+       href="clustering.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ekstraksi_Fitur_SO2</p>
+        <p class="prev-next-title">Analisis Clustering</p>
       </div>
     </a>
     <a class="right-next"
-       href="Deskripsi_fitur_perhitungan_manual_no2.html"
+       href="penjelasan_clustering_knime.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Deskripsi Fitur &amp; Perhitungan Manual</p>
+        <p class="prev-next-title">Penjelasan Proses Clustering Menggunakan KNIME</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
