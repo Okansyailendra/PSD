@@ -1,0 +1,38 @@
+sawah.shp: 57 poligon di file -> dipakai 50
+nonsawah.shp: 62 poligon di file -> dipakai 50
+BBox area (lon/lat): (112.58753, -7.17266, 112.6426, -7.12557)
+sentinel2a_aoi.tif sudah ada -> langkah unduh dilewati.
+Ukuran citra: 611 x 524 piksel | CRS: EPSG:32749 | piksel tanpa data: 2.1%
+Kelas 0 (non-sawah): 50 poligon terpakai, 3399 piksel bebas awan
+Kelas 1 (sawah): 50 poligon terpakai, 604 piksel bebas awan
+Poligon training: 70 | testing: 30
+Piksel training: 3121 | testing: 882
+
+Confusion matrix (baris=aktual, kolom=prediksi; urutan 0=non-sawah, 1=sawah):
+[[660   1]
+ [ 11 210]]
+Overall Accuracy : 0.9864
+Kappa            : 0.9632
+              precision    recall  f1-score   support
+
+   non-sawah      0.984     0.998     0.991       661
+       sawah      0.995     0.950     0.972       221
+
+    accuracy                          0.986       882
+   macro avg      0.989     0.974     0.982       882
+weighted avg      0.987     0.986     0.986       882
+
+Kepentingan fitur:
+  B12   0.264
+  B02   0.188
+  NDWI  0.160
+  NDVI  0.094
+  B11   0.073
+  EVI   0.072
+  NDBI  0.051
+  B04   0.038
+  B08   0.034
+  B03   0.027
+
+Luas sawah    : 969.7 ha
+Luas non-sawah: 2165.8 ha

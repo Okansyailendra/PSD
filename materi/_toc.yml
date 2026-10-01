@@ -4,20 +4,24 @@
 format: jb-book
 root: intro
 chapters:
-- file: polutan
+- file: Pemrosesan_Data/polutan
   sections:
-  - file: business_understanding
-  - file: data_understanding
-  - file: perhitungan
+  - file: Pemrosesan_Data/business_understanding
+  - file: Pemrosesan_Data/data_understanding
+  - file: Pemrosesan_Data/perhitungan
 - file: time_series
-- file: Data_Preparation
+- file: ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Data_Preparation
   sections:
-  - file: Ekstraksi_Fitur_NO2
-  - file: Ekstraksi_Fitur_CO
-  - file: Ekstraksi_Fitur_SO2
-- file: clustering
+  - file: ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_NO2
+  - file: ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_CO
+  - file: ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_SO2
+  - file: ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_NO2_Polinomial
+  - file: ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_CO_Polinomial
+  - file: ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_SO2_Polinomial
+  - file: ekstraksi_fitur_polynomial_dan_linier/Penggabungan_204_Fitur_Polutan
+- file: Clustering/clustering
   sections:
-  - file: analisis_clustering
-  - file: penjelasan_clustering_knime
+  - file: Clustering/analisis_clustering
+  - file: Clustering/penjelasan_clustering_knime
 
 - file: Deskripsi_fitur_perhitungan_manual_no2

@@ -37,22 +37,22 @@ Berikut adalah rincian konfigurasi untuk masing-masing node yang digunakan pada 
 Berikut adalah gambar dari masing-masing workflow dan hasil scatter plot untuk ketiga dataset polutan (NO2, SO2, dan CO). Pastikan gambar-gambar di bawah ini sudah disimpan di dalam folder `images` dengan nama yang sesuai.
 
 ### 1. Polutan NO2
-![Workflow NO2](images/workflow_1.png)
+![Workflow NO2](../images/workflow_1.png)
 *Gambar 1: Workflow KNIME untuk file CSV NO2.*
 
-![Scatter Plot NO2](images/scatter_plot_1.png)
+![Scatter Plot NO2](../images/scatter_plot_1.png)
 *Gambar 2: Hasil Scatter Plot untuk NO2 (Jalur atas dengan PCA / Jalur bawah tanpa PCA).*
 
 ### 2. Polutan SO2
-![Workflow SO2](images/workflow_2.png)
+![Workflow SO2](../images/workflow_2.png)
 *Gambar 3: Workflow KNIME untuk file CSV SO2.*
 
-![Scatter Plot SO2](images/scatter_plot_2.png)
+![Scatter Plot SO2](../images/scatter_plot_2.png)
 *Gambar 4: Hasil Scatter Plot untuk SO2.*
 
 ### 3. Polutan CO
-![Workflow CO](images/workflow_3.png)
+![Workflow CO](../images/workflow_3.png)
 *Gambar 5: Workflow KNIME untuk file CSV CO.*
 
-![Scatter Plot CO](images/scatter_plot_3.png)
+![Scatter Plot CO](../images/scatter_plot_3.png)
 *Gambar 6: Hasil Scatter Plot untuk CO.*

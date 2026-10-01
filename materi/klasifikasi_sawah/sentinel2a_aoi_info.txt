@@ -1,0 +1,8 @@
+Scene    : S2A_MSIL2A_20260713T024141_N0512_R089_T49MFN_20260713T071619.SAFE
+Akuisisi : 2026-07-13T03:00:01.845Z
+Awan tile: 4.0%
+Piksel valid di AOI: 97.9%
+CRS      : EPSG:32749
+Resolusi : 10 m
+Band     : B02, B03, B04, B08, B11, B12 (reflektansi 0-1)
+Masking awan (SCL): True
