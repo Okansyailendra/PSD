@@ -1,0 +1,1259 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tahap 3 — Eksperimen Clustering &amp; Analisis Silhouette &#8212; PSD - Materi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clustering_Segmentasi/03_Eksperimen_Clustering/eksperimen_clustering';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tahap 4 — Visualisasi Peta Segmentasi Wilayah" href="../04_Visualisasi_Peta/visualisasi_peta.html" />
+    <link rel="prev" title="Tahap 2 — Reduksi Dimensi: 204 → 203 → 74 → 37" href="../02_Reduksi_Dimensi/reduksi_dimensi.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/foto.webp" class="logo__image only-light" alt="PSD - Materi - Home"/>
+    <script>document.write(`<img src="../../_static/foto.webp" class="logo__image only-dark" alt="PSD - Materi - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Selamat Datang di Mata Kuliah Proyek Sains Data (PSD)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Pemrosesan_Data/polutan.html">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Pemrosesan_Data/business_understanding.html">1. Business Understanding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Pemrosesan_Data/data_understanding.html">2. Data Understanding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Pemrosesan_Data/perhitungan.html">3. Proses Crawling &amp; Pemrosesan Data</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../time_series.html">Analisis Time Series: Persiapan Data Polutan Manyar</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Data_Preparation.html">Data Preparation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_NO2.html">Ekstraksi_Fitur_NO2</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_CO.html">Ekstraksi_Fitur_CO</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_SO2.html">Ekstraksi_Fitur_SO2</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_NO2_Polinomial.html">Ekstraksi_Fitur_NO2 (Interpolasi Polinomial)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_CO_Polinomial.html">Ekstraksi_Fitur_CO (Interpolasi Polinomial)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_SO2_Polinomial.html">Ekstraksi_Fitur_SO2 (Interpolasi Polinomial)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/Penggabungan_204_Fitur_Polutan.html">Penggabungan Fitur 3 Polutan (204 Kolom)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Clustering/clustering.html">Analisis Clustering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Clustering/analisis_clustering.html">Analisis Penentuan Jumlah Cluster Optimal pada K-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Clustering/penjelasan_clustering_knime.html">Penjelasan Proses Clustering Menggunakan KNIME</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deskripsi_fitur_perhitungan_manual_no2.html">Deskripsi Fitur &amp; Perhitungan Manual</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../clustering_segmentasi.html">Analisis Clustering &amp; Segmentasi Wilayah Polutan</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_Data_dan_EDA/data_dan_eda.html">Tahap 1 — Pengambilan Data &amp; Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_Reduksi_Dimensi/reduksi_dimensi.html">Tahap 2 — Reduksi Dimensi: 204 → 203 → 74 → 37</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tahap 3 — Eksperimen Clustering &amp; Analisis Silhouette</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_Visualisasi_Peta/visualisasi_peta.html">Tahap 4 — Visualisasi Peta Segmentasi Wilayah</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClustering_Segmentasi/03_Eksperimen_Clustering/eksperimen_clustering.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Clustering_Segmentasi/03_Eksperimen_Clustering/eksperimen_clustering.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tahap 3 — Eksperimen Clustering & Analisis Silhouette</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-utama">Konsep Utama</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">K-Means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-coefficient">Silhouette Coefficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elbow-method">Elbow Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desain-eksperimen">Desain Eksperimen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-load-data-tahap-2">3.1 Import &amp; Load Data Tahap 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jalankan-72-eksperimen-clustering">3.2 Jalankan 72 Eksperimen Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-silhouette-score-vs-k-semua-dataset">3.3 Visualisasi Silhouette Score vs k (semua dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-perbandingan-pemilihan-konfigurasi-terbaik">3.4 Tabel Perbandingan &amp; Pemilihan Konfigurasi Terbaik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap-perbandingan-silhouette-semua-dimensi">3.5 Heatmap Perbandingan Silhouette — Semua Dimensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-plot-konfigurasi-terbaik">3.6 Silhouette Plot — Konfigurasi Terbaik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elbow-method-konfirmasi-k-terbaik">3.7 Elbow Method — Konfirmasi k Terbaik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-cluster-scatter-pca-2d">3.8 Distribusi Cluster &amp; Scatter PCA 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profil-cluster-heatmap-rata-rata-fitur">3.9 Profil Cluster — Heatmap Rata-rata Fitur</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tahap-3-eksperimen-clustering-analisis-silhouette">
+<h1>Tahap 3 — Eksperimen Clustering &amp; Analisis Silhouette<a class="headerlink" href="#tahap-3-eksperimen-clustering-analisis-silhouette" title="Link to this heading">#</a></h1>
+<p>Tahap ini adalah inti dari analisis: menjalankan <strong>K-Means clustering</strong> pada semua representasi data (8 variasi dari pipeline 204→203→74→37), mengevaluasi setiap kombinasi dengan <strong>Silhouette Coefficient</strong>, lalu memilih konfigurasi terbaik.</p>
+<hr class="docutils" />
+<section id="konsep-utama">
+<h2>Konsep Utama<a class="headerlink" href="#konsep-utama" title="Link to this heading">#</a></h2>
+<section id="k-means-clustering">
+<h3>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Link to this heading">#</a></h3>
+<p>K-Means mengelompokkan <span class="math notranslate nohighlight">\(n\)</span> titik data ke dalam <span class="math notranslate nohighlight">\(k\)</span> cluster dengan meminimalkan <strong>Within-Cluster Sum of Squares (WCSS)</strong>:</p>
+<div class="math notranslate nohighlight">
+\[J = \sum_{j=1}^{k} \sum_{x_i \in C_j} \|x_i - \mu_j\|^2\]</div>
+<p>di mana <span class="math notranslate nohighlight">\(\mu_j\)</span> adalah centroid cluster <span class="math notranslate nohighlight">\(C_j\)</span>.</p>
+<p><strong>Algoritma:</strong></p>
+<ol class="arabic simple">
+<li><p>Inisialisasi <span class="math notranslate nohighlight">\(k\)</span> centroid (metode <code class="docutils literal notranslate"><span class="pre">k-means++</span></code> untuk inisialisasi lebih cerdas)</p></li>
+<li><p>Tetapkan tiap titik ke centroid terdekat</p></li>
+<li><p>Perbarui centroid sebagai rata-rata cluster</p></li>
+<li><p>Ulangi 2–3 hingga konvergen</p></li>
+</ol>
+</section>
+<section id="silhouette-coefficient">
+<h3>Silhouette Coefficient<a class="headerlink" href="#silhouette-coefficient" title="Link to this heading">#</a></h3>
+<p>Untuk setiap titik data <span class="math notranslate nohighlight">\(i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[s(i) = \frac{b(i) - a(i)}{\max(a(i),\, b(i))} \in [-1, +1]\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a(i)\)</span> = jarak rata-rata ke semua titik <strong>dalam clusternya</strong> sendiri <em>(intra-cluster cohesion)</em></p></li>
+<li><p><span class="math notranslate nohighlight">\(b(i)\)</span> = jarak rata-rata ke semua titik <strong>di cluster terdekat</strong> <em>(inter-cluster separation)</em></p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Nilai</p></th>
+<th class="head text-left"><p>Interpretasi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>dekat <strong>+1</strong></p></td>
+<td class="text-left"><p>Titik berada jauh dari cluster lain → cluster sangat baik</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>dekat <strong>0</strong></p></td>
+<td class="text-left"><p>Titik berada di perbatasan dua cluster</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>dekat <strong>−1</strong></p></td>
+<td class="text-left"><p>Titik mungkin salah diklasifikasi</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="elbow-method">
+<h3>Elbow Method<a class="headerlink" href="#elbow-method" title="Link to this heading">#</a></h3>
+<p>Grafik <strong>Inertia vs k</strong> — mencari titik ‘siku’ di mana penambahan cluster tidak lagi menurunkan inertia secara signifikan. Digunakan bersama Silhouette untuk konfirmasi.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="desain-eksperimen">
+<h2>Desain Eksperimen<a class="headerlink" href="#desain-eksperimen" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Parameter</p></th>
+<th class="head text-left"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Dataset</p></td>
+<td class="text-left"><p>8 (Linear &amp; Poly × 204, 203, 74, 37 dimensi)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Nilai <em>k</em></p></td>
+<td class="text-left"><p>2, 3, 4, 5, 6, 7, 8, 9, 10</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Total run</p></td>
+<td class="text-left"><p><strong>72 kombinasi</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Algoritma</p></td>
+<td class="text-left"><p>K-Means (<code class="docutils literal notranslate"><span class="pre">n_init=20</span></code>, <code class="docutils literal notranslate"><span class="pre">random_state=42</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Metrik</p></td>
+<td class="text-left"><p>Silhouette Score + Inertia</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="import-load-data-tahap-2">
+<h2>3.1 Import &amp; Load Data Tahap 2<a class="headerlink" href="#import-load-data-tahap-2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.cm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span><span class="p">,</span> <span class="n">silhouette_samples</span>
+
+<span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="s1">&#39;../output&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
+
+<span class="c1"># ── Load data dari Tahap 2 ───────────────────────────────────</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/tahap2_pca.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">representasi</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;representasi&#39;</span><span class="p">]</span>
+<span class="n">meta_linear</span>  <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;meta_linear&#39;</span><span class="p">]</span>
+<span class="n">meta_poly</span>    <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;meta_poly&#39;</span><span class="p">]</span>
+<span class="n">X_linear</span>     <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;X_linear&#39;</span><span class="p">]</span>
+<span class="n">X_poly</span>       <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;X_poly&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data berhasil dimuat.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Total representasi : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">representasi</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Representasi yang tersedia:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">nama</span><span class="p">,</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">representasi</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  </span><span class="si">{</span><span class="n">nama</span><span class="si">:</span><span class="s1">&lt;15</span><span class="si">}</span><span class="s1"> → shape: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data berhasil dimuat.
+Total representasi : 8
+
+Representasi yang tersedia:
+  Linear-204      → shape: (37, 204)
+  Linear-203      → shape: (37, 203)
+  Linear-74       → shape: (37, 74)
+  Linear-37       → shape: (37, 37)
+  Poly-204        → shape: (37, 204)
+  Poly-203        → shape: (37, 203)
+  Poly-74         → shape: (37, 74)
+  Poly-37         → shape: (37, 37)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="jalankan-72-eksperimen-clustering">
+<h2>3.2 Jalankan 72 Eksperimen Clustering<a class="headerlink" href="#jalankan-72-eksperimen-clustering" title="Link to this heading">#</a></h2>
+<p>Kita menguji semua kombinasi: <strong>8 representasi × 9 nilai k</strong> = 72 eksperimen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Parameter eksperimen ─────────────────────────────────────</span>
+<span class="n">K_RANGE</span>      <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>   <span class="c1"># k dari 2 sampai 10</span>
+<span class="n">N_INIT</span>       <span class="o">=</span> <span class="mi">20</span>             <span class="c1"># Lebih banyak inisialisasi → lebih stabil</span>
+<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="n">hasil</span> <span class="o">=</span> <span class="p">[]</span>        <span class="c1"># Kumpulkan semua hasil</span>
+<span class="n">labels_map</span> <span class="o">=</span> <span class="p">{}</span>   <span class="c1"># Simpan label untuk setiap (dataset, k)</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">representasi</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">K_RANGE</span><span class="p">)</span>
+<span class="n">run</span>   <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Menjalankan </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s1"> eksperimen...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">nama_data</span><span class="p">,</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">representasi</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">best_sil</span><span class="p">,</span> <span class="n">best_k</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K_RANGE</span><span class="p">:</span>
+        <span class="n">run</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">km</span>     <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="n">N_INIT</span><span class="p">,</span>
+                        <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">sil</span>    <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="n">iner</span>   <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">inertia_</span>
+
+        <span class="n">labels_map</span><span class="p">[(</span><span class="n">nama_data</span><span class="p">,</span> <span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="n">hasil</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;dataset&#39;</span>   <span class="p">:</span> <span class="n">nama_data</span><span class="p">,</span>
+            <span class="s1">&#39;k&#39;</span>         <span class="p">:</span> <span class="n">k</span><span class="p">,</span>
+            <span class="s1">&#39;silhouette&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">sil</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+            <span class="s1">&#39;inertia&#39;</span>   <span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">iner</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="p">})</span>
+        <span class="k">if</span> <span class="n">sil</span> <span class="o">&gt;</span> <span class="n">best_sil</span><span class="p">:</span>
+            <span class="n">best_sil</span><span class="p">,</span> <span class="n">best_k</span> <span class="o">=</span> <span class="n">sil</span><span class="p">,</span> <span class="n">k</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  </span><span class="si">{</span><span class="n">nama_data</span><span class="si">:</span><span class="s1">&lt;15</span><span class="si">}</span><span class="s1">  k_terbaik = </span><span class="si">{</span><span class="n">best_k</span><span class="si">}</span><span class="s1">   silhouette = </span><span class="si">{</span><span class="n">best_sil</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">df_hasil</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">hasil</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Selesai! Total </span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s1"> eksperimen dijalankan.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Menjalankan 72 eksperimen...
+=================================================================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Linear-204       k_terbaik = 2   silhouette = 0.4909
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Linear-203       k_terbaik = 2   silhouette = 0.4909
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Linear-74        k_terbaik = 2   silhouette = 0.4021
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Linear-37        k_terbaik = 2   silhouette = 0.4021
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Poly-204         k_terbaik = 2   silhouette = 0.5375
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Poly-203         k_terbaik = 2   silhouette = 0.5375
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Poly-74          k_terbaik = 3   silhouette = 0.4543
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Poly-37          k_terbaik = 3   silhouette = 0.4543
+
+Selesai! Total 72 eksperimen dijalankan.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualisasi-silhouette-score-vs-k-semua-dataset">
+<h2>3.3 Visualisasi Silhouette Score vs k (semua dataset)<a class="headerlink" href="#visualisasi-silhouette-score-vs-k-semua-dataset" title="Link to this heading">#</a></h2>
+<p>Tiap subplot menampilkan kurva Silhouette untuk satu representasi data. Titik <strong>bintang emas</strong> menandai nilai k terbaik.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Warna per dataset ─────────────────────────────────────────</span>
+<span class="n">PALETTE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Linear-204&#39;</span><span class="p">:</span> <span class="s1">&#39;#0D47A1&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear-203&#39;</span><span class="p">:</span> <span class="s1">&#39;#1565C0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Linear-74&#39;</span> <span class="p">:</span> <span class="s1">&#39;#1976D2&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear-37&#39;</span> <span class="p">:</span> <span class="s1">&#39;#90CAF9&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Poly-204&#39;</span>  <span class="p">:</span> <span class="s1">&#39;#B71C1C&#39;</span><span class="p">,</span> <span class="s1">&#39;Poly-203&#39;</span>  <span class="p">:</span> <span class="s1">&#39;#C62828&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Poly-74&#39;</span>   <span class="p">:</span> <span class="s1">&#39;#E53935&#39;</span><span class="p">,</span> <span class="s1">&#39;Poly-37&#39;</span>   <span class="p">:</span> <span class="s1">&#39;#FFCDD2&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">nama_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">representasi</span><span class="p">):</span>
+    <span class="n">sub</span>   <span class="o">=</span> <span class="n">df_hasil</span><span class="p">[</span><span class="n">df_hasil</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">nama_data</span><span class="p">]</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">PALETTE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nama_data</span><span class="p">,</span> <span class="s1">&#39;#555555&#39;</span><span class="p">)</span>
+    <span class="n">ax</span>    <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">sub</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">],</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">sub</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="c1"># Tandai titik terbaik</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">best</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">best</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">280</span><span class="p">,</span>
+               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+               <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;k=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">best</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">])</span><span class="si">}</span><span class="s1"> (terbaik)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  k=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">best</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">])</span><span class="si">}</span><span class="se">\n</span><span class="s2">  sil=</span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">best</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">best</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+                <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">nama_data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (k)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">K_RANGE</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Silhouette Score vs Jumlah Cluster (k)</span><span class="se">\n</span><span class="s1">untuk 8 Representasi Data (Pipeline 204→203→74→37)&#39;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/07_silhouette_semua.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gambar disimpan: output/07_silhouette_semua.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3c371383c65fddd8022e25c524f56b70e713e462e94e7d0e69ba2d50b71f6574.png" src="../../_images/3c371383c65fddd8022e25c524f56b70e713e462e94e7d0e69ba2d50b71f6574.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gambar disimpan: output/07_silhouette_semua.png
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tabel-perbandingan-pemilihan-konfigurasi-terbaik">
+<h2>3.4 Tabel Perbandingan &amp; Pemilihan Konfigurasi Terbaik<a class="headerlink" href="#tabel-perbandingan-pemilihan-konfigurasi-terbaik" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Tabel ringkasan best k per dataset ───────────────────────</span>
+<span class="n">ringkasan</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_hasil</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">g</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()])</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">[[</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;silhouette&#39;</span><span class="p">,</span> <span class="s1">&#39;inertia&#39;</span><span class="p">]]</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;silhouette&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">ringkasan</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">ringkasan</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;k Terbaik&#39;</span><span class="p">,</span> <span class="s1">&#39;Silhouette&#39;</span><span class="p">,</span> <span class="s1">&#39;Inertia&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PERBANDINGAN KONFIGURASI TERBAIK TIAP DATASET:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ringkasan</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="n">ringkasan</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/ringkasan_eksperimen.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── Pilih GLOBAL TERBAIK ──────────────────────────────────────</span>
+<span class="n">best_row</span> <span class="o">=</span> <span class="n">df_hasil</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_hasil</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+<span class="n">BEST_DATASET</span> <span class="o">=</span> <span class="n">best_row</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span>
+<span class="n">BEST_K</span>       <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">best_row</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">])</span>
+<span class="n">BEST_SIL</span>     <span class="o">=</span> <span class="n">best_row</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span>
+<span class="n">BEST_LABELS</span>  <span class="o">=</span> <span class="n">labels_map</span><span class="p">[(</span><span class="n">BEST_DATASET</span><span class="p">,</span> <span class="n">BEST_K</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&gt;&gt; KONFIGURASI TERBAIK GLOBAL:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Dataset    : </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   k (cluster): </span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Silhouette : </span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PERBANDINGAN KONFIGURASI TERBAIK TIAP DATASET:
+=================================================================
+      Dataset  k Terbaik  Silhouette    Inertia
+1    Poly-203          2    0.537546  5450.8166
+2    Poly-204          2    0.537546  5450.8166
+3  Linear-204          2    0.490860  5442.2698
+4  Linear-203          2    0.490860  5442.2698
+5     Poly-74          3    0.454321  1968.6162
+6     Poly-37          3    0.454321  1968.6162
+7   Linear-37          2    0.402139  2226.9717
+8   Linear-74          2    0.402139  2226.9717
+
+&gt;&gt; KONFIGURASI TERBAIK GLOBAL:
+   Dataset    : Poly-204
+   k (cluster): 2
+   Silhouette : 0.5375
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="heatmap-perbandingan-silhouette-semua-dimensi">
+<h2>3.5 Heatmap Perbandingan Silhouette — Semua Dimensi<a class="headerlink" href="#heatmap-perbandingan-silhouette-semua-dimensi" title="Link to this heading">#</a></h2>
+<p>Heatmap ini merangkum seluruh 72 eksperimen dalam satu visualisasi. Baris = dataset, Kolom = k.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Heatmap Silhouette Score ──────────────────────────────────</span>
+<span class="n">pivot</span> <span class="o">=</span> <span class="n">df_hasil</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;silhouette&#39;</span><span class="p">)</span>
+
+<span class="c1"># Urutkan baris sesuai urutan pipeline</span>
+<span class="n">urutan</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Linear-204&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear-203&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear-74&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear-37&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Poly-204&#39;</span><span class="p">,</span>   <span class="s1">&#39;Poly-203&#39;</span><span class="p">,</span>   <span class="s1">&#39;Poly-74&#39;</span><span class="p">,</span>   <span class="s1">&#39;Poly-37&#39;</span><span class="p">]</span>
+<span class="n">pivot</span> <span class="o">=</span> <span class="n">pivot</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="n">u</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">urutan</span> <span class="k">if</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">pivot</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">pivot</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.3f&#39;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdYlGn&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Silhouette Score&#39;</span><span class="p">,</span> <span class="s1">&#39;shrink&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Tandai sel terbaik</span>
+<span class="n">best_row_idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pivot</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">BEST_DATASET</span><span class="p">)</span>
+<span class="n">best_col_idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pivot</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">BEST_K</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">best_col_idx</span><span class="p">,</span> <span class="n">best_row_idx</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                             <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Heatmap Silhouette Score — 8 Dataset × 9 Nilai k</span><span class="se">\n</span><span class="s1">&#39;</span>
+             <span class="sa">f</span><span class="s1">&#39;[Kotak emas = konfigurasi terbaik: </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">, k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">, sil=</span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (k)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Dataset&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/07b_heatmap_silhouette.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gambar disimpan: output/07b_heatmap_silhouette.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/313c345bfec6087a3f8888c749a91e1dcb26ebd488cc4baa597010c06ba6536d.png" src="../../_images/313c345bfec6087a3f8888c749a91e1dcb26ebd488cc4baa597010c06ba6536d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gambar disimpan: output/07b_heatmap_silhouette.png
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="silhouette-plot-konfigurasi-terbaik">
+<h2>3.6 Silhouette Plot — Konfigurasi Terbaik<a class="headerlink" href="#silhouette-plot-konfigurasi-terbaik" title="Link to this heading">#</a></h2>
+<p>Silhouette plot menampilkan nilai silhouette <strong>per sampel</strong> dalam setiap cluster, diurutkan dari terbesar ke terkecil. Visualisasi ini mengungkap:</p>
+<ul class="simple">
+<li><p>Seberapa konsisten tiap cluster (lebar/homogenitas tiap blok)</p></li>
+<li><p>Apakah ada sampel yang “salah masuk” cluster (nilai negatif)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Silhouette Plot ───────────────────────────────────────────</span>
+<span class="n">X_best</span>     <span class="o">=</span> <span class="n">representasi</span><span class="p">[</span><span class="n">BEST_DATASET</span><span class="p">]</span>
+<span class="n">sil_vals</span>   <span class="o">=</span> <span class="n">silhouette_samples</span><span class="p">(</span><span class="n">X_best</span><span class="p">,</span> <span class="n">BEST_LABELS</span><span class="p">)</span>
+<span class="n">colors_tab</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">tab10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">BEST_K</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">y_lower</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">BEST_K</span><span class="p">):</span>
+    <span class="n">vals_i</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">sil_vals</span><span class="p">[</span><span class="n">BEST_LABELS</span> <span class="o">==</span> <span class="n">i</span><span class="p">])</span>
+    <span class="n">size_i</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals_i</span><span class="p">)</span>
+    <span class="n">y_upper</span> <span class="o">=</span> <span class="n">y_lower</span> <span class="o">+</span> <span class="n">size_i</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_betweenx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_lower</span><span class="p">,</span> <span class="n">y_upper</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">vals_i</span><span class="p">,</span>
+                     <span class="n">facecolor</span><span class="o">=</span><span class="n">colors_tab</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">y_lower</span> <span class="o">+</span> <span class="n">size_i</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s1">&#39;C</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">size_i</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">y_lower</span> <span class="o">=</span> <span class="n">y_upper</span> <span class="o">+</span> <span class="mi">8</span>
+
+<span class="c1"># Garis rata-rata</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">BEST_SIL</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;crimson&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Rata-rata = </span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Coefficient&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Sampel (per cluster)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Silhouette Plot — </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">, k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+             <span class="sa">f</span><span class="s1">&#39;Silhouette Score = </span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span><span class="s1">&#39;right&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/08_silhouette_plot.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gambar disimpan: output/08_silhouette_plot.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/46953886205793e2dc335268d1099fc1f5ec2295668757c668496f486e4d76d1.png" src="../../_images/46953886205793e2dc335268d1099fc1f5ec2295668757c668496f486e4d76d1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gambar disimpan: output/08_silhouette_plot.png
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="elbow-method-konfirmasi-k-terbaik">
+<h2>3.7 Elbow Method — Konfirmasi k Terbaik<a class="headerlink" href="#elbow-method-konfirmasi-k-terbaik" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Elbow Method ─────────────────────────────────────────────</span>
+<span class="n">sub_best</span> <span class="o">=</span> <span class="n">df_hasil</span><span class="p">[</span><span class="n">df_hasil</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">BEST_DATASET</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Elbow (Inertia)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sub_best</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">sub_best</span><span class="p">[</span><span class="s1">&#39;inertia&#39;</span><span class="p">],</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1565C0&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">sub_best</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">sub_best</span><span class="p">[</span><span class="s1">&#39;inertia&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1565C0&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">BEST_K</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;crimson&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1"> (terpilih)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Elbow Method (Inertia)</span><span class="se">\n</span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (k)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Inertia (WCSS)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">K_RANGE</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span><span class="s1">&#39;right&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Silhouette</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sub_best</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">sub_best</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">],</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#B71C1C&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">sub_best</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">sub_best</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#B71C1C&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">BEST_K</span><span class="p">,</span> <span class="n">BEST_SIL</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span>
+           <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;#B71C1C&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">: sil=</span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Silhouette Score</span><span class="se">\n</span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (k)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">K_RANGE</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span><span class="s1">&#39;right&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Elbow Method &amp; Silhouette — Konfirmasi k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/09_elbow_silhouette.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eea654cfb1ef7b8952e31e06035cba8dd268bf94119722636baabbd5d5b50bac.png" src="../../_images/eea654cfb1ef7b8952e31e06035cba8dd268bf94119722636baabbd5d5b50bac.png" />
+</div>
+</div>
+</section>
+<section id="distribusi-cluster-scatter-pca-2d">
+<h2>3.8 Distribusi Cluster &amp; Scatter PCA 2D<a class="headerlink" href="#distribusi-cluster-scatter-pca-2d" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Scatter PCA 2D + Pie Chart ───────────────────────────────</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span> <span class="k">as</span> <span class="n">PCA_viz</span>
+
+<span class="n">CLUSTER_COLORS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;#E53935&#39;</span><span class="p">,</span><span class="s1">&#39;#1E88E5&#39;</span><span class="p">,</span><span class="s1">&#39;#43A047&#39;</span><span class="p">,</span><span class="s1">&#39;#FB8C00&#39;</span><span class="p">,</span><span class="s1">&#39;#8E24AA&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;#00ACC1&#39;</span><span class="p">,</span><span class="s1">&#39;#F06292&#39;</span><span class="p">,</span><span class="s1">&#39;#FDD835&#39;</span><span class="p">,</span><span class="s1">&#39;#6D4C41&#39;</span><span class="p">,</span><span class="s1">&#39;#78909C&#39;</span>
+<span class="p">]</span>
+
+<span class="n">pca2d</span>  <span class="o">=</span> <span class="n">PCA_viz</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_viz</span>  <span class="o">=</span> <span class="n">pca2d</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_best</span><span class="p">)</span>
+
+<span class="n">meta_best</span> <span class="o">=</span> <span class="n">meta_linear</span> <span class="k">if</span> <span class="s1">&#39;Linear&#39;</span> <span class="ow">in</span> <span class="n">BEST_DATASET</span> <span class="k">else</span> <span class="n">meta_poly</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Scatter</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">BEST_K</span><span class="p">):</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">BEST_LABELS</span> <span class="o">==</span> <span class="n">c</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_viz</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_viz</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span>
+               <span class="n">color</span><span class="o">=</span><span class="n">CLUSTER_COLORS</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+               <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">label_txt</span> <span class="o">=</span> <span class="n">meta_best</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">12</span><span class="p">]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">label_txt</span><span class="p">,</span>
+                    <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">X_viz</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_viz</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
+                    <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#333&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Proyeksi PCA 2D — Hasil Clustering</span><span class="se">\n</span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">, k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PC1 (</span><span class="si">{</span><span class="n">pca2d</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1"> variansi)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PC2 (</span><span class="si">{</span><span class="n">pca2d</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1"> variansi)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span><span class="s1">&#39;right&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Pie</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">uniq</span><span class="p">,</span> <span class="n">cnts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">BEST_LABELS</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">cnts</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> wilayah)&#39;</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">uniq</span><span class="p">,</span><span class="n">cnts</span><span class="p">)],</span>
+        <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="n">CLUSTER_COLORS</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">uniq</span><span class="p">],</span>
+        <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+        <span class="n">wedgeprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">textprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distribusi 37 Wilayah per Cluster</span><span class="se">\n</span><span class="s1">(k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>
+              <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Visualisasi Hasil Clustering Terbaik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/10_scatter_cluster.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/990dacb888fac0868df5597b51eb657db1c7b822e1d7ffce8e345a8f0786aab8.png" src="../../_images/990dacb888fac0868df5597b51eb657db1c7b822e1d7ffce8e345a8f0786aab8.png" />
+</div>
+</div>
+</section>
+<section id="profil-cluster-heatmap-rata-rata-fitur">
+<h2>3.9 Profil Cluster — Heatmap Rata-rata Fitur<a class="headerlink" href="#profil-cluster-heatmap-rata-rata-fitur" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Profil rata-rata fitur kunci per cluster ──────────────────</span>
+<span class="n">X_raw</span> <span class="o">=</span> <span class="n">X_linear</span> <span class="k">if</span> <span class="s1">&#39;Linear&#39;</span> <span class="ow">in</span> <span class="n">BEST_DATASET</span> <span class="k">else</span> <span class="n">X_poly</span>
+<span class="n">key_cols</span><span class="p">,</span> <span class="n">key_labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">pol</span><span class="p">,</span> <span class="n">pol_lbl</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;no2&#39;</span><span class="p">,</span><span class="s1">&#39;NO₂&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;so2&#39;</span><span class="p">,</span><span class="s1">&#39;SO₂&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;co&#39;</span><span class="p">,</span><span class="s1">&#39;CO&#39;</span><span class="p">)]:</span>
+    <span class="k">for</span> <span class="n">feat</span><span class="p">,</span> <span class="n">feat_lbl</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;calc_mean&#39;</span><span class="p">,</span><span class="s1">&#39;Mean&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;calc_std&#39;</span><span class="p">,</span><span class="s1">&#39;Std&#39;</span><span class="p">),</span>
+                            <span class="p">(</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span><span class="s1">&#39;Entropy&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;skewness&#39;</span><span class="p">,</span><span class="s1">&#39;Skewness&#39;</span><span class="p">)]:</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pol</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">feat</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_raw</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">key_cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+            <span class="n">key_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pol_lbl</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">feat_lbl</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">df_profil</span> <span class="o">=</span> <span class="n">X_raw</span><span class="p">[</span><span class="n">key_cols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_profil</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BEST_LABELS</span>
+<span class="n">profil</span> <span class="o">=</span> <span class="n">df_profil</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cluster&#39;</span><span class="p">)[</span><span class="n">key_cols</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Normalisasi 0-1 per fitur (agar warna dapat dibandingkan)</span>
+<span class="n">profil_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">profil</span> <span class="o">-</span> <span class="n">profil</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">profil</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">profil</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">profil_norm</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">annot</span><span class="o">=</span><span class="n">profil</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>   <span class="c1"># Tampilkan nilai asli, bukan normalisasi</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.3f&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;YlOrRd&#39;</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">profil</span><span class="o">.</span><span class="n">index</span><span class="p">],</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">key_labels</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Nilai Ternormalisasi (0→1)&#39;</span><span class="p">,</span> <span class="s1">&#39;shrink&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Profil Polutan per Cluster — </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">, k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+             <span class="sa">f</span><span class="s1">&#39;(Nilai di sel = rata-rata asli, warna = nilai normalisasi)&#39;</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Cluster&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Fitur Polutan&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/11_profil_cluster.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gambar disimpan: output/11_profil_cluster.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e5d721c21100501063f9d730bbeb3c50a5f4d3227d623dcc0b8064c1ef819681.png" src="../../_images/e5d721c21100501063f9d730bbeb3c50a5f4d3227d623dcc0b8064c1ef819681.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gambar disimpan: output/11_profil_cluster.png
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Simpan hasil untuk Tahap 4 ────────────────────────────────</span>
+<span class="n">save_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;BEST_DATASET&#39;</span> <span class="p">:</span> <span class="n">BEST_DATASET</span><span class="p">,</span>
+    <span class="s1">&#39;BEST_K&#39;</span>       <span class="p">:</span> <span class="n">BEST_K</span><span class="p">,</span>
+    <span class="s1">&#39;BEST_SIL&#39;</span>     <span class="p">:</span> <span class="n">BEST_SIL</span><span class="p">,</span>
+    <span class="s1">&#39;BEST_LABELS&#39;</span>  <span class="p">:</span> <span class="n">BEST_LABELS</span><span class="p">,</span>
+    <span class="s1">&#39;CLUSTER_COLORS&#39;</span><span class="p">:</span> <span class="n">CLUSTER_COLORS</span><span class="p">,</span>
+    <span class="s1">&#39;meta_linear&#39;</span>  <span class="p">:</span> <span class="n">meta_linear</span><span class="p">,</span>
+    <span class="s1">&#39;meta_poly&#39;</span>    <span class="p">:</span> <span class="n">meta_poly</span><span class="p">,</span>
+    <span class="s1">&#39;X_linear&#39;</span>     <span class="p">:</span> <span class="n">X_linear</span><span class="p">,</span>
+    <span class="s1">&#39;X_poly&#39;</span>       <span class="p">:</span> <span class="n">X_poly</span><span class="p">,</span>
+    <span class="s1">&#39;df_hasil&#39;</span>     <span class="p">:</span> <span class="n">df_hasil</span><span class="p">,</span>
+    <span class="s1">&#39;ringkasan&#39;</span>    <span class="p">:</span> <span class="n">ringkasan</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">save_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/tahap3_clustering.pkl&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">save_data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hasil clustering disimpan: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ukuran file               : </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> KB&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Distribusi wilayah per cluster:&#39;</span><span class="p">)</span>
+<span class="n">meta_best2</span> <span class="o">=</span> <span class="n">meta_linear</span> <span class="k">if</span> <span class="s1">&#39;Linear&#39;</span> <span class="ow">in</span> <span class="n">BEST_DATASET</span> <span class="k">else</span> <span class="n">meta_poly</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">BEST_K</span><span class="p">):</span>
+    <span class="n">wil</span> <span class="o">=</span> <span class="n">meta_best2</span><span class="p">[</span><span class="n">BEST_LABELS</span> <span class="o">==</span> <span class="n">c</span><span class="p">][</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">wil</span><span class="p">)</span><span class="si">}</span><span class="s1"> wilayah): </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wil</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">→ Lanjut ke Tahap 4: Visualisasi Peta Segmentasi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hasil clustering disimpan: C:\Users\OKAN\OneDrive\Dokumen\PSD\materi\Clustering_Segmentasi\output\tahap3_clustering.pkl
+Ukuran file               : 134.4 KB
+
+Distribusi wilayah per cluster:
+  Cluster 0 (35 wilayah): Baron Nganjuk, Nunukan, Sreseh, Sampang, Manyar, Gresik, Kamal, Bangkalan, Kedungpring Lamongan, Gresik Kota, Gresik, Waru, Pamekasan, Paciran, Lamongan, Kertosono, Nganjuk, Menganti, Gresik, Bandung - Jogoroto, Jombang, Banyu Ajuh, Perumnas, Kamal, Widang, Tuban, Kwanyar, Bangkalan, sambeng, lamongan, Kec. Kalianget, Sumenep, Cerme, Gresik, Tikala, Manado, Kerek, Tuban, Kwanyar, Bangkalan, Wonokromo, Surabaya, Asemrowo, Surabaya, Kota Sumenep, Sumenep, Socah, Bangkalan, Pilangkenceng, Madiun, Tanah Merah, Bangkalan, Labang, Bangkalan, Widodaren, Ngawi, Bangkalan, Bangkalan, Warudoyong, Kota Sukabumi, Kamal, Bangkalan, Banyuajuh kamal, Bangkalan, Dukun, Gresik, Kecamatan Bangkalan,Bangkalan
+  Cluster 1 (2 wilayah): Jabon, Sidoarjo, Sidoarjo, Wonoayu
+
+→ Lanjut ke Tahap 4: Visualisasi Peta Segmentasi
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Clustering_Segmentasi\03_Eksperimen_Clustering"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02_Reduksi_Dimensi/reduksi_dimensi.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tahap 2 — Reduksi Dimensi: 204 → 203 → 74 → 37</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../04_Visualisasi_Peta/visualisasi_peta.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tahap 4 — Visualisasi Peta Segmentasi Wilayah</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-utama">Konsep Utama</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">K-Means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-coefficient">Silhouette Coefficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elbow-method">Elbow Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desain-eksperimen">Desain Eksperimen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-load-data-tahap-2">3.1 Import &amp; Load Data Tahap 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jalankan-72-eksperimen-clustering">3.2 Jalankan 72 Eksperimen Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-silhouette-score-vs-k-semua-dataset">3.3 Visualisasi Silhouette Score vs k (semua dataset)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-perbandingan-pemilihan-konfigurasi-terbaik">3.4 Tabel Perbandingan &amp; Pemilihan Konfigurasi Terbaik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap-perbandingan-silhouette-semua-dimensi">3.5 Heatmap Perbandingan Silhouette — Semua Dimensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-plot-konfigurasi-terbaik">3.6 Silhouette Plot — Konfigurasi Terbaik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elbow-method-konfirmasi-k-terbaik">3.7 Elbow Method — Konfirmasi k Terbaik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-cluster-scatter-pca-2d">3.8 Distribusi Cluster &amp; Scatter PCA 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profil-cluster-heatmap-rata-rata-fitur">3.9 Profil Cluster — Heatmap Rata-rata Fitur</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Okan Syailendra Wahyudi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

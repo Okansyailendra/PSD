@@ -1,0 +1,1153 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tahap 1 — Pengambilan Data &amp; Exploratory Data Analysis (EDA) &#8212; PSD - Materi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clustering_Segmentasi/01_Data_dan_EDA/data_dan_eda';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tahap 2 — Reduksi Dimensi: 204 → 203 → 74 → 37" href="../02_Reduksi_Dimensi/reduksi_dimensi.html" />
+    <link rel="prev" title="Analisis Clustering &amp; Segmentasi Wilayah Polutan" href="../clustering_segmentasi.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/foto.webp" class="logo__image only-light" alt="PSD - Materi - Home"/>
+    <script>document.write(`<img src="../../_static/foto.webp" class="logo__image only-dark" alt="PSD - Materi - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Selamat Datang di Mata Kuliah Proyek Sains Data (PSD)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Pemrosesan_Data/polutan.html">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Pemrosesan_Data/business_understanding.html">1. Business Understanding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Pemrosesan_Data/data_understanding.html">2. Data Understanding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Pemrosesan_Data/perhitungan.html">3. Proses Crawling &amp; Pemrosesan Data</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../time_series.html">Analisis Time Series: Persiapan Data Polutan Manyar</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Data_Preparation.html">Data Preparation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_NO2.html">Ekstraksi_Fitur_NO2</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_CO.html">Ekstraksi_Fitur_CO</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_SO2.html">Ekstraksi_Fitur_SO2</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_NO2_Polinomial.html">Ekstraksi_Fitur_NO2 (Interpolasi Polinomial)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_CO_Polinomial.html">Ekstraksi_Fitur_CO (Interpolasi Polinomial)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_SO2_Polinomial.html">Ekstraksi_Fitur_SO2 (Interpolasi Polinomial)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../ekstraksi_fitur_polynomial_dan_linier/Penggabungan_204_Fitur_Polutan.html">Penggabungan Fitur 3 Polutan (204 Kolom)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Clustering/clustering.html">Analisis Clustering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Clustering/analisis_clustering.html">Analisis Penentuan Jumlah Cluster Optimal pada K-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Clustering/penjelasan_clustering_knime.html">Penjelasan Proses Clustering Menggunakan KNIME</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deskripsi_fitur_perhitungan_manual_no2.html">Deskripsi Fitur &amp; Perhitungan Manual</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../clustering_segmentasi.html">Analisis Clustering &amp; Segmentasi Wilayah Polutan</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tahap 1 — Pengambilan Data &amp; Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_Reduksi_Dimensi/reduksi_dimensi.html">Tahap 2 — Reduksi Dimensi: 204 → 203 → 74 → 37</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_Eksperimen_Clustering/eksperimen_clustering.html">Tahap 3 — Eksperimen Clustering &amp; Analisis Silhouette</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_Visualisasi_Peta/visualisasi_peta.html">Tahap 4 — Visualisasi Peta Segmentasi Wilayah</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClustering_Segmentasi/01_Data_dan_EDA/data_dan_eda.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Clustering_Segmentasi/01_Data_dan_EDA/data_dan_eda.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tahap 1 — Pengambilan Data & Exploratory Data Analysis (EDA)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-konfigurasi">1.1 Import Library &amp; Konfigurasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-dan-pengambilan-data">1.2 Koneksi dan Pengambilan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemisahan-metadata-dan-fitur-numerik">1.3 Pemisahan Metadata dan Fitur Numerik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values">1.4 Penanganan Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif">1.5 Statistik Deskriptif</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-distribusi-fitur-per-polutan">1.6 Visualisasi Distribusi Fitur per Polutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap-korelasi-antar-fitur">1.7 Heatmap Korelasi Antar Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-linear-vs-polynomial">1.8 Perbandingan Linear vs Polynomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpan-data-untuk-tahap-berikutnya">1.9 Simpan Data untuk Tahap Berikutnya</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tahap-1-pengambilan-data-exploratory-data-analysis-eda">
+<h1>Tahap 1 — Pengambilan Data &amp; Exploratory Data Analysis (EDA)<a class="headerlink" href="#tahap-1-pengambilan-data-exploratory-data-analysis-eda" title="Link to this heading">#</a></h1>
+<p>Pada tahap pertama ini kita akan:</p>
+<ol class="arabic simple">
+<li><p>Menghubungkan Python ke database MySQL</p></li>
+<li><p>Memuat kedua tabel fitur (linear &amp; polynomial)</p></li>
+<li><p>Mengeksplorasi struktur dan distribusi data</p></li>
+<li><p>Menyimpan data hasil preprocessing untuk tahap berikutnya</p></li>
+</ol>
+<hr class="docutils" />
+<section id="latar-belakang">
+<h2>Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<p>Sebelum membangun model clustering, kita perlu <strong>benar-benar memahami data</strong> yang akan digunakan. EDA (<em>Exploratory Data Analysis</em>) adalah proses investigasi awal untuk:</p>
+<ul class="simple">
+<li><p>Mendeteksi <strong>missing values</strong> yang bisa merusak perhitungan jarak di K-Means</p></li>
+<li><p>Memahami <strong>distribusi nilai</strong> tiap fitur (normal, skewed, atau ada outlier)</p></li>
+<li><p>Mengidentifikasi <strong>korelasi antar fitur</strong> (fitur yang sangat berkorelasi membawa informasi redundan)</p></li>
+<li><p>Mengenal <strong>karakteristik wilayah</strong> dalam dataset</p></li>
+</ul>
+<p>Data bersumber dari dua tabel database MySQL:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_linear</span></code> — fitur dari interpolasi linear time-series</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_polynomial</span></code> — fitur dari interpolasi polinomial time-series</p></li>
+</ul>
+<p>Masing-masing tabel: <strong>207 kolom</strong> (id, nama, daerah + 204 fitur) × <strong>37 baris</strong> (37 wilayah).</p>
+</section>
+<section id="import-library-konfigurasi">
+<h2>1.1 Import Library &amp; Konfigurasi<a class="headerlink" href="#import-library-konfigurasi" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1"># Folder output bersama (sejajar dengan folder 01_, 02_, 03_, 04_)</span>
+<span class="c1"># Struktur: Clustering_Segmentasi/output  &lt;-  notebook ini ada di Clustering_Segmentasi/01_.../</span>
+<span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="s1">&#39;../output&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">OUTPUT_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># tidak membuat folder baru jika sudah ada</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;muted&#39;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Library berhasil diimpor.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Output akan disimpan di: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">OUTPUT_DIR</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Library berhasil diimpor.
+Output akan disimpan di: C:\Users\OKAN\OneDrive\Dokumen\PSD\materi\Clustering_Segmentasi\output
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="koneksi-dan-pengambilan-data">
+<h2>1.2 Koneksi dan Pengambilan Data<a class="headerlink" href="#koneksi-dan-pengambilan-data" title="Link to this heading">#</a></h2>
+<p>Urutan sumber data (otomatis):</p>
+<ol class="arabic simple">
+<li><p><strong>Database MySQL</strong> (sumber utama)</p></li>
+<li><p><strong>File CSV lokal</strong> di folder notebook atau folder <code class="docutils literal notranslate"><span class="pre">output</span></code> (cadangan), yaitu <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_linear.csv</span></code> dan <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_polynomial.csv</span></code></p></li>
+</ol>
+<p>Setiap sumber <strong>divalidasi</strong>: data harus berisi angka. Jika isi tabel ternyata hanya teks nama kolom (header ikut ter-import sebagai data), sumber itu dilewati dan notebook mencoba sumber berikutnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Konfigurasi ──────────────────────────────────────────────</span>
+<span class="n">DB_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;host&#39;</span>    <span class="p">:</span> <span class="s1">&#39;basisdata2-c.my.id&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;port&#39;</span>    <span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+    <span class="s1">&#39;database&#39;</span><span class="p">:</span> <span class="s1">&#39;basisda1_PSD-A-Interpolasi&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user&#39;</span>    <span class="p">:</span> <span class="s1">&#39;basisda1_PSD-User&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="s1">&#39;PSD-A#2026&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;charset&#39;</span> <span class="p">:</span> <span class="s1">&#39;utf8mb4&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;connect_timeout&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">TABEL_LINEAR</span> <span class="o">=</span> <span class="s1">&#39;ekstraksi_fitur_linear&#39;</span>
+<span class="n">TABEL_POLY</span>   <span class="o">=</span> <span class="s1">&#39;ekstraksi_fitur_polynomial&#39;</span>
+
+<span class="n">CSV_LINEAR</span> <span class="o">=</span> <span class="s1">&#39;ekstraksi_fitur_linear.csv&#39;</span>
+<span class="n">CSV_POLY</span>   <span class="o">=</span> <span class="s1">&#39;ekstraksi_fitur_polynomial.csv&#39;</span>
+<span class="n">CSV_DIRS</span>   <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">OUTPUT_DIR</span><span class="p">]</span>   <span class="c1"># folder tempat mencari file CSV cadangan</span>
+
+<span class="n">META_COLS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;nama&#39;</span><span class="p">,</span> <span class="s1">&#39;daerah&#39;</span><span class="p">]</span>   <span class="c1"># kolom non-fitur</span>
+
+
+<span class="c1"># ── Fungsi bantu ─────────────────────────────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ke_numerik</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ubah semua kolom fitur ke angka (mendukung desimal koma). Non-angka -&gt; NaN.&quot;&quot;&quot;</span>
+    <span class="n">feat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">META_COLS</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">feat_cols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">feat_cols</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">X</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">object</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">):</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">data_valid</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;True jika tabel punya minimal 2 baris yang berisi angka pada kolom fitur.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">df</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">ke_numerik</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">baris_ok</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">baris_ok</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">ambil_dari_db</span><span class="p">(</span><span class="n">tabel</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pymysql</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">DB_CONFIG</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+            <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SELECT * FROM `</span><span class="si">{</span><span class="n">tabel</span><span class="si">}</span><span class="s1">`&#39;</span><span class="p">)</span>
+            <span class="n">kolom</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+            <span class="n">baris</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">baris</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">kolom</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">ambil_data</span><span class="p">(</span><span class="n">tabel</span><span class="p">,</span> <span class="n">csv_path</span><span class="p">):</span>
+    <span class="c1"># 1) Database</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">ambil_dari_db</span><span class="p">(</span><span class="n">tabel</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[DB ] &quot;</span><span class="si">{</span><span class="n">tabel</span><span class="si">}</span><span class="s1">&quot; -&gt; </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> baris x </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> kolom&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data_valid</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="s1">&#39;database&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;      [!] Isi tabel &quot;</span><span class="si">{</span><span class="n">tabel</span><span class="si">}</span><span class="s1">&quot; BUKAN angka (kemungkinan header ikut ter-import sebagai data).&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[DB ] gagal terhubung/membaca &quot;</span><span class="si">{</span><span class="n">tabel</span><span class="si">}</span><span class="s1">&quot;: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 2) CSV lokal (folder notebook atau folder output)</span>
+    <span class="n">ketemu</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dr</span><span class="p">,</span> <span class="n">csv_path</span><span class="p">)</span> <span class="k">for</span> <span class="n">dr</span> <span class="ow">in</span> <span class="n">CSV_DIRS</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dr</span><span class="p">,</span> <span class="n">csv_path</span><span class="p">))]</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="n">ketemu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">ketemu</span> <span class="k">else</span> <span class="n">csv_path</span>
+    <span class="k">if</span> <span class="n">ketemu</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[CSV] &quot;</span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s1">&quot; -&gt; </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> baris x </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> kolom&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data_valid</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="s1">&#39;csv&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;      [!] Isi &quot;</span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s1">&quot; juga bukan angka.&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[CSV] &quot;</span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s1">&quot; tidak ditemukan.&#39;</span><span class="p">)</span>
+
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">&#39;Tidak ada sumber data valid untuk &quot;</span><span class="si">{</span><span class="n">tabel</span><span class="si">}</span><span class="s1">&quot;.</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="sa">f</span><span class="s1">&#39;  -&gt; Perbaiki isi tabel di database (isi ulang data fitur 37 wilayah x 204 fitur), ATAU</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="sa">f</span><span class="s1">&#39;  -&gt; letakkan file &quot;</span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s1">&quot; di folder notebook ini atau di folder output.&#39;</span>
+    <span class="p">)</span>
+
+
+<span class="c1"># ── Muat kedua tabel ─────────────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Memuat data...</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">df_linear</span><span class="p">,</span> <span class="n">src_linear</span> <span class="o">=</span> <span class="n">ambil_data</span><span class="p">(</span><span class="n">TABEL_LINEAR</span><span class="p">,</span> <span class="n">CSV_LINEAR</span><span class="p">)</span>
+<span class="n">df_poly</span><span class="p">,</span>   <span class="n">src_poly</span>   <span class="o">=</span> <span class="n">ambil_data</span><span class="p">(</span><span class="n">TABEL_POLY</span><span class="p">,</span>   <span class="n">CSV_POLY</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Selesai. Sumber -&gt; linear: </span><span class="si">{</span><span class="n">src_linear</span><span class="si">}</span><span class="s1">, polynomial: </span><span class="si">{</span><span class="n">src_poly</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memuat data...
+
+[DB ] gagal terhubung/membaca &quot;ekstraksi_fitur_linear&quot;: ModuleNotFoundError: No module named &#39;pymysql&#39;
+[CSV] &quot;ekstraksi_fitur_linear.csv&quot; tidak ditemukan.
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">90</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="c1"># ── Muat kedua tabel ─────────────────────────────────────────</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Memuat data...</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">90</span> <span class="n">df_linear</span><span class="p">,</span> <span class="n">src_linear</span> <span class="o">=</span> <span class="n">ambil_data</span><span class="p">(</span><span class="n">TABEL_LINEAR</span><span class="p">,</span> <span class="n">CSV_LINEAR</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="n">df_poly</span><span class="p">,</span>   <span class="n">src_poly</span>   <span class="o">=</span> <span class="n">ambil_data</span><span class="p">(</span><span class="n">TABEL_POLY</span><span class="p">,</span>   <span class="n">CSV_POLY</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Selesai. Sumber -&gt; linear: </span><span class="si">{</span><span class="n">src_linear</span><span class="si">}</span><span class="s1">, polynomial: </span><span class="si">{</span><span class="n">src_poly</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nn">Cell In[2], line 81,</span> in <span class="ni">ambil_data</span><span class="nt">(tabel, csv_path)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[CSV] &quot;</span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s1">&quot; tidak ditemukan.&#39;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">81</span> <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span>     <span class="sa">f</span><span class="s1">&#39;Tidak ada sumber data valid untuk &quot;</span><span class="si">{</span><span class="n">tabel</span><span class="si">}</span><span class="s1">&quot;.</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="sa">f</span><span class="s1">&#39;  -&gt; Perbaiki isi tabel di database (isi ulang data fitur 37 wilayah x 204 fitur), ATAU</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span>     <span class="sa">f</span><span class="s1">&#39;  -&gt; letakkan file &quot;</span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s1">&quot; di folder notebook ini atau di folder output.&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="p">)</span>
+
+<span class="ne">RuntimeError</span>: Tidak ada sumber data valid untuk &quot;ekstraksi_fitur_linear&quot;.
+  <span class="o">-&gt;</span> <span class="n">Perbaiki</span> <span class="n">isi</span> <span class="n">tabel</span> <span class="n">di</span> <span class="n">database</span> <span class="p">(</span><span class="n">isi</span> <span class="n">ulang</span> <span class="n">data</span> <span class="n">fitur</span> <span class="mi">37</span> <span class="n">wilayah</span> <span class="n">x</span> <span class="mi">204</span> <span class="n">fitur</span><span class="p">),</span> <span class="n">ATAU</span>
+  <span class="o">-&gt;</span> <span class="n">letakkan</span> <span class="n">file</span> <span class="s2">&quot;ekstraksi_fitur_linear.csv&quot;</span> <span class="n">di</span> <span class="n">folder</span> <span class="n">notebook</span> <span class="n">ini</span> <span class="n">atau</span> <span class="n">di</span> <span class="n">folder</span> <span class="n">output</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pemisahan-metadata-dan-fitur-numerik">
+<h2>1.3 Pemisahan Metadata dan Fitur Numerik<a class="headerlink" href="#pemisahan-metadata-dan-fitur-numerik" title="Link to this heading">#</a></h2>
+<p>Tiga kolom pertama (<code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">nama</span></code>, <code class="docutils literal notranslate"><span class="pre">daerah</span></code>) adalah <strong>identitas</strong>, bukan fitur numerik. Kita pisahkan agar tidak ikut dalam perhitungan clustering. Baris yang bukan angka (misalnya header duplikat) dibuang otomatis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bersihkan_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nama</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">ke_numerik</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>      <span class="c1"># baris yang benar-benar berisi angka</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">valid</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  [!] </span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="p">(</span><span class="o">~</span><span class="n">valid</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> baris non-numerik dibuang.&#39;</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">meta_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">META_COLS</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">valid</span><span class="p">,</span> <span class="n">meta_cols</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># kolom fitur yang seluruhnya kosong tidak berguna</span>
+    <span class="n">kosong</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">X</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">kosong</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  [!] </span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">kosong</span><span class="p">)</span><span class="si">}</span><span class="s1"> kolom kosong dibuang.&#39;</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">kosong</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">meta</span><span class="p">,</span> <span class="n">X</span>
+
+<span class="n">meta_linear</span><span class="p">,</span> <span class="n">X_linear</span> <span class="o">=</span> <span class="n">bersihkan_df</span><span class="p">(</span><span class="n">df_linear</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">meta_poly</span><span class="p">,</span>   <span class="n">X_poly</span>   <span class="o">=</span> <span class="n">bersihkan_df</span><span class="p">(</span><span class="n">df_poly</span><span class="p">,</span>   <span class="s1">&#39;polynomial&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bentuk data fitur:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Linear  : </span><span class="si">{</span><span class="n">X_linear</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">  (</span><span class="si">{</span><span class="n">X_linear</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> wilayah x </span><span class="si">{</span><span class="n">X_linear</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> fitur)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Poly    : </span><span class="si">{</span><span class="n">X_poly</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">  (</span><span class="si">{</span><span class="n">X_poly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> wilayah x </span><span class="si">{</span><span class="n">X_poly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> fitur)&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">meta_poly</span><span class="p">)</span><span class="si">}</span><span class="s1"> Wilayah dalam dataset:&#39;</span><span class="p">)</span>
+<span class="n">nama_col</span> <span class="o">=</span> <span class="s1">&#39;daerah&#39;</span> <span class="k">if</span> <span class="s1">&#39;daerah&#39;</span> <span class="ow">in</span> <span class="n">meta_poly</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="n">meta_poly</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">meta_poly</span><span class="p">[</span><span class="n">nama_col</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s1">2d</span><span class="si">}</span><span class="s1">. </span><span class="si">{</span><span class="n">nm</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bentuk data fitur:
+  Linear  : (37, 204)  (37 wilayah x 204 fitur)
+  Poly    : (37, 204)  (37 wilayah x 204 fitur)
+
+37 Wilayah dalam dataset:
+   1. Baron Nganjuk
+   2. Nunukan
+   3. Sreseh, Sampang
+   4. Manyar, Gresik
+   5. Kamal, Bangkalan
+   6. Kedungpring Lamongan
+   7. Gresik Kota, Gresik
+   8. Waru, Pamekasan
+   9. Paciran, Lamongan
+  10. Kertosono, Nganjuk
+  11. Jabon, Sidoarjo
+  12. Menganti, Gresik
+  13. Bandung - Jogoroto, Jombang
+  14. Banyu Ajuh, Perumnas, Kamal
+  15. Widang, Tuban
+  16. Kwanyar, Bangkalan
+  17. sambeng, lamongan
+  18. Kec. Kalianget, Sumenep
+  19. Cerme, Gresik
+  20. Tikala, Manado
+  21. Kerek, Tuban
+  22. Kwanyar, Bangkalan
+  23. Wonokromo, Surabaya
+  24. Asemrowo, Surabaya
+  25. Kota Sumenep, Sumenep
+  26. Socah, Bangkalan
+  27. Pilangkenceng, Madiun
+  28. Tanah Merah, Bangkalan
+  29. Sidoarjo, Wonoayu
+  30. Labang, Bangkalan
+  31. Widodaren, Ngawi
+  32. Bangkalan, Bangkalan
+  33. Warudoyong, Kota Sukabumi
+  34. Kamal, Bangkalan
+  35. Banyuajuh kamal, Bangkalan
+  36. Dukun, Gresik
+  37. Kecamatan Bangkalan,Bangkalan
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="penanganan-missing-values">
+<h2>1.4 Penanganan Missing Values<a class="headerlink" href="#penanganan-missing-values" title="Link to this heading">#</a></h2>
+<p>K-Means tidak bisa menghitung jarak Euclidean jika ada nilai <code class="docutils literal notranslate"><span class="pre">NaN</span></code>. Strategi:</p>
+<ul class="simple">
+<li><p>Jumlah <code class="docutils literal notranslate"><span class="pre">NaN</span></code> sedikit: <strong>isi dengan median</strong> kolom (robust terhadap outlier)</p></li>
+<li><p>Fitur dengan &gt; 50% <code class="docutils literal notranslate"><span class="pre">NaN</span></code>: dibuang</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tangani_nan</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">nama</span><span class="p">):</span>
+    <span class="n">n_nan</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  </span><span class="si">{</span><span class="n">nama</span><span class="si">:</span><span class="s1">&lt;7</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">n_nan</span><span class="si">}</span><span class="s1"> nilai kosong dari </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s1"> total&#39;</span><span class="p">)</span>
+    <span class="c1"># buang fitur dengan &gt; 50% NaN</span>
+    <span class="n">banyak</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">X</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">banyak</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;           </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">banyak</span><span class="p">)</span><span class="si">}</span><span class="s1"> fitur dengan &gt;50% NaN dibuang.&#39;</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">banyak</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+        <span class="c1"># jika masih ada NaN (kolom kosong total), isi 0</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;           NaN diisi dengan median.&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Status Missing Values:&#39;</span><span class="p">)</span>
+<span class="n">X_linear</span> <span class="o">=</span> <span class="n">tangani_nan</span><span class="p">(</span><span class="n">X_linear</span><span class="p">,</span> <span class="s1">&#39;Linear&#39;</span><span class="p">)</span>
+<span class="n">X_poly</span>   <span class="o">=</span> <span class="n">tangani_nan</span><span class="p">(</span><span class="n">X_poly</span><span class="p">,</span>   <span class="s1">&#39;Poly&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Data bersih, siap dianalisis.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status Missing Values:
+  Linear : 0 nilai kosong dari 7548 total
+  Poly   : 0 nilai kosong dari 7548 total
+
+Data bersih, siap dianalisis.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="statistik-deskriptif">
+<h2>1.5 Statistik Deskriptif<a class="headerlink" href="#statistik-deskriptif" title="Link to this heading">#</a></h2>
+<p>Statistik deskriptif memberikan gambaran cepat tentang karakteristik numerik setiap fitur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=== Statistik Deskriptif — Fitur Polynomial (15 Pertama) ===&#39;</span><span class="p">)</span>
+<span class="n">desc</span> <span class="o">=</span> <span class="n">X_poly</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">[[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;50%&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">]]</span>
+<span class="n">desc</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Std Dev&#39;</span><span class="p">,</span> <span class="s1">&#39;Min&#39;</span><span class="p">,</span> <span class="s1">&#39;Median&#39;</span><span class="p">,</span> <span class="s1">&#39;Max&#39;</span><span class="p">]</span>
+
+<span class="c1"># Coefficient of Variation (CV) = Std / |Mean|</span>
+<span class="n">desc</span><span class="p">[</span><span class="s1">&#39;CV (%)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">desc</span><span class="p">[</span><span class="s1">&#39;Std Dev&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">desc</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">desc</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">... (total </span><span class="si">{</span><span class="n">X_poly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> fitur)&#39;</span><span class="p">)</span>
+
+<span class="n">high_cv</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">desc</span><span class="p">[</span><span class="s1">&#39;CV (%)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Fitur dengan CV &gt; 100% : </span><span class="si">{</span><span class="n">high_cv</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">high_cv</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(Fitur CV tinggi = variasi antar wilayah besar = informatif untuk clustering)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Statistik Deskriptif — Fitur Polynomial (15 Pertama) ===
+                         Mean  Std Dev       Min    Median       Max  CV (%)
+no2_abs_energy         0.0000   0.0000    0.0000    0.0000    0.0000   120.5
+no2_auc                0.0131   0.0081    0.0017    0.0108    0.0485    61.6
+no2_autocorr           7.5135   9.3024    2.0000    5.0000   51.0000   123.8
+no2_average_power      0.0000   0.0000    0.0000    0.0000    0.0000   101.8
+no2_calc_centroid    180.5814  33.3954  113.2350  180.6604  325.2713    18.5
+no2_calc_max           0.0001   0.0000    0.0000    0.0001    0.0002    58.5
+no2_calc_mean          0.0000   0.0000    0.0000    0.0000    0.0001    48.8
+no2_calc_median        0.0000   0.0000    0.0000    0.0000    0.0001    50.8
+no2_calc_min          -0.0000   0.0000   -0.0000   -0.0000    0.0000   353.9
+no2_calc_std           0.0000   0.0000    0.0000    0.0000    0.0000    56.9
+no2_calc_var           0.0000   0.0000    0.0000    0.0000    0.0000   123.9
+no2_dfa                1.1050   0.2413    0.7221    1.0663    2.0854    21.8
+no2_distance         363.6486  45.6205  240.0000  365.0000  581.0000    12.5
+no2_ecdf               0.0153   0.0019    0.0095    0.0150    0.0228    12.6
+no2_ecdf_percentile    0.0000   0.0000    0.0000    0.0000    0.0001    47.4
+
+... (total 204 fitur)
+
+Fitur dengan CV &gt; 100% : 39 (19.1%)
+(Fitur CV tinggi = variasi antar wilayah besar = informatif untuk clustering)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualisasi-distribusi-fitur-per-polutan">
+<h2>1.6 Visualisasi Distribusi Fitur per Polutan<a class="headerlink" href="#visualisasi-distribusi-fitur-per-polutan" title="Link to this heading">#</a></h2>
+<p>Setiap polutan (NO₂, SO₂, CO) memiliki sekitar 68 fitur. Histogram berikut menampilkan distribusi nilai rata-rata dari fitur-fitur tersebut.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polutans</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;no2&#39;</span><span class="p">,</span> <span class="s1">&#39;#1565C0&#39;</span><span class="p">,</span> <span class="s1">&#39;NO₂&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;so2&#39;</span><span class="p">,</span> <span class="s1">&#39;#B71C1C&#39;</span><span class="p">,</span> <span class="s1">&#39;SO₂&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;co&#39;</span><span class="p">,</span> <span class="s1">&#39;#1B5E20&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">)]</span>
+<span class="n">n_wil</span> <span class="o">=</span> <span class="n">X_poly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">polutans</span><span class="p">):</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">X_poly</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">cols</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">: tidak ada kolom &quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">_*&quot;&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="k">continue</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">X_poly</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">means</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">means</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+               <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Grand mean = </span><span class="si">{</span><span class="n">means</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distribusi </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span><span class="si">}</span><span class="s1"> Fitur </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Nilai Rata-rata Fitur (across </span><span class="si">{</span><span class="n">n_wil</span><span class="si">}</span><span class="s1"> wilayah)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frekuensi&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Distribusi Nilai Rata-rata Fitur per Polutan (Tabel Polynomial)&#39;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/01_distribusi_fitur.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gambar disimpan: output/01_distribusi_fitur.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6b1cc432c6c06ee55b29222fab6c1d3d850c384be31c558149e41c27fc948a7c.png" src="../../_images/6b1cc432c6c06ee55b29222fab6c1d3d850c384be31c558149e41c27fc948a7c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gambar disimpan: output/01_distribusi_fitur.png
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="heatmap-korelasi-antar-fitur">
+<h2>1.7 Heatmap Korelasi Antar Fitur<a class="headerlink" href="#heatmap-korelasi-antar-fitur" title="Link to this heading">#</a></h2>
+<p>Korelasi tinggi antar fitur menandakan <strong>redundansi informasi</strong>, yang menjadi justifikasi utama reduksi dimensi (PCA) pada tahap berikutnya.</p>
+<p>Kita pilih <strong>15 fitur representatif</strong> (5 per polutan). Jika nama fitur favorit tidak ada, otomatis diganti dengan fitur dengan variasi terbesar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;calc_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;calc_std&#39;</span><span class="p">,</span> <span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="s1">&#39;skewness&#39;</span><span class="p">,</span> <span class="s1">&#39;kurtosis&#39;</span><span class="p">]</span>
+<span class="n">feats_viz</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;no2&#39;</span><span class="p">,</span> <span class="s1">&#39;so2&#39;</span><span class="p">,</span> <span class="s1">&#39;co&#39;</span><span class="p">]:</span>
+    <span class="n">pilih</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">candidates</span> <span class="k">if</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">X_poly</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pilih</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>   <span class="c1"># lengkapi dengan fitur ber-variasi terbesar</span>
+        <span class="n">sisa</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">X_poly</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pilih</span><span class="p">]</span>
+        <span class="n">sisa</span> <span class="o">=</span> <span class="n">X_poly</span><span class="p">[</span><span class="n">sisa</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">pilih</span> <span class="o">+=</span> <span class="n">sisa</span><span class="p">[:</span><span class="mi">5</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">pilih</span><span class="p">)]</span>
+    <span class="n">feats_viz</span> <span class="o">+=</span> <span class="n">pilih</span>
+
+<span class="c1"># buang fitur konstan (std = 0) agar korelasi tidak NaN</span>
+<span class="n">feats_viz</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">feats_viz</span> <span class="k">if</span> <span class="n">X_poly</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">X_poly</span><span class="p">[</span><span class="n">feats_viz</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="n">labels_short</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;no2_&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;so2_&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2 &#39;</span><span class="p">)</span>
+                 <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;co_&#39;</span><span class="p">,</span> <span class="s1">&#39;CO &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;calc_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">feats_viz</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">corr</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdYlBu_r&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mf">8.5</span><span class="p">},</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">labels_short</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">labels_short</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shrink&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Koefisien Korelasi Pearson&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Heatmap Korelasi Fitur Representatif</span><span class="se">\n</span><span class="s1">(NO₂, SO₂, CO — Tabel Polynomial)&#39;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/02_heatmap_korelasi.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gambar disimpan: output/02_heatmap_korelasi.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e2f6b478785a53b9cb5ddc5ae453b613cf336bbbfa14a05f1a6f735eb884117d.png" src="../../_images/e2f6b478785a53b9cb5ddc5ae453b613cf336bbbfa14a05f1a6f735eb884117d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gambar disimpan: output/02_heatmap_korelasi.png
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi:</strong></p>
+<ul class="simple">
+<li><p>Warna <strong>merah tua</strong> = korelasi positif kuat (+1), fitur bergerak searah</p></li>
+<li><p>Warna <strong>biru tua</strong> = korelasi negatif kuat (−1), fitur bergerak berlawanan</p></li>
+<li><p>Banyaknya sel berwarna gelap mengonfirmasi <strong>redundansi tinggi</strong> antar fitur dari polutan yang sama, sehingga PCA sangat dibutuhkan</p></li>
+</ul>
+</section>
+<section id="perbandingan-linear-vs-polynomial">
+<h2>1.8 Perbandingan Linear vs Polynomial<a class="headerlink" href="#perbandingan-linear-vs-polynomial" title="Link to this heading">#</a></h2>
+<p>Kita bandingkan distribusi fitur yang sama antara dua metode interpolasi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;no2_calc_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;so2_calc_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;co_calc_mean&#39;</span><span class="p">]</span>
+<span class="n">compare_feats</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">compare_feats</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">X_linear</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">X_poly</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="c1"># fallback: jika fitur &#39;calc_mean&#39; tidak ada, pakai fitur pertama tiap polutan yang ada di kedua tabel</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">compare_feats</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;no2&#39;</span><span class="p">,</span> <span class="s1">&#39;so2&#39;</span><span class="p">,</span> <span class="s1">&#39;co&#39;</span><span class="p">]:</span>
+        <span class="n">umum</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">X_poly</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">X_linear</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">umum</span><span class="p">:</span>
+            <span class="n">compare_feats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">umum</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">colors_lin</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#1565C0&#39;</span><span class="p">,</span> <span class="s1">&#39;#880E4F&#39;</span><span class="p">,</span> <span class="s1">&#39;#1B5E20&#39;</span><span class="p">]</span>
+<span class="n">colors_poly</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#42A5F5&#39;</span><span class="p">,</span> <span class="s1">&#39;#F48FB1&#39;</span><span class="p">,</span> <span class="s1">&#39;#66BB6A&#39;</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">compare_feats</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">compare_feats</span><span class="p">),</span> <span class="mi">5</span><span class="p">),</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">feat</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">cp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">compare_feats</span><span class="p">,</span> <span class="n">colors_lin</span><span class="p">,</span> <span class="n">colors_poly</span><span class="p">):</span>
+    <span class="n">vals_lin</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">X_linear</span><span class="p">[</span><span class="n">feat</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">vals_poly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">X_poly</span><span class="p">[</span><span class="n">feat</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vals_lin</span><span class="p">)),</span>  <span class="n">vals_lin</span><span class="p">,</span>  <span class="n">color</span><span class="o">=</span><span class="n">cl</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Linear&#39;</span><span class="p">,</span>     <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vals_poly</span><span class="p">)),</span> <span class="n">vals_poly</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Polynomial&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">feat</span><span class="si">}</span><span class="se">\n</span><span class="s1">(diurutkan per wilayah)&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Urutan Wilayah (setelah sort)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Nilai fitur&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Perbandingan Fitur: Interpolasi Linear vs Polynomial&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/03_linear_vs_poly.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gambar disimpan: output/03_linear_vs_poly.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ebd670192d4b2afd78f997b25910127fbcbe13d94ef7c1fe1ac684ebb4b26c2b.png" src="../../_images/ebd670192d4b2afd78f997b25910127fbcbe13d94ef7c1fe1ac684ebb4b26c2b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gambar disimpan: output/03_linear_vs_poly.png
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simpan-data-untuk-tahap-berikutnya">
+<h2>1.9 Simpan Data untuk Tahap Berikutnya<a class="headerlink" href="#simpan-data-untuk-tahap-berikutnya" title="Link to this heading">#</a></h2>
+<p>Data bersih disimpan dalam format <strong>Pickle</strong> (.pkl) agar bisa dipakai di notebook tahap berikutnya tanpa koneksi ulang ke database.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_to_save</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;X_linear&#39;</span>    <span class="p">:</span> <span class="n">X_linear</span><span class="p">,</span>
+    <span class="s1">&#39;X_poly&#39;</span>      <span class="p">:</span> <span class="n">X_poly</span><span class="p">,</span>
+    <span class="s1">&#39;meta_linear&#39;</span> <span class="p">:</span> <span class="n">meta_linear</span><span class="p">,</span>
+    <span class="s1">&#39;meta_poly&#39;</span>   <span class="p">:</span> <span class="n">meta_poly</span><span class="p">,</span>
+    <span class="s1">&#39;META_COLS&#39;</span>   <span class="p">:</span> <span class="n">META_COLS</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">save_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/tahap1_data.pkl&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data_to_save</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Data disimpan ke: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ukuran file     : </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> KB&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Ringkasan Tahap 1:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  - Tabel dimuat     : 2 (linear + polynomial)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  - Jumlah wilayah   : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">meta_poly</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  - Jumlah fitur     : </span><span class="si">{</span><span class="n">X_poly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> (poly), </span><span class="si">{</span><span class="n">X_linear</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> (linear)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  - Missing values   : </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">X_poly</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s1"> (setelah penanganan)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">→ Lanjut ke Tahap 2: Reduksi Dimensi (PCA)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data disimpan ke: c:\Users\OKAN\OneDrive\Dokumen\PSD\materi\Clustering_Segmentasi\output\tahap1_data.pkl
+Ukuran file     : 131.1 KB
+
+Ringkasan Tahap 1:
+  - Tabel dimuat     : 2 (linear + polynomial)
+  - Jumlah wilayah   : 37
+  - Jumlah fitur     : 204 (poly), 204 (linear)
+  - Missing values   : 0 (setelah penanganan)
+
+→ Lanjut ke Tahap 2: Reduksi Dimensi (PCA)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Clustering_Segmentasi\01_Data_dan_EDA"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../clustering_segmentasi.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Analisis Clustering &amp; Segmentasi Wilayah Polutan</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../02_Reduksi_Dimensi/reduksi_dimensi.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tahap 2 — Reduksi Dimensi: 204 → 203 → 74 → 37</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-konfigurasi">1.1 Import Library &amp; Konfigurasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-dan-pengambilan-data">1.2 Koneksi dan Pengambilan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemisahan-metadata-dan-fitur-numerik">1.3 Pemisahan Metadata dan Fitur Numerik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values">1.4 Penanganan Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif">1.5 Statistik Deskriptif</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-distribusi-fitur-per-polutan">1.6 Visualisasi Distribusi Fitur per Polutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap-korelasi-antar-fitur">1.7 Heatmap Korelasi Antar Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-linear-vs-polynomial">1.8 Perbandingan Linear vs Polynomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpan-data-untuk-tahap-berikutnya">1.9 Simpan Data untuk Tahap Berikutnya</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Okan Syailendra Wahyudi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
