@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_269e219e5518b30a9e0013da2b7fbdaf {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+</head>
+<body>
+    
+    
+<div style="position:fixed;bottom:30px;left:30px;z-index:9999;
+            background:white;padding:16px 20px;border-radius:10px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.2);
+            font-family:'Segoe UI',Arial,sans-serif;min-width:200px;">
+  <div style="font-size:14px;font-weight:bold;margin-bottom:4px;">Segmentasi Cluster</div>
+  <div style="font-size:11px;color:#777;margin-bottom:10px;">
+    Dataset: Poly-204 | k=2 | Sil=0.538
+  </div>
+  <hr style="margin:0 0 10px;border-color:#eee;">
+  <div style="display:flex;align-items:center;margin:4px 0;"><div style="width:16px;height:16px;border-radius:50%;background:#E53935;margin-right:8px;flex-shrink:0;"></div><span>Cluster 0 — 35 wilayah</span></div><div style="display:flex;align-items:center;margin:4px 0;"><div style="width:16px;height:16px;border-radius:50%;background:#1E88E5;margin-right:8px;flex-shrink:0;"></div><span>Cluster 1 — 2 wilayah</span></div>
+  <hr style="margin:10px 0 6px;border-color:#eee;">
+  <div style="font-size:10px;color:#aaa;">Klik marker untuk detail</div>
+</div>
+    
+            <div class="folium-map" id="map_269e219e5518b30a9e0013da2b7fbdaf" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_269e219e5518b30a9e0013da2b7fbdaf = L.map(
+                "map_269e219e5518b30a9e0013da2b7fbdaf",
+                {
+                    center: [-2.5, 118.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_269e219e5518b30a9e0013da2b7fbdaf);
+
+            
+
+        
+    
+            var tile_layer_cdfca9300d41c9056ae5cdfd87f0d897 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_cdfca9300d41c9056ae5cdfd87f0d897.addTo(map_269e219e5518b30a9e0013da2b7fbdaf);
+        
+    
+            var tile_layer_4729173516403da195220b7ee5ec896b = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u0026copy; Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_ebe2754a6c882064c09aa1173d11028f = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u0026copy; Esri \u0026mdash; Source: Esri, Maxar, Earthstar Geographics",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_2a6144f3cabe91a40e71420dea8e58b7 = L.circleMarker(
+                [-7.5083, 111.9167],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_763c832a3179cdb896f093648310fe08 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4476d03ee3b26f603484611d26c2aaa8 = $(`<div id="html_4476d03ee3b26f603484611d26c2aaa8" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Baron Nganjuk</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Muhammad Ali Murtadho</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.5083, 111.9167</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0302</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_763c832a3179cdb896f093648310fe08.setContent(html_4476d03ee3b26f603484611d26c2aaa8);
+            
+        
+
+        circle_marker_2a6144f3cabe91a40e71420dea8e58b7.bindPopup(popup_763c832a3179cdb896f093648310fe08)
+        ;
+
+        
+    
+    
+            circle_marker_2a6144f3cabe91a40e71420dea8e58b7.bindTooltip(
+                `<div>
+                     Cluster 0: Baron Nganjuk
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_0ea0198241f163bda4873b323b74f3de = L.marker(
+                [-7.5083, 111.9167],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_c10d3a6aa54e93be9a615bb2b7bd8660 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_0ea0198241f163bda4873b323b74f3de.bindTooltip(
+                `<div>
+                     Baron Nganjuk
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0ea0198241f163bda4873b323b74f3de.setIcon(div_icon_c10d3a6aa54e93be9a615bb2b7bd8660);
+            
+    
+            var circle_marker_8df677c68052d6dc7c29d8a8519cc39e = L.circleMarker(
+                [4.1333, 117.6667],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_8e684bee684140608136d6167147ee43 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d5d429f622fc5d9881dae035b83adcae = $(`<div id="html_d5d429f622fc5d9881dae035b83adcae" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Nunukan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Ainur Raftuzzaki</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>4.1333, 117.6667</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>-0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0277</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_8e684bee684140608136d6167147ee43.setContent(html_d5d429f622fc5d9881dae035b83adcae);
+            
+        
+
+        circle_marker_8df677c68052d6dc7c29d8a8519cc39e.bindPopup(popup_8e684bee684140608136d6167147ee43)
+        ;
+
+        
+    
+    
+            circle_marker_8df677c68052d6dc7c29d8a8519cc39e.bindTooltip(
+                `<div>
+                     Cluster 0: Nunukan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_336c594782e1f8992d8e9d07628716ad = L.marker(
+                [4.1333, 117.6667],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_06da3bba350afda3af95bdfd19bcfb37 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_336c594782e1f8992d8e9d07628716ad.bindTooltip(
+                `<div>
+                     Nunukan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_336c594782e1f8992d8e9d07628716ad.setIcon(div_icon_06da3bba350afda3af95bdfd19bcfb37);
+            
+    
+            var circle_marker_21091158ebea99edc97f415806321b64 = L.circleMarker(
+                [-7.1833, 113.2167],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_345b5fe5e37e5e6677b37788a211ed86 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c6df48fc32df8e2f667a561b44363e71 = $(`<div id="html_c6df48fc32df8e2f667a561b44363e71" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Sreseh, Sampang</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>M. Hendrik Purwanto</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1833, 113.2167</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0295</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_345b5fe5e37e5e6677b37788a211ed86.setContent(html_c6df48fc32df8e2f667a561b44363e71);
+            
+        
+
+        circle_marker_21091158ebea99edc97f415806321b64.bindPopup(popup_345b5fe5e37e5e6677b37788a211ed86)
+        ;
+
+        
+    
+    
+            circle_marker_21091158ebea99edc97f415806321b64.bindTooltip(
+                `<div>
+                     Cluster 0: Sreseh, Sampang
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_dfaae6d3080ac3020c3e947316eb5f72 = L.marker(
+                [-7.1833, 113.2167],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_beb654807d0918704549e4a6d80034be = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_dfaae6d3080ac3020c3e947316eb5f72.bindTooltip(
+                `<div>
+                     Sreseh, Sampang
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dfaae6d3080ac3020c3e947316eb5f72.setIcon(div_icon_beb654807d0918704549e4a6d80034be);
+            
+    
+            var circle_marker_f3c931f3a298828a190b4b2f0da2405a = L.circleMarker(
+                [-7.15, 112.65],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_cd680a98f4fcb351a19e98236b73f8b8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_368672d145937cfb03b35b21e515d752 = $(`<div id="html_368672d145937cfb03b35b21e515d752" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Manyar, Gresik</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Okan Syailendra wahyudi</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1500, 112.6500</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0002</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0288</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_cd680a98f4fcb351a19e98236b73f8b8.setContent(html_368672d145937cfb03b35b21e515d752);
+            
+        
+
+        circle_marker_f3c931f3a298828a190b4b2f0da2405a.bindPopup(popup_cd680a98f4fcb351a19e98236b73f8b8)
+        ;
+
+        
+    
+    
+            circle_marker_f3c931f3a298828a190b4b2f0da2405a.bindTooltip(
+                `<div>
+                     Cluster 0: Manyar, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e09363b4306d7b260b8f526cc37889b7 = L.marker(
+                [-7.15, 112.65],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_f68d360620db4754bb99beb7655d3222 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_e09363b4306d7b260b8f526cc37889b7.bindTooltip(
+                `<div>
+                     Manyar, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e09363b4306d7b260b8f526cc37889b7.setIcon(div_icon_f68d360620db4754bb99beb7655d3222);
+            
+    
+            var circle_marker_9e6248e20984d53ad7a546a441dc5a4e = L.circleMarker(
+                [-7.1833, 112.7833],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_137d8f4614842776534894e8fc249a80 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_812031b2a811bbc816f3994f349a095b = $(`<div id="html_812031b2a811bbc816f3994f349a095b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kamal, Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Muhammad Zaidan Nabil Rafi</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1833, 112.7833</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0270</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_137d8f4614842776534894e8fc249a80.setContent(html_812031b2a811bbc816f3994f349a095b);
+            
+        
+
+        circle_marker_9e6248e20984d53ad7a546a441dc5a4e.bindPopup(popup_137d8f4614842776534894e8fc249a80)
+        ;
+
+        
+    
+    
+            circle_marker_9e6248e20984d53ad7a546a441dc5a4e.bindTooltip(
+                `<div>
+                     Cluster 0: Kamal, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_b9971ad162126549f6373cf42fc3f05b = L.marker(
+                [-7.1833, 112.7833],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_aae6dea8f03acf3d9cddc84cb1e87fc5 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_b9971ad162126549f6373cf42fc3f05b.bindTooltip(
+                `<div>
+                     Kamal, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b9971ad162126549f6373cf42fc3f05b.setIcon(div_icon_aae6dea8f03acf3d9cddc84cb1e87fc5);
+            
+    
+            var circle_marker_52e47a752244ebc4dddcd09241d2dbc4 = L.circleMarker(
+                [-7.35, 112.2167],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_ee474d5ac2330f739d11a8eda8b03337 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b314c071bf5195c522663a8627233d45 = $(`<div id="html_b314c071bf5195c522663a8627233d45" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kedungpring Lamongan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Triswanti Jannatul Ma'wa</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.3500, 112.2167</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0297</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_ee474d5ac2330f739d11a8eda8b03337.setContent(html_b314c071bf5195c522663a8627233d45);
+            
+        
+
+        circle_marker_52e47a752244ebc4dddcd09241d2dbc4.bindPopup(popup_ee474d5ac2330f739d11a8eda8b03337)
+        ;
+
+        
+    
+    
+            circle_marker_52e47a752244ebc4dddcd09241d2dbc4.bindTooltip(
+                `<div>
+                     Cluster 0: Kedungpring Lamongan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c0577bada4c930b6aa832635aeb61fa9 = L.marker(
+                [-7.35, 112.2167],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_fb73e77333d7360c24672361f15a60fd = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_c0577bada4c930b6aa832635aeb61fa9.bindTooltip(
+                `<div>
+                     Kedungpring Lamongan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c0577bada4c930b6aa832635aeb61fa9.setIcon(div_icon_fb73e77333d7360c24672361f15a60fd);
+            
+    
+            var circle_marker_e244283c0597b38975552c0b006a65fb = L.circleMarker(
+                [-7.1556, 112.6527],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_dfc8fc204b769721c1935080c4ebb2ed = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_604109750ffcb7062bc73160191ab6c1 = $(`<div id="html_604109750ffcb7062bc73160191ab6c1" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Gresik Kota, Gresik</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Ahmad Syahrul Farihin</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1556, 112.6527</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0002</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0290</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_dfc8fc204b769721c1935080c4ebb2ed.setContent(html_604109750ffcb7062bc73160191ab6c1);
+            
+        
+
+        circle_marker_e244283c0597b38975552c0b006a65fb.bindPopup(popup_dfc8fc204b769721c1935080c4ebb2ed)
+        ;
+
+        
+    
+    
+            circle_marker_e244283c0597b38975552c0b006a65fb.bindTooltip(
+                `<div>
+                     Cluster 0: Gresik Kota, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_404e24e7424ae89e3a6a93521ab19927 = L.marker(
+                [-7.1556, 112.6527],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_2940679da1240d9094ee40a64e818f12 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_404e24e7424ae89e3a6a93521ab19927.bindTooltip(
+                `<div>
+                     Gresik Kota, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_404e24e7424ae89e3a6a93521ab19927.setIcon(div_icon_2940679da1240d9094ee40a64e818f12);
+            
+    
+            var circle_marker_3bddc59aee13fd13127470f471230f01 = L.circleMarker(
+                [-7.1667, 113.4833],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_830ebf63434a2c6671226d8d079bc877 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_30fd83435ca2970630edd28abc61d0d3 = $(`<div id="html_30fd83435ca2970630edd28abc61d0d3" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Waru, Pamekasan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Rian Renaldy</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1667, 113.4833</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>-0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0272</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_830ebf63434a2c6671226d8d079bc877.setContent(html_30fd83435ca2970630edd28abc61d0d3);
+            
+        
+
+        circle_marker_3bddc59aee13fd13127470f471230f01.bindPopup(popup_830ebf63434a2c6671226d8d079bc877)
+        ;
+
+        
+    
+    
+            circle_marker_3bddc59aee13fd13127470f471230f01.bindTooltip(
+                `<div>
+                     Cluster 0: Waru, Pamekasan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_ca28b1d64696b1504580d54c661980e6 = L.marker(
+                [-7.1667, 113.4833],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_42f3c511defad139d736038a675df8f2 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_ca28b1d64696b1504580d54c661980e6.bindTooltip(
+                `<div>
+                     Waru, Pamekasan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ca28b1d64696b1504580d54c661980e6.setIcon(div_icon_42f3c511defad139d736038a675df8f2);
+            
+    
+            var circle_marker_0ac44b6aa065bb2ddf45a68ed3f4f249 = L.circleMarker(
+                [-6.8667, 112.3333],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_b8551ce5df0cb60bed991c3d32a428b1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6645c8bdeb09513356a35b272b91c3ae = $(`<div id="html_6645c8bdeb09513356a35b272b91c3ae" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Paciran, Lamongan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Ahmad Dafi Zidni Alfarisi</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-6.8667, 112.3333</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0296</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_b8551ce5df0cb60bed991c3d32a428b1.setContent(html_6645c8bdeb09513356a35b272b91c3ae);
+            
+        
+
+        circle_marker_0ac44b6aa065bb2ddf45a68ed3f4f249.bindPopup(popup_b8551ce5df0cb60bed991c3d32a428b1)
+        ;
+
+        
+    
+    
+            circle_marker_0ac44b6aa065bb2ddf45a68ed3f4f249.bindTooltip(
+                `<div>
+                     Cluster 0: Paciran, Lamongan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_a93fa002b2ed884d5bf96094753d3a10 = L.marker(
+                [-6.8667, 112.3333],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_4b65ad4b8af5438c88820a8fc0a67fb8 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_a93fa002b2ed884d5bf96094753d3a10.bindTooltip(
+                `<div>
+                     Paciran, Lamongan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a93fa002b2ed884d5bf96094753d3a10.setIcon(div_icon_4b65ad4b8af5438c88820a8fc0a67fb8);
+            
+    
+            var circle_marker_6d3e6fd4f273582047aebfb50b78caaa = L.circleMarker(
+                [-7.5833, 112.1],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_0ccda7643a90e89aa3aa11ebd1b10cec = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4f51a40e0012a02aaf229a163442b844 = $(`<div id="html_4f51a40e0012a02aaf229a163442b844" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kertosono, Nganjuk</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>AHMAD MAULANA ISHAQ</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.5833, 112.1000</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0301</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_0ccda7643a90e89aa3aa11ebd1b10cec.setContent(html_4f51a40e0012a02aaf229a163442b844);
+            
+        
+
+        circle_marker_6d3e6fd4f273582047aebfb50b78caaa.bindPopup(popup_0ccda7643a90e89aa3aa11ebd1b10cec)
+        ;
+
+        
+    
+    
+            circle_marker_6d3e6fd4f273582047aebfb50b78caaa.bindTooltip(
+                `<div>
+                     Cluster 0: Kertosono, Nganjuk
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_59bd5a86ec731af16ee6b9f2b1269e96 = L.marker(
+                [-7.5833, 112.1],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_76d145c8cc863a49abfff7e9d2101e42 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_59bd5a86ec731af16ee6b9f2b1269e96.bindTooltip(
+                `<div>
+                     Kertosono, Nganjuk
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_59bd5a86ec731af16ee6b9f2b1269e96.setIcon(div_icon_76d145c8cc863a49abfff7e9d2101e42);
+            
+    
+            var circle_marker_bbbff6494cc95367e4fd17cb9318bdb7 = L.circleMarker(
+                [-7.3028931, 112.5828799],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_0a7752d850b0d9b042d3cadcac3978bc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2b5191731011ba2ab5aa764b818f01f6 = $(`<div id="html_2b5191731011ba2ab5aa764b818f01f6" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Menganti, Gresik</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Verdi Setyawan Ardiansyah Putra</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.3029, 112.5829</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0293</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_0a7752d850b0d9b042d3cadcac3978bc.setContent(html_2b5191731011ba2ab5aa764b818f01f6);
+            
+        
+
+        circle_marker_bbbff6494cc95367e4fd17cb9318bdb7.bindPopup(popup_0a7752d850b0d9b042d3cadcac3978bc)
+        ;
+
+        
+    
+    
+            circle_marker_bbbff6494cc95367e4fd17cb9318bdb7.bindTooltip(
+                `<div>
+                     Cluster 0: Menganti, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_aa13bf8985c425711f8a042cb27d272b = L.marker(
+                [-7.3028931, 112.5828799],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_174b72e316b07a12a0d5e71a93191674 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_aa13bf8985c425711f8a042cb27d272b.bindTooltip(
+                `<div>
+                     Menganti, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_aa13bf8985c425711f8a042cb27d272b.setIcon(div_icon_174b72e316b07a12a0d5e71a93191674);
+            
+    
+            var circle_marker_75c8f8228c4647b3329b1fd9213b6ae8 = L.circleMarker(
+                [-6.260825256272635, 112.79133927468192],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_e50fff3d8a5e7624f9a9a9e7dbed3ce6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8c80d63546b6a5e335ddf93dd239f43b = $(`<div id="html_8c80d63546b6a5e335ddf93dd239f43b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Bandung - Jogoroto, Jombang</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Muhammad Isa</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-6.2608, 112.7913</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0295</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_e50fff3d8a5e7624f9a9a9e7dbed3ce6.setContent(html_8c80d63546b6a5e335ddf93dd239f43b);
+            
+        
+
+        circle_marker_75c8f8228c4647b3329b1fd9213b6ae8.bindPopup(popup_e50fff3d8a5e7624f9a9a9e7dbed3ce6)
+        ;
+
+        
+    
+    
+            circle_marker_75c8f8228c4647b3329b1fd9213b6ae8.bindTooltip(
+                `<div>
+                     Cluster 0: Bandung - Jogoroto, Jombang
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_ffd7c4385c136fd83063392c7085e401 = L.marker(
+                [-6.260825256272635, 112.79133927468192],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_65f6f7d00c050a859b2a3a9e8c23ca1e = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_ffd7c4385c136fd83063392c7085e401.bindTooltip(
+                `<div>
+                     Bandung - Jogoroto, Jombang
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ffd7c4385c136fd83063392c7085e401.setIcon(div_icon_65f6f7d00c050a859b2a3a9e8c23ca1e);
+            
+    
+            var circle_marker_519047ce450ee56bfd54f765931bd773 = L.circleMarker(
+                [-8.337179142676229, 115.57880270445719],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_a024dc07b44305c6fc0b9925dbcbfb37 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_32468ef062c3a33859733733aff67cfd = $(`<div id="html_32468ef062c3a33859733733aff67cfd" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Banyu Ajuh, Perumnas, Kamal</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>A.Choiril Anwar El-Asfihani Risydan</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-8.3372, 115.5788</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0287</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_a024dc07b44305c6fc0b9925dbcbfb37.setContent(html_32468ef062c3a33859733733aff67cfd);
+            
+        
+
+        circle_marker_519047ce450ee56bfd54f765931bd773.bindPopup(popup_a024dc07b44305c6fc0b9925dbcbfb37)
+        ;
+
+        
+    
+    
+            circle_marker_519047ce450ee56bfd54f765931bd773.bindTooltip(
+                `<div>
+                     Cluster 0: Banyu Ajuh, Perumnas, Kamal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_33215f01d346ba76d8ef6c74dae777ec = L.marker(
+                [-8.337179142676229, 115.57880270445719],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_4eb116499842430e1c17f921bc591dbf = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_33215f01d346ba76d8ef6c74dae777ec.bindTooltip(
+                `<div>
+                     Banyu Ajuh, Perumnas, Kamal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_33215f01d346ba76d8ef6c74dae777ec.setIcon(div_icon_4eb116499842430e1c17f921bc591dbf);
+            
+    
+            var circle_marker_cab6966f0974b064b3ad7166c813c333 = L.circleMarker(
+                [-7.0851114, 112.1708461],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_535d0dce880b82668327b10bad8a43db = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b8e387e016c0c7d0401c0cbaa1c4035a = $(`<div id="html_b8e387e016c0c7d0401c0cbaa1c4035a" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Widang, Tuban</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Mochammad Zaenal Abidin</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.0851, 112.1708</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0294</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_535d0dce880b82668327b10bad8a43db.setContent(html_b8e387e016c0c7d0401c0cbaa1c4035a);
+            
+        
+
+        circle_marker_cab6966f0974b064b3ad7166c813c333.bindPopup(popup_535d0dce880b82668327b10bad8a43db)
+        ;
+
+        
+    
+    
+            circle_marker_cab6966f0974b064b3ad7166c813c333.bindTooltip(
+                `<div>
+                     Cluster 0: Widang, Tuban
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_6e55c54528b91d55c7cfcb82a2f87d99 = L.marker(
+                [-7.0851114, 112.1708461],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_14fd884c09c585b812889cc63587f89f = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_6e55c54528b91d55c7cfcb82a2f87d99.bindTooltip(
+                `<div>
+                     Widang, Tuban
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6e55c54528b91d55c7cfcb82a2f87d99.setIcon(div_icon_14fd884c09c585b812889cc63587f89f);
+            
+    
+            var circle_marker_61d274e519bed663db4474fd8d6c84b6 = L.circleMarker(
+                [-7.1638712, 112.8509634],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_0e3b1901ec6ba460157a9e547096a75c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_68f9c2cd4f10a0d4f5817ae83c5e9b62 = $(`<div id="html_68f9c2cd4f10a0d4f5817ae83c5e9b62" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kwanyar, Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>M. Fatihul Umam</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1639, 112.8510</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0283</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_0e3b1901ec6ba460157a9e547096a75c.setContent(html_68f9c2cd4f10a0d4f5817ae83c5e9b62);
+            
+        
+
+        circle_marker_61d274e519bed663db4474fd8d6c84b6.bindPopup(popup_0e3b1901ec6ba460157a9e547096a75c)
+        ;
+
+        
+    
+    
+            circle_marker_61d274e519bed663db4474fd8d6c84b6.bindTooltip(
+                `<div>
+                     Cluster 0: Kwanyar, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_87c0faf34eb9bab5991a76eed1f40a16 = L.marker(
+                [-7.1638712, 112.8509634],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_8d1c0c70745c658bdeb5e9a9e969e8cc = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_87c0faf34eb9bab5991a76eed1f40a16.bindTooltip(
+                `<div>
+                     Kwanyar, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_87c0faf34eb9bab5991a76eed1f40a16.setIcon(div_icon_8d1c0c70745c658bdeb5e9a9e969e8cc);
+            
+    
+            var circle_marker_8bfad37364d5c9461b8b4304741f5a73 = L.circleMarker(
+                [-7.2972665, 112.270859],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_b908fec74506160df429bd998e8cc412 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3214e6f7421d0a448a2002f9023dce95 = $(`<div id="html_3214e6f7421d0a448a2002f9023dce95" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>sambeng, lamongan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Dedy Nurohim</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.2973, 112.2709</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0290</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_b908fec74506160df429bd998e8cc412.setContent(html_3214e6f7421d0a448a2002f9023dce95);
+            
+        
+
+        circle_marker_8bfad37364d5c9461b8b4304741f5a73.bindPopup(popup_b908fec74506160df429bd998e8cc412)
+        ;
+
+        
+    
+    
+            circle_marker_8bfad37364d5c9461b8b4304741f5a73.bindTooltip(
+                `<div>
+                     Cluster 0: sambeng, lamongan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9bc15ce942fcd14157f7dd67fe00cf0c = L.marker(
+                [-7.2972665, 112.270859],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_fa7db9b210ebb0c2bcf4945df92c5b10 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_9bc15ce942fcd14157f7dd67fe00cf0c.bindTooltip(
+                `<div>
+                     sambeng, lamongan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9bc15ce942fcd14157f7dd67fe00cf0c.setIcon(div_icon_fa7db9b210ebb0c2bcf4945df92c5b10);
+            
+    
+            var circle_marker_de4c25e5cc3efdcf963694f2f2cd1a53 = L.circleMarker(
+                [-6.243164072277377, 113.36086681483897],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_8d29c44e9ab157ad2e65e35de31a9a88 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_654020d15f1ab4d550285157c2171939 = $(`<div id="html_654020d15f1ab4d550285157c2171939" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kec. Kalianget, Sumenep</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Marshella Aulia Putri</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-6.2432, 113.3609</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>-0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0278</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_8d29c44e9ab157ad2e65e35de31a9a88.setContent(html_654020d15f1ab4d550285157c2171939);
+            
+        
+
+        circle_marker_de4c25e5cc3efdcf963694f2f2cd1a53.bindPopup(popup_8d29c44e9ab157ad2e65e35de31a9a88)
+        ;
+
+        
+    
+    
+            circle_marker_de4c25e5cc3efdcf963694f2f2cd1a53.bindTooltip(
+                `<div>
+                     Cluster 0: Kec. Kalianget, Sumenep
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_01a82ece2f821a7487c69f657cc1d42c = L.marker(
+                [-6.243164072277377, 113.36086681483897],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_d680c8fbd6bf9e16d27cd10d4fc52f71 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_01a82ece2f821a7487c69f657cc1d42c.bindTooltip(
+                `<div>
+                     Kec. Kalianget, Sumenep
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_01a82ece2f821a7487c69f657cc1d42c.setIcon(div_icon_d680c8fbd6bf9e16d27cd10d4fc52f71);
+            
+    
+            var circle_marker_f20e8cb19452e85ca4749f89aa7cca31 = L.circleMarker(
+                [-7.2242503, 112.5707953],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_260b7324208f5e0b3563915b0833dd03 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_973855328ace1de1dce109d0da0a1b06 = $(`<div id="html_973855328ace1de1dce109d0da0a1b06" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Cerme, Gresik</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Robbaniyah Umdatun Ni'mah</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.2243, 112.5708</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0002</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0305</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_260b7324208f5e0b3563915b0833dd03.setContent(html_973855328ace1de1dce109d0da0a1b06);
+            
+        
+
+        circle_marker_f20e8cb19452e85ca4749f89aa7cca31.bindPopup(popup_260b7324208f5e0b3563915b0833dd03)
+        ;
+
+        
+    
+    
+            circle_marker_f20e8cb19452e85ca4749f89aa7cca31.bindTooltip(
+                `<div>
+                     Cluster 0: Cerme, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_3f8f972232f2166b8d5dbc05f7601c4b = L.marker(
+                [-7.2242503, 112.5707953],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_0a02b09ed9186978ce8d17e2ac7f86e9 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_3f8f972232f2166b8d5dbc05f7601c4b.bindTooltip(
+                `<div>
+                     Cerme, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3f8f972232f2166b8d5dbc05f7601c4b.setIcon(div_icon_0a02b09ed9186978ce8d17e2ac7f86e9);
+            
+    
+            var circle_marker_9267c364c2fa77ad672796e8b44d3eeb = L.circleMarker(
+                [1.4679805, 124.8624665],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_0440007d6bbd9841b6dd79dcc6c712a5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1a4672ad242af398f39979799c7bfa08 = $(`<div id="html_1a4672ad242af398f39979799c7bfa08" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Tikala, Manado</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Rachelia Andini Tendean</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>1.4680, 124.8625</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>-0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0253</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_0440007d6bbd9841b6dd79dcc6c712a5.setContent(html_1a4672ad242af398f39979799c7bfa08);
+            
+        
+
+        circle_marker_9267c364c2fa77ad672796e8b44d3eeb.bindPopup(popup_0440007d6bbd9841b6dd79dcc6c712a5)
+        ;
+
+        
+    
+    
+            circle_marker_9267c364c2fa77ad672796e8b44d3eeb.bindTooltip(
+                `<div>
+                     Cluster 0: Tikala, Manado
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_0848f813cea17b84d7b56de654ae9503 = L.marker(
+                [1.4679805, 124.8624665],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_ae1a1ba0e343afff096ff5d314ad6829 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_0848f813cea17b84d7b56de654ae9503.bindTooltip(
+                `<div>
+                     Tikala, Manado
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0848f813cea17b84d7b56de654ae9503.setIcon(div_icon_ae1a1ba0e343afff096ff5d314ad6829);
+            
+    
+            var circle_marker_8f12c7914b37501e7b046892369385ab = L.circleMarker(
+                [-6.8970592, 111.8854917],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_98cc078065c59cae2c05923744438e1d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ea9f406bdf583562846f1a88885dbfd6 = $(`<div id="html_ea9f406bdf583562846f1a88885dbfd6" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kerek, Tuban</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Nurhabibatul Umah</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-6.8971, 111.8855</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0297</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_98cc078065c59cae2c05923744438e1d.setContent(html_ea9f406bdf583562846f1a88885dbfd6);
+            
+        
+
+        circle_marker_8f12c7914b37501e7b046892369385ab.bindPopup(popup_98cc078065c59cae2c05923744438e1d)
+        ;
+
+        
+    
+    
+            circle_marker_8f12c7914b37501e7b046892369385ab.bindTooltip(
+                `<div>
+                     Cluster 0: Kerek, Tuban
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c0bddcdaf9366ddc01dea4c38674af23 = L.marker(
+                [-6.8970592, 111.8854917],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_415368b94adc53f6cba54e671616d5c0 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_c0bddcdaf9366ddc01dea4c38674af23.bindTooltip(
+                `<div>
+                     Kerek, Tuban
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c0bddcdaf9366ddc01dea4c38674af23.setIcon(div_icon_415368b94adc53f6cba54e671616d5c0);
+            
+    
+            var circle_marker_590732df897e49418ae598b77e47eac9 = L.circleMarker(
+                [-7.1638712, 112.8509634],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_33110b5a50bcc9fa47a18b04d4e3e979 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_82b83481d618c355e0864f0992271e62 = $(`<div id="html_82b83481d618c355e0864f0992271e62" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kwanyar, Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Fahdimas akmal</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1639, 112.8510</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0282</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_33110b5a50bcc9fa47a18b04d4e3e979.setContent(html_82b83481d618c355e0864f0992271e62);
+            
+        
+
+        circle_marker_590732df897e49418ae598b77e47eac9.bindPopup(popup_33110b5a50bcc9fa47a18b04d4e3e979)
+        ;
+
+        
+    
+    
+            circle_marker_590732df897e49418ae598b77e47eac9.bindTooltip(
+                `<div>
+                     Cluster 0: Kwanyar, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_30bfccaf335aa276e3b05dedc98cdd8e = L.marker(
+                [-7.1638712, 112.8509634],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_562cfddb8755322a4e9cb0c2655184ca = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_30bfccaf335aa276e3b05dedc98cdd8e.bindTooltip(
+                `<div>
+                     Kwanyar, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_30bfccaf335aa276e3b05dedc98cdd8e.setIcon(div_icon_562cfddb8755322a4e9cb0c2655184ca);
+            
+    
+            var circle_marker_4161ac28673d1e5f58d9190fc3eb9b58 = L.circleMarker(
+                [-7.3020554, 112.7392222],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_45b22f9bb750b4a7a838063fd56a16f4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_af2a8b44e4802385fd40724f741f01d6 = $(`<div id="html_af2a8b44e4802385fd40724f741f01d6" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Wonokromo, Surabaya</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Muhammad izzul Millah Aqil</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.3021, 112.7392</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0290</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_45b22f9bb750b4a7a838063fd56a16f4.setContent(html_af2a8b44e4802385fd40724f741f01d6);
+            
+        
+
+        circle_marker_4161ac28673d1e5f58d9190fc3eb9b58.bindPopup(popup_45b22f9bb750b4a7a838063fd56a16f4)
+        ;
+
+        
+    
+    
+            circle_marker_4161ac28673d1e5f58d9190fc3eb9b58.bindTooltip(
+                `<div>
+                     Cluster 0: Wonokromo, Surabaya
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_655c2f3dc1726db461b59b9dd30078ec = L.marker(
+                [-7.3020554, 112.7392222],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_58078dc44d7021e6c8fbc95ff0b2223f = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_655c2f3dc1726db461b59b9dd30078ec.bindTooltip(
+                `<div>
+                     Wonokromo, Surabaya
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_655c2f3dc1726db461b59b9dd30078ec.setIcon(div_icon_58078dc44d7021e6c8fbc95ff0b2223f);
+            
+    
+            var circle_marker_9b3f1ed6d5839337ab55570d3054b7c1 = L.circleMarker(
+                [-7.2417405, 112.6888023],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_0d820d0cf1514b68596e30ddd2ddedb9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_84dc68ce1212a7f5123c4072698ac558 = $(`<div id="html_84dc68ce1212a7f5123c4072698ac558" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Asemrowo, Surabaya</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Riska Nana Nuril Fadilah</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.2417, 112.6888</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0003</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0295</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_0d820d0cf1514b68596e30ddd2ddedb9.setContent(html_84dc68ce1212a7f5123c4072698ac558);
+            
+        
+
+        circle_marker_9b3f1ed6d5839337ab55570d3054b7c1.bindPopup(popup_0d820d0cf1514b68596e30ddd2ddedb9)
+        ;
+
+        
+    
+    
+            circle_marker_9b3f1ed6d5839337ab55570d3054b7c1.bindTooltip(
+                `<div>
+                     Cluster 0: Asemrowo, Surabaya
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_dfb50045e828ad8aaf9d5c0fc8bd8e25 = L.marker(
+                [-7.2417405, 112.6888023],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_c20db93ca59132877b87dd65816808eb = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_dfb50045e828ad8aaf9d5c0fc8bd8e25.bindTooltip(
+                `<div>
+                     Asemrowo, Surabaya
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dfb50045e828ad8aaf9d5c0fc8bd8e25.setIcon(div_icon_c20db93ca59132877b87dd65816808eb);
+            
+    
+            var circle_marker_20d53493eb55488e2d0fe7407c148ca8 = L.circleMarker(
+                [-7.006745, 113.8598666],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_2df978f344c9809ac12ca247834b10bd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f970d945dbc998eacc930fc5cc942d4b = $(`<div id="html_f970d945dbc998eacc930fc5cc942d4b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kota Sumenep, Sumenep</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Alifah Sayyidaturrhohma</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.0067, 113.8599</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>-0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0276</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_2df978f344c9809ac12ca247834b10bd.setContent(html_f970d945dbc998eacc930fc5cc942d4b);
+            
+        
+
+        circle_marker_20d53493eb55488e2d0fe7407c148ca8.bindPopup(popup_2df978f344c9809ac12ca247834b10bd)
+        ;
+
+        
+    
+    
+            circle_marker_20d53493eb55488e2d0fe7407c148ca8.bindTooltip(
+                `<div>
+                     Cluster 0: Kota Sumenep, Sumenep
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_ce98b01fa06da5f66a7ef34840266a55 = L.marker(
+                [-7.006745, 113.8598666],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_f9ade228988ee1ee724c49f330fd76f8 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_ce98b01fa06da5f66a7ef34840266a55.bindTooltip(
+                `<div>
+                     Kota Sumenep, Sumenep
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ce98b01fa06da5f66a7ef34840266a55.setIcon(div_icon_f9ade228988ee1ee724c49f330fd76f8);
+            
+    
+            var circle_marker_cea4d934d8679d5ee81794baf3a5c51e = L.circleMarker(
+                [-7.0909364, 112.7055302],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_435c24b62457d930fc66986211e0233d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c70002628b05b6364818fd92153f0e83 = $(`<div id="html_c70002628b05b6364818fd92153f0e83" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Socah, Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Lailatul Hasanah</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.0909, 112.7055</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0286</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_435c24b62457d930fc66986211e0233d.setContent(html_c70002628b05b6364818fd92153f0e83);
+            
+        
+
+        circle_marker_cea4d934d8679d5ee81794baf3a5c51e.bindPopup(popup_435c24b62457d930fc66986211e0233d)
+        ;
+
+        
+    
+    
+            circle_marker_cea4d934d8679d5ee81794baf3a5c51e.bindTooltip(
+                `<div>
+                     Cluster 0: Socah, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_349d55aaeb290009e82091d462c7398e = L.marker(
+                [-7.0909364, 112.7055302],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_46d1720c27c7f1925da7356e7ceddaa4 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_349d55aaeb290009e82091d462c7398e.bindTooltip(
+                `<div>
+                     Socah, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_349d55aaeb290009e82091d462c7398e.setIcon(div_icon_46d1720c27c7f1925da7356e7ceddaa4);
+            
+    
+            var circle_marker_12679f984fbd1c460d6088674c3adfc1 = L.circleMarker(
+                [-7.499596, 111.6442548],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_c4c75b2b7b19e0c7b3f5dd027b1da945 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8ec7d9ad2c4b6e263e8667eb92fb5dff = $(`<div id="html_8ec7d9ad2c4b6e263e8667eb92fb5dff" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Pilangkenceng, Madiun</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Magdalena Jovita Hatuopar</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.4996, 111.6443</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0295</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_c4c75b2b7b19e0c7b3f5dd027b1da945.setContent(html_8ec7d9ad2c4b6e263e8667eb92fb5dff);
+            
+        
+
+        circle_marker_12679f984fbd1c460d6088674c3adfc1.bindPopup(popup_c4c75b2b7b19e0c7b3f5dd027b1da945)
+        ;
+
+        
+    
+    
+            circle_marker_12679f984fbd1c460d6088674c3adfc1.bindTooltip(
+                `<div>
+                     Cluster 0: Pilangkenceng, Madiun
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_b17d9db5fcdaedea3d42fcb43f2db72d = L.marker(
+                [-7.499596, 111.6442548],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_124e7054dff217be220ba8fce87347f5 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_b17d9db5fcdaedea3d42fcb43f2db72d.bindTooltip(
+                `<div>
+                     Pilangkenceng, Madiun
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b17d9db5fcdaedea3d42fcb43f2db72d.setIcon(div_icon_124e7054dff217be220ba8fce87347f5);
+            
+    
+            var circle_marker_f6d04808419ff7d9c802edb3cfb4bcbf = L.circleMarker(
+                [-7.0882748, 112.8853403],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_d442f030a10fc63c2d63efb3e0ec2bf0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_20d9a090316b8a9758ad15f1c64326b7 = $(`<div id="html_20d9a090316b8a9758ad15f1c64326b7" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Tanah Merah, Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Mohammad Aziz Huzaini</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.0883, 112.8853</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0002</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0283</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_d442f030a10fc63c2d63efb3e0ec2bf0.setContent(html_20d9a090316b8a9758ad15f1c64326b7);
+            
+        
+
+        circle_marker_f6d04808419ff7d9c802edb3cfb4bcbf.bindPopup(popup_d442f030a10fc63c2d63efb3e0ec2bf0)
+        ;
+
+        
+    
+    
+            circle_marker_f6d04808419ff7d9c802edb3cfb4bcbf.bindTooltip(
+                `<div>
+                     Cluster 0: Tanah Merah, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_12448e8d7cd2f5061f3fcd69e8ca0d39 = L.marker(
+                [-7.0882748, 112.8853403],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_583bcfcd21cfe9873d13c188abade1b3 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_12448e8d7cd2f5061f3fcd69e8ca0d39.bindTooltip(
+                `<div>
+                     Tanah Merah, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_12448e8d7cd2f5061f3fcd69e8ca0d39.setIcon(div_icon_583bcfcd21cfe9873d13c188abade1b3);
+            
+    
+            var circle_marker_ac1f4c134c06fcf1ba351360b89a2ca8 = L.circleMarker(
+                [-7.13961, 112.7730944],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_666a726bd76f0031302534d6a97aef35 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a03672ac9daa739186dcb27e2ab2f7d2 = $(`<div id="html_a03672ac9daa739186dcb27e2ab2f7d2" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Labang, Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Kurnia Maulinda Sari</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1396, 112.7731</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0287</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_666a726bd76f0031302534d6a97aef35.setContent(html_a03672ac9daa739186dcb27e2ab2f7d2);
+            
+        
+
+        circle_marker_ac1f4c134c06fcf1ba351360b89a2ca8.bindPopup(popup_666a726bd76f0031302534d6a97aef35)
+        ;
+
+        
+    
+    
+            circle_marker_ac1f4c134c06fcf1ba351360b89a2ca8.bindTooltip(
+                `<div>
+                     Cluster 0: Labang, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_63a7dad9849e1114cb2170d407a0e732 = L.marker(
+                [-7.13961, 112.7730944],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_3187151c88e9fad6f82b0611a33cbe50 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_63a7dad9849e1114cb2170d407a0e732.bindTooltip(
+                `<div>
+                     Labang, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_63a7dad9849e1114cb2170d407a0e732.setIcon(div_icon_3187151c88e9fad6f82b0611a33cbe50);
+            
+    
+            var circle_marker_2bbe5f31bd8b4e571764c3c4c35c57f9 = L.circleMarker(
+                [-7.4028554, 111.2238532],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_81af37d0a68f03ba578381b657b644f7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_32cc2c26f1c2bd4f224807af9052e0b9 = $(`<div id="html_32cc2c26f1c2bd4f224807af9052e0b9" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Widodaren, Ngawi</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Deo Candra Saputra</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.4029, 111.2239</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0295</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_81af37d0a68f03ba578381b657b644f7.setContent(html_32cc2c26f1c2bd4f224807af9052e0b9);
+            
+        
+
+        circle_marker_2bbe5f31bd8b4e571764c3c4c35c57f9.bindPopup(popup_81af37d0a68f03ba578381b657b644f7)
+        ;
+
+        
+    
+    
+            circle_marker_2bbe5f31bd8b4e571764c3c4c35c57f9.bindTooltip(
+                `<div>
+                     Cluster 0: Widodaren, Ngawi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1dd1b8670d4ce6320c380fbc40112bd1 = L.marker(
+                [-7.4028554, 111.2238532],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_c1acc04564859ee05d0a23bfba71a321 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_1dd1b8670d4ce6320c380fbc40112bd1.bindTooltip(
+                `<div>
+                     Widodaren, Ngawi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1dd1b8670d4ce6320c380fbc40112bd1.setIcon(div_icon_c1acc04564859ee05d0a23bfba71a321);
+            
+    
+            var circle_marker_d0805de63d0ba899f39df1d47f6ef3a6 = L.circleMarker(
+                [-7.0294703, 112.7473329],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_d9316b8c7b33fa460d4b653aa2b96f53 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7e1383bb051be8aa8d2feca87664de95 = $(`<div id="html_7e1383bb051be8aa8d2feca87664de95" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Bangkalan, Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Rifqi Fairurrafi</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.0295, 112.7473</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0286</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_d9316b8c7b33fa460d4b653aa2b96f53.setContent(html_7e1383bb051be8aa8d2feca87664de95);
+            
+        
+
+        circle_marker_d0805de63d0ba899f39df1d47f6ef3a6.bindPopup(popup_d9316b8c7b33fa460d4b653aa2b96f53)
+        ;
+
+        
+    
+    
+            circle_marker_d0805de63d0ba899f39df1d47f6ef3a6.bindTooltip(
+                `<div>
+                     Cluster 0: Bangkalan, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_83ffde1ff9d097e5caf42851748ebed1 = L.marker(
+                [-7.0294703, 112.7473329],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_62714af3adf88a9a778d6be5ddc08702 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_83ffde1ff9d097e5caf42851748ebed1.bindTooltip(
+                `<div>
+                     Bangkalan, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_83ffde1ff9d097e5caf42851748ebed1.setIcon(div_icon_62714af3adf88a9a778d6be5ddc08702);
+            
+    
+            var circle_marker_072b2bd11d12d2a63898d9914f4bb7b6 = L.circleMarker(
+                [-6.9340762, 106.9209451],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_26dbad6c6cc330913a1f92516add69fe = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6e5864faf24a4431345a32747c9cf7c1 = $(`<div id="html_6e5864faf24a4431345a32747c9cf7c1" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Warudoyong, Kota Sukabumi</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Fathan Ruhul Alam</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-6.9341, 106.9209</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0281</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_26dbad6c6cc330913a1f92516add69fe.setContent(html_6e5864faf24a4431345a32747c9cf7c1);
+            
+        
+
+        circle_marker_072b2bd11d12d2a63898d9914f4bb7b6.bindPopup(popup_26dbad6c6cc330913a1f92516add69fe)
+        ;
+
+        
+    
+    
+            circle_marker_072b2bd11d12d2a63898d9914f4bb7b6.bindTooltip(
+                `<div>
+                     Cluster 0: Warudoyong, Kota Sukabumi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_815a63ed03400f073dd3230b6439df92 = L.marker(
+                [-6.9340762, 106.9209451],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_5995b22e3ddf9e9dd52c514bda357a65 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_815a63ed03400f073dd3230b6439df92.bindTooltip(
+                `<div>
+                     Warudoyong, Kota Sukabumi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_815a63ed03400f073dd3230b6439df92.setIcon(div_icon_5995b22e3ddf9e9dd52c514bda357a65);
+            
+    
+            var circle_marker_671d2d15e628c730825b82ef3d9de3f3 = L.circleMarker(
+                [-7.1833, 112.7833],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_849e65eb2d16493f51b60d6866ae857a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c622e795576864300a346ccb663c3cd2 = $(`<div id="html_c622e795576864300a346ccb663c3cd2" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kamal, Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Laila Maghfiroh</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1833, 112.7833</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0288</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_849e65eb2d16493f51b60d6866ae857a.setContent(html_c622e795576864300a346ccb663c3cd2);
+            
+        
+
+        circle_marker_671d2d15e628c730825b82ef3d9de3f3.bindPopup(popup_849e65eb2d16493f51b60d6866ae857a)
+        ;
+
+        
+    
+    
+            circle_marker_671d2d15e628c730825b82ef3d9de3f3.bindTooltip(
+                `<div>
+                     Cluster 0: Kamal, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_5da41e5ba168ab6f2aafbbbe40ee7fbb = L.marker(
+                [-7.1833, 112.7833],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_dab23dfb2dc36ee43e1f572cef1df666 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_5da41e5ba168ab6f2aafbbbe40ee7fbb.bindTooltip(
+                `<div>
+                     Kamal, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5da41e5ba168ab6f2aafbbbe40ee7fbb.setIcon(div_icon_dab23dfb2dc36ee43e1f572cef1df666);
+            
+    
+            var circle_marker_a2e9f86f9bc41f3e4c74a67e1ff2331d = L.circleMarker(
+                [-7.1833, 112.7833],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_dbfaaed975cf1784e8bf2b11adcb3823 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d6e1da6330db80ad609a26b714d6bf29 = $(`<div id="html_d6e1da6330db80ad609a26b714d6bf29" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Banyuajuh kamal, Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Dewi Geizya</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.1833, 112.7833</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0287</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_dbfaaed975cf1784e8bf2b11adcb3823.setContent(html_d6e1da6330db80ad609a26b714d6bf29);
+            
+        
+
+        circle_marker_a2e9f86f9bc41f3e4c74a67e1ff2331d.bindPopup(popup_dbfaaed975cf1784e8bf2b11adcb3823)
+        ;
+
+        
+    
+    
+            circle_marker_a2e9f86f9bc41f3e4c74a67e1ff2331d.bindTooltip(
+                `<div>
+                     Cluster 0: Banyuajuh kamal, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_39b5f64e0520321f55e76b352cd1b599 = L.marker(
+                [-7.1833, 112.7833],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_1b9942deca76faa46b76baa75c566f0b = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_39b5f64e0520321f55e76b352cd1b599.bindTooltip(
+                `<div>
+                     Banyuajuh kamal, Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_39b5f64e0520321f55e76b352cd1b599.setIcon(div_icon_1b9942deca76faa46b76baa75c566f0b);
+            
+    
+            var circle_marker_d892680b169650d83f21d830129f009b = L.circleMarker(
+                [-6.9963518, 112.5098482],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_6fbce8faa225825147621e9c359740a4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d73cb25ee4b18f021957a6be3e0e1485 = $(`<div id="html_d73cb25ee4b18f021957a6be3e0e1485" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Dukun, Gresik</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Fathul Aziz Saifuddin</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-6.9964, 112.5098</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0290</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_6fbce8faa225825147621e9c359740a4.setContent(html_d73cb25ee4b18f021957a6be3e0e1485);
+            
+        
+
+        circle_marker_d892680b169650d83f21d830129f009b.bindPopup(popup_6fbce8faa225825147621e9c359740a4)
+        ;
+
+        
+    
+    
+            circle_marker_d892680b169650d83f21d830129f009b.bindTooltip(
+                `<div>
+                     Cluster 0: Dukun, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_01de47e82f3dfeb87ced11e4d6744bc7 = L.marker(
+                [-6.9963518, 112.5098482],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_3025b07fd720bd2ec501054ba9be67a4 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_01de47e82f3dfeb87ced11e4d6744bc7.bindTooltip(
+                `<div>
+                     Dukun, Gresik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_01de47e82f3dfeb87ced11e4d6744bc7.setIcon(div_icon_3025b07fd720bd2ec501054ba9be67a4);
+            
+    
+            var circle_marker_07bef522e06e2bdcb6f5bcce1d765e8c = L.circleMarker(
+                [-7.0294703, 112.7473329],
+                {"bubblingMouseEvents": true, "color": "#E53935", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E53935", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+        var popup_c3d2875a72e8c5d2bff019a92c6f9688 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cb2c20193353cdd5bb537cdec57083fe = $(`<div id="html_cb2c20193353cdd5bb537cdec57083fe" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#E53935;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 0</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Kecamatan Bangkalan,Bangkalan</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Moh Rafie Nazar J</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.0295, 112.7473</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0285</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_c3d2875a72e8c5d2bff019a92c6f9688.setContent(html_cb2c20193353cdd5bb537cdec57083fe);
+            
+        
+
+        circle_marker_07bef522e06e2bdcb6f5bcce1d765e8c.bindPopup(popup_c3d2875a72e8c5d2bff019a92c6f9688)
+        ;
+
+        
+    
+    
+            circle_marker_07bef522e06e2bdcb6f5bcce1d765e8c.bindTooltip(
+                `<div>
+                     Cluster 0: Kecamatan Bangkalan,Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_339de6b7b1526a4b4bd1efedf71ae281 = L.marker(
+                [-7.0294703, 112.7473329],
+                {
+}
+            ).addTo(feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4);
+        
+    
+            var div_icon_91299634698c2d0165827ab66a1a74c9 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#E53935;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC0\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_339de6b7b1526a4b4bd1efedf71ae281.bindTooltip(
+                `<div>
+                     Kecamatan Bangkalan,Bangkalan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_339de6b7b1526a4b4bd1efedf71ae281.setIcon(div_icon_91299634698c2d0165827ab66a1a74c9);
+            
+    
+            feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4.addTo(map_269e219e5518b30a9e0013da2b7fbdaf);
+        
+    
+            var feature_group_28817611c337ee8f8039ec5d66981683 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_c8ce5c56cde2ff0307262639ab5904ff = L.circleMarker(
+                [-7.5351067, 112.810693],
+                {"bubblingMouseEvents": true, "color": "#1E88E5", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1E88E5", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_28817611c337ee8f8039ec5d66981683);
+        
+    
+        var popup_6629bd73be19c0b862fed11cae6f72ed = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_41071bd9d79d1504921853012a81ff57 = $(`<div id="html_41071bd9d79d1504921853012a81ff57" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#1E88E5;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 1</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Jabon, Sidoarjo</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Rahardian Ananta</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.5351, 112.8107</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0001</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0293</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_6629bd73be19c0b862fed11cae6f72ed.setContent(html_41071bd9d79d1504921853012a81ff57);
+            
+        
+
+        circle_marker_c8ce5c56cde2ff0307262639ab5904ff.bindPopup(popup_6629bd73be19c0b862fed11cae6f72ed)
+        ;
+
+        
+    
+    
+            circle_marker_c8ce5c56cde2ff0307262639ab5904ff.bindTooltip(
+                `<div>
+                     Cluster 1: Jabon, Sidoarjo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d2c236a28f526d5d284df9be9a86eabc = L.marker(
+                [-7.5351067, 112.810693],
+                {
+}
+            ).addTo(feature_group_28817611c337ee8f8039ec5d66981683);
+        
+    
+            var div_icon_81b79927a6f779db198ba59085bfa4bf = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#1E88E5;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC1\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_d2c236a28f526d5d284df9be9a86eabc.bindTooltip(
+                `<div>
+                     Jabon, Sidoarjo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d2c236a28f526d5d284df9be9a86eabc.setIcon(div_icon_81b79927a6f779db198ba59085bfa4bf);
+            
+    
+            var circle_marker_0f5607b918bb79c12a79a2e296142c9e = L.circleMarker(
+                [-7.4455575, 112.6644479],
+                {"bubblingMouseEvents": true, "color": "#1E88E5", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1E88E5", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_28817611c337ee8f8039ec5d66981683);
+        
+    
+        var popup_99318be020ef57fbfde15ecb4a9e0a43 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5d1fdfe7f8c5c4f4cc080aaa824c13a0 = $(`<div id="html_5d1fdfe7f8c5c4f4cc080aaa824c13a0" style="width: 100.0%; height: 100.0%;">     <div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;">       <div style="background:#1E88E5;color:white;padding:8px 12px;border-radius:6px 6px 0 0;">         <b style="font-size:14px;">Cluster 1</b>       </div>       <div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;">         <table style="width:100%;border-collapse:collapse;font-size:12px;">           <tr><td style="color:#777;padding:2px 0">Daerah</td>               <td><b>Sidoarjo, Wonoayu</b></td></tr>           <tr><td style="color:#777;padding:2px 0">Nama</td>               <td>Alghifari Amar Mukhasyafah</td></tr>           <tr><td style="color:#777;padding:2px 0">Koordinat</td>               <td>-7.4456, 112.6644</td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#1565C0;padding:2px 0">NO₂ mean</td>               <td><b>0.0000</b></td></tr>           <tr><td style="color:#B71C1C;padding:2px 0">SO₂ mean</td>               <td><b>0.0002</b></td></tr>           <tr><td style="color:#1B5E20;padding:2px 0">CO mean</td>               <td><b>0.0314</b></td></tr>           <tr><td colspan=2><hr style="margin:6px 0"></td></tr>           <tr><td style="color:#777">Dataset</td>               <td>Poly-204</td></tr>           <tr><td style="color:#777">Silhouette</td>               <td>0.5375</td></tr>         </table>       </div>     </div>     </div>`)[0];
+                popup_99318be020ef57fbfde15ecb4a9e0a43.setContent(html_5d1fdfe7f8c5c4f4cc080aaa824c13a0);
+            
+        
+
+        circle_marker_0f5607b918bb79c12a79a2e296142c9e.bindPopup(popup_99318be020ef57fbfde15ecb4a9e0a43)
+        ;
+
+        
+    
+    
+            circle_marker_0f5607b918bb79c12a79a2e296142c9e.bindTooltip(
+                `<div>
+                     Cluster 1: Sidoarjo, Wonoayu
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_4840ecf2b4149439ed0b8fa1cc7f29e3 = L.marker(
+                [-7.4455575, 112.6644479],
+                {
+}
+            ).addTo(feature_group_28817611c337ee8f8039ec5d66981683);
+        
+    
+            var div_icon_a2686e793f2f54d805e2d91224abdc7b = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:9px;font-weight:bold;color:white;background:#1E88E5;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.4);\"\u003eC1\u003c/div\u003e",
+  "iconSize": [22, 22],
+  "iconAnchor": [11, 11],
+  "className": "empty",
+});
+        
+    
+            marker_4840ecf2b4149439ed0b8fa1cc7f29e3.bindTooltip(
+                `<div>
+                     Sidoarjo, Wonoayu
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4840ecf2b4149439ed0b8fa1cc7f29e3.setIcon(div_icon_a2686e793f2f54d805e2d91224abdc7b);
+            
+    
+            feature_group_28817611c337ee8f8039ec5d66981683.addTo(map_269e219e5518b30a9e0013da2b7fbdaf);
+        
+    
+            var layer_control_dc655e46741b9ef2b275728726659bf1_layers = {
+                base_layers : {
+                    "OpenStreetMap (default)" : tile_layer_cdfca9300d41c9056ae5cdfd87f0d897,
+                    "Esri Street Map" : tile_layer_4729173516403da195220b7ee5ec896b,
+                    "Citra Satelit (Esri)" : tile_layer_ebe2754a6c882064c09aa1173d11028f,
+                },
+                overlays :  {
+                    "Cluster 0" : feature_group_852c9f6578aa82f0e36e3ddd37a5b8b4,
+                    "Cluster 1" : feature_group_28817611c337ee8f8039ec5d66981683,
+                },
+            };
+            let layer_control_dc655e46741b9ef2b275728726659bf1 = L.control.layers(
+                layer_control_dc655e46741b9ef2b275728726659bf1_layers.base_layers,
+                layer_control_dc655e46741b9ef2b275728726659bf1_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_269e219e5518b30a9e0013da2b7fbdaf);
+
+        
+    
+            var tile_layer_2b0fa26434631e37375dcb095a5b10f0 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_f63b863cfcf3bc94c5fcab70186d631b = new L.Control.MiniMap(
+                tile_layer_2b0fa26434631e37375dcb095a5b10f0,
+                {
+  "position": "bottomright",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": true,
+  "autoToggleDisplay": false,
+  "minimized": false,
+}
+            );
+            map_269e219e5518b30a9e0013da2b7fbdaf.addControl(mini_map_f63b863cfcf3bc94c5fcab70186d631b);
+        
+</script>
+</html>

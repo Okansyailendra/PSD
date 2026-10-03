@@ -23,5 +23,12 @@ chapters:
   sections:
   - file: Clustering/analisis_clustering
   - file: Clustering/penjelasan_clustering_knime
-
 - file: Deskripsi_fitur_perhitungan_manual_no2
+- file: Clustering_Segmentasi/clustering_segmentasi
+  sections:
+  - file: Clustering_Segmentasi/01_Data_dan_EDA/data_dan_eda
+  - file: Clustering_Segmentasi/02_Reduksi_Dimensi/reduksi_dimensi
+  - file: Clustering_Segmentasi/03_Eksperimen_Clustering/eksperimen_clustering
+  - file: Clustering_Segmentasi/04_Visualisasi_Peta/visualisasi_peta
+
+
