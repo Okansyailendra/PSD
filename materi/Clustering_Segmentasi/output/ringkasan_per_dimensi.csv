@@ -1,0 +1,9 @@
+Metode,Dimensi,k terbaik,Silhouette,Inertia,Ukuran cluster,Catatan
+Linear,204,2,0.4909,5442.3,34 / 3,
+Linear,203,2,0.4909,5442.3,34 / 3,partisi sama dengan Linear-204
+Linear,74,2,0.4021,2227.0,33 / 4,
+Linear,37,2,0.4021,2227.0,33 / 4,partisi sama dengan Linear-74
+Poly,204,2,0.5375,5450.8,35 / 2,
+Poly,203,2,0.5375,5450.8,35 / 2,partisi sama dengan Poly-204
+Poly,74,3,0.4543,1968.6,35 / 1 / 1,
+Poly,37,3,0.4543,1968.6,35 / 1 / 1,partisi sama dengan Poly-74
