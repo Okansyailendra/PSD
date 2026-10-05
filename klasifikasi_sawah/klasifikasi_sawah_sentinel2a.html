@@ -443,18 +443,35 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-sebaran-sampel">Peta sebaran sampel</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengunduh-sentinel-2a-geotiff-dari-copernicus">3. Mengunduh Sentinel-2A (GeoTIFF) dari Copernicus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengunduh-sentinel-2a-geotiff-dari-copernicus">3. Mengunduh Sentinel-2A (GeoTIFF) dari Copernicus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-citra-yang-dipakai">Informasi citra yang dipakai</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-citra-geotiff">4. Membaca citra GeoTIFF</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-band-spektral-indeks">5. Fitur: band spektral + indeks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rasterisasi-poligon-sampel">6. Rasterisasi poligon sampel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-training-dan-testing-per-poligon">7. Pembagian data training dan testing per poligon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-dan-mengevaluasi-model">8. Melatih dan mengevaluasi model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rasterisasi-poligon-sampel">6. Rasterisasi poligon sampel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-piksel-per-kelas">Jumlah piksel per kelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-training-dan-testing-per-poligon">7. Pembagian data training dan testing per poligon</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-training-dan-testing-per-kelas">Jumlah data training dan testing per kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-poligon-dan-piksel-per-kelas">Jumlah poligon dan piksel per kelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-dan-mengevaluasi-model">8. Melatih dan mengevaluasi model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-hasil-evaluasi">Membaca hasil evaluasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ketidakseimbangan-kelas">Ketidakseimbangan kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kepentingan-fitur">Kepentingan fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-nilai-fitur-per-kelas">Sebaran nilai fitur per kelas</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-seluruh-citra">9. Klasifikasi seluruh citra</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-geotiff-peta-dan-ringkasan">10. Menyimpan GeoTIFF, peta, dan ringkasan</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-membaca-peta-hasil">Cara membaca peta hasil</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-dan-keterbatasan">Catatan dan keterbatasan</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">11. Kesimpulan</a></li>
 </ul>
             </nav>
         </div>
@@ -965,6 +982,73 @@ BBox area (lon/lat): (112.58753, -7.17266, 112.6426, -7.12557)
 </div>
 </div>
 </div>
+<section id="informasi-citra-yang-dipakai">
+<h3>Informasi citra yang dipakai<a class="headerlink" href="#informasi-citra-yang-dipakai" title="Link to this heading">#</a></h3>
+<p>Setelah unduhan selesai, ringkasan scene tersimpan di <code class="docutils literal notranslate"><span class="pre">sentinel2a_aoi_info.txt</span></code>. Sel berikut menampilkan isinya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">INFO_TXT</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scene    : S2A_MSIL2A_20260713T024141_N0512_R089_T49MFN_20260713T071619.SAFE
+Akuisisi : 2026-07-13T03:00:01.845Z
+Awan tile: 4.0%
+Piksel valid di AOI: 97.9%
+CRS      : EPSG:32749
+Resolusi : 10 m
+Band     : B02, B03, B04, B08, B11, B12 (reflektansi 0-1)
+Masking awan (SCL): True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Informasi</p></th>
+<th class="head"><p>Nilai</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Scene</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">S2A_MSIL2A_20260713T024141_N0512_R089_T49MFN_20260713T071619.SAFE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">S2A</span></code> = Sentinel-2A, <code class="docutils literal notranslate"><span class="pre">MSIL2A</span></code> = Level-2A (reflektansi permukaan, sudah terkoreksi atmosfer), <code class="docutils literal notranslate"><span class="pre">N0512</span></code> = versi pemrosesan, <code class="docutils literal notranslate"><span class="pre">R089</span></code> = orbit relatif, <code class="docutils literal notranslate"><span class="pre">T49MFN</span></code> = kode tile</p></td>
+</tr>
+<tr class="row-odd"><td><p>Waktu akuisisi</p></td>
+<td><p>13 Juli 2026, 03:00 UTC (sekitar 10:00 WIB)</p></td>
+<td><p>Masuk dalam rentang pencarian <code class="docutils literal notranslate"><span class="pre">START_DATE</span></code> sampai <code class="docutils literal notranslate"><span class="pre">END_DATE</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Tutupan awan (level tile)</p></td>
+<td><p>4,0%</p></td>
+<td><p>Jauh di bawah batas <code class="docutils literal notranslate"><span class="pre">MAX_CLOUD</span></code> = 30%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Piksel valid di area sampel</p></td>
+<td><p>97,9%</p></td>
+<td><p>Di atas batas <code class="docutils literal notranslate"><span class="pre">MIN_VALID</span></code> = 90%. Sisanya (2,1%) adalah piksel <code class="docutils literal notranslate"><span class="pre">NaN</span></code> hasil masking awan dan bayangan awan</p></td>
+</tr>
+<tr class="row-even"><td><p>Sistem koordinat</p></td>
+<td><p>EPSG:32749 (UTM zona 49S)</p></td>
+<td><p>Satuan meter, sehingga luas bisa dihitung langsung</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resolusi</p></td>
+<td><p>10 m</p></td>
+<td><p>1 piksel = 100 m²</p></td>
+</tr>
+<tr class="row-even"><td><p>Band</p></td>
+<td><p>B02, B03, B04, B08, B11, B12</p></td>
+<td><p>Reflektansi 0 sampai 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Masking awan (SCL)</p></td>
+<td><p>Ya</p></td>
+<td><p>Kelas awan, bayangan awan, cirrus, dan salju dibuang</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Mengapa tanggal akuisisi penting.</strong> Peta ini menggambarkan kondisi lahan pada <strong>13 Juli 2026</strong>. Pada bulan Juli umumnya musim kemarau di Jawa Timur, sehingga sawah bisa berada pada berbagai fase (masih digenangi, vegetatif, sudah panen, atau bera). Fase tersebut mengubah nilai NDVI, NDWI, dan band SWIR, sehingga hasil klasifikasi pada tanggal lain dapat berbeda.</p>
+</section>
 </section>
 <section id="membaca-citra-geotiff">
 <h2>4. Membaca citra GeoTIFF<a class="headerlink" href="#membaca-citra-geotiff" title="Link to this heading">#</a></h2>
@@ -1078,11 +1162,44 @@ Kelas 1 (sawah): 50 poligon terpakai, 604 piksel bebas awan
 </div>
 </div>
 </div>
+<section id="jumlah-piksel-per-kelas">
+<h3>Jumlah piksel per kelas<a class="headerlink" href="#jumlah-piksel-per-kelas" title="Link to this heading">#</a></h3>
+<p>Hasil rasterisasi di atas, diringkas dalam tabel (hanya piksel bebas awan yang dihitung):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Poligon terpakai</p></th>
+<th class="head"><p>Jumlah piksel</p></th>
+<th class="head"><p>Porsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Non-sawah (kelas 0)</p></td>
+<td><p>50</p></td>
+<td><p><strong>3.399</strong></p></td>
+<td><p>84,9%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sawah (kelas 1)</p></td>
+<td><p>50</p></td>
+<td><p><strong>604</strong></p></td>
+<td><p>15,1%</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td><p>100</p></td>
+<td><p><strong>4.003</strong></p></td>
+<td><p>100%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Setiap piksel mewakili area 10 m x 10 m (100 m²). Piksel-piksel inilah yang menjadi data berlabel untuk melatih dan menguji model.</p>
+</section>
 </section>
 <section id="pembagian-data-training-dan-testing-per-poligon">
 <h2>7. Pembagian data training dan testing per poligon<a class="headerlink" href="#pembagian-data-training-dan-testing-per-poligon" title="Link to this heading">#</a></h2>
 <p>Pembagian dilakukan <strong>per poligon, bukan per piksel</strong>. Piksel yang bertetangga di dalam satu poligon sangat mirip. Jika dipisah per piksel, sebagian piksel poligon yang sama akan masuk training dan sebagian lagi testing, sehingga akurasi tampak terlalu tinggi (<em>spatial data leakage</em>).</p>
 <p>Dengan pembagian per poligon, <strong>70% poligon</strong> tiap kelas menjadi data latih dan <strong>30%</strong> sisanya menjadi data uji yang benar-benar belum pernah dilihat model.</p>
+<p><strong>Yang dipelajari model adalah piksel, bukan poligon.</strong> Setiap piksel di dalam poligon mewarisi label poligonnya (sawah atau non-sawah) dan menjadi satu baris data berisi 10 fitur dan 1 label. Poligon hanya dipakai sebagai dasar pembagian training dan testing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
@@ -1112,6 +1229,105 @@ Piksel training: 3121 | testing: 882
 </div>
 </div>
 </div>
+<section id="jumlah-data-training-dan-testing-per-kelas">
+<h3>Jumlah data training dan testing per kelas<a class="headerlink" href="#jumlah-data-training-dan-testing-per-kelas" title="Link to this heading">#</a></h3>
+<p>Sel berikut menghitung jumlah piksel training dan testing untuk masing-masing kelas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">nama</span> <span class="ow">in</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;non-sawah&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;sawah&quot;</span><span class="p">)):</span>
+    <span class="n">n_tr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">n_te</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nama</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2">: training </span><span class="si">{</span><span class="n">n_tr</span><span class="si">}</span><span class="s2"> piksel | testing </span><span class="si">{</span><span class="n">n_te</span><span class="si">}</span><span class="s2"> piksel | total </span><span class="si">{</span><span class="n">n_tr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n_te</span><span class="si">}</span><span class="s2"> piksel&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>non-sawah : training 2738 piksel | testing 661 piksel | total 3399 piksel
+sawah     : training 383 piksel | testing 221 piksel | total 604 piksel
+</pre></div>
+</div>
+</div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Poligon training</p></th>
+<th class="head"><p>Poligon testing</p></th>
+<th class="head"><p>Piksel training</p></th>
+<th class="head"><p>Piksel testing</p></th>
+<th class="head"><p>Total piksel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Non-sawah</p></td>
+<td><p>35</p></td>
+<td><p>15</p></td>
+<td><p>2.738</p></td>
+<td><p>661</p></td>
+<td><p>3.399</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sawah</p></td>
+<td><p>35</p></td>
+<td><p>15</p></td>
+<td><p>383</p></td>
+<td><p>221</p></td>
+<td><p>604</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td><p><strong>70</strong></p></td>
+<td><p><strong>30</strong></p></td>
+<td><p><strong>3.121</strong></p></td>
+<td><p><strong>882</strong></p></td>
+<td><p><strong>4.003</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pembagian dilakukan per poligon (35 dari 50 poligon tiap kelas untuk training, 15 untuk testing), sedangkan yang masuk ke model adalah piksel di dalam poligon-poligon tersebut. Karena ukuran poligon berbeda-beda, proporsi piksel training dan testing tidak persis 70:30: untuk sawah 63,4% : 36,6%, untuk non-sawah 80,6% : 19,4%.</p>
+</section>
+<section id="jumlah-poligon-dan-piksel-per-kelas">
+<h3>Jumlah poligon dan piksel per kelas<a class="headerlink" href="#jumlah-poligon-dan-piksel-per-kelas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Poligon training</p></th>
+<th class="head"><p>Poligon testing</p></th>
+<th class="head"><p>Piksel training</p></th>
+<th class="head"><p>Piksel testing</p></th>
+<th class="head"><p>Total piksel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Non-sawah</strong></p></td>
+<td><p>35</p></td>
+<td><p>15</p></td>
+<td><p>2.738</p></td>
+<td><p>661</p></td>
+<td><p><strong>3.399</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Sawah</strong></p></td>
+<td><p>35</p></td>
+<td><p>15</p></td>
+<td><p>383</p></td>
+<td><p>221</p></td>
+<td><p><strong>604</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td><p>70</p></td>
+<td><p>30</p></td>
+<td><p>3.121</p></td>
+<td><p>882</p></td>
+<td><p>4.003</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Data yang masuk ke Random Forest berbentuk tabel <code class="docutils literal notranslate"><span class="pre">X_train</span></code> berukuran <code class="docutils literal notranslate"><span class="pre">(3121,</span> <span class="pre">10)</span></code> dengan label <code class="docutils literal notranslate"><span class="pre">y_train</span></code> sebanyak 3.121 baris. Satu baris adalah satu piksel.</p></li>
+<li><p>Jumlah poligon kedua kelas sama (50 per kelas), tetapi jumlah pikselnya berbeda jauh karena poligon sawah lebih kecil. Dampaknya dibahas pada bagian <em>Ketidakseimbangan kelas</em> di bawah.</p></li>
+<li><p>Hanya piksel bebas awan yang dihitung. Piksel di dalam poligon yang tertutup awan sudah dibuang oleh masking SCL.</p></li>
+</ul>
+</section>
 </section>
 <section id="melatih-dan-mengevaluasi-model">
 <h2>8. Melatih dan mengevaluasi model<a class="headerlink" href="#melatih-dan-mengevaluasi-model" title="Link to this heading">#</a></h2>
@@ -1171,6 +1387,210 @@ Kepentingan fitur:
 </div>
 </div>
 </div>
+<section id="membaca-hasil-evaluasi">
+<h3>Membaca hasil evaluasi<a class="headerlink" href="#membaca-hasil-evaluasi" title="Link to this heading">#</a></h3>
+<p>Data uji berisi <strong>882 piksel</strong> dari 30 poligon yang tidak dipakai saat training (661 piksel non-sawah dan 221 piksel sawah).</p>
+<p><strong>Confusion matrix</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Prediksi non-sawah</p></th>
+<th class="head"><p>Prediksi sawah</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Aktual non-sawah</strong></p></td>
+<td><p>660</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Aktual sawah</strong></p></td>
+<td><p>11</p></td>
+<td><p>210</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Metrik per kelas</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Precision</p></th>
+<th class="head"><p>Recall</p></th>
+<th class="head"><p>F1-score</p></th>
+<th class="head"><p>Jumlah piksel uji</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Non-sawah</p></td>
+<td><p>0,984</p></td>
+<td><p>0,998</p></td>
+<td><p>0,991</p></td>
+<td><p>661</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sawah</p></td>
+<td><p>0,995</p></td>
+<td><p>0,950</p></td>
+<td><p>0,972</p></td>
+<td><p>221</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Overall Accuracy 0,9864</strong>: dari 882 piksel uji, 870 diprediksi benar (660 + 210).</p></li>
+<li><p><strong>Kappa 0,9632</strong>: kesepakatan antara prediksi dan data aktual sangat tinggi setelah dikoreksi kebetulan.</p></li>
+<li><p><strong>Precision sawah 0,995</strong>: dari 211 piksel yang diprediksi sawah, 210 benar. Hanya 1 piksel non-sawah yang salah dianggap sawah.</p></li>
+<li><p><strong>Recall sawah 0,950</strong>: dari 221 piksel sawah sebenarnya, 210 berhasil dikenali dan 11 terlewat (diprediksi non-sawah).</p></li>
+</ul>
+<p>Heatmap berikut menampilkan confusion matrix yang sama. Angka di setiap kotak adalah jumlah piksel, dan persentase di dalam kurung dihitung per baris (per kelas aktual).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_test</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">cm_pct</span> <span class="o">=</span> <span class="n">cm</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">kelas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;non-sawah&quot;</span><span class="p">,</span> <span class="s2">&quot;sawah&quot;</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.8</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm_pct</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">warna</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span> <span class="k">if</span> <span class="n">cm_pct</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="k">else</span> <span class="s2">&quot;black&quot;</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="n">cm_pct</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">warna</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">kelas</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">kelas</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Prediksi&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Aktual&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Confusion matrix (data uji)&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">% d</span><span class="s2">ari kelas aktual&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f98d75375f9ae0a101efa078c52df11a6ceea91928cd5c491c77a539102565b1.png" src="../_images/f98d75375f9ae0a101efa078c52df11a6ceea91928cd5c491c77a539102565b1.png" />
+</div>
+</div>
+</section>
+<section id="ketidakseimbangan-kelas">
+<h3>Ketidakseimbangan kelas<a class="headerlink" href="#ketidakseimbangan-kelas" title="Link to this heading">#</a></h3>
+<p>Jumlah piksel kedua kelas <strong>tidak seimbang</strong>: sawah hanya <strong>604 piksel (15,1%)</strong> dari seluruh piksel sampel, sedangkan non-sawah <strong>3.399 piksel (84,9%)</strong>. Penyebabnya, poligon sawah yang digambar lebih kecil: rata-rata sekitar 12 piksel per poligon, dibanding sekitar 68 piksel per poligon untuk non-sawah.</p>
+<p>Akibatnya, akurasi keseluruhan saja kurang cukup untuk menilai model. Pada data uji, model yang selalu menebak “non-sawah” sudah mencapai akurasi 74,9% (661 dari 882 piksel). Karena itu perhatikan juga metrik kelas sawah:</p>
+<ul class="simple">
+<li><p>Recall sawah (0,950) lebih rendah dari recall non-sawah (0,998). Kelas yang lebih sedikit memang lebih sering terlewat: 5,0% piksel sawah uji (11 dari 221) salah diprediksi non-sawah, sedangkan hanya 0,15% piksel non-sawah uji (1 dari 661) salah diprediksi sawah.</p></li>
+<li><p>F1 sawah (0,972) tetap tinggi, jadi ketidakseimbangan ini belum merusak kinerja secara serius pada data uji.</p></li>
+</ul>
+<p>Bila ingin meningkatkan recall sawah, dua cara yang umum adalah menambah poligon sawah, atau memakai <code class="docutils literal notranslate"><span class="pre">class_weight=&quot;balanced&quot;</span></code> pada <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> agar kelas minoritas diberi bobot lebih besar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">n_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">n_total</span> <span class="o">=</span> <span class="n">n_train</span> <span class="o">+</span> <span class="n">n_test</span>
+<span class="n">nama_kelas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;non-sawah&quot;</span><span class="p">,</span> <span class="s2">&quot;sawah&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;kelas&#39;</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;training&#39;</span><span class="si">:</span><span class="s2">&gt;9</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;testing&#39;</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;total&#39;</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;porsi total&#39;</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nama_kelas</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">n_train</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;9</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">n_test</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">n_total</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">n_total</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n_total</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">&gt;12.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">lebar</span> <span class="o">=</span> <span class="mf">0.35</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">))</span>
+<span class="n">b0</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">lebar</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="n">n_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">lebar</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#d7191c&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;non-sawah&quot;</span><span class="p">)</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">lebar</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="n">n_train</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_test</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">lebar</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#1a9641&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;sawah&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">b0</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s2">&quot;Training&quot;</span><span class="p">,</span> <span class="s2">&quot;Testing&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah piksel&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribusi piksel sampel per kelas&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kelas       training  testing   total  porsi total
+non-sawah       2738      661    3399        84.9%
+sawah            383      221     604        15.1%
+</pre></div>
+</div>
+<img alt="../_images/e3573ef478ca226570f342baf6e7956ff6edfabcb3683f6a40a2946e0e6846a4.png" src="../_images/e3573ef478ca226570f342baf6e7956ff6edfabcb3683f6a40a2946e0e6846a4.png" />
+</div>
+</div>
+</section>
+<section id="kepentingan-fitur">
+<h3>Kepentingan fitur<a class="headerlink" href="#kepentingan-fitur" title="Link to this heading">#</a></h3>
+<p>Diagram berikut mengurutkan kontribusi tiap fitur terhadap keputusan Random Forest (<em>Gini importance</em>). Batang biru adalah band asli dan batang hijau adalah indeks spektral.</p>
+<p>Tiga fitur teratas adalah <strong>B12 (0,264)</strong>, <strong>B02 (0,188)</strong>, dan <strong>NDWI (0,160)</strong>, yang bersama-sama menyumbang sekitar 61% dari total kepentingan. NDVI berada di urutan keempat (0,094).</p>
+<p>Beberapa hal yang perlu diperhatikan saat menafsirkannya:</p>
+<ul class="simple">
+<li><p>B12 adalah band inframerah gelombang pendek (SWIR-2) yang peka terhadap kandungan air dan kelembapan, sedangkan NDWI mengukur air permukaan. Keduanya sejalan dengan ciri sawah yang lembap atau tergenang dibanding permukiman.</p></li>
+<li><p>NDVI yang biasanya jadi andalan untuk vegetasi justru bukan yang teratas. Kemungkinan penyebabnya, sampel non-sawah berupa permukiman, sehingga selisih kelembapan dan kecerahan sudah cukup memisahkan kedua kelas, tanpa harus bergantung pada kehijauan saja.</p></li>
+<li><p>Nilai <em>Gini importance</em> terbagi di antara fitur yang saling berkorelasi (band dan indeks yang dihitung dari band yang sama). Jadi angka ini menunjukkan seberapa sering fitur dipakai model, bukan hubungan sebab-akibat, dan sebaiknya tidak ditafsirkan secara berlebihan.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Patch</span>
+
+<span class="n">urut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+<span class="n">nama</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">FEATURE_NAMES</span><span class="p">)[</span><span class="n">urut</span><span class="p">]</span>
+<span class="n">nilai</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">[</span><span class="n">urut</span><span class="p">]</span>
+<span class="n">indeks</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;NDVI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDWI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDBI&quot;</span><span class="p">,</span> <span class="s2">&quot;EVI&quot;</span><span class="p">}</span>
+<span class="n">warna</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#1a9641&quot;</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">indeks</span> <span class="k">else</span> <span class="s2">&quot;#2b83ba&quot;</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nama</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">nama</span><span class="p">,</span> <span class="n">nilai</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">warna</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nilai</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span> <span class="o">+</span> <span class="mf">0.004</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nilai</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Kepentingan fitur (Gini importance)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Kepentingan fitur Random Forest&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2b83ba&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Band&quot;</span><span class="p">),</span>
+                   <span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;#1a9641&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Indeks&quot;</span><span class="p">)],</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fc69f440a1f306782eaa5c2bdecd3b7dfd52269551697c2075d58180ce1d2f92.png" src="../_images/fc69f440a1f306782eaa5c2bdecd3b7dfd52269551697c2075d58180ce1d2f92.png" />
+</div>
+</div>
+</section>
+<section id="sebaran-nilai-fitur-per-kelas">
+<h3>Sebaran nilai fitur per kelas<a class="headerlink" href="#sebaran-nilai-fitur-per-kelas" title="Link to this heading">#</a></h3>
+<p>Boxplot berikut membandingkan sebaran <strong>NDVI</strong>, <strong>NDWI</strong>, dan <strong>B12</strong> pada piksel sampel sawah dan non-sawah. Semakin kecil tumpang tindih antara kotak merah dan hijau, semakin mudah fitur tersebut memisahkan kedua kelas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur_plot</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NDVI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDWI&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">]</span>
+<span class="n">X_all</span> <span class="o">=</span> <span class="n">feats</span><span class="p">[:,</span> <span class="n">labeled</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">y_all</span> <span class="o">=</span> <span class="n">lab_map</span><span class="p">[</span><span class="n">poly_raster</span><span class="p">[</span><span class="n">labeled</span><span class="p">]]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fitur_plot</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">nama</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">fitur_plot</span><span class="p">):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">FEATURE_NAMES</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">nama</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">X_all</span><span class="p">[</span><span class="n">y_all</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">X_all</span><span class="p">[</span><span class="n">y_all</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">]]</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">patch_artist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">kotak</span><span class="p">,</span> <span class="n">warna</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bp</span><span class="p">[</span><span class="s2">&quot;boxes&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;#d7191c&quot;</span><span class="p">,</span> <span class="s2">&quot;#1a9641&quot;</span><span class="p">]):</span>
+        <span class="n">kotak</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">warna</span><span class="p">)</span>
+        <span class="n">kotak</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s2">&quot;non-sawah&quot;</span><span class="p">,</span> <span class="s2">&quot;sawah&quot;</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">nama</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Sebaran nilai fitur per kelas (piksel sampel)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/83dd1992ca8a5e481981de43ebe3e42b8ac5904dd035dacf0f676d8d07b371a2.png" src="../_images/83dd1992ca8a5e481981de43ebe3e42b8ac5904dd035dacf0f676d8d07b371a2.png" />
+</div>
+</div>
+</section>
 </section>
 <section id="klasifikasi-seluruh-citra">
 <h2>9. Klasifikasi seluruh citra<a class="headerlink" href="#klasifikasi-seluruh-citra" title="Link to this heading">#</a></h2>
@@ -1262,19 +1682,78 @@ Luas non-sawah: 2165.8 ha
 <h3>Cara membaca peta hasil<a class="headerlink" href="#cara-membaca-peta-hasil" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Kiri</strong>: citra Sentinel-2A dalam warna alami (RGB). Area <strong>hitam</strong> adalah piksel yang dibuang karena awan atau bayangan awan (hasil masking SCL).</p></li>
-<li><p><strong>Kanan</strong>: hasil klasifikasi. <strong>Hijau</strong> = sawah, <strong>merah</strong> = non-sawah. Area <strong>putih</strong> adalah <em>nodata</em>, yaitu piksel yang sama dengan area hitam di citra kiri sehingga tidak diklasifikasikan.</p></li>
-<li><p>Sawah (hijau) terkonsentrasi pada hamparan lahan terbuka bervegetasi atau tergenang, sedangkan permukiman dan kawasan industri yang padat terklasifikasi sebagai non-sawah (merah).</p></li>
+<li><p><strong>Kanan</strong>: hasil klasifikasi. <strong>Hijau</strong> = sawah (969,7 ha), <strong>merah</strong> = non-sawah (2.165,8 ha). Area <strong>putih</strong> adalah <em>nodata</em>, yaitu piksel yang sama dengan area hitam di citra kiri sehingga tidak diklasifikasikan.</p></li>
+<li><p>Kawasan permukiman dan industri yang padat terklasifikasi sebagai non-sawah (merah), sesuai dengan sampel non-sawah yang berupa permukiman.</p></li>
 </ul>
 </section>
 <section id="catatan-dan-keterbatasan">
 <h3>Catatan dan keterbatasan<a class="headerlink" href="#catatan-dan-keterbatasan" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Akurasi dihitung pada <strong>piksel di dalam poligon uji</strong>. Nilai ini menggambarkan kemampuan model pada tipe lahan yang diwakili sampel, bukan akurasi seluruh peta.</p></li>
-<li><p>Kelas <strong>non-sawah</strong> mencakup banyak jenis penutup (permukiman, industri, badan air, vegetasi non-padi), sedangkan sampelnya hanya 50 poligon. Piksel dengan karakteristik di luar sampel (misalnya tambak atau lahan kosong) bisa saja salah klasifikasi.</p></li>
-<li><p>Hasil bergantung pada <strong>tanggal akuisisi</strong>. Fase tanam padi (digenangi, vegetatif, panen) mengubah nilai NDVI dan NDWI, sehingga citra pada waktu berbeda dapat menghasilkan peta berbeda.</p></li>
-<li><p>Penambahan sampel di area yang sering salah dan penggunaan citra multi-temporal adalah cara umum untuk meningkatkan akurasi.</p></li>
+<li><p><strong>Akurasi dihitung pada piksel di dalam poligon uji</strong> (30 poligon, 882 piksel), bukan pada seluruh peta. Poligon latih dan uji berasal dari area yang sama dan mengelompok secara spasial (sawah pada dua kelompok kecil, non-sawah pada satu kelompok), sehingga angka 98,64% kemungkinan lebih optimis dibanding kondisi di seluruh area citra.</p></li>
+<li><p><strong>Seluruh sampel non-sawah berlabel permukiman</strong> (kolom <code class="docutils literal notranslate"><span class="pre">label</span></code> pada <code class="docutils literal notranslate"><span class="pre">nonsawah.shp</span></code>). Model belum pernah melihat contoh non-sawah jenis lain: badan air atau tambak, vegetasi bukan padi (kebun, semak, hutan kecil), lahan terbuka, dan kawasan industri. Piksel seperti itu tetap dipaksa masuk ke salah satu dari dua kelas, sehingga berpotensi salah klasifikasi, terutama vegetasi lebat yang bisa terprediksi sebagai sawah. Periksa area bervegetasi di peta hasil dengan citra RGB, dan tambahkan sampel non-sawah dari jenis penutup lain bila ingin hasil yang lebih andal.</p></li>
+<li><p><strong>Hasil bergantung pada tanggal akuisisi</strong> (13 Juli 2026). Fase tanam padi mengubah nilai NDVI, NDWI, dan SWIR, sehingga citra pada waktu berbeda dapat menghasilkan peta berbeda. Citra multi-temporal adalah cara umum untuk meningkatkan akurasi.</p></li>
+<li><p><strong>Kelas tidak seimbang</strong> (sawah 15,1% dari piksel sampel). Lihat bagian <em>Ketidakseimbangan kelas</em> di atas.</p></li>
 </ul>
 </section>
+</section>
+<section id="kesimpulan">
+<h2>11. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspek</p></th>
+<th class="head"><p>Hasil</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data citra</p></td>
+<td><p>Sentinel-2A L2A, 13 Juli 2026, tile T49MFN, awan 4,0%, piksel valid 97,9%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fitur</p></td>
+<td><p>10 fitur per piksel: 6 band (B02, B03, B04, B08, B11, B12) + 4 indeks (NDVI, NDWI, NDBI, EVI)</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampel</p></td>
+<td><p>50 poligon sawah (604 piksel) dan 50 poligon non-sawah (3.399 piksel)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pembagian data</p></td>
+<td><p>Per poligon 70/30: 70 poligon training (3.121 piksel), 30 poligon testing (882 piksel)</p></td>
+</tr>
+<tr class="row-even"><td><p>Model</p></td>
+<td><p>Random Forest, 200 pohon</p></td>
+</tr>
+<tr class="row-odd"><td><p>Overall Accuracy</p></td>
+<td><p>0,9864 (98,64%)</p></td>
+</tr>
+<tr class="row-even"><td><p>Kappa</p></td>
+<td><p>0,9632</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sawah: precision / recall / F1</p></td>
+<td><p>0,995 / 0,950 / 0,972</p></td>
+</tr>
+<tr class="row-even"><td><p>Non-sawah: precision / recall / F1</p></td>
+<td><p>0,984 / 0,998 / 0,991</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fitur terpenting</p></td>
+<td><p>B12 (0,264), B02 (0,188), NDWI (0,160)</p></td>
+</tr>
+<tr class="row-even"><td><p>Luas sawah</p></td>
+<td><p>969,7 ha (30,9% dari area valid)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Luas non-sawah</p></td>
+<td><p>2.165,8 ha (69,1% dari area valid)</p></td>
+</tr>
+<tr class="row-even"><td><p>Luas area valid</p></td>
+<td><p>3.135,5 ha</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic simple">
+<li><p>Model Random Forest mampu memisahkan sawah dari non-sawah dengan sangat baik pada data uji: akurasi 98,64% dan kappa 0,9632. Dari 882 piksel uji hanya 12 yang salah, yaitu 11 piksel sawah terlewat dan 1 piksel non-sawah salah dianggap sawah.</p></li>
+<li><p>Kelas sawah lebih sering terlewat (recall 0,950) daripada non-sawah (recall 0,998), sejalan dengan jumlah pikselnya yang jauh lebih sedikit.</p></li>
+<li><p>Band SWIR-2 (B12) dan indeks air (NDWI) lebih berperan daripada NDVI dalam keputusan model.</p></li>
+<li><p>Keluaran utama tugas berupa GeoTIFF <code class="docutils literal notranslate"><span class="pre">klasifikasi_sawah_s2a.tif</span></code> memperkirakan luas sawah <strong>969,7 ha</strong> dari 3.135,5 ha area valid.</p></li>
+<li><p>Karena sampel non-sawah hanya berupa permukiman, angka luas sawah sebaiknya dipandang sebagai perkiraan awal. Validasi dengan sampel non-sawah yang lebih beragam (vegetasi bukan padi, air, lahan terbuka) dan pengecekan visual atau lapangan diperlukan sebelum hasil ini dipakai untuk keperluan lain.</p></li>
+</ol>
 </section>
 </section>
 
@@ -1341,18 +1820,35 @@ Luas non-sawah: 2165.8 ha
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-sebaran-sampel">Peta sebaran sampel</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengunduh-sentinel-2a-geotiff-dari-copernicus">3. Mengunduh Sentinel-2A (GeoTIFF) dari Copernicus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengunduh-sentinel-2a-geotiff-dari-copernicus">3. Mengunduh Sentinel-2A (GeoTIFF) dari Copernicus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-citra-yang-dipakai">Informasi citra yang dipakai</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-citra-geotiff">4. Membaca citra GeoTIFF</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-band-spektral-indeks">5. Fitur: band spektral + indeks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rasterisasi-poligon-sampel">6. Rasterisasi poligon sampel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-training-dan-testing-per-poligon">7. Pembagian data training dan testing per poligon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-dan-mengevaluasi-model">8. Melatih dan mengevaluasi model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rasterisasi-poligon-sampel">6. Rasterisasi poligon sampel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-piksel-per-kelas">Jumlah piksel per kelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-training-dan-testing-per-poligon">7. Pembagian data training dan testing per poligon</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-training-dan-testing-per-kelas">Jumlah data training dan testing per kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-poligon-dan-piksel-per-kelas">Jumlah poligon dan piksel per kelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-dan-mengevaluasi-model">8. Melatih dan mengevaluasi model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-hasil-evaluasi">Membaca hasil evaluasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ketidakseimbangan-kelas">Ketidakseimbangan kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kepentingan-fitur">Kepentingan fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-nilai-fitur-per-kelas">Sebaran nilai fitur per kelas</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-seluruh-citra">9. Klasifikasi seluruh citra</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-geotiff-peta-dan-ringkasan">10. Menyimpan GeoTIFF, peta, dan ringkasan</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-membaca-peta-hasil">Cara membaca peta hasil</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-dan-keterbatasan">Catatan dan keterbatasan</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">11. Kesimpulan</a></li>
 </ul>
   </nav></div>
 
