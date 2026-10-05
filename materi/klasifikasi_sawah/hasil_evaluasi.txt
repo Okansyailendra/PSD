@@ -7,6 +7,8 @@ Kelas 0 (non-sawah): 50 poligon terpakai, 3399 piksel bebas awan
 Kelas 1 (sawah): 50 poligon terpakai, 604 piksel bebas awan
 Poligon training: 70 | testing: 30
 Piksel training: 3121 | testing: 882
+non-sawah : training 2738 piksel | testing 661 piksel | total 3399 piksel
+sawah     : training 383 piksel | testing 221 piksel | total 604 piksel
 
 Confusion matrix (baris=aktual, kolom=prediksi; urutan 0=non-sawah, 1=sawah):
 [[660   1]
