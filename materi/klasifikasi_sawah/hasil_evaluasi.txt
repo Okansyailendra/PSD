@@ -36,5 +36,22 @@ Kepentingan fitur:
   B08   0.034
   B03   0.027
 
+Perbandingan class_weight (rata-rata +/- simpangan baku dari 5 seed)
+Metrik                          Baseline              Balanced
+OA                        0.9857 +/- 0.0009        0.9832 +/- 0.0005
+Kappa                     0.9613 +/- 0.0025        0.9543 +/- 0.0012
+Prec sawah                0.9962 +/- 0.0019        0.9990 +/- 0.0019
+Recall sawah              0.9466 +/- 0.0034        0.9339 +/- 0.0022
+F1 sawah                  0.9708 +/- 0.0019        0.9654 +/- 0.0010
+Recall non-sawah          0.9988 +/- 0.0006        0.9997 +/- 0.0006
+
+Confusion matrix Baseline (seed=42; baris=aktual, kolom=prediksi; 0=non-sawah, 1=sawah):
+[[660   1]
+ [ 11 210]]
+
+Confusion matrix Balanced (seed=42; baris=aktual, kolom=prediksi; 0=non-sawah, 1=sawah):
+[[661   0]
+ [ 15 206]]
+
 Luas sawah    : 969.7 ha
 Luas non-sawah: 2165.8 ha
