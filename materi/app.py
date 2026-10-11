@@ -260,7 +260,7 @@ with st.sidebar:
     <div style='padding: 6px 0 16px 0;'>
         <div style='font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:#64748b; font-weight:600;'>Sistem Informasi Geografis</div>
         <div style='font-weight:700; font-size:1.15rem; color:#f8fafc; margin-top:2px;'>LULC Jawa Timur</div>
-        <div style='font-size:0.8rem; color:#94a3b8;'>Sentinel-2A &middot; Machine Learning</div>
+        <div style='font-size:0.8rem; color:#94a3b8;'>Sentinel-2A &middot; Proyek Saint Data</div>
     </div>
     """, unsafe_allow_html=True)
 
