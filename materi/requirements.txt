@@ -8,3 +8,5 @@ shapely
 folium
 tsfel
 scikit-learn
+streamlit-folium
+plotly
