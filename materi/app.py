@@ -8,7 +8,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, ExtraTreesClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
@@ -61,13 +61,13 @@ CLASS_COLORS = {
     "Sawah": "#22c55e",
     "Bangunan": "#ef4444",
     "Mangrove": "#84cc16",
-    "Hutan atau lahan hijau": "#15803d",
-    "Lautan": "#0ea5e9",
+    "Lahan Hijau": "#15803d",
+    "Perairan Terbuka (Laut)": "#0ea5e9",
     "Danau": "#6366f1",
 }
 CLASS_ICONS = {
     "Sawah": "\U0001f33e", "Bangunan": "\U0001f3d7\ufe0f", "Mangrove": "\U0001f33f",
-    "Hutan atau lahan hijau": "\U0001f332", "Lautan": "\U0001f30a", "Danau": "\U0001f3d4\ufe0f",
+    "Lahan Hijau": "\U0001f332", "Perairan Terbuka (Laut)": "\U0001f30a", "Danau": "\U0001f3d4\ufe0f",
 }
 
 FEATURES = ["B2","B3","B4","B5","B6","B7","B8","B8A","B11","B12",
@@ -116,11 +116,12 @@ def run_models(df):
         X_scaled, y_enc, test_size=0.2, random_state=42, stratify=y_enc
     )
     models = {
-        "Random Forest":     RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1),
-        "Gradient Boosting": GradientBoostingClassifier(n_estimators=150, random_state=42),
-        "SVM (RBF)":         SVC(kernel="rbf", C=10, gamma="scale", probability=True, random_state=42),
-        "KNN (k=5)":         KNeighborsClassifier(n_neighbors=5),
-        "Decision Tree":     DecisionTreeClassifier(max_depth=8, random_state=42),
+        "SVM (RBF) ★":       SVC(kernel="rbf", C=10, gamma="scale", probability=True, random_state=42),
+        "Extra Trees":        ExtraTreesClassifier(n_estimators=200, random_state=42, n_jobs=-1),
+        "Random Forest":      RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1),
+        "Gradient Boosting":  GradientBoostingClassifier(n_estimators=150, random_state=42),
+        "KNN (k=5)†":         KNeighborsClassifier(n_neighbors=5),
+        "Decision Tree":      DecisionTreeClassifier(max_depth=8, random_state=42),
     }
     results = {}
     for name, clf in models.items():
