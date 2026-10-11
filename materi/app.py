@@ -536,7 +536,7 @@ elif page == "Evaluasi Model":
     df = load_data()
     st.markdown("""
     <div class='page-header'>
-        <h1>Perbandingan & Evaluasi Model Machine Learning</h1>
+        <h1>Perbandingan & Evaluasi Model</h1>
         <p>Eksperimen 6 model klasifikasi pada dataset Sentinel-2A Jawa Timur</p>
     </div>
     """, unsafe_allow_html=True)
