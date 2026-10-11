@@ -54,6 +54,7 @@ html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
 
 # CONSTANTS
 DATA_PATH = os.path.join(os.path.dirname(__file__), "klasifikasi_jawa_timur", "dataset_sentinel2_jatim.csv")
+MAP_HTML_PATH = os.path.join(os.path.dirname(__file__), "klasifikasi_jawa_timur", "hasil_klasifikasi_svm.html")
 BUILD_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "_build/html"))
 PORT = 8765
 
@@ -321,98 +322,119 @@ elif page == "Data Understanding":
 # ===============================================================
 # PAGE 3 - PETA KLASIFIKASI INTERAKTIF
 # ===============================================================
+# PAGE 3 - PETA KLASIFIKASI INTERAKTIF
+# ===============================================================
 elif page == "Peta Klasifikasi Interaktif":
     df = load_data()
-    st.markdown("<div class='section-header'><h2>&#127757; Peta Klasifikasi Lahan Interaktif</h2><p>Visualisasi titik sampel klasifikasi lahan di atas citra satelit Google Maps</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-header'><h2>&#127757; Peta Klasifikasi Lahan Interaktif</h2><p>Visualisasi poligon shapefile sampel, hasil raster SVM, dan sebaran spasial tutupan lahan Jawa Timur</p></div>", unsafe_allow_html=True)
 
-    ctrl1, ctrl2, ctrl3 = st.columns(3)
-    with ctrl1:
-        show_classes = st.multiselect("Tampilkan Kelas:", df["kelas"].unique().tolist(), default=df["kelas"].unique().tolist())
-    with ctrl2:
-        map_style = st.selectbox("Basemap:", ["Google Satellite", "Google Hybrid", "OpenStreetMap", "CartoDB Dark"])
-    with ctrl3:
-        marker_size = st.slider("Ukuran Marker:", 4, 15, 8)
+    tab_peta1, tab_peta2 = st.tabs(["\U0001f5fa\ufe0f Peta Klasifikasi SVM & Poligon Shapefile", "\U0001f4cd Eksplorasi Titik & Indeks Spektral"])
 
-    df_map = df[df["kelas"].isin(show_classes)]
-    lat_c = df_map["lat"].mean() if len(df_map) > 0 else -7.5
-    lon_c = df_map["lon"].mean() if len(df_map) > 0 else 112.7
+    with tab_peta1:
+        st.markdown("<div class='info-card'><h4>Peta Hasil Klasifikasi SVM & Poligon Sampel</h4><p>Peta ini menampilkan poligon shapefile asli per kelas, layer sorot data uji (testing 20%), layer salah klasifikasi (dengan pin marker info oranye), serta overlay raster hasil prediksi spasial citra Sentinel-2A di atas Google Maps Satellite.</p></div>", unsafe_allow_html=True)
 
-    m = folium.Map(location=[lat_c, lon_c], zoom_start=9, tiles=None, control_scale=True)
+        if os.path.exists(MAP_HTML_PATH):
+            with open(MAP_HTML_PATH, "r", encoding="utf-8") as f:
+                html_map_content = f.read()
+            st.components.v1.html(html_map_content, height=680, scrolling=False)
+        else:
+            st.warning("File hasil_klasifikasi_svm.html belum ditemukan.")
 
-    tile_configs = {
-        "Google Satellite": ("https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", "Google Satellite"),
-        "Google Hybrid":    ("https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", "Google Hybrid"),
-        "CartoDB Dark":     ("https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png", "CartoDB"),
-    }
-    if map_style in tile_configs:
-        url, attr = tile_configs[map_style]
-        folium.TileLayer(tiles=url, attr=attr, name=map_style, max_zoom=22).add_to(m)
-    else:
-        folium.TileLayer("OpenStreetMap", name="OpenStreetMap").add_to(m)
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Model Digunakan", "SVM (RBF)")
+        m2.metric("Total Poligon Sampel", "285 poligon")
+        m3.metric("Data Uji (Testing)", "57 poligon")
+        m4.metric("Akurasi Testing", "82.46%")
 
-    for kls in show_classes:
-        sub = df_map[df_map["kelas"] == kls]
-        color = CLASS_COLORS.get(kls, "#64748b")
-        icon = CLASS_ICONS.get(kls, "")
-        fg = folium.FeatureGroup(name=f"{icon} {kls}", show=True)
-        mc = MarkerCluster(options={"maxClusterRadius": 30, "disableClusteringAtZoom": 13})
-        for _, row in sub.iterrows():
-            popup_html = (
-                f"<div style='font-family:Arial,sans-serif;min-width:210px;'>"
-                f"<div style='background:{color};color:white;padding:8px 12px;"
-                f"border-radius:8px 8px 0 0;font-weight:600;'>{icon} {kls}</div>"
-                f"<div style='padding:10px 12px;background:#1e293b;color:#e2e8f0;"
-                f"border-radius:0 0 8px 8px;font-size:13px;'>"
-                f"<b>Koordinat:</b> {row['lat']:.5f}, {row['lon']:.5f}<br><br>"
-                f"<b>Indeks Spektral:</b><br>"
-                f"NDVI: {row['NDVI']:.4f} | NDWI: {row['NDWI']:.4f}<br>"
-                f"MNDWI: {row['MNDWI']:.4f} | NDBI: {row['NDBI']:.4f}<br>"
-                f"EVI: {row['EVI']:.4f} | BSI: {row['BSI']:.4f}"
-                f"</div></div>"
-            )
-            folium.CircleMarker(
-                location=[row["lat"], row["lon"]],
-                radius=marker_size, color=color, fill=True,
-                fill_color=color, fill_opacity=0.85, weight=1.5,
-                popup=folium.Popup(popup_html, max_width=250),
-                tooltip=f"{icon} {kls} | NDVI: {row['NDVI']:.3f}",
-            ).add_to(mc)
-        mc.add_to(fg)
-        fg.add_to(m)
+    with tab_peta2:
+        ctrl1, ctrl2, ctrl3 = st.columns(3)
+        with ctrl1:
+            show_classes = st.multiselect("Tampilkan Kelas:", df["kelas"].unique().tolist(), default=df["kelas"].unique().tolist(), key="tab2_classes")
+        with ctrl2:
+            map_style = st.selectbox("Basemap:", ["Google Satellite", "Google Hybrid", "OpenStreetMap", "CartoDB Dark"], key="tab2_basemap")
+        with ctrl3:
+            marker_size = st.slider("Ukuran Marker:", 4, 15, 8, key="tab2_size")
 
-    folium.LayerControl(collapsed=False).add_to(m)
+        df_map = df[df["kelas"].isin(show_classes)]
+        lat_c = df_map["lat"].mean() if len(df_map) > 0 else -7.5
+        lon_c = df_map["lon"].mean() if len(df_map) > 0 else 112.7
 
-    legend_html = (
-        "<div style='position:fixed;bottom:30px;right:10px;z-index:1000;"
-        "background:rgba(10,14,26,0.92);border:1px solid rgba(56,189,248,0.3);"
-        "border-radius:12px;padding:14px 18px;font-family:Arial,sans-serif;'>"
-        "<b style='color:#38bdf8;font-size:0.9rem;'>Legenda Kelas</b><br><br>"
-    )
-    for kls, color in CLASS_COLORS.items():
-        legend_html += (
-            f"<div style='display:flex;align-items:center;gap:8px;margin:5px 0;'>"
-            f"<div style='width:14px;height:14px;background:{color};border-radius:50%;'></div>"
-            f"<span style='color:#e2e8f0;font-size:0.82rem;'>{CLASS_ICONS.get(kls,'')} {kls}</span></div>"
-        )
-    legend_html += "</div>"
-    m.get_root().html.add_child(folium.Element(legend_html))
+        m = folium.Map(location=[lat_c, lon_c], zoom_start=9, tiles=None, control_scale=True)
 
-    st_folium(m, width=None, height=600, returned_objects=[])
+        tile_configs = {
+            "Google Satellite": ("https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", "Google Satellite"),
+            "Google Hybrid":    ("https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", "Google Hybrid"),
+            "CartoDB Dark":     ("https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png", "CartoDB"),
+        }
+        if map_style in tile_configs:
+            url, attr = tile_configs[map_style]
+            folium.TileLayer(tiles=url, attr=attr, name=map_style, max_zoom=22).add_to(m)
+        else:
+            folium.TileLayer("OpenStreetMap", name="OpenStreetMap").add_to(m)
 
-    st.markdown("#### Statistik Titik Sampel")
-    if show_classes:
-        cols = st.columns(len(show_classes))
-        for i, kls in enumerate(show_classes):
-            cnt = len(df_map[df_map["kelas"] == kls])
+        for kls in show_classes:
+            sub = df_map[df_map["kelas"] == kls]
             color = CLASS_COLORS.get(kls, "#64748b")
             icon = CLASS_ICONS.get(kls, "")
-            cols[i].markdown(
-                f"<div style='text-align:center;background:rgba(15,23,42,0.8);"
-                f"border:1px solid {color};border-radius:10px;padding:12px 8px;'>"
-                f"<div style='font-size:1.3rem;'>{icon}</div>"
-                f"<div style='color:{color};font-weight:700;font-size:1.1rem;'>{cnt}</div>"
-                f"<div style='color:#94a3b8;font-size:0.75rem;'>{kls}</div></div>",
-                unsafe_allow_html=True)
+            fg = folium.FeatureGroup(name=f"{icon} {kls}", show=True)
+            mc = MarkerCluster(options={"maxClusterRadius": 30, "disableClusteringAtZoom": 13})
+            for _, row in sub.iterrows():
+                popup_html = (
+                    f"<div style='font-family:Arial,sans-serif;min-width:210px;'>"
+                    f"<div style='background:{color};color:white;padding:8px 12px;"
+                    f"border-radius:8px 8px 0 0;font-weight:600;'>{icon} {kls}</div>"
+                    f"<div style='padding:10px 12px;background:#1e293b;color:#e2e8f0;"
+                    f"border-radius:0 0 8px 8px;font-size:13px;'>"
+                    f"<b>Koordinat:</b> {row['lat']:.5f}, {row['lon']:.5f}<br><br>"
+                    f"<b>Indeks Spektral:</b><br>"
+                    f"NDVI: {row['NDVI']:.4f} | NDWI: {row['NDWI']:.4f}<br>"
+                    f"MNDWI: {row['MNDWI']:.4f} | NDBI: {row['NDBI']:.4f}<br>"
+                    f"EVI: {row['EVI']:.4f} | BSI: {row['BSI']:.4f}"
+                    f"</div></div>"
+                )
+                folium.CircleMarker(
+                    location=[row["lat"], row["lon"]],
+                    radius=marker_size, color=color, fill=True,
+                    fill_color=color, fill_opacity=0.85, weight=1.5,
+                    popup=folium.Popup(popup_html, max_width=250),
+                    tooltip=f"{icon} {kls} | NDVI: {row['NDVI']:.3f}",
+                ).add_to(mc)
+            mc.add_to(fg)
+            fg.add_to(m)
+
+        folium.LayerControl(collapsed=False).add_to(m)
+
+        legend_html = (
+            "<div style='position:fixed;bottom:30px;right:10px;z-index:1000;"
+            "background:rgba(10,14,26,0.92);border:1px solid rgba(56,189,248,0.3);"
+            "border-radius:12px;padding:14px 18px;font-family:Arial,sans-serif;'>"
+            "<b style='color:#38bdf8;font-size:0.9rem;'>Legenda Kelas</b><br><br>"
+        )
+        for kls, color in CLASS_COLORS.items():
+            legend_html += (
+                f"<div style='display:flex;align-items:center;gap:8px;margin:5px 0;'>"
+                f"<div style='width:14px;height:14px;background:{color};border-radius:50%;'></div>"
+                f"<span style='color:#e2e8f0;font-size:0.82rem;'>{CLASS_ICONS.get(kls,'')} {kls}</span></div>"
+            )
+        legend_html += "</div>"
+        m.get_root().html.add_child(folium.Element(legend_html))
+
+        st_folium(m, width=None, height=580, returned_objects=[])
+
+        st.markdown("#### Statistik Titik Sampel")
+        if show_classes:
+            cols = st.columns(len(show_classes))
+            for i, kls in enumerate(show_classes):
+                cnt = len(df_map[df_map["kelas"] == kls])
+                color = CLASS_COLORS.get(kls, "#64748b")
+                icon = CLASS_ICONS.get(kls, "")
+                cols[i].markdown(
+                    f"<div style='text-align:center;background:rgba(15,23,42,0.8);"
+                    f"border:1px solid {color};border-radius:10px;padding:12px 8px;'>"
+                    f"<div style='font-size:1.3rem;'>{icon}</div>"
+                    f"<div style='color:{color};font-weight:700;font-size:1.1rem;'>{cnt}</div>"
+                    f"<div style='color:#94a3b8;font-size:0.75rem;'>{kls}</div></div>",
+                    unsafe_allow_html=True)
 
 # ===============================================================
 # PAGE 4 - EVALUASI MODEL
@@ -481,7 +503,7 @@ elif page == "Evaluasi Model":
         macro = report.get("macro avg", {})
         st.markdown(f"<div style='background:rgba(14,165,233,0.1);border:1px solid rgba(14,165,233,0.3);border-radius:10px;padding:12px 16px;margin-top:12px;'><b style='color:#38bdf8;'>Macro Average</b><br><span style='color:#cbd5e1;font-size:0.9rem;'>Precision: {macro.get('precision',0):.3f} | Recall: {macro.get('recall',0):.3f} | F1-Score: {macro.get('f1-score',0):.3f}</span></div>", unsafe_allow_html=True)
 
-    if sel_model in ["Random Forest", "Gradient Boosting"]:
+    if sel_model in ["Random Forest", "Gradient Boosting", "Extra Trees"]:
         st.markdown("#### Feature Importance")
         importances = res["model"].feature_importances_
         fi_df = pd.DataFrame({"Fitur": FEATURES, "Importance": importances}).sort_values("Importance", ascending=False)
