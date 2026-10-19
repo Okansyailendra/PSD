@@ -32,5 +32,10 @@ chapters:
   - file: Clustering_Segmentasi/04_Visualisasi_Peta/visualisasi_peta
 - file: klasifikasi_sawah/klasifikasi_sawah_sentinel2a
 - file: klasifikasi_jawa_timur/klasifikasi_jawa_timur_sentinel2a
+- file: audio/pembukaan
+  sections:
+  - file: audio/business_understanding
+  - file: audio/data_understanding
+  - file: audio/audio
 
 
