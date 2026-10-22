@@ -633,7 +633,7 @@ Folder Audio &#39;non-berisik&#39;: C:\Users\OKAN\OneDrive\Dokumen\PSD\materi\au
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">scan_audio_files</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Memindai dan mengembalikan daftar file audio valid dari direktori.&quot;&quot;&quot;</span>
-    <span class="n">valid_exts</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;.mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;.wav&#39;</span><span class="p">,</span> <span class="s1">&#39;.ogg&#39;</span><span class="p">,</span> <span class="s1">&#39;.flac&#39;</span><span class="p">,</span> <span class="s1">&#39;.m4a&#39;</span><span class="p">)</span>
+    <span class="n">valid_exts</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;.mp3&#39;</span><span class="p">)</span>
     <span class="n">files</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">))</span>
@@ -659,9 +659,9 @@ Folder Audio &#39;non-berisik&#39;: C:\Users\OKAN\OneDrive\Dokumen\PSD\materi\au
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah sampel kelas &#39;berisik&#39;    : 101 file
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah sampel kelas &#39;berisik&#39;    : 100 file
 Jumlah sampel kelas &#39;non-berisik&#39;: 100 file
-Total seluruh sampel audio       : 201 file
+Total seluruh sampel audio       : 200 file
 
 --- Sampel Karakteristik Audio Mentah ---
 </pre></div>
@@ -1017,8 +1017,8 @@ $<span class="math notranslate nohighlight">\([\text{Jumlah Fitur} \times \text{
 Memuat dataset fitur secara instan (hanya butuh 0.1 detik, tidak perlu mengekstrak 198 file dari awal)...
 
 [SUKSES] Seluruh ekstraksi selesai!
-Total sampel berhasil diekstrak : 198 sampel
-Dimensi matriks dataset         : 198 baris x 21 kolom (19 fitur numerik)
+Total sampel berhasil diekstrak : 200 sampel
+Dimensi matriks dataset         : 200 baris x 21 kolom (19 fitur numerik)
 File CSV dataset lengkap        : C:\Users\OKAN\OneDrive\Dokumen\PSD\materi\audio\fitur_audio.csv
 </pre></div>
 </div>
@@ -1056,34 +1056,34 @@ File CSV dataset lengkap        : C:\Users\OKAN\OneDrive\Dokumen\PSD\materi\audi
 4    24-006 berisik 2.mp3  berisik  0.031146  0.014470    1563.678043   
 
    zcr_mean  mfcc1_mean  mfcc2_mean  
-0  0.080509 -256.290924  126.215172  
+0  0.080509 -256.290924  126.215157  
 1  0.144793 -234.832291  115.400345  
 2  0.234385 -272.324890   84.247063  
-3  0.072573 -221.300964  134.612183  
+3  0.072573 -221.300980  134.612183  
 4  0.065951 -266.434723  138.757507  
 
 Distribusi Jumlah Sampel per Kelas:
 label
 berisik        100
-non-berisik     98
+non-berisik    100
 Name: count, dtype: int64
 
 Statistik Deskriptif Fitur Inti:
                count       mean       std       min        25%        50%  \
-rms_mean       198.0     0.0638    0.0604    0.0011     0.0195     0.0436   
-rms_std        198.0     0.0346    0.0314    0.0005     0.0120     0.0250   
-centroid_mean  198.0  1714.8374  618.3939  726.1897  1313.0933  1595.0333   
-centroid_std   198.0   453.0573  188.9052  110.7890   313.8263   413.1893   
-zcr_mean       198.0     0.0861    0.0447    0.0245     0.0609     0.0733   
-zcr_std        198.0     0.0345    0.0203    0.0083     0.0222     0.0270   
+rms_mean       200.0     0.0637    0.0609    0.0011     0.0198     0.0429   
+rms_std        200.0     0.0342    0.0312    0.0005     0.0122     0.0248   
+centroid_mean  200.0  1722.4921  610.7360  726.1897  1336.8116  1598.1515   
+centroid_std   200.0   455.9746  189.4695  110.7890   313.8263   413.6885   
+zcr_mean       200.0     0.0864    0.0444    0.0245     0.0615     0.0736   
+zcr_std        200.0     0.0347    0.0202    0.0083     0.0225     0.0278   
 
                      75%        max  
-rms_mean          0.0948     0.2935  
+rms_mean          0.0947     0.2935  
 rms_std           0.0521     0.1790  
-centroid_mean  1927.0095  3935.3956  
-centroid_std    543.1684   942.9440  
-zcr_mean          0.0929     0.2858  
-zcr_std           0.0392     0.1150  
+centroid_mean  1919.6192  3935.3956  
+centroid_std    558.5034   942.9440  
+zcr_mean          0.0933     0.2858  
+zcr_std           0.0401     0.1150  
 </pre></div>
 </div>
 </div>
@@ -1139,8 +1139,8 @@ zcr_std           0.0392     0.1150
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2018d152a25d7a2f06bfc271cc44f637eefa9ad2970fa901ab10f33c9da2e27a.png" src="../_images/2018d152a25d7a2f06bfc271cc44f637eefa9ad2970fa901ab10f33c9da2e27a.png" />
-<img alt="../_images/d2630b0690c5ac13cd761aac24017e4c1cb300f7451bc83ee85db7ddae5bfaef.png" src="../_images/d2630b0690c5ac13cd761aac24017e4c1cb300f7451bc83ee85db7ddae5bfaef.png" />
+<img alt="../_images/6f3be37901fb7e6018117e5aafed40a7b2c329ccbe8b443ba0a3a7bdca188293.png" src="../_images/6f3be37901fb7e6018117e5aafed40a7b2c329ccbe8b443ba0a3a7bdca188293.png" />
+<img alt="../_images/d084598a831187048023deb416d6677457c1769bc5188165c3cda72755758153.png" src="../_images/d084598a831187048023deb416d6677457c1769bc5188165c3cda72755758153.png" />
 </div>
 </div>
 </section>
@@ -1218,15 +1218,15 @@ Menetapkan <em>seed</em> acak tetap sehingga eksperimen bersifat deterministik d
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=================================================================
              LAPORAN PEMBAGIAN DATASET (TRAIN / TEST)            
 =================================================================
-Total Sampel Dataset Asli : 198 sampel (100%)
+Total Sampel Dataset Asli : 200 sampel (100%)
 Jumlah Fitur Numerik      : 19 fitur (13 koefisien MFCC)
-Jumlah Data Latih (Train) : 158 sampel (79.8%)
-Jumlah Data Uji (Test)    : 40 sampel (20.2%)
+Jumlah Data Latih (Train) : 160 sampel (80.0%)
+Jumlah Data Uji (Test)    : 40 sampel (20.0%)
 
 --- Distribusi Kelas pada Data Latih (Train Set) ---
 label
 berisik        80
-non-berisik    78
+non-berisik    80
 Name: count, dtype: int64
 
 --- Distribusi Kelas pada Data Uji (Test Set) ---
@@ -1314,7 +1314,7 @@ Name: count, dtype: int64
     <span class="n">cv_scores_per_k</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 
 <span class="c1"># Tetapkan Jumlah Fitur Optimal (Optimal k = 10)</span>
-<span class="n">OPTIMAL_K</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">OPTIMAL_K</span> <span class="o">=</span> <span class="mi">14</span>
 <span class="n">SELECTED_FEATURES</span> <span class="o">=</span> <span class="n">df_feature_ranking</span><span class="p">[</span><span class="s1">&#39;Fitur&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">OPTIMAL_K</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">85</span><span class="p">)</span>
@@ -1331,40 +1331,44 @@ Name: count, dtype: int64
             TABEL EVALUASI &amp; RANKING FITUR AKUSTIK TERPILIH            
 =====================================================================================
  Rank_RF         Fitur  RF_Importance  ANOVA_F_Score      P_Value  Rank_ANOVA
-       1      rms_mean       0.168868      44.901875 3.563928e-10           2
-       2    mfcc1_mean       0.093645      52.167816 2.112413e-11           1
-       3       rms_std       0.092361      34.060095 2.995255e-08           4
-       4    mfcc3_mean       0.086754      36.409749 1.119737e-08           3
-       5      zcr_mean       0.056483       7.146972 8.308166e-03          12
-       6    mfcc6_mean       0.052990      18.076445 3.642025e-05           6
-       7    mfcc7_mean       0.052858       9.911566 1.968330e-03          10
-       8   mfcc13_mean       0.044887      14.948803 1.617766e-04           8
-       9    mfcc5_mean       0.044812      31.395862 9.296768e-08           5
-      10 centroid_mean       0.043597       2.404607 1.230049e-01          14
-      11   mfcc11_mean       0.040902      12.182004 6.275401e-04           9
-      12   mfcc10_mean       0.035050       0.952267 3.306537e-01          18
-      13    mfcc9_mean       0.034990       8.983903 3.170050e-03          11
-      14   mfcc12_mean       0.031420       1.317361 2.528233e-01          16
-      15  centroid_std       0.031214       0.047166 8.283546e-01          19
-      16    mfcc4_mean       0.026958       3.591127 5.993881e-02          13
-      17    mfcc2_mean       0.026898       1.287639 2.582241e-01          17
-      18    mfcc8_mean       0.020491      15.896747 1.025116e-04           7
-      19       zcr_std       0.014823       1.754962 1.871915e-01          15
+       1      rms_mean       0.170657      47.924977 1.049206e-10           2
+       2       rms_std       0.092871      36.072430 1.261561e-08           5
+       3    mfcc1_mean       0.090530      54.980318 6.975900e-12           1
+       4    mfcc3_mean       0.073301      40.333798 2.174202e-09           3
+       5    mfcc5_mean       0.068662      38.372704 4.857496e-09           4
+       6   mfcc13_mean       0.049473      15.407089 1.290696e-04           8
+       7    mfcc6_mean       0.047151      15.655295 1.145341e-04           7
+       8 centroid_mean       0.041893       2.976307 8.644715e-02          14
+       9    mfcc7_mean       0.041332       8.913402 3.281791e-03          10
+      10      zcr_mean       0.041046       8.373227 4.346127e-03          11
+      11    mfcc8_mean       0.040556      15.851938 1.042094e-04           6
+      12   mfcc11_mean       0.037929      10.579197 1.398404e-03           9
+      13   mfcc10_mean       0.035864       0.374109 5.416519e-01          18
+      14    mfcc9_mean       0.035362       7.669581 6.288636e-03          12
+      15    mfcc2_mean       0.032335       1.365357 2.443713e-01          17
+      16  centroid_std       0.029184       0.222379 6.378836e-01          19
+      17   mfcc12_mean       0.028315       2.411447 1.224518e-01          15
+      18    mfcc4_mean       0.023592       3.904449 4.989972e-02          13
+      19       zcr_std       0.019949       1.596330 2.082851e-01          16
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=====================================================================================
-[HASIL SELEKSI FITUR] Berhasil Memilih 10 Fitur Inti Paling Signifikan:
+[HASIL SELEKSI FITUR] Berhasil Memilih 14 Fitur Inti Paling Signifikan:
 =====================================================================================
-   1. rms_mean         (Importance: 0.1689) -&gt; Kategori: Kekuatan Energi Suara
-   2. mfcc1_mean       (Importance: 0.0936) -&gt; Kategori: Timbre Vokal Manusia
-   3. rms_std          (Importance: 0.0924) -&gt; Kategori: Kekuatan Energi Suara
-   4. mfcc3_mean       (Importance: 0.0868) -&gt; Kategori: Timbre Vokal Manusia
-   5. zcr_mean         (Importance: 0.0565) -&gt; Kategori: Frekuensi Lintas Nol
-   6. mfcc6_mean       (Importance: 0.0530) -&gt; Kategori: Timbre Vokal Manusia
-   7. mfcc7_mean       (Importance: 0.0529) -&gt; Kategori: Timbre Vokal Manusia
-   8. mfcc13_mean      (Importance: 0.0449) -&gt; Kategori: Timbre Vokal Manusia
-   9. mfcc5_mean       (Importance: 0.0448) -&gt; Kategori: Timbre Vokal Manusia
-  10. centroid_mean    (Importance: 0.0436) -&gt; Kategori: Kecerahan Spektrum
+   1. rms_mean         (Importance: 0.1707) -&gt; Kategori: Kekuatan Energi Suara
+   2. rms_std          (Importance: 0.0929) -&gt; Kategori: Kekuatan Energi Suara
+   3. mfcc1_mean       (Importance: 0.0905) -&gt; Kategori: Timbre Vokal Manusia
+   4. mfcc3_mean       (Importance: 0.0733) -&gt; Kategori: Timbre Vokal Manusia
+   5. mfcc5_mean       (Importance: 0.0687) -&gt; Kategori: Timbre Vokal Manusia
+   6. mfcc13_mean      (Importance: 0.0495) -&gt; Kategori: Timbre Vokal Manusia
+   7. mfcc6_mean       (Importance: 0.0472) -&gt; Kategori: Timbre Vokal Manusia
+   8. centroid_mean    (Importance: 0.0419) -&gt; Kategori: Kecerahan Spektrum
+   9. mfcc7_mean       (Importance: 0.0413) -&gt; Kategori: Timbre Vokal Manusia
+  10. zcr_mean         (Importance: 0.0410) -&gt; Kategori: Frekuensi Lintas Nol
+  11. mfcc8_mean       (Importance: 0.0406) -&gt; Kategori: Timbre Vokal Manusia
+  12. mfcc11_mean      (Importance: 0.0379) -&gt; Kategori: Timbre Vokal Manusia
+  13. mfcc10_mean      (Importance: 0.0359) -&gt; Kategori: Timbre Vokal Manusia
+  14. mfcc9_mean       (Importance: 0.0354) -&gt; Kategori: Timbre Vokal Manusia
 </pre></div>
 </div>
 </div>
@@ -1418,7 +1422,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6bd4a892a59a91c2be91b834ef8a68c743dae5c1e4712bcfd398b35fc96be52b.png" src="../_images/6bd4a892a59a91c2be91b834ef8a68c743dae5c1e4712bcfd398b35fc96be52b.png" />
+<img alt="../_images/355d444143e032cf06f5f1f845ddf03888937e412027fac69cc80be7bd35f9c0.png" src="../_images/355d444143e032cf06f5f1f845ddf03888937e412027fac69cc80be7bd35f9c0.png" />
 </div>
 </div>
 </section>
@@ -1582,19 +1586,19 @@ Proses standardisasi (menghitung rata-rata \)</span>\mu<span class="math notrans
              LEADERBOARD PERBANDINGAN MODEL KLASIFIKASI AUDIO (BERISIK vs NON-BERISIK)            
 ===============================================================================================
                  Model  CV Akurasi (Mean)  CV Akurasi (Std)  Test Akurasi   Presisi  Recall  F1-Score  ROC-AUC
-1        Random Forest           0.841532          0.029400         0.850  0.850000    0.85  0.850000  0.86875
-2    Gradient Boosting           0.829032          0.043310         0.800  0.772727    0.85  0.809524  0.85250
-3     SVM (RBF Kernel)           0.790726          0.059579         0.775  0.789474    0.75  0.769231  0.80500
-4  SVM (Linear Kernel)           0.765323          0.053271         0.725  0.714286    0.75  0.731707  0.84750
-5  Logistic Regression           0.790726          0.053100         0.700  0.681818    0.75  0.714286  0.83750
-6  K-Nearest Neighbors           0.753831          0.076012         0.700  0.722222    0.65  0.684211  0.83750
+1        Random Forest            0.81875          0.036443         0.925  1.000000    0.85  0.918919  0.88625
+2     SVM (RBF Kernel)            0.77500          0.060596         0.850  0.888889    0.80  0.842105  0.90000
+3    Gradient Boosting            0.80000          0.042390         0.850  0.888889    0.80  0.842105  0.89500
+4  Logistic Regression            0.77500          0.084779         0.800  0.800000    0.80  0.800000  0.89750
+5  SVM (Linear Kernel)            0.76250          0.070156         0.775  0.761905    0.80  0.780488  0.87750
+6  K-Nearest Neighbors            0.74375          0.053765         0.775  0.789474    0.75  0.769231  0.87625
 
 ===============================================================================================
 [MODEL TERBAIK TERPILIH] : RANDOM FOREST
--&gt; Test Akurasi : 85.00%
--&gt; F1-Score     : 0.8500
--&gt; ROC-AUC      : 0.8688
--&gt; CV Akurasi   : 84.15% (+/- 2.94%)
+-&gt; Test Akurasi : 92.50%
+-&gt; F1-Score     : 0.9189
+-&gt; ROC-AUC      : 0.8863
+-&gt; CV Akurasi   : 81.88% (+/- 3.64%)
 ===============================================================================================
 </pre></div>
 </div>
@@ -1651,17 +1655,17 @@ Proses standardisasi (menghitung rata-rata \)</span>\mu<span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8e359a46925ea5bccb9d71cacf6b212096322b3d0cf1aae2b166c724383f3e4b.png" src="../_images/8e359a46925ea5bccb9d71cacf6b212096322b3d0cf1aae2b166c724383f3e4b.png" />
+<img alt="../_images/5baa06d13ef7b49b4955efbdd99434dae05b02550ea80ef010b597475fef7052.png" src="../_images/5baa06d13ef7b49b4955efbdd99434dae05b02550ea80ef010b597475fef7052.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Laporan Klasifikasi Rinci (Classification Report) untuk Random Forest:
 
               precision    recall  f1-score   support
 
-     berisik     0.8500    0.8500    0.8500        20
- non-berisik     0.8500    0.8500    0.8500        20
+     berisik     1.0000    0.8500    0.9189        20
+ non-berisik     0.8696    1.0000    0.9302        20
 
-    accuracy                         0.8500        40
-   macro avg     0.8500    0.8500    0.8500        40
-weighted avg     0.8500    0.8500    0.8500        40
+    accuracy                         0.9250        40
+   macro avg     0.9348    0.9250    0.9246        40
+weighted avg     0.9348    0.9250    0.9246        40
 </pre></div>
 </div>
 </div>
@@ -1919,15 +1923,15 @@ weighted avg     0.8500    0.8500    0.8500        40
 HASIL DIAGNOSIS AUDIO : 24-003 berisik (1).mp3
 ----------------------------------------------------------------------
 Status Prediksi    : [BERISIK / RAMAI]
-Tingkat Keyakinan  : 88.00%
-Distribusi Peluang : Berisik = 88.00% | Non-Berisik = 12.00%
+Tingkat Keyakinan  : 87.00%
+Distribusi Peluang : Berisik = 87.00% | Non-Berisik = 13.00%
 Durasi Rekaman     : Awal 30.04s -&gt; Pasca Trim 30.02s (10 segmen chunk)
 Energi RMS Rerata  : 0.04172
 Centroid Frekuensi : 1779.1 Hz
 ----------------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/d86a1f9c6b6cc56c630da060e16c2aefb6e5572703b20c5b35a8ac257465d027.png" src="../_images/d86a1f9c6b6cc56c630da060e16c2aefb6e5572703b20c5b35a8ac257465d027.png" />
+<img alt="../_images/e9e39a88de58accda10a4f9460c0f545aaf89c9e51b3e61793895670b6989009.png" src="../_images/e9e39a88de58accda10a4f9460c0f545aaf89c9e51b3e61793895670b6989009.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; Menguji Sampel Audio Berisik (Kasus 2): 24-003 berisik (2).mp3
 [INFO] Sedang memproses dan menganalisis audio (~5-7 detik)...
 </pre></div>
@@ -1936,15 +1940,15 @@ Centroid Frekuensi : 1779.1 Hz
 HASIL DIAGNOSIS AUDIO : 24-003 berisik (2).mp3
 ----------------------------------------------------------------------
 Status Prediksi    : [BERISIK / RAMAI]
-Tingkat Keyakinan  : 98.00%
-Distribusi Peluang : Berisik = 98.00% | Non-Berisik = 2.00%
+Tingkat Keyakinan  : 94.00%
+Distribusi Peluang : Berisik = 94.00% | Non-Berisik = 6.00%
 Durasi Rekaman     : Awal 30.77s -&gt; Pasca Trim 30.47s (10 segmen chunk)
 Energi RMS Rerata  : 0.07727
 Centroid Frekuensi : 2128.7 Hz
 ----------------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/471388b7f501a5a9c0ab73b41168be9f33491ef0b0d48f1b1d39ae51ffe5687b.png" src="../_images/471388b7f501a5a9c0ab73b41168be9f33491ef0b0d48f1b1d39ae51ffe5687b.png" />
+<img alt="../_images/848d97d22d148d19a60a97232510d87343284ef510505ae22bcf347cc300b5e2.png" src="../_images/848d97d22d148d19a60a97232510d87343284ef510505ae22bcf347cc300b5e2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; Menguji Sampel Audio Non-Berisik (Kasus 1): 24-003 sunyi 2.mp3
 [INFO] Sedang memproses dan menganalisis audio (~5-7 detik)...
 </pre></div>
@@ -1953,15 +1957,15 @@ Centroid Frekuensi : 2128.7 Hz
 HASIL DIAGNOSIS AUDIO : 24-003 sunyi 2.mp3
 ----------------------------------------------------------------------
 Status Prediksi    : [NON-BERISIK / TENANG]
-Tingkat Keyakinan  : 92.00%
-Distribusi Peluang : Berisik = 8.00% | Non-Berisik = 92.00%
+Tingkat Keyakinan  : 91.80%
+Distribusi Peluang : Berisik = 8.20% | Non-Berisik = 91.80%
 Durasi Rekaman     : Awal 30.00s -&gt; Pasca Trim 30.00s (10 segmen chunk)
 Energi RMS Rerata  : 0.02091
 Centroid Frekuensi : 1729.9 Hz
 ----------------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/d5cbc432ebbc2779ea6fc48ffd2eb412a84807f259743c9267323409d0318a76.png" src="../_images/d5cbc432ebbc2779ea6fc48ffd2eb412a84807f259743c9267323409d0318a76.png" />
+<img alt="../_images/1e4fc0e85b8407280f164a7eb9a1433fdbea6e7b47e70475ed160bd7f237ac8b.png" src="../_images/1e4fc0e85b8407280f164a7eb9a1433fdbea6e7b47e70475ed160bd7f237ac8b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; Menguji Sampel Audio Non-Berisik (Kasus 2): 24-003 sunyi 3.mp3
 [INFO] Sedang memproses dan menganalisis audio (~5-7 detik)...
 </pre></div>
@@ -1970,15 +1974,15 @@ Centroid Frekuensi : 1729.9 Hz
 HASIL DIAGNOSIS AUDIO : 24-003 sunyi 3.mp3
 ----------------------------------------------------------------------
 Status Prediksi    : [NON-BERISIK / TENANG]
-Tingkat Keyakinan  : 86.00%
-Distribusi Peluang : Berisik = 14.00% | Non-Berisik = 86.00%
+Tingkat Keyakinan  : 90.67%
+Distribusi Peluang : Berisik = 9.33% | Non-Berisik = 90.67%
 Durasi Rekaman     : Awal 30.41s -&gt; Pasca Trim 30.25s (10 segmen chunk)
 Energi RMS Rerata  : 0.01589
 Centroid Frekuensi : 1780.2 Hz
 ----------------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/1f50b2e308a63e4ea79e3a2a8ed5645d39cc46baee79afef9677d284472fbfac.png" src="../_images/1f50b2e308a63e4ea79e3a2a8ed5645d39cc46baee79afef9677d284472fbfac.png" />
+<img alt="../_images/756883eabc62b4d270883188f021c0aba94c1579ce28cb18ae87050f26ac46a6.png" src="../_images/756883eabc62b4d270883188f021c0aba94c1579ce28cb18ae87050f26ac46a6.png" />
 </div>
 </div>
 </section>
@@ -1989,10 +1993,10 @@ Centroid Frekuensi : 1780.2 Hz
 <ol class="arabic simple">
 <li><p>Letakkan file rekaman Anda di dalam folder udio/ (atau pilih salah satu file dari folder erisik/ maupun
 on-berisik/).</p></li>
-<li><p>Tuliskan path file tersebut pada variabel 
-ile_uji_saya di sel kode bawah.</p></li>
-<li><p>Jalankan sel tersebut untuk melihat hasil prediksi status kelas (BERISIK vs NON-BERISIK), persentase tingkat keyakinan, dan visualisasi bentuk gelombang sinyalnya!</p></li>
+<li><p>Tuliskan path file tersebut pada variabel</p></li>
 </ol>
+<p>ile_uji_saya di sel kode bawah.
+3. Jalankan sel tersebut untuk melihat hasil prediksi status kelas (BERISIK vs NON-BERISIK), persentase tingkat keyakinan, dan visualisasi bentuk gelombang sinyalnya!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
@@ -2021,7 +2025,7 @@ ile_uji_saya di sel kode bawah.</p></li>
 
 <span class="c1"># Daftar file audio yang ingin diuji sekaligus:</span>
 <span class="n">daftar_file</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_NON_BERISIK</span><span class="p">,</span> <span class="s1">&#39;24-179 sepi 2.mp3&#39;</span><span class="p">),</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_NON_BERISIK</span><span class="p">,</span> <span class="s1">&#39;24-068 non-berisik 2.mp3&#39;</span><span class="p">),</span>
     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_BERISIK</span><span class="p">,</span> <span class="s1">&#39;24-179 berisik 2.mp3&#39;</span><span class="p">)</span>
 <span class="p">]</span>
 
@@ -2032,23 +2036,23 @@ ile_uji_saya di sel kode bawah.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mendiagnosis file: C:\Users\OKAN\OneDrive\Dokumen\PSD\materi\audio\non-berisik\24-179 sepi 2.mp3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mendiagnosis file: C:\Users\OKAN\OneDrive\Dokumen\PSD\materi\audio\non-berisik\24-068 non-berisik 2.mp3
 [INFO] Sedang memproses dan menganalisis audio (~5-7 detik)...
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------------------------------------
-HASIL DIAGNOSIS AUDIO : 24-179 sepi 2.mp3
+HASIL DIAGNOSIS AUDIO : 24-068 non-berisik 2.mp3
 ----------------------------------------------------------------------
 Status Prediksi    : [NON-BERISIK / TENANG]
-Tingkat Keyakinan  : 98.00%
-Distribusi Peluang : Berisik = 2.00% | Non-Berisik = 98.00%
-Durasi Rekaman     : Awal 31.02s -&gt; Pasca Trim 30.86s (10 segmen chunk)
-Energi RMS Rerata  : 0.01287
-Centroid Frekuensi : 1281.5 Hz
+Tingkat Keyakinan  : 82.00%
+Distribusi Peluang : Berisik = 18.00% | Non-Berisik = 82.00%
+Durasi Rekaman     : Awal 30.54s -&gt; Pasca Trim 30.54s (10 segmen chunk)
+Energi RMS Rerata  : 0.04888
+Centroid Frekuensi : 1508.9 Hz
 ----------------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/9de100911a49f76d05de0158fbc491d4647cefaddba7ef7ff0d5aa8ffc4f4d9d.png" src="../_images/9de100911a49f76d05de0158fbc491d4647cefaddba7ef7ff0d5aa8ffc4f4d9d.png" />
+<img alt="../_images/b00c0676241459d19e12dce0d153bcba055e8e3113d0d7392bfd7e1a9ab4f8fc.png" src="../_images/b00c0676241459d19e12dce0d153bcba055e8e3113d0d7392bfd7e1a9ab4f8fc.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mendiagnosis file: C:\Users\OKAN\OneDrive\Dokumen\PSD\materi\audio\berisik\24-179 berisik 2.mp3
 [INFO] Sedang memproses dan menganalisis audio (~5-7 detik)...
 </pre></div>
@@ -2056,16 +2060,16 @@ Centroid Frekuensi : 1281.5 Hz
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------------------------------------
 HASIL DIAGNOSIS AUDIO : 24-179 berisik 2.mp3
 ----------------------------------------------------------------------
-Status Prediksi    : [BERISIK / RAMAI]
-Tingkat Keyakinan  : 51.33%
-Distribusi Peluang : Berisik = 51.33% | Non-Berisik = 48.67%
+Status Prediksi    : [NON-BERISIK / TENANG]
+Tingkat Keyakinan  : 59.00%
+Distribusi Peluang : Berisik = 41.00% | Non-Berisik = 59.00%
 Durasi Rekaman     : Awal 32.45s -&gt; Pasca Trim 32.22s (10 segmen chunk)
 Energi RMS Rerata  : 0.03751
 Centroid Frekuensi : 1348.9 Hz
 ----------------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/6f41f38bb36598c18e8712a9ded41678feeb54f2cab69f89010d06fbf81403f0.png" src="../_images/6f41f38bb36598c18e8712a9ded41678feeb54f2cab69f89010d06fbf81403f0.png" />
+<img alt="../_images/c48423cd3fdbd58f563c3f093ded823e99ec3e8b3522d6b6b1141d13663d88f3.png" src="../_images/c48423cd3fdbd58f563c3f093ded823e99ec3e8b3522d6b6b1141d13663d88f3.png" />
 </div>
 </div>
 </section>

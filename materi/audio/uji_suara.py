@@ -115,6 +115,6 @@ def uji_suara(audio_path):
     print("-" * 70)
 
 if __name__ == '__main__':
-    default_test = os.path.join(CURRENT_DIR, 'non-berisik', '24-179 sepi 2.mp3')
+    default_test = os.path.join(CURRENT_DIR, 'berisik', '24-027_berisik3.mp3')
     target_file = sys.argv[1] if len(sys.argv) > 1 else default_test
     uji_suara(target_file)
