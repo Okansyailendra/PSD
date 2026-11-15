@@ -1,0 +1,10 @@
+# Folder citra yang diabaikan
+materi/citra/greyscale/
+materi/citra/berantakan/
+materi/citra/rapi/
+
+# File temporer Python & Jupyter
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/

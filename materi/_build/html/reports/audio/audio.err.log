@@ -1,0 +1,63 @@
+Traceback (most recent call last):
+  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd                                                                                                                                                   
+    from sklearn.model_selection import train_test_split                                                                                                                  
+                                                                                                                                                                          
+    # 1. Baca dataset fitur audio yang sudah tersimpan                                                                                                                    
+    df_dataset = pd.read_csv('fitur_audio.csv')                                                                                                                           
+                                                                                                                                                                          
+    # 2. Pisahkan fitur (X) dan target (y)                                                                                                                                
+    feature_columns = [col for col in df_dataset.columns if col not in ['filename', 'label']]                                                                             
+    X = df_dataset[['filename'] + feature_columns]                                                                                                                        
+    y = df_dataset['label']                                                                                                                                               
+                                                                                                                                                                          
+    # 3. Bagi menjadi Train dan Test (80:20)                                                                                                                              
+    X_train, X_test, y_train, y_test = train_test_split(                                                                                                                  
+        X, y,                                                                                                                                                             
+        test_size=0.2,                                                                                                                                                    
+        random_state=42,                                                                                                                                                  
+        stratify=y                                                                                                                                                        
+    )                                                                                                                                                                     
+                                                                                                                                                                          
+    # 4. Tampilkan dimensi/ukuran baris dan kolom                                                                                                                         
+    print("Ukuran X_train :", X_train.shape)                                                                                                                              
+    print("Ukuran y_train :", y_train.shape)                                                                                                                              
+    print("Ukuran X_test  :", X_test.shape)                                                                                                                               
+    print("Ukuran y_test  :", y_test.shape)
+------------------
+
+
+  [36mCell[39m[36m [39m[32mIn[17][39m[32m, line 2[39m
+[31m    [39m[31mfrom sklearn.model_selection import train_test_split[39m
+    ^
+[31mIndentationError[39m[31m:[39m unexpected indent
+
+
