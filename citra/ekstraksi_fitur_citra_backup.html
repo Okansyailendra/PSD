@@ -1,0 +1,1900 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Analisis dan Klasifikasi Citra Digital: Kondisi Rak Sandal dan Sepatu &#8212; PSD - Materi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'citra/ekstraksi_fitur_citra_backup';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/foto.webp" class="logo__image only-light" alt="PSD - Materi - Home"/>
+    <script>document.write(`<img src="../_static/foto.webp" class="logo__image only-dark" alt="PSD - Materi - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Selamat Datang di Mata Kuliah Proyek Sains Data (PSD)
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Pemrosesan_Data/polutan.html">Analisis Kualitas Udara (Polutan) di Kawasan Gresik</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Pemrosesan_Data/business_understanding.html">1. Business Understanding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Pemrosesan_Data/data_understanding.html">2. Data Understanding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Pemrosesan_Data/perhitungan.html">3. Proses Crawling &amp; Pemrosesan Data</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_series.html">Analisis Time Series: Persiapan Data Polutan Manyar</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Data_Preparation.html">Data Preparation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_NO2.html">Ekstraksi_Fitur_NO2</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_CO.html">Ekstraksi_Fitur_CO</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../ekstraksi_fitur_polynomial_dan_linier/02_Ekstraksi_Fitur_Linear/Ekstraksi_Fitur_SO2.html">Ekstraksi_Fitur_SO2</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_NO2_Polinomial.html">Ekstraksi_Fitur_NO2 (Interpolasi Polinomial)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_CO_Polinomial.html">Ekstraksi_Fitur_CO (Interpolasi Polinomial)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_SO2_Polinomial.html">Ekstraksi_Fitur_SO2 (Interpolasi Polinomial)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../ekstraksi_fitur_polynomial_dan_linier/Penggabungan_204_Fitur_Polutan.html">Penggabungan Fitur 3 Polutan (204 Kolom)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Clustering/clustering.html">Analisis Clustering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Clustering/analisis_clustering.html">Analisis Penentuan Jumlah Cluster Optimal pada K-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Clustering/penjelasan_clustering_knime.html">Penjelasan Proses Clustering Menggunakan KNIME</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deskripsi_fitur_perhitungan_manual_no2.html">Deskripsi Fitur &amp; Perhitungan Manual</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Clustering_Segmentasi/clustering_segmentasi.html">Analisis Clustering &amp; Segmentasi Wilayah Polutan</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Clustering_Segmentasi/01_Data_dan_EDA/data_dan_eda.html">Tahap 1 — Pengambilan Data &amp; Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Clustering_Segmentasi/02_Reduksi_Dimensi/reduksi_dimensi.html">Tahap 2 — Reduksi Dimensi: 204 → 203 → 74 → 37</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Clustering_Segmentasi/03_Eksperimen_Clustering/eksperimen_clustering.html">Tahap 3 — Eksperimen Clustering &amp; Analisis Silhouette</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Clustering_Segmentasi/04_Visualisasi_Peta/visualisasi_peta.html">Tahap 4 — Visualisasi Peta Segmentasi Wilayah</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../klasifikasi_sawah/klasifikasi_sawah_sentinel2a.html">Klasifikasi Sawah vs Non-Sawah Menggunakan Sentinel-2A dan Random Forest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../klasifikasi_jawa_timur/klasifikasi_jawa_timur_sentinel2a.html">Klasifikasi Penggunaan dan Tutupan Lahan (Land Use / Land Cover) Jawa Timur</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="../audio/pembukaan.html">Klasifikasi Sinyal Audio: Suara Berisik vs Non-Berisik</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../audio/business_understanding.html">1. Business Understanding: Klasifikasi Sinyal Audio Lingkungan (Berisik vs Non-Berisik)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../audio/data_understanding.html">2. Data Understanding: Klasifikasi Sinyal Audio Lingkungan (Berisik vs Non-Berisik)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../audio/audio.html">Analisis dan Klasifikasi Sinyal Audio: Suara Berisik vs Non-Berisik</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="ekstraksi_fitur_citra.html">Analisis dan Klasifikasi Citra Digital: Kondisi Rak Sandal dan Sepatu</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcitra/ekstraksi_fitur_citra_backup.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/citra/ekstraksi_fitur_citra_backup.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analisis dan Klasifikasi Citra Digital: Kondisi Rak Sandal dan Sepatu</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#studi-komparasi-metode-pengolahan-sinyal-digital-klasik-warna-dan-tekstur-glcm-versus-deep-learning-yolov8">Studi Komparasi: Metode Pengolahan Sinyal Digital Klasik (Warna dan Tekstur GLCM) versus Deep Learning (YOLOv8)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-dan-kerangka-masalah">Ringkasan dan Kerangka Masalah</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengaturan-direktori-dan-validasi-dataset">2. Pengaturan Direktori dan Validasi Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-sampel-citra">3. Visualisasi Sampel Citra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-momen-warna-color-moments">4. Ekstraksi Fitur Momen Warna (Color Moments)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-tekstur-glcm-haralick">5. Ekstraksi Fitur Tekstur GLCM Haralick</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-sekuen-dan-pembentukan-dataset-fitur">6. Pemrosesan Sekuen dan Pembentukan Dataset Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-dan-analisis-korelasi-antar-fitur">7. Eksplorasi Data dan Analisis Korelasi Antar-Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-kepentingan-fitur-feature-importance">8. Analisis Kepentingan Fitur (Feature Importance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-latih-dan-data-uji">9. Pembagian Data Latih dan Data Uji</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-machine-learning-klasik-dan-ensemble">10. Pemodelan Machine Learning Klasik dan Ensemble</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-kinerja-model-klasik-psd">11. Evaluasi Kinerja Model Klasik PSD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-kebingungan-dan-analisis-kurva-roc">12. Matriks Kebingungan dan Analisis Kurva ROC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-model-klasik">13. Penyimpanan Model Klasik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komparasi-eksperimental-klasifikasi-berbasis-yolov8">14. Komparasi Eksperimental: Klasifikasi Berbasis YOLOv8</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-keterbatasan-fitur-tekstur-mikro-dan-peran-representasi-konvolusional">Analisis Keterbatasan Fitur Tekstur Mikro dan Peran Representasi Konvolusional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-kinerja-metode-klasik-dan-yolov8">15. Perbandingan Kinerja Metode Klasik dan YOLOv8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian-inferensi-komparatif-terpadu">16. Pengujian Inferensi Komparatif Terpadu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian-sampel-mandiri">17. Pengujian Sampel Mandiri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">18. Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-dan-klasifikasi-citra-digital-kondisi-rak-sandal-dan-sepatu">
+<h1>Analisis dan Klasifikasi Citra Digital: Kondisi Rak Sandal dan Sepatu<a class="headerlink" href="#analisis-dan-klasifikasi-citra-digital-kondisi-rak-sandal-dan-sepatu" title="Permalink to this heading">#</a></h1>
+<section id="studi-komparasi-metode-pengolahan-sinyal-digital-klasik-warna-dan-tekstur-glcm-versus-deep-learning-yolov8">
+<h2>Studi Komparasi: Metode Pengolahan Sinyal Digital Klasik (Warna dan Tekstur GLCM) versus Deep Learning (YOLOv8)<a class="headerlink" href="#studi-komparasi-metode-pengolahan-sinyal-digital-klasik-warna-dan-tekstur-glcm-versus-deep-learning-yolov8" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="ringkasan-dan-kerangka-masalah">
+<h3>Ringkasan dan Kerangka Masalah<a class="headerlink" href="#ringkasan-dan-kerangka-masalah" title="Permalink to this heading">#</a></h3>
+<p>Penentuan kondisi kerapian penataan sandal atau sepatu (rapi versus berantakan) merupakan salah satu persoalan dalam pengolahan citra digital. Masalah ini memiliki dua karakteristik utama:</p>
+<ol class="arabic simple">
+<li><p><strong>Kesenjangan Semantik Orientasi Spasial:</strong> Sepasang sandal yang rapi dan berantakan berada pada latar lantai yang sama dan memiliki bahan fisik yang serupa. Pembeda utamanya terletak pada sudut orientasi geometris dan kesejajaran posisi antar-sandal, bukan pada warna atau tekstur mikronya.</p></li>
+<li><p><strong>Karakteristik Fitur Klasik:</strong> Ekstraksi fitur statistik dasar seperti momen warna RGB dan matriks korelasi GLCM Haralick bersifat invarian terhadap orientasi global, sehingga performanya memiliki batas tertentu pada variasi foto dunia nyata.</p></li>
+</ol>
+<p>Modul ini menyajikan evaluasi komparatif antara dua paradigma:</p>
+<ul class="simple">
+<li><p><strong>Pendekatan Pengolahan Sinyal Digital (PSD) Klasik:</strong></p>
+<ul>
+<li><p>Ekstraksi 9 momen warna (mean, deviasi standar, skewness pada kanal R, G, B).</p></li>
+<li><p>Ekstraksi 5 fitur tekstur GLCM Haralick (energy, entropy, contrast, correlation, homogeneity).</p></li>
+<li><p>Analisis signifikansi fitur dengan Random Forest Importance dan uji ANOVA F-score.</p></li>
+<li><p>Klasifikasi menggunakan 5 algoritma Machine Learning serta model ensemble (Soft Voting dan Stacking).</p></li>
+</ul>
+</li>
+<li><p><strong>Pendekatan Representasi Konvolusional (YOLOv8-cls):</strong></p>
+<ul>
+<li><p>Menggunakan arsitektur CSPDarknet dengan mekanisme spatial attention untuk membaca orientasi kontur objek tanpa memerlukan anotasi bounding box manual.</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluasi dan Inferensi:</strong> Pengujian kinerja kedua pendekatan pada 40 citra uji independen secara objektif.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># TAHAP 1: IMPORT LIBRARY DAN DEPENDENSI UTAMA</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1"># Dukungan pembacaan format HEIC (Apple iPhone) ke dalam Pillow</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pillow_heif</span>
+    <span class="n">pillow_heif</span><span class="o">.</span><span class="n">register_heif_opener</span><span class="p">()</span>
+    <span class="n">has_heif</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">has_heif</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">skew</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1"># Ekstraksi fitur tekstur GLCM Haralick</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.feature</span><span class="w"> </span><span class="kn">import</span> <span class="n">graycomatrix</span><span class="p">,</span> <span class="n">graycoprops</span>
+
+<span class="c1"># Prapemrosesan, pembagian data, dan pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">f_classif</span>
+
+<span class="c1"># Algoritma klasifikasi Machine Learning klasik dan ensemble</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RandomForestClassifier</span><span class="p">,</span>
+    <span class="n">GradientBoostingClassifier</span><span class="p">,</span>
+    <span class="n">VotingClassifier</span><span class="p">,</span>
+    <span class="n">StackingClassifier</span>
+<span class="p">)</span>
+
+<span class="c1"># Metrik evaluasi kinerja</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span>
+    <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+<span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+
+<span class="c1"># Arsitektur YOLOv8</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ultralytics</span><span class="w"> </span><span class="kn">import</span> <span class="n">YOLO</span>
+
+<span class="c1"># Konfigurasi visualisasi</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'seaborn-v0_8-whitegrid'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.family'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'DejaVu Sans'</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pustaka pendukung berhasil dimuat."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> 
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># Dukungan pembacaan format HEIC (Apple iPhone) ke dalam Pillow</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named 'PIL'
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pengaturan-direktori-dan-validasi-dataset">
+<h2>2. Pengaturan Direktori dan Validasi Dataset<a class="headerlink" href="#pengaturan-direktori-dan-validasi-dataset" title="Permalink to this heading">#</a></h2>
+<p>Dataset terdiri atas dua kelas seimbang:</p>
+<ul class="simple">
+<li><p><strong>Kelas berantakan:</strong> 100 citra kondisi sandal berserakan atau tidak sejajar.</p></li>
+<li><p><strong>Kelas rapi:</strong> 100 citra kondisi sandal tertata sejajar.</p></li>
+<li><p><strong>Total Citra:</strong> 200 berkas fisik (format JPG, JPEG, PNG, dan format kamera Apple iPhone HEIC).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># TAHAP 2: DEFINISI DIREKTORI DAN VALIDASI JUMLAH BERKAS</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="n">BASE_DIR</span> <span class="o">=</span> <span class="s2">"/run/media/kannz/OS/Users/OKAN/OneDrive/Dokumen/PSD/materi/citra"</span>
+<span class="n">DIR_BERANTAKAN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">"berantakan"</span><span class="p">)</span>
+<span class="n">DIR_RAPI</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">"rapi"</span><span class="p">)</span>
+
+<span class="n">DIR_GRAY_BERANTAKAN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">"greyscale"</span><span class="p">,</span> <span class="s2">"berantakan"</span><span class="p">)</span>
+<span class="n">DIR_GRAY_RAPI</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">"greyscale"</span><span class="p">,</span> <span class="s2">"rapi"</span><span class="p">)</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DIR_GRAY_BERANTAKAN</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DIR_GRAY_RAPI</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">VALID_EXTENSIONS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'.jpg'</span><span class="p">,</span> <span class="s1">'.jpeg'</span><span class="p">,</span> <span class="s1">'.png'</span><span class="p">,</span> <span class="s1">'.heic'</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_image_files</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">([</span>
+        <span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> 
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">f</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">VALID_EXTENSIONS</span>
+    <span class="p">])</span>
+
+<span class="n">files_berantakan</span> <span class="o">=</span> <span class="n">get_image_files</span><span class="p">(</span><span class="n">DIR_BERANTAKAN</span><span class="p">)</span>
+<span class="n">files_rapi</span> <span class="o">=</span> <span class="n">get_image_files</span><span class="p">(</span><span class="n">DIR_RAPI</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah citra kelas 'berantakan' : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files_berantakan</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah citra kelas 'rapi'       : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files_rapi</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total dataset seimbang          : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files_berantakan</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">files_rapi</span><span class="p">)</span><span class="si">}</span><span class="s2"> citra"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah citra kelas 'berantakan' : 100
+Jumlah citra kelas 'rapi'       : 100
+Total dataset seimbang          : 200 citra
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="visualisasi-sampel-citra">
+<h2>3. Visualisasi Sampel Citra<a class="headerlink" href="#visualisasi-sampel-citra" title="Permalink to this heading">#</a></h2>
+<p>Menampilkan perbandingan visual antara satu sampel citra kondisi berantakan dan satu sampel citra kondisi rapi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_b_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_BERANTAKAN</span><span class="p">,</span> <span class="n">files_berantakan</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sample_r_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_RAPI</span><span class="p">,</span> <span class="n">files_rapi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">img_b_rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">sample_b_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">))</span>
+<span class="n">img_r_rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">sample_r_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_b_rgb</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sampel Berantakan</span><span class="se">\n</span><span class="s2">Berkas: </span><span class="si">{</span><span class="n">files_berantakan</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">Dimensi: </span><span class="si">{</span><span class="n">img_b_rgb</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_r_rgb</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sampel Rapi</span><span class="se">\n</span><span class="s2">Berkas: </span><span class="si">{</span><span class="n">files_rapi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">Dimensi: </span><span class="si">{</span><span class="n">img_r_rgb</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/70a280e021ad576d0238a5fbfb97189c6cfeec8a5be1ac3c519c7c3256b75656.png" src="../_images/70a280e021ad576d0238a5fbfb97189c6cfeec8a5be1ac3c519c7c3256b75656.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ekstraksi-fitur-momen-warna-color-moments">
+<h2>4. Ekstraksi Fitur Momen Warna (Color Moments)<a class="headerlink" href="#ekstraksi-fitur-momen-warna-color-moments" title="Permalink to this heading">#</a></h2>
+<p>Momen warna merepresentasikan distribusi statistik intensitas piksel pada tiap kanal ruang warna RGB:</p>
+<ol class="arabic simple">
+<li><p><strong>Mean (Orde Pertama / <span class="math notranslate nohighlight">\(\mu\)</span>):</strong> Rata-rata intensitas warna kanal.</p></li>
+<li><p><strong>Deviasi Standar (Orde Kedua / <span class="math notranslate nohighlight">\(\sigma\)</span>):</strong> Sebaran variasi intensitas warna.</p></li>
+<li><p><strong>Skewness (Orde Ketiga / <span class="math notranslate nohighlight">\(s\)</span>):</strong> Derajat asimetri sebaran intensitas warna.</p></li>
+</ol>
+<p>Dengan 3 momen pada 3 kanal (Red, Green, Blue), dihasilkan 9 fitur tabular.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">extract_color_features</span><span class="p">(</span><span class="n">img_rgb</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Mengekstrak 9 fitur momen warna (mean, std, skewness) kanal R, G, B.</span>
+<span class="sd">    """</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">img_rgb</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">img_rgb</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">img_rgb</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'mean_R'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">R</span><span class="p">)),</span>
+        <span class="s1">'mean_G'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">G</span><span class="p">)),</span>
+        <span class="s1">'mean_B'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">B</span><span class="p">)),</span>
+        <span class="s1">'std_R'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">R</span><span class="p">)),</span>
+        <span class="s1">'std_G'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">G</span><span class="p">)),</span>
+        <span class="s1">'std_B'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">B</span><span class="p">)),</span>
+        <span class="s1">'skew_R'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="n">R</span><span class="p">)),</span>
+        <span class="s1">'skew_G'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="n">G</span><span class="p">)),</span>
+        <span class="s1">'skew_B'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ekstraksi-fitur-tekstur-glcm-haralick">
+<h2>5. Ekstraksi Fitur Tekstur GLCM Haralick<a class="headerlink" href="#ekstraksi-fitur-tekstur-glcm-haralick" title="Permalink to this heading">#</a></h2>
+<p>GLCM (Gray-Level Co-occurrence Matrix) menghitung relasi spasial kemunculan pasangan piksel aras keabuan dengan jarak <span class="math notranslate nohighlight">\(d=1\)</span> dan orientasi sudut <span class="math notranslate nohighlight">\(0^\circ, 45^\circ, 90^\circ, 135^\circ\)</span>.</p>
+<p>Dari matriks GLCM yang dinormalisasi, dihitung 5 fitur tekstur Haralick:</p>
+<ol class="arabic simple">
+<li><p><strong>Energy:</strong> Tingkat keteraturan tekstur.</p></li>
+<li><p><strong>Entropy:</strong> Derajat keacakan distribusi keabuan.</p></li>
+<li><p><strong>Contrast:</strong> Variasi lokal intensitas piksel tetangga.</p></li>
+<li><p><strong>Correlation:</strong> Ketergantungan linier intensitas abu-abu.</p></li>
+<li><p><strong>Homogeneity:</strong> Kedekatan distribusi elemen GLCM terhadap diagonal utama.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">extract_glcm_features</span><span class="p">(</span><span class="n">img_gray</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Mengekstrak 5 fitur tekstur Haralick dari matriks GLCM.</span>
+<span class="sd">    """</span>
+    <span class="n">glcm</span> <span class="o">=</span> <span class="n">graycomatrix</span><span class="p">(</span>
+        <span class="n">img_gray</span><span class="p">,</span> 
+        <span class="n">distances</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+        <span class="n">angles</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">],</span> 
+        <span class="n">levels</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> 
+        <span class="n">symmetric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">normed</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    
+    <span class="n">energy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">graycoprops</span><span class="p">(</span><span class="n">glcm</span><span class="p">,</span> <span class="s1">'energy'</span><span class="p">)))</span>
+    <span class="n">glcm_norm</span> <span class="o">=</span> <span class="n">glcm</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">glcm</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
+    <span class="n">entropy_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">glcm_norm</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">glcm_norm</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)))</span>
+    <span class="n">contrast</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">graycoprops</span><span class="p">(</span><span class="n">glcm</span><span class="p">,</span> <span class="s1">'contrast'</span><span class="p">)))</span>
+    <span class="n">correlation</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">graycoprops</span><span class="p">(</span><span class="n">glcm</span><span class="p">,</span> <span class="s1">'correlation'</span><span class="p">)))</span>
+    <span class="n">homogeneity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">graycoprops</span><span class="p">(</span><span class="n">glcm</span><span class="p">,</span> <span class="s1">'homogeneity'</span><span class="p">)))</span>
+    
+    <span class="n">features</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'energy'</span><span class="p">:</span> <span class="n">energy</span><span class="p">,</span>
+        <span class="s1">'entropy'</span><span class="p">:</span> <span class="n">entropy_val</span><span class="p">,</span>
+        <span class="s1">'contrast'</span><span class="p">:</span> <span class="n">contrast</span><span class="p">,</span>
+        <span class="s1">'correlation'</span><span class="p">:</span> <span class="n">correlation</span><span class="p">,</span>
+        <span class="s1">'homogeneity'</span><span class="p">:</span> <span class="n">homogeneity</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="n">glcm</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pemrosesan-sekuen-dan-pembentukan-dataset-fitur">
+<h2>6. Pemrosesan Sekuen dan Pembentukan Dataset Fitur<a class="headerlink" href="#pemrosesan-sekuen-dan-pembentukan-dataset-fitur" title="Permalink to this heading">#</a></h2>
+<p>Tahapan ini memproses seluruh 200 citra secara sekuensial:</p>
+<ol class="arabic simple">
+<li><p>Mengonversi citra ke aras keabuan (<em>grayscale</em>) dan menyimpannya di folder <code class="docutils literal notranslate"><span class="pre">greyscale/</span></code>.</p></li>
+<li><p>Mengekstrak 9 fitur momen warna dan 5 fitur GLCM (total 14 fitur).</p></li>
+<li><p>Menyimpan matriks fitur ke berkas tabular [dataset_fitur_citra.csv](file:///run/media/kannz/OS/Users/OKAN/OneDrive/Dokumen/PSD/materi/citra/dataset_fitur_citra.csv).</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># TAHAP 6: EKSTRAKSI FITUR DAN PENYIMPANAN CITRA KEABUAN</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="n">dataset_records</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Memulai proses ekstraksi fitur pada dataset..."</span><span class="p">)</span>
+
+<span class="n">folders_to_process</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'berantakan'</span><span class="p">,</span> <span class="n">DIR_BERANTAKAN</span><span class="p">,</span> <span class="n">DIR_GRAY_BERANTAKAN</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'rapi'</span><span class="p">,</span> <span class="n">DIR_RAPI</span><span class="p">,</span> <span class="n">DIR_GRAY_RAPI</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">label_str</span><span class="p">,</span> <span class="n">src_dir</span><span class="p">,</span> <span class="n">gray_dir</span> <span class="ow">in</span> <span class="n">folders_to_process</span><span class="p">:</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="n">files_berantakan</span> <span class="k">if</span> <span class="n">label_str</span> <span class="o">==</span> <span class="s1">'berantakan'</span> <span class="k">else</span> <span class="n">files_rapi</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Memproses kelas '</span><span class="si">{</span><span class="n">label_str</span><span class="si">}</span><span class="s2">' (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">file_list</span><span class="p">)</span><span class="si">}</span><span class="s2"> citra)..."</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="n">src_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">src_dir</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">img_pil</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">src_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Peringatan: Gagal membaca berkas </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+            <span class="k">continue</span>
+            
+        <span class="n">img_rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_pil</span><span class="p">)</span>
+        <span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img_rgb</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span>
+        
+        <span class="n">base_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">f</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ext_clean</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">f</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'.'</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">)</span>
+        <span class="n">gray_save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gray_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base_name</span><span class="si">}{</span><span class="n">ext_clean</span><span class="si">}</span><span class="s2">.png"</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">gray_save_path</span><span class="p">,</span> <span class="n">img_gray</span><span class="p">)</span>
+        
+        <span class="n">color_feats</span> <span class="o">=</span> <span class="n">extract_color_features</span><span class="p">(</span><span class="n">img_rgb</span><span class="p">)</span>
+        <span class="n">glcm_feats</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">extract_glcm_features</span><span class="p">(</span><span class="n">img_gray</span><span class="p">)</span>
+        
+        <span class="n">record</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'filename'</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">color_feats</span><span class="p">)</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">glcm_feats</span><span class="p">)</span>
+        <span class="n">record</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_str</span>
+        
+        <span class="n">dataset_records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+<span class="n">df_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dataset_records</span><span class="p">)</span>
+
+<span class="n">CSV_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">"dataset_fitur_citra.csv"</span><span class="p">)</span>
+<span class="n">df_features</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">CSV_PATH</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ekstraksi selesai dalam </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> detik."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dimensi dataset akhir: </span><span class="si">{</span><span class="n">df_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> baris x </span><span class="si">{</span><span class="n">df_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> kolom."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Berkas tersimpan di: </span><span class="si">{</span><span class="n">CSV_PATH</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memulai proses ekstraksi fitur pada dataset...
+Memproses kelas 'berantakan' (100 citra)...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memproses kelas 'rapi' (100 citra)...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ekstraksi selesai dalam 252.72 detik.
+Dimensi dataset akhir: 200 baris x 16 kolom.
+Berkas tersimpan di: /run/media/kannz/OS/Users/OKAN/OneDrive/Dokumen/PSD/materi/citra/dataset_fitur_citra.csv
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="eksplorasi-data-dan-analisis-korelasi-antar-fitur">
+<h2>7. Eksplorasi Data dan Analisis Korelasi Antar-Fitur<a class="headerlink" href="#eksplorasi-data-dan-analisis-korelasi-antar-fitur" title="Permalink to this heading">#</a></h2>
+<p>Analisis korelasi linier Pearson untuk mengamati multikolinearitas antar 14 fitur yang diekstraksi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FEATURE_COLS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'mean_R'</span><span class="p">,</span> <span class="s1">'mean_G'</span><span class="p">,</span> <span class="s1">'mean_B'</span><span class="p">,</span>
+    <span class="s1">'std_R'</span><span class="p">,</span> <span class="s1">'std_G'</span><span class="p">,</span> <span class="s1">'std_B'</span><span class="p">,</span>
+    <span class="s1">'skew_R'</span><span class="p">,</span> <span class="s1">'skew_G'</span><span class="p">,</span> <span class="s1">'skew_B'</span><span class="p">,</span>
+    <span class="s1">'energy'</span><span class="p">,</span> <span class="s1">'entropy'</span><span class="p">,</span> <span class="s1">'contrast'</span><span class="p">,</span> <span class="s1">'correlation'</span><span class="p">,</span> <span class="s1">'homogeneity'</span>
+<span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">df_features</span><span class="p">[</span><span class="n">FEATURE_COLS</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">corr</span><span class="p">,</span> 
+    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> 
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">".2f"</span><span class="p">,</span> 
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">"coolwarm"</span><span class="p">,</span> 
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">"shrink"</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Matriks Korelasi Pearson 14 Fitur Citra"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4f9eab8b73c43d37c2807d587baedbc65dcbe03e7d57223673be0f4aa1a0123c.png" src="../_images/4f9eab8b73c43d37c2807d587baedbc65dcbe03e7d57223673be0f4aa1a0123c.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="analisis-kepentingan-fitur-feature-importance">
+<h2>8. Analisis Kepentingan Fitur (Feature Importance)<a class="headerlink" href="#analisis-kepentingan-fitur-feature-importance" title="Permalink to this heading">#</a></h2>
+<p>Mengevaluasi kontribusi pembeda dari masing-masing fitur terhadap kelas target menggunakan Gini Importance (Random Forest) dan ANOVA F-score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_all</span> <span class="o">=</span> <span class="n">df_features</span><span class="p">[</span><span class="n">FEATURE_COLS</span><span class="p">]</span>
+<span class="n">y_all</span> <span class="o">=</span> <span class="n">df_features</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span>
+
+<span class="n">rf_selector</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rf_selector</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">)</span>
+<span class="n">rf_importances</span> <span class="o">=</span> <span class="n">rf_selector</span><span class="o">.</span><span class="n">feature_importances_</span>
+
+<span class="n">f_scores</span><span class="p">,</span> <span class="n">p_values</span> <span class="o">=</span> <span class="n">f_classif</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">)</span>
+
+<span class="n">df_importance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'Fitur'</span><span class="p">:</span> <span class="n">FEATURE_COLS</span><span class="p">,</span>
+    <span class="s1">'RF Importance'</span><span class="p">:</span> <span class="n">rf_importances</span><span class="p">,</span>
+    <span class="s1">'ANOVA F-Score'</span><span class="p">:</span> <span class="n">f_scores</span><span class="p">,</span>
+    <span class="s1">'p-value'</span><span class="p">:</span> <span class="n">p_values</span>
+<span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'RF Importance'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Peringkat Kepentingan Fitur:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_importance</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_importance</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'RF Importance'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'Fitur'</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">'Blues_r'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Peringkat Kepentingan Fitur Berdasarkan Random Forest"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Tingkat Kepentingan Relatif"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Nama Fitur"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Peringkat Kepentingan Fitur:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fitur</th>
+      <th>RF Importance</th>
+      <th>ANOVA F-Score</th>
+      <th>p-value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>skew_B</td>
+      <td>0.098668</td>
+      <td>0.084624</td>
+      <td>0.771431</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>correlation</td>
+      <td>0.092686</td>
+      <td>0.000980</td>
+      <td>0.975064</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mean_B</td>
+      <td>0.083318</td>
+      <td>0.790785</td>
+      <td>0.374942</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>std_R</td>
+      <td>0.077634</td>
+      <td>1.739335</td>
+      <td>0.188746</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>entropy</td>
+      <td>0.071114</td>
+      <td>0.883841</td>
+      <td>0.348297</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>std_B</td>
+      <td>0.069991</td>
+      <td>5.124040</td>
+      <td>0.024681</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>contrast</td>
+      <td>0.069599</td>
+      <td>0.000593</td>
+      <td>0.980599</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>skew_G</td>
+      <td>0.068997</td>
+      <td>0.782166</td>
+      <td>0.377552</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>mean_R</td>
+      <td>0.067512</td>
+      <td>0.048316</td>
+      <td>0.826246</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>mean_G</td>
+      <td>0.067288</td>
+      <td>0.000216</td>
+      <td>0.988298</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>std_G</td>
+      <td>0.062854</td>
+      <td>0.057682</td>
+      <td>0.810446</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>homogeneity</td>
+      <td>0.058324</td>
+      <td>0.498502</td>
+      <td>0.480989</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>skew_R</td>
+      <td>0.056213</td>
+      <td>0.338530</td>
+      <td>0.561341</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>energy</td>
+      <td>0.055804</td>
+      <td>2.692768</td>
+      <td>0.102392</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="../_images/3799f361f4547fafa8b38210b688920c328e0f13665bc9567dee12687f4a0d56.png" src="../_images/3799f361f4547fafa8b38210b688920c328e0f13665bc9567dee12687f4a0d56.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pembagian-data-latih-dan-data-uji">
+<h2>9. Pembagian Data Latih dan Data Uji<a class="headerlink" href="#pembagian-data-latih-dan-data-uji" title="Permalink to this heading">#</a></h2>
+<p>Dataset dibagi menggunakan stratified split 80:20:</p>
+<ul class="simple">
+<li><p><strong>Data Latih:</strong> 160 citra (80 rapi, 80 berantakan).</p></li>
+<li><p><strong>Data Uji:</strong> 40 citra independen (20 rapi, 20 berantakan).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df_features</span><span class="p">[</span><span class="n">FEATURE_COLS</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_features</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> 
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> 
+    <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Data Latih (Training Set) : </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> sampel (80%)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Data Uji (Testing Set)    : </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> sampel (20%)"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data Latih (Training Set) : 160 sampel (80%)
+Data Uji (Testing Set)    : 40 sampel (20%)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pemodelan-machine-learning-klasik-dan-ensemble">
+<h2>10. Pemodelan Machine Learning Klasik dan Ensemble<a class="headerlink" href="#pemodelan-machine-learning-klasik-dan-ensemble" title="Permalink to this heading">#</a></h2>
+<p>Menguji model klasifikasi tunggal dan model ensemble:</p>
+<ol class="arabic simple">
+<li><p><strong>Model Tunggal:</strong> SVM (RBF Kernel), Random Forest, K-Nearest Neighbors, Gradient Boosting, dan Logistic Regression.</p></li>
+<li><p><strong>Model Ensemble:</strong></p>
+<ul class="simple">
+<li><p><strong>Soft Voting Classifier:</strong> Menghitung rata-rata probabilitas prediksi dari model-model terpilih.</p></li>
+<li><p><strong>Stacking Classifier:</strong> Menggunakan prediksi model dasar sebagai input bagi meta-estimator (Logistic Regression).</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_svm</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">'scaler'</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">'clf'</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">'rbf'</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="s1">'scale'</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">pipe_rf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">'scaler'</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">'clf'</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">pipe_knn</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">'scaler'</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">'clf'</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">'distance'</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">pipe_gb</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">'scaler'</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">'clf'</span><span class="p">,</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">pipe_lr</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">'scaler'</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">'clf'</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">pipe_voting</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span>
+    <span class="n">estimators</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">'svm'</span><span class="p">,</span> <span class="n">pipe_svm</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">'rf'</span><span class="p">,</span> <span class="n">pipe_rf</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">'knn'</span><span class="p">,</span> <span class="n">pipe_knn</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">'gb'</span><span class="p">,</span> <span class="n">pipe_gb</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">voting</span><span class="o">=</span><span class="s1">'soft'</span>
+<span class="p">)</span>
+
+<span class="n">pipe_stacking</span> <span class="o">=</span> <span class="n">StackingClassifier</span><span class="p">(</span>
+    <span class="n">estimators</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">'svm'</span><span class="p">,</span> <span class="n">pipe_svm</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">'rf'</span><span class="p">,</span> <span class="n">pipe_rf</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">'knn'</span><span class="p">,</span> <span class="n">pipe_knn</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">'gb'</span><span class="p">,</span> <span class="n">pipe_gb</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">final_estimator</span><span class="o">=</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="n">cv</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+
+<span class="n">candidate_models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'Ensemble (Soft Voting)'</span><span class="p">:</span> <span class="n">pipe_voting</span><span class="p">,</span>
+    <span class="s1">'Ensemble (Stacking)'</span><span class="p">:</span> <span class="n">pipe_stacking</span><span class="p">,</span>
+    <span class="s1">'SVM (RBF Kernel)'</span><span class="p">:</span> <span class="n">pipe_svm</span><span class="p">,</span>
+    <span class="s1">'Random Forest'</span><span class="p">:</span> <span class="n">pipe_rf</span><span class="p">,</span>
+    <span class="s1">'KNN (k=5, Distance)'</span><span class="p">:</span> <span class="n">pipe_knn</span><span class="p">,</span>
+    <span class="s1">'Gradient Boosting'</span><span class="p">:</span> <span class="n">pipe_gb</span><span class="p">,</span>
+    <span class="s1">'Logistic Regression'</span><span class="p">:</span> <span class="n">pipe_lr</span>
+<span class="p">}</span>
+
+<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">comparison_records</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">trained_models</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Melakukan pelatihan dan validasi silang 5-Fold pada data latih..."</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">candidate_models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">cv_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">'accuracy'</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">trained_models</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
+    
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">y_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s1">'predict_proba'</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">y_test_bin</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="s1">'rapi'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">prec</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">'rapi'</span><span class="p">)</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">'rapi'</span><span class="p">)</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">'rapi'</span><span class="p">)</span>
+    <span class="n">auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test_bin</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span> <span class="k">if</span> <span class="n">y_prob</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mf">0.0</span>
+    
+    <span class="n">comparison_records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">'Model'</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s1">'CV Akurasi (Mean)'</span><span class="p">:</span> <span class="n">cv_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="s1">'CV Akurasi (Std)'</span><span class="p">:</span> <span class="n">cv_scores</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
+        <span class="s1">'Test Akurasi'</span><span class="p">:</span> <span class="n">acc</span><span class="p">,</span>
+        <span class="s1">'Presisi'</span><span class="p">:</span> <span class="n">prec</span><span class="p">,</span>
+        <span class="s1">'Recall'</span><span class="p">:</span> <span class="n">rec</span><span class="p">,</span>
+        <span class="s1">'F1-Score'</span><span class="p">:</span> <span class="n">f1</span><span class="p">,</span>
+        <span class="s1">'ROC-AUC'</span><span class="p">:</span> <span class="n">auc</span>
+    <span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pelatihan seluruh model selesai."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Melakukan pelatihan dan validasi silang 5-Fold pada data latih...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pelatihan seluruh model selesai.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="evaluasi-kinerja-model-klasik-psd">
+<h2>11. Evaluasi Kinerja Model Klasik PSD<a class="headerlink" href="#evaluasi-kinerja-model-klasik-psd" title="Permalink to this heading">#</a></h2>
+<p>Tabel perbandingan hasil pengujian yang diurutkan berdasarkan rata-rata akurasi validasi silang dan akurasi data uji.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_leaderboard</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">comparison_records</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'CV Akurasi (Mean)'</span><span class="p">,</span> <span class="s1">'Test Akurasi'</span><span class="p">,</span> <span class="s1">'F1-Score'</span><span class="p">],</span> 
+    <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_leaderboard</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df_leaderboard</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">df_display</span> <span class="o">=</span> <span class="n">df_leaderboard</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_display</span><span class="p">[</span><span class="s1">'CV Akurasi'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_display</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'CV Akurasi (Mean)'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% (+/- </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'CV Akurasi (Std)'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">df_display</span><span class="p">[</span><span class="s1">'Test Akurasi (%)'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_display</span><span class="p">[</span><span class="s1">'Test Akurasi'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="n">df_display</span><span class="p">[</span><span class="s1">'Presisi (%)'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_display</span><span class="p">[</span><span class="s1">'Presisi'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="n">df_display</span><span class="p">[</span><span class="s1">'Recall (%)'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_display</span><span class="p">[</span><span class="s1">'Recall'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="n">df_display</span><span class="p">[</span><span class="s1">'F1-Score'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_display</span><span class="p">[</span><span class="s1">'F1-Score'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">df_display</span><span class="p">[</span><span class="s1">'ROC-AUC'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_display</span><span class="p">[</span><span class="s1">'ROC-AUC'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">cols_to_show</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Model'</span><span class="p">,</span> <span class="s1">'CV Akurasi'</span><span class="p">,</span> <span class="s1">'Test Akurasi (%)'</span><span class="p">,</span> <span class="s1">'Presisi (%)'</span><span class="p">,</span> <span class="s1">'Recall (%)'</span><span class="p">,</span> <span class="s1">'F1-Score'</span><span class="p">,</span> <span class="s1">'ROC-AUC'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Tabel Evaluasi Model Klasifikasi Fitur PSD:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_display</span><span class="p">[</span><span class="n">cols_to_show</span><span class="p">])</span>
+
+<span class="n">BEST_CLASSIC_NAME</span> <span class="o">=</span> <span class="n">df_leaderboard</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'Model'</span><span class="p">]</span>
+<span class="n">best_classic_model</span> <span class="o">=</span> <span class="n">trained_models</span><span class="p">[</span><span class="n">BEST_CLASSIC_NAME</span><span class="p">]</span>
+<span class="n">best_classic_acc</span> <span class="o">=</span> <span class="n">df_leaderboard</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'Test Akurasi'</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Model Klasik Terbaik : </span><span class="si">{</span><span class="n">BEST_CLASSIC_NAME</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Akurasi Validasi Silang (Mean) : </span><span class="si">{</span><span class="n">df_leaderboard</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'CV Akurasi (Mean)'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Akurasi Data Uji              : </span><span class="si">{</span><span class="n">best_classic_acc</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tabel Evaluasi Model Klasifikasi Fitur PSD:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Model</th>
+      <th>CV Akurasi</th>
+      <th>Test Akurasi (%)</th>
+      <th>Presisi (%)</th>
+      <th>Recall (%)</th>
+      <th>F1-Score</th>
+      <th>ROC-AUC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Ensemble (Soft Voting)</td>
+      <td>78.12% (+/- 6.56%)</td>
+      <td>70.00%</td>
+      <td>70.00%</td>
+      <td>70.00%</td>
+      <td>0.7000</td>
+      <td>0.7425</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ensemble (Stacking)</td>
+      <td>77.50% (+/- 7.50%)</td>
+      <td>70.00%</td>
+      <td>68.18%</td>
+      <td>75.00%</td>
+      <td>0.7143</td>
+      <td>0.7450</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Random Forest</td>
+      <td>77.50% (+/- 6.37%)</td>
+      <td>60.00%</td>
+      <td>60.00%</td>
+      <td>60.00%</td>
+      <td>0.6000</td>
+      <td>0.6950</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Gradient Boosting</td>
+      <td>72.50% (+/- 7.23%)</td>
+      <td>67.50%</td>
+      <td>66.67%</td>
+      <td>70.00%</td>
+      <td>0.6829</td>
+      <td>0.7325</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>SVM (RBF Kernel)</td>
+      <td>71.88% (+/- 9.68%)</td>
+      <td>72.50%</td>
+      <td>71.43%</td>
+      <td>75.00%</td>
+      <td>0.7317</td>
+      <td>0.7475</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>KNN (k=5, Distance)</td>
+      <td>71.88% (+/- 6.56%)</td>
+      <td>67.50%</td>
+      <td>66.67%</td>
+      <td>70.00%</td>
+      <td>0.6829</td>
+      <td>0.7475</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Logistic Regression</td>
+      <td>61.25% (+/- 8.05%)</td>
+      <td>55.00%</td>
+      <td>54.17%</td>
+      <td>65.00%</td>
+      <td>0.5909</td>
+      <td>0.6575</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model Klasik Terbaik : Ensemble (Soft Voting)
+Akurasi Validasi Silang (Mean) : 78.12%
+Akurasi Data Uji              : 70.00%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="matriks-kebingungan-dan-analisis-kurva-roc">
+<h2>12. Matriks Kebingungan dan Analisis Kurva ROC<a class="headerlink" href="#matriks-kebingungan-dan-analisis-kurva-roc" title="Permalink to this heading">#</a></h2>
+<p>Visualisasi matriks kebingungan (confusion matrix) untuk model terbaik serta kurva ROC komparatif dari seluruh model yang diuji.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">y_pred_best</span> <span class="o">=</span> <span class="n">best_classic_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_best</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'berantakan'</span><span class="p">,</span> <span class="s1">'rapi'</span><span class="p">])</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">cm</span><span class="p">,</span> 
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">'d'</span><span class="p">,</span> 
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">'Blues'</span><span class="p">,</span> 
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Prediksi Berantakan'</span><span class="p">,</span> <span class="s1">'Prediksi Rapi'</span><span class="p">],</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Aktual Berantakan'</span><span class="p">,</span> <span class="s1">'Aktual Rapi'</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"Confusion Matrix: </span><span class="si">{</span><span class="n">BEST_CLASSIC_NAME</span><span class="si">}</span><span class="se">\n</span><span class="s2">Akurasi Data Uji: </span><span class="si">{</span><span class="n">best_classic_acc</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% (28/40 Benar)"</span><span class="p">,</span> 
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span>
+<span class="p">)</span>
+
+<span class="n">y_test_num</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="s1">'rapi'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">trained_models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">"predict_proba"</span><span class="p">):</span>
+        <span class="n">y_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test_num</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
+        <span class="n">auc_score</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test_num</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
+        <span class="n">lw</span> <span class="o">=</span> <span class="mf">2.2</span> <span class="k">if</span> <span class="s1">'Ensemble'</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">else</span> <span class="mf">1.2</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">'-'</span> <span class="k">if</span> <span class="s1">'Ensemble'</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">else</span> <span class="s1">'--'</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> (AUC = </span><span class="si">{</span><span class="n">auc_score</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">ls</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">'k:'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Garis Dasar Acak (AUC = 0.50)"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Kurva ROC Komparatif Antar-Model"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"False Positive Rate"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"True Positive Rate (Recall)"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b92c20f2a6f4bd5b547e9fd2350ca1be2d0a8aeaaba84e3d64396d1975c6d91b.png" src="../_images/b92c20f2a6f4bd5b547e9fd2350ca1be2d0a8aeaaba84e3d64396d1975c6d91b.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="penyimpanan-model-klasik">
+<h2>13. Penyimpanan Model Klasik<a class="headerlink" href="#penyimpanan-model-klasik" title="Permalink to this heading">#</a></h2>
+<p>Menyimpan objek model klasik terbaik (<em>Ensemble Soft Voting</em>) ke berkas biner [model_klasifikasi_citra.pkl](file:///run/media/kannz/OS/Users/OKAN/OneDrive/Dokumen/PSD/materi/citra/model_klasifikasi_citra.pkl).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MODEL_PKL_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">"model_klasifikasi_citra.pkl"</span><span class="p">)</span>
+
+<span class="n">artifact_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'model'</span><span class="p">:</span> <span class="n">best_classic_model</span><span class="p">,</span>
+    <span class="s1">'model_name'</span><span class="p">:</span> <span class="n">BEST_CLASSIC_NAME</span><span class="p">,</span>
+    <span class="s1">'feature_cols'</span><span class="p">:</span> <span class="n">FEATURE_COLS</span><span class="p">,</span>
+    <span class="s1">'classes'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'berantakan'</span><span class="p">,</span> <span class="s1">'rapi'</span><span class="p">],</span>
+    <span class="s1">'training_samples'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span>
+    <span class="s1">'test_samples'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">artifact_data</span><span class="p">,</span> <span class="n">MODEL_PKL_PATH</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Model tersimpan di: </span><span class="si">{</span><span class="n">MODEL_PKL_PATH</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ukuran berkas: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">MODEL_PKL_PATH</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> KB"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model tersimpan di: /run/media/kannz/OS/Users/OKAN/OneDrive/Dokumen/PSD/materi/citra/model_klasifikasi_citra.pkl
+Ukuran berkas: 991.05 KB
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="komparasi-eksperimental-klasifikasi-berbasis-yolov8">
+<h2>14. Komparasi Eksperimental: Klasifikasi Berbasis YOLOv8<a class="headerlink" href="#komparasi-eksperimental-klasifikasi-berbasis-yolov8" title="Permalink to this heading">#</a></h2>
+<section id="analisis-keterbatasan-fitur-tekstur-mikro-dan-peran-representasi-konvolusional">
+<h3>Analisis Keterbatasan Fitur Tekstur Mikro dan Peran Representasi Konvolusional<a class="headerlink" href="#analisis-keterbatasan-fitur-tekstur-mikro-dan-peran-representasi-konvolusional" title="Permalink to this heading">#</a></h3>
+<p>Pada pengujian metode klasik di atas, akurasi data uji berkisar pada rentang 70% hingga 78%. Hal ini disebabkan oleh:</p>
+<ul class="simple">
+<li><p><strong>Keterbatasan Informasi Tekstur Permukaan:</strong> Fitur statistik GLCM dan momen warna tidak mengodekan sudut orientasi dan jarak relatif antar-kedua sandal.</p></li>
+<li><p><strong>Mekanisme Konvolusi Spasial:</strong> Arsitektur YOLOv8 (CSPDarknet dengan modul C2f) mengekstrak fitur spasial hierarkis sehingga mampu menangkap pola kontur dan hubungan posisi antar-objek secara end-to-end tanpa memerlukan anotasi bounding box manual.</p></li>
+</ul>
+<p>Bobot model klasifikasi tersimpan pada berkas [model_yolov8_sandal.pt](file:///run/media/kannz/OS/Users/OKAN/OneDrive/Dokumen/PSD/materi/citra/model_yolov8_sandal.pt) dengan ukuran sekitar 2.96 MB.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YOLO_MODEL_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">"model_yolov8_sandal.pt"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Memuat model YOLOv8 dari: </span><span class="si">{</span><span class="n">YOLO_MODEL_PATH</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">yolo_model</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="n">YOLO_MODEL_PATH</span><span class="p">)</span>
+
+<span class="n">all_test_files</span> <span class="o">=</span> <span class="n">df_features</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span><span class="p">][</span><span class="s1">'filename'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">all_test_labels</span> <span class="o">=</span> <span class="n">df_features</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span><span class="p">][</span><span class="s1">'label'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">y_true_yolo</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y_pred_yolo</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y_conf_yolo</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Menjalankan inferensi pada 40 citra data uji..."</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fname</span><span class="p">,</span> <span class="n">true_label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">all_test_files</span><span class="p">,</span> <span class="n">all_test_labels</span><span class="p">):</span>
+    <span class="n">folder_src</span> <span class="o">=</span> <span class="n">DIR_BERANTAKAN</span> <span class="k">if</span> <span class="n">true_label</span> <span class="o">==</span> <span class="s1">'berantakan'</span> <span class="k">else</span> <span class="n">DIR_RAPI</span>
+    <span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_src</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+    
+    <span class="n">img_pil</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">)</span>
+    
+    <span class="n">res</span> <span class="o">=</span> <span class="n">yolo_model</span><span class="p">(</span><span class="n">img_pil</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pred_label</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">probs</span><span class="o">.</span><span class="n">top1</span><span class="p">]</span>
+    <span class="n">conf_score</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">probs</span><span class="o">.</span><span class="n">top1conf</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    
+    <span class="n">y_true_yolo</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">true_label</span><span class="p">)</span>
+    <span class="n">y_pred_yolo</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_label</span><span class="p">)</span>
+    <span class="n">y_conf_yolo</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conf_score</span><span class="p">)</span>
+
+<span class="n">y_true_yolo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_true_yolo</span><span class="p">)</span>
+<span class="n">y_pred_yolo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_pred_yolo</span><span class="p">)</span>
+<span class="n">y_conf_yolo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_conf_yolo</span><span class="p">)</span>
+
+<span class="n">acc_yolo</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true_yolo</span><span class="p">,</span> <span class="n">y_pred_yolo</span><span class="p">)</span>
+<span class="n">prec_yolo</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_true_yolo</span><span class="p">,</span> <span class="n">y_pred_yolo</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">'rapi'</span><span class="p">)</span>
+<span class="n">rec_yolo</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_true_yolo</span><span class="p">,</span> <span class="n">y_pred_yolo</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">'rapi'</span><span class="p">)</span>
+<span class="n">f1_yolo</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_true_yolo</span><span class="p">,</span> <span class="n">y_pred_yolo</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">'rapi'</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Hasil Evaluasi YOLOv8 pada Data Uji (40 Citra):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Akurasi Pengujian (Test Accuracy) : </span><span class="si">{</span><span class="n">acc_yolo</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% (</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_true_yolo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y_pred_yolo</span><span class="p">)</span><span class="si">}</span><span class="s2">/40 benar)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Presisi (Precision)               : </span><span class="si">{</span><span class="n">prec_yolo</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Recall (Kelas Rapi)               : </span><span class="si">{</span><span class="n">rec_yolo</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  F1-Score                          : </span><span class="si">{</span><span class="n">f1_yolo</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">cm_yolo</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true_yolo</span><span class="p">,</span> <span class="n">y_pred_yolo</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'berantakan'</span><span class="p">,</span> <span class="s1">'rapi'</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">cm_yolo</span><span class="p">,</span> 
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">'d'</span><span class="p">,</span> 
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">'Greens'</span><span class="p">,</span> 
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Prediksi Berantakan'</span><span class="p">,</span> <span class="s1">'Prediksi Rapi'</span><span class="p">],</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Aktual Berantakan'</span><span class="p">,</span> <span class="s1">'Aktual Rapi'</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Confusion Matrix YOLOv8-cls</span><span class="se">\n</span><span class="s2">Akurasi: </span><span class="si">{</span><span class="n">acc_yolo</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% (</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_true_yolo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y_pred_yolo</span><span class="p">)</span><span class="si">}</span><span class="s2">/40 Benar)"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memuat model YOLOv8 dari: /run/media/kannz/OS/Users/OKAN/OneDrive/Dokumen/PSD/materi/citra/model_yolov8_sandal.pt
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Menjalankan inferensi pada 40 citra data uji...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------------------------------
+Hasil Evaluasi YOLOv8 pada Data Uji (40 Citra):
+  Akurasi Pengujian (Test Accuracy) : 97.50% (39/40 benar)
+  Presisi (Precision)               : 95.24%
+  Recall (Kelas Rapi)               : 100.00%
+  F1-Score                          : 0.9756
+-----------------------------------------------------------------
+</pre></div>
+</div>
+<img alt="../_images/f3f5ca832820d5147717b0d2be6ec14ff82659fde18163c6b01d8aecf3485f56.png" src="../_images/f3f5ca832820d5147717b0d2be6ec14ff82659fde18163c6b01d8aecf3485f56.png" />
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="perbandingan-kinerja-metode-klasik-dan-yolov8">
+<h2>15. Perbandingan Kinerja Metode Klasik dan YOLOv8<a class="headerlink" href="#perbandingan-kinerja-metode-klasik-dan-yolov8" title="Permalink to this heading">#</a></h2>
+<p>Ringkasan tabel dan visualisasi perbandingan langsung antara metode ekstraksi fitur klasik (Warna + GLCM) dan metode representasi konvolusional (YOLOv8).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comparison_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">{</span>
+        <span class="s1">'Metode'</span><span class="p">:</span> <span class="s1">'Klasik PSD (14 Fitur Warna + GLCM)'</span><span class="p">,</span>
+        <span class="s1">'Model'</span><span class="p">:</span> <span class="n">BEST_CLASSIC_NAME</span><span class="p">,</span>
+        <span class="s1">'Akurasi Uji'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">best_classic_acc</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">,</span>
+        <span class="s1">'Presisi'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">df_leaderboard</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'Presisi'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">,</span>
+        <span class="s1">'Recall'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">df_leaderboard</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'Recall'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">,</span>
+        <span class="s1">'F1-Score'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">df_leaderboard</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'F1-Score'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s1">'Keterangan'</span><span class="p">:</span> <span class="s1">'Batas optimal fitur tekstur mikro dan warna global'</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">'Metode'</span><span class="p">:</span> <span class="s1">'Representasi Konvolusional (YOLOv8)'</span><span class="p">,</span>
+        <span class="s1">'Model'</span><span class="p">:</span> <span class="s1">'YOLOv8-cls'</span><span class="p">,</span>
+        <span class="s1">'Akurasi Uji'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">acc_yolo</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">,</span>
+        <span class="s1">'Presisi'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">prec_yolo</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">,</span>
+        <span class="s1">'Recall'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">rec_yolo</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">,</span>
+        <span class="s1">'F1-Score'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">f1_yolo</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s1">'Keterangan'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"39 dari 40 citra uji terprediksi benar"</span>
+    <span class="p">}</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Tabel Perbandingan Kinerja Antara Metode:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">comparison_final</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">model_names_comp</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"Klasik PSD</span><span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="n">BEST_CLASSIC_NAME</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="s1">'YOLOv8-cls'</span><span class="p">]</span>
+<span class="n">acc_vals_comp</span> <span class="o">=</span> <span class="p">[</span><span class="n">best_classic_acc</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">acc_yolo</span> <span class="o">*</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">colors_comp</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'#4682b4'</span><span class="p">,</span> <span class="s1">'#2e8b57'</span><span class="p">]</span>
+
+<span class="n">bars</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">model_names_comp</span><span class="p">,</span> <span class="n">acc_vals_comp</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors_comp</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">90.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Batas Kinerja 90%'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Akurasi Data Uji (%)'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Perbandingan Akurasi Data Uji Antara Metode Klasik dan YOLOv8'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">105</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'lower right'</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bars</span><span class="p">:</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">height</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">,</span>
+                <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
+                <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">"offset points"</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">'bottom'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tabel Perbandingan Kinerja Antara Metode:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metode</th>
+      <th>Model</th>
+      <th>Akurasi Uji</th>
+      <th>Presisi</th>
+      <th>Recall</th>
+      <th>F1-Score</th>
+      <th>Keterangan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Klasik PSD (14 Fitur Warna + GLCM)</td>
+      <td>Ensemble (Soft Voting)</td>
+      <td>70.00%</td>
+      <td>70.00%</td>
+      <td>70.00%</td>
+      <td>0.7000</td>
+      <td>Batas optimal fitur tekstur mikro dan warna gl...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Representasi Konvolusional (YOLOv8)</td>
+      <td>YOLOv8-cls</td>
+      <td>97.50%</td>
+      <td>95.24%</td>
+      <td>100.00%</td>
+      <td>0.9756</td>
+      <td>39 dari 40 citra uji terprediksi benar</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="../_images/40646f91aa9c9ad0ab72b5eb15a34e55bbf9d64ed87a267a5b3d59c64f5cbe24.png" src="../_images/40646f91aa9c9ad0ab72b5eb15a34e55bbf9d64ed87a267a5b3d59c64f5cbe24.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pengujian-inferensi-komparatif-terpadu">
+<h2>16. Pengujian Inferensi Komparatif Terpadu<a class="headerlink" href="#pengujian-inferensi-komparatif-terpadu" title="Permalink to this heading">#</a></h2>
+<p>Fungsi inferensi berikut menerima berkas citra dan memprosesnya secara paralel melalui kedua model untuk menampilkan perbandingan prediksi secara berdampingan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prediksi_sandal_komparatif</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">show_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Memprediksi citra sandal baru menggunakan model klasik PSD dan model YOLOv8.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Citra tidak ditemukan di: </span><span class="si">{</span><span class="n">image_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        
+    <span class="n">img_pil</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">)</span>
+    <span class="n">img_rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_pil</span><span class="p">)</span>
+    <span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img_rgb</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span>
+    
+    <span class="c1"># 1. Inferensi Model Klasik PSD</span>
+    <span class="n">color_feats</span> <span class="o">=</span> <span class="n">extract_color_features</span><span class="p">(</span><span class="n">img_rgb</span><span class="p">)</span>
+    <span class="n">glcm_feats</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">extract_glcm_features</span><span class="p">(</span><span class="n">img_gray</span><span class="p">)</span>
+    <span class="n">feats_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">feats_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">color_feats</span><span class="p">)</span>
+    <span class="n">feats_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">glcm_feats</span><span class="p">)</span>
+    <span class="n">df_sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">feats_dict</span><span class="p">])[</span><span class="n">FEATURE_COLS</span><span class="p">]</span>
+    
+    <span class="n">pred_classic</span> <span class="o">=</span> <span class="n">best_classic_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_sample</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">probs_classic</span> <span class="o">=</span> <span class="n">best_classic_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">df_sample</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">idx_classic</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">best_classic_model</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">pred_classic</span><span class="p">)</span>
+    <span class="n">conf_classic</span> <span class="o">=</span> <span class="n">probs_classic</span><span class="p">[</span><span class="n">idx_classic</span><span class="p">]</span> <span class="o">*</span> <span class="mf">100.0</span>
+    
+    <span class="c1"># 2. Inferensi Model YOLOv8</span>
+    <span class="n">res_yolo</span> <span class="o">=</span> <span class="n">yolo_model</span><span class="p">(</span><span class="n">img_pil</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pred_yolo</span> <span class="o">=</span> <span class="n">res_yolo</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="n">res_yolo</span><span class="o">.</span><span class="n">probs</span><span class="o">.</span><span class="n">top1</span><span class="p">]</span>
+    <span class="n">conf_yolo</span> <span class="o">=</span> <span class="n">res_yolo</span><span class="o">.</span><span class="n">probs</span><span class="o">.</span><span class="n">top1conf</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="mf">100.0</span>
+    
+    <span class="k">if</span> <span class="n">show_plot</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_pil</span><span class="p">)</span>
+        <span class="n">color_label</span> <span class="o">=</span> <span class="s1">'#1b7837'</span> <span class="k">if</span> <span class="n">pred_yolo</span> <span class="o">==</span> <span class="s1">'rapi'</span> <span class="k">else</span> <span class="s1">'#b2182b'</span>
+        <span class="n">title_str</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Prediksi YOLOv8: </span><span class="si">{</span><span class="n">pred_yolo</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">conf_yolo</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="sa">f</span><span class="s2">"Prediksi Klasik PSD: </span><span class="si">{</span><span class="n">pred_classic</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">conf_classic</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)"</span>
+        <span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title_str</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color_label</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'classic_prediction'</span><span class="p">:</span> <span class="n">pred_classic</span><span class="p">,</span>
+        <span class="s1">'classic_confidence'</span><span class="p">:</span> <span class="n">conf_classic</span><span class="p">,</span>
+        <span class="s1">'yolo_prediction'</span><span class="p">:</span> <span class="n">pred_yolo</span><span class="p">,</span>
+        <span class="s1">'yolo_confidence'</span><span class="p">:</span> <span class="n">conf_yolo</span>
+    <span class="p">}</span>
+
+<span class="n">sample_demo</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_RAPI</span><span class="p">,</span> <span class="n">files_rapi</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Pengujian sampel: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sample_demo</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">hasil_demo</span> <span class="o">=</span> <span class="n">prediksi_sandal_komparatif</span><span class="p">(</span><span class="n">sample_demo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hasil Klasik PSD : </span><span class="si">{</span><span class="n">hasil_demo</span><span class="p">[</span><span class="s1">'classic_prediction'</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> (Keyakinan: </span><span class="si">{</span><span class="n">hasil_demo</span><span class="p">[</span><span class="s1">'classic_confidence'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hasil YOLOv8     : </span><span class="si">{</span><span class="n">hasil_demo</span><span class="p">[</span><span class="s1">'yolo_prediction'</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> (Keyakinan: </span><span class="si">{</span><span class="n">hasil_demo</span><span class="p">[</span><span class="s1">'yolo_confidence'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pengujian sampel: 24-006 Rapi 3.jpg
+</pre></div>
+</div>
+<img alt="../_images/e8390d9936fc9e4f9efe8a820f9b973582ad9cad8b77147588b154418b2bf0ed.png" src="../_images/e8390d9936fc9e4f9efe8a820f9b973582ad9cad8b77147588b154418b2bf0ed.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hasil Klasik PSD : RAPI (Keyakinan: 90.13%)
+Hasil YOLOv8     : RAPI (Keyakinan: 99.96%)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pengujian-sampel-mandiri">
+<h2>17. Pengujian Sampel Mandiri<a class="headerlink" href="#pengujian-sampel-mandiri" title="Permalink to this heading">#</a></h2>
+<p>Jalur berkas foto sandal di bawah ini dapat disesuaikan untuk menguji sampel citra secara langsung:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Masukkan jalur berkas foto sandal yang akan diuji</span>
+<span class="n">JALUR_FOTO_ANDA</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_BERANTAKAN</span><span class="p">,</span> <span class="n">files_berantakan</span><span class="p">[</span><span class="mi">15</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Pengujian sampel: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">JALUR_FOTO_ANDA</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">hasil_anda</span> <span class="o">=</span> <span class="n">prediksi_sandal_komparatif</span><span class="p">(</span><span class="n">JALUR_FOTO_ANDA</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Status Kerapian (YOLOv8) : </span><span class="si">{</span><span class="n">hasil_anda</span><span class="p">[</span><span class="s1">'yolo_prediction'</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">hasil_anda</span><span class="p">[</span><span class="s1">'yolo_confidence'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Status Kerapian (Klasik) : </span><span class="si">{</span><span class="n">hasil_anda</span><span class="p">[</span><span class="s1">'classic_prediction'</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">hasil_anda</span><span class="p">[</span><span class="s1">'classic_confidence'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pengujian sampel: 24-027 Berantakan 1.jpg
+</pre></div>
+</div>
+<img alt="../_images/794aa4a1095ec242b41390679247dd9765ae16fbcb388d8678f72b0e968dcb16.png" src="../_images/794aa4a1095ec242b41390679247dd9765ae16fbcb388d8678f72b0e968dcb16.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status Kerapian (YOLOv8) : BERANTAKAN (100.00%)
+Status Kerapian (Klasik) : BERANTAKAN (77.72%)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>18. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Permalink to this heading">#</a></h2>
+<p>Rangkaian eksperimen pada dataset 200 citra kondisi rak sandal memberikan kesimpulan sebagai berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>Kinerja Metode Ekstraksi Fitur Klasik (PSD):</strong></p>
+<ul class="simple">
+<li><p>Ekstraksi 9 momen warna RGB dan 5 fitur GLCM Haralick menghasilkan representasi statistik global citra.</p></li>
+<li><p>Analisis kepentingan fitur menunjukkan korelasi tekstur dan kemiringan distribusi warna kanal biru memiliki kontribusi diskriminatif terbesar.</p></li>
+<li><p>Penerapan model ensemble (Soft Voting) menghasilkan akurasi validasi silang sebesar 78.12% dan akurasi data uji 70.00%. Hasil ini mencerminkan batas kemampuan fitur tekstur mikro dalam mendeteksi kesenjangan orientasi sudut objek.</p></li>
+</ul>
+</li>
+<li><p><strong>Kinerja Representasi Konvolusional (YOLOv8):</strong></p>
+<ul class="simple">
+<li><p>Arsitektur konvolusi spasial YOLOv8 mampu memetakan orientasi sudut dan relasi posisi sepasang sandal secara efektif.</p></li>
+<li><p>Akurasi pengujian meningkat menjadi 97.50% (39 dari 40 citra uji benar) dengan recall 100% pada kelas rapi.</p></li>
+<li><p>Model tersimpan dalam ukuran 2.96 MB, efisien untuk implementasi praktis.</p></li>
+</ul>
+</li>
+<li><p><strong>Refleksi Metodologis:</strong></p>
+<ul class="simple">
+<li><p>Hasil ini menunjukkan bahwa untuk tugas klasifikasi yang didominasi oleh relasi spasial dan orientasi objek, representasi hierarkis konvolusional memberikan keunggulan signifikan dibandingkan fitur tekstur piksel lokal.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./citra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#studi-komparasi-metode-pengolahan-sinyal-digital-klasik-warna-dan-tekstur-glcm-versus-deep-learning-yolov8">Studi Komparasi: Metode Pengolahan Sinyal Digital Klasik (Warna dan Tekstur GLCM) versus Deep Learning (YOLOv8)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-dan-kerangka-masalah">Ringkasan dan Kerangka Masalah</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengaturan-direktori-dan-validasi-dataset">2. Pengaturan Direktori dan Validasi Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-sampel-citra">3. Visualisasi Sampel Citra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-momen-warna-color-moments">4. Ekstraksi Fitur Momen Warna (Color Moments)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-tekstur-glcm-haralick">5. Ekstraksi Fitur Tekstur GLCM Haralick</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-sekuen-dan-pembentukan-dataset-fitur">6. Pemrosesan Sekuen dan Pembentukan Dataset Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-dan-analisis-korelasi-antar-fitur">7. Eksplorasi Data dan Analisis Korelasi Antar-Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-kepentingan-fitur-feature-importance">8. Analisis Kepentingan Fitur (Feature Importance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-latih-dan-data-uji">9. Pembagian Data Latih dan Data Uji</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-machine-learning-klasik-dan-ensemble">10. Pemodelan Machine Learning Klasik dan Ensemble</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-kinerja-model-klasik-psd">11. Evaluasi Kinerja Model Klasik PSD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-kebingungan-dan-analisis-kurva-roc">12. Matriks Kebingungan dan Analisis Kurva ROC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-model-klasik">13. Penyimpanan Model Klasik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komparasi-eksperimental-klasifikasi-berbasis-yolov8">14. Komparasi Eksperimental: Klasifikasi Berbasis YOLOv8</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-keterbatasan-fitur-tekstur-mikro-dan-peran-representasi-konvolusional">Analisis Keterbatasan Fitur Tekstur Mikro dan Peran Representasi Konvolusional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-kinerja-metode-klasik-dan-yolov8">15. Perbandingan Kinerja Metode Klasik dan YOLOv8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian-inferensi-komparatif-terpadu">16. Pengujian Inferensi Komparatif Terpadu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian-sampel-mandiri">17. Pengujian Sampel Mandiri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">18. Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Okan Syailendra Wahyudi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

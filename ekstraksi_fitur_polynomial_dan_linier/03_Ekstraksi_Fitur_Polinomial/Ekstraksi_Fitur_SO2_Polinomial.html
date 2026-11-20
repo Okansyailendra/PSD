@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Ekstraksi_Fitur_SO2 (Interpolasi Polinomial) &#8212; PSD - Materi</title>
   
@@ -28,35 +29,39 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial/Ekstraksi_Fitur_SO2_Polinomial';</script>
@@ -160,18 +165,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -288,9 +282,9 @@
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -431,9 +425,9 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -472,7 +466,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ekstraksi-fitur-so2-interpolasi-polinomial">
-<h1>Ekstraksi_Fitur_SO2 (Interpolasi Polinomial)<a class="headerlink" href="#ekstraksi-fitur-so2-interpolasi-polinomial" title="Link to this heading">#</a></h1>
+<h1>Ekstraksi_Fitur_SO2 (Interpolasi Polinomial)<a class="headerlink" href="#ekstraksi-fitur-so2-interpolasi-polinomial" title="Permalink to this heading">#</a></h1>
 <p>Bagian ini merupakan langkah awal dalam <em>pipeline</em> analisis. Kita mengimpor pustaka yang dibutuhkan seperti <code class="docutils literal notranslate"><span class="pre">pandas</span></code> untuk manipulasi data, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> untuk komputasi numerik, dan modul dari <code class="docutils literal notranslate"><span class="pre">tsfel</span></code> untuk ekstraksi fitur nanti.</p>
 <p>Pada tahap ini, kita:</p>
 <ol class="arabic simple">
@@ -489,23 +483,23 @@ document.write(`
 
 <span class="c1"># ---------- 1. Muat dan bersihkan data ----------</span>
 <span class="c1"># Membaca data polutan SO2</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../Pemrosesan_Data/polutan_Manyar_2025_2026.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../../Pemrosesan_Data/polutan_Manyar_2025_2026.csv'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="c1"># &lt;--- Tambahkan baris ini untuk mengecek</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'time'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">target_pollutant</span> <span class="o">=</span> <span class="s1">&#39;SO2&#39;</span>
+<span class="n">target_pollutant</span> <span class="o">=</span> <span class="s1">'SO2'</span>
 
 <span class="c1"># Memastikan kolom target bertipe numerik, error menjadi NaN</span>
-<span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
 
 <span class="n">n_missing_before</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah nilai non-numerik/kosong awal yang dikonversi jadi NaN: </span><span class="si">{</span><span class="n">n_missing_before</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah nilai non-numerik/kosong awal yang dikonversi jadi NaN: </span><span class="si">{</span><span class="n">n_missing_before</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;time&#39;, &#39;NO2&#39;, &#39;CO&#39;, &#39;SO2&#39;], dtype=&#39;object&#39;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index(['time', 'NO2', 'CO', 'SO2'], dtype='object')
 Jumlah nilai non-numerik/kosong awal yang dikonversi jadi NaN: 51
 </pre></div>
 </div>
@@ -513,7 +507,7 @@ Jumlah nilai non-numerik/kosong awal yang dikonversi jadi NaN: 51
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="tahap-2-deteksi-outliers-pencilan-dengan-metode-iqr">
-<h1>Tahap 2: Deteksi Outliers (Pencilan) dengan Metode IQR<a class="headerlink" href="#tahap-2-deteksi-outliers-pencilan-dengan-metode-iqr" title="Link to this heading">#</a></h1>
+<h1>Tahap 2: Deteksi Outliers (Pencilan) dengan Metode IQR<a class="headerlink" href="#tahap-2-deteksi-outliers-pencilan-dengan-metode-iqr" title="Permalink to this heading">#</a></h1>
 <p>Data sensor seringkali menangkap lonjakan polusi yang tidak wajar akibat gangguan alat (<em>noise</em>) atau kesalahan pencatatan. Untuk mengatasinya, kita menggunakan pendekatan statistik <strong>Interquartile Range (IQR)</strong>.</p>
 <p>Prosesnya adalah:</p>
 <ol class="arabic simple">
@@ -536,13 +530,13 @@ Jumlah nilai non-numerik/kosong awal yang dikonversi jadi NaN: 51
 <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
 <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Batas Bawah IQR: </span><span class="si">{</span><span class="n">lower_bound</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | Batas Atas IQR: </span><span class="si">{</span><span class="n">upper_bound</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Batas Bawah IQR: </span><span class="si">{</span><span class="n">lower_bound</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | Batas Atas IQR: </span><span class="si">{</span><span class="n">upper_bound</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="c1"># Menghapus nilai yang melanggar batas (diubah menjadi NaN)</span>
 <span class="n">outliers_condition</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">outliers_condition</span><span class="p">,</span> <span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah outliers yang terdeteksi dan dikosongkan: </span><span class="si">{</span><span class="n">outliers_condition</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah outliers yang terdeteksi dan dikosongkan: </span><span class="si">{</span><span class="n">outliers_condition</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -555,7 +549,7 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="tahap-3-imputasi-missing-value-outliers-dengan-interpolasi-polinomial">
-<h1>Tahap 3: Imputasi Missing Value &amp; Outliers dengan Interpolasi Polinomial<a class="headerlink" href="#tahap-3-imputasi-missing-value-outliers-dengan-interpolasi-polinomial" title="Link to this heading">#</a></h1>
+<h1>Tahap 3: Imputasi Missing Value &amp; Outliers dengan Interpolasi Polinomial<a class="headerlink" href="#tahap-3-imputasi-missing-value-outliers-dengan-interpolasi-polinomial" title="Permalink to this heading">#</a></h1>
 <p>Setelah tahap pertama dan kedua, data kita memiliki banyak celah kosong (nilai <code class="docutils literal notranslate"><span class="pre">NaN</span></code>). Lubang ini berasal dari konversi paksa teks, data yang memang kosong dari sensor, maupun nilai <em>outlier</em> yang baru saja kita kosongkan. Algoritma ekstraksi fitur deret waktu membutuhkan data yang saling bersambung sempurna tanpa jeda kosong.</p>
 <p>Berbeda dengan interpolasi linear yang hanya menarik garis lurus sederhana antar titik, di sini kita menggunakan <strong>Interpolasi Polinomial</strong> (<code class="docutils literal notranslate"><span class="pre">interpolate(method='polynomial',</span> <span class="pre">order=2)</span></code>):</p>
 <ol class="arabic simple">
@@ -567,10 +561,10 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ---------- 3. Imputasi Missing Value (Interpolasi Polinomial) ----------</span>
 <span class="c1"># Jadikan kolom tanggal sebagai index sementara untuk interpolasi</span>
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'time'</span><span class="p">)</span>
 
 <span class="c1"># Melakukan interpolasi polinomial (derajat/order 2)</span>
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_clean</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_clean</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'polynomial'</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Menambal celah di awal atau akhir data jika interpolasi tidak menjangkau</span>
 <span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_clean</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
@@ -578,7 +572,7 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
 <span class="c1"># Proteksi batas fisik: konsentrasi polutan udara tidak boleh bernilai negatif</span>
 <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sisa missing value setelah proses imputasi polinomial: </span><span class="si">{</span><span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sisa missing value setelah proses imputasi polinomial: </span><span class="si">{</span><span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -590,7 +584,7 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="tahap-4-persiapan-data-untuk-tsfel">
-<h1>Tahap 4: Persiapan Data untuk TSFEL<a class="headerlink" href="#tahap-4-persiapan-data-untuk-tsfel" title="Link to this heading">#</a></h1>
+<h1>Tahap 4: Persiapan Data untuk TSFEL<a class="headerlink" href="#tahap-4-persiapan-data-untuk-tsfel" title="Permalink to this heading">#</a></h1>
 <p>Data yang sudah bersih kini diekstrak dari DataFrame <em>pandas</em> menjadi format <em>array</em> 1 dimensi (<code class="docutils literal notranslate"><span class="pre">signal_1d</span></code>) menggunakan <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. Format <em>array</em> inilah yang dapat dipahami dan diproses secara matematis oleh pustaka TSFEL.</p>
 <p>Kita juga mendefinisikan variabel <code class="docutils literal notranslate"><span class="pre">fs</span> <span class="pre">=</span> <span class="pre">1</span></code> (<em>sampling frequency</em>) serta menyiapkan <em>string</em> panjang berisi daftar persis 68 fitur yang ditargetkan. Fitur-fitur ini sangat bervariasi, meliputi domain statistik dasar (seperti <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">kurtosis</span></code>), domain temporal (seperti <code class="docutils literal notranslate"><span class="pre">zero_cross</span></code>, <code class="docutils literal notranslate"><span class="pre">autocorr</span></code>), hingga domain spektral dan fraktal (seperti <code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code>, <code class="docutils literal notranslate"><span class="pre">higuchi_fractal_dimension</span></code>). Daftar <em>string</em> tersebut kemudian dipecah (<code class="docutils literal notranslate"><span class="pre">.split()</span></code>) menjadi sebuah struktur <em>list</em> Python.</p>
 <div class="cell docutils container">
@@ -599,7 +593,7 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
 <span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># Daftar PERSIS fitur (68 Fitur)</span>
-<span class="n">FEATURE_LIST</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;abs_energy auc autocorr average_power calc_centroid calc_max calc_mean</span>
+<span class="n">FEATURE_LIST</span> <span class="o">=</span> <span class="s2">"""abs_energy auc autocorr average_power calc_centroid calc_max calc_mean</span>
 <span class="s2">calc_median calc_min calc_std calc_var dfa distance ecdf ecdf_percentile ecdf_percentile_count</span>
 <span class="s2">ecdf_slope entropy fundamental_frequency higuchi_fractal_dimension hist_mode human_range_energy</span>
 <span class="s2">hurst_exponent interq_range kurtosis lempel_ziv lpcc max_frequency max_power_spectrum</span>
@@ -609,9 +603,9 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
 <span class="s2">spectral_centroid spectral_decrease spectral_distance spectral_entropy spectral_kurtosis</span>
 <span class="s2">spectral_positive_turning spectral_roll_off spectral_roll_on spectral_skewness spectral_slope</span>
 <span class="s2">spectral_spread spectral_variation spectrogram_mean_coeff sum_abs_diff wavelet_abs_mean</span>
-<span class="s2">wavelet_energy wavelet_entropy wavelet_std wavelet_var zero_cross&quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="s2">wavelet_energy wavelet_entropy wavelet_std wavelet_var zero_cross"""</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah fitur yang disiapkan untuk diekstrak:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah fitur yang disiapkan untuk diekstrak:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -623,7 +617,7 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="tahap-5-eksekusi-tsfel-dan-penyimpanan-hasil">
-<h1>Tahap 5: Eksekusi TSFEL dan Penyimpanan Hasil<a class="headerlink" href="#tahap-5-eksekusi-tsfel-dan-penyimpanan-hasil" title="Link to this heading">#</a></h1>
+<h1>Tahap 5: Eksekusi TSFEL dan Penyimpanan Hasil<a class="headerlink" href="#tahap-5-eksekusi-tsfel-dan-penyimpanan-hasil" title="Permalink to this heading">#</a></h1>
 <p>Tahap terakhir adalah mengeksekusi ekstraksi secara dinamis. Pustaka TSFEL memiliki ragam <em>output</em>; beberapa fungsi mengeluarkan angka tunggal (skalar), sementara yang lain mungkin mengeluarkan <em>array</em>.</p>
 <ol class="arabic simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">to_scalar</span></code></strong>: Fungsi pembantu ini bertugas menyeragamkan bentuk. Apapun yang dikeluarkan oleh TSFEL, jika berupa <em>array</em>, ia akan dipadatkan menjadi metrik tunggal menggunakan nilai rata-rata (<code class="docutils literal notranslate"><span class="pre">np.nanmean</span></code>), sehingga format data tetap konsisten untuk tabel <em>machine learning</em>.</p></li>
@@ -637,8 +631,8 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
     <span class="c1"># Mengubah hasil dictionary dari TSFEL menjadi nilai mentah</span>
     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;values&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">"values"</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"values"</span><span class="p">]</span>
     <span class="c1"># Jika hasil berupa array atau list panjang, kita ambil rata-ratanya</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
         <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -650,8 +644,8 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
     <span class="c1"># Memanggil fungsi TSFEL secara dinamis berdasarkan nama fiturnya</span>
     <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tsfel_features</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
     <span class="n">params</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
-    <span class="c1"># Memeriksa apakah fungsi tersebut butuh parameter &#39;fs&#39;</span>
-    <span class="k">if</span> <span class="s2">&quot;fs&quot;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+    <span class="c1"># Memeriksa apakah fungsi tersebut butuh parameter 'fs'</span>
+    <span class="k">if</span> <span class="s2">"fs"</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
@@ -664,12 +658,12 @@ Jumlah outliers yang terdeteksi dan dikosongkan: 8
 
 <span class="n">extracted_features_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Berhasil! Ekstraksi menghasilkan </span><span class="si">{</span><span class="n">extracted_features_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> fitur.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Berhasil! Ekstraksi menghasilkan </span><span class="si">{</span><span class="n">extracted_features_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> fitur."</span><span class="p">)</span>
 
 <span class="c1"># Menyimpan hasil ke dalam format CSV</span>
-<span class="n">output_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SO2_Manyar_TSFEL_Polinomial.csv&#39;</span>
+<span class="n">output_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'SO2_Manyar_TSFEL_Polinomial.csv'</span>
 <span class="n">extracted_features_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File berhasil disimpan sebagai: </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File berhasil disimpan sebagai: </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -699,7 +693,7 @@ File berhasil disimpan sebagai: SO2_Manyar_TSFEL_Polinomial.csv
         },
         kernelOptions: {
             name: "python3",
-            path: "./ekstraksi_fitur_polynomial_dan_linier\03_Ekstraksi_Fitur_Polinomial"
+            path: "./ekstraksi_fitur_polynomial_dan_linier/03_Ekstraksi_Fitur_Polinomial"
         },
         predefinedOutput: true
     }
@@ -780,7 +774,7 @@ By Okan Syailendra Wahyudi
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
