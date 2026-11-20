@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Tahap 4 — Visualisasi Peta Segmentasi Wilayah &#8212; PSD - Materi</title>
   
@@ -28,35 +29,39 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clustering_Segmentasi/04_Visualisasi_Peta/visualisasi_peta';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -158,18 +163,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -286,9 +280,9 @@
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -429,9 +423,9 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -476,11 +470,11 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tahap-4-visualisasi-peta-segmentasi-wilayah">
-<h1>Tahap 4 — Visualisasi Peta Segmentasi Wilayah<a class="headerlink" href="#tahap-4-visualisasi-peta-segmentasi-wilayah" title="Link to this heading">#</a></h1>
+<h1>Tahap 4 — Visualisasi Peta Segmentasi Wilayah<a class="headerlink" href="#tahap-4-visualisasi-peta-segmentasi-wilayah" title="Permalink to this heading">#</a></h1>
 <p>Tahap terakhir ini menampilkan hasil clustering di atas <strong>peta interaktif</strong> Indonesia menggunakan library <strong>Folium</strong> (berbasis Leaflet.js). Setiap wilayah divisualisasikan dengan warna berbeda sesuai clusternya.</p>
 <hr class="docutils" />
 <section id="mengapa-peta">
-<h2>Mengapa Peta?<a class="headerlink" href="#mengapa-peta" title="Link to this heading">#</a></h2>
+<h2>Mengapa Peta?<a class="headerlink" href="#mengapa-peta" title="Permalink to this heading">#</a></h2>
 <p>Peta adalah cara paling intuitif untuk memahami <strong>pola spasial</strong> clustering:</p>
 <ul class="simple">
 <li><p>Apakah wilayah yang berdekatan cenderung masuk ke cluster yang sama?</p></li>
@@ -489,7 +483,7 @@ document.write(`
 </ul>
 </section>
 <section id="strategi-geocoding">
-<h2>Strategi Geocoding<a class="headerlink" href="#strategi-geocoding" title="Link to this heading">#</a></h2>
+<h2>Strategi Geocoding<a class="headerlink" href="#strategi-geocoding" title="Permalink to this heading">#</a></h2>
 <p>Data tidak memiliki kolom koordinat, sehingga kita perlu <strong>geocoding</strong> — mengubah nama daerah menjadi koordinat (latitude, longitude).</p>
 <p>Strategi yang digunakan (prioritas berurutan):</p>
 <ol class="arabic simple">
@@ -504,15 +498,15 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="peta-untuk-setiap-dimensi">
-<h2>Peta untuk Setiap Dimensi<a class="headerlink" href="#peta-untuk-setiap-dimensi" title="Link to this heading">#</a></h2>
+<h2>Peta untuk Setiap Dimensi<a class="headerlink" href="#peta-untuk-setiap-dimensi" title="Permalink to this heading">#</a></h2>
 <p>Notebook ini memetakan hasil clustering terbaik di <strong>setiap dimensi</strong> (204 → 203 → 74 → 37) untuk interpolasi Linear dan Polynomial, bukan hanya satu konfigurasi terbaik global. Peta interaktif memiliki satu layer per dimensi, dan peta statis menampilkan semuanya berdampingan.</p>
 </section>
 <section id="import-load-data-tahap-3">
-<h2>4.1 Import &amp; Load Data Tahap 3<a class="headerlink" href="#import-load-data-tahap-3" title="Link to this heading">#</a></h2>
+<h2>4.1 Import &amp; Load Data Tahap 3<a class="headerlink" href="#import-load-data-tahap-3" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">)</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -523,39 +517,39 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">folium</span><span class="w"> </span><span class="kn">import</span> <span class="n">plugins</span>
 
-<span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="s1">&#39;../output&#39;</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
+<span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="s1">'../output'</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">'whitegrid'</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
 
 <span class="c1"># ── Load data dari Tahap 3 ───────────────────────────────────</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/tahap3_clustering.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/tahap3_clustering.pkl'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
-<span class="n">BEST_DATASET</span>    <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;BEST_DATASET&#39;</span><span class="p">]</span>
-<span class="n">BEST_K</span>          <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;BEST_K&#39;</span><span class="p">]</span>
-<span class="n">BEST_SIL</span>        <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;BEST_SIL&#39;</span><span class="p">]</span>
-<span class="n">BEST_LABELS</span>     <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;BEST_LABELS&#39;</span><span class="p">]</span>
-<span class="n">CLUSTER_COLORS</span>  <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;CLUSTER_COLORS&#39;</span><span class="p">]</span>
-<span class="n">meta_linear</span>     <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;meta_linear&#39;</span><span class="p">]</span>
-<span class="n">meta_poly</span>       <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;meta_poly&#39;</span><span class="p">]</span>
-<span class="n">X_linear</span>        <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;X_linear&#39;</span><span class="p">]</span>
-<span class="n">X_poly</span>          <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;X_poly&#39;</span><span class="p">]</span>
-<span class="n">df_hasil</span>        <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;df_hasil&#39;</span><span class="p">]</span>
+<span class="n">BEST_DATASET</span>    <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'BEST_DATASET'</span><span class="p">]</span>
+<span class="n">BEST_K</span>          <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'BEST_K'</span><span class="p">]</span>
+<span class="n">BEST_SIL</span>        <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'BEST_SIL'</span><span class="p">]</span>
+<span class="n">BEST_LABELS</span>     <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'BEST_LABELS'</span><span class="p">]</span>
+<span class="n">CLUSTER_COLORS</span>  <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'CLUSTER_COLORS'</span><span class="p">]</span>
+<span class="n">meta_linear</span>     <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'meta_linear'</span><span class="p">]</span>
+<span class="n">meta_poly</span>       <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'meta_poly'</span><span class="p">]</span>
+<span class="n">X_linear</span>        <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'X_linear'</span><span class="p">]</span>
+<span class="n">X_poly</span>          <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'X_poly'</span><span class="p">]</span>
+<span class="n">df_hasil</span>        <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">'df_hasil'</span><span class="p">]</span>
 
 <span class="c1"># Hasil cluster terbaik untuk SETIAP dimensi (dibuat di Tahap 3 versi terbaru)</span>
-<span class="n">BEST_PER_DIM</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BEST_PER_DIM&#39;</span><span class="p">)</span>
+<span class="n">BEST_PER_DIM</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'BEST_PER_DIM'</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">BEST_PER_DIM</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;BEST_PER_DIM tidak ada di tahap3_clustering.pkl. &#39;</span>
-                   <span class="s1">&#39;Jalankan ulang notebook Tahap 3 (versi terbaru) sampai sel terakhir, lalu ulangi Tahap 4.&#39;</span><span class="p">)</span>
-<span class="n">DIMENSI</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DIMENSI&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">204</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">37</span><span class="p">])</span>
+    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">'BEST_PER_DIM tidak ada di tahap3_clustering.pkl. '</span>
+                   <span class="s1">'Jalankan ulang notebook Tahap 3 (versi terbaru) sampai sel terakhir, lalu ulangi Tahap 4.'</span><span class="p">)</span>
+<span class="n">DIMENSI</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'DIMENSI'</span><span class="p">,</span> <span class="p">[</span><span class="mi">204</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">37</span><span class="p">])</span>
 
-<span class="n">meta_best</span> <span class="o">=</span> <span class="n">meta_linear</span> <span class="k">if</span> <span class="s1">&#39;Linear&#39;</span> <span class="ow">in</span> <span class="n">BEST_DATASET</span> <span class="k">else</span> <span class="n">meta_poly</span>
-<span class="n">X_raw</span>     <span class="o">=</span> <span class="n">X_linear</span>    <span class="k">if</span> <span class="s1">&#39;Linear&#39;</span> <span class="ow">in</span> <span class="n">BEST_DATASET</span> <span class="k">else</span> <span class="n">X_poly</span>
+<span class="n">meta_best</span> <span class="o">=</span> <span class="n">meta_linear</span> <span class="k">if</span> <span class="s1">'Linear'</span> <span class="ow">in</span> <span class="n">BEST_DATASET</span> <span class="k">else</span> <span class="n">meta_poly</span>
+<span class="n">X_raw</span>     <span class="o">=</span> <span class="n">X_linear</span>    <span class="k">if</span> <span class="s1">'Linear'</span> <span class="ow">in</span> <span class="n">BEST_DATASET</span> <span class="k">else</span> <span class="n">X_poly</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Data Tahap 3 berhasil dimuat.&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Konfigurasi terbaik: </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">, k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">, sil=</span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Jumlah wilayah     : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">meta_best</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Hasil per dimensi  : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">BEST_PER_DIM</span><span class="p">)</span><span class="si">}</span><span class="s1"> konfigurasi (</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Data Tahap 3 berhasil dimuat.'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Konfigurasi terbaik: </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">, k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">, sil=</span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Jumlah wilayah     : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">meta_best</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Hasil per dimensi  : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">BEST_PER_DIM</span><span class="p">)</span><span class="si">}</span><span class="s1"> konfigurasi (</span><span class="si">{</span><span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s2">"dataset"</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -570,91 +564,91 @@ document.write(`
 </div>
 </section>
 <section id="geocoding-nama-daerah-koordinat">
-<h2>4.2 Geocoding: Nama Daerah → Koordinat<a class="headerlink" href="#geocoding-nama-daerah-koordinat" title="Link to this heading">#</a></h2>
+<h2>4.2 Geocoding: Nama Daerah → Koordinat<a class="headerlink" href="#geocoding-nama-daerah-koordinat" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Koordinat hardcoded (terverifikasi manual) ────────────────</span>
 <span class="n">KOORDINAT_DB</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Baron Nganjuk&#39;</span>              <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.5083</span><span class="p">,</span>  <span class="mf">111.9167</span><span class="p">),</span>
-    <span class="s1">&#39;Nunukan&#39;</span>                    <span class="p">:</span> <span class="p">(</span> <span class="mf">4.1333</span><span class="p">,</span>  <span class="mf">117.6667</span><span class="p">),</span>
-    <span class="s1">&#39;Sreseh, Sampang&#39;</span>            <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1833</span><span class="p">,</span>  <span class="mf">113.2167</span><span class="p">),</span>
-    <span class="s1">&#39;Manyar, Gresik&#39;</span>             <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1500</span><span class="p">,</span>  <span class="mf">112.6500</span><span class="p">),</span>
-    <span class="s1">&#39;Kamal, Bangkalan&#39;</span>           <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1833</span><span class="p">,</span>  <span class="mf">112.7833</span><span class="p">),</span>
-    <span class="s1">&#39;Kedungpring Lamongan&#39;</span>       <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.3500</span><span class="p">,</span>  <span class="mf">112.2167</span><span class="p">),</span>
-    <span class="s1">&#39;Gresik Kota, Gresik&#39;</span>        <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1556</span><span class="p">,</span>  <span class="mf">112.6527</span><span class="p">),</span>
-    <span class="s1">&#39;Waru, Pamekasan&#39;</span>            <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1667</span><span class="p">,</span>  <span class="mf">113.4833</span><span class="p">),</span>
-    <span class="s1">&#39;Paciran, Lamongan&#39;</span>          <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">6.8667</span><span class="p">,</span>  <span class="mf">112.3333</span><span class="p">),</span>
-    <span class="s1">&#39;Kertosono, Nganjuk&#39;</span>         <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.5833</span><span class="p">,</span>  <span class="mf">112.1000</span><span class="p">),</span>
+    <span class="s1">'Baron Nganjuk'</span>              <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.5083</span><span class="p">,</span>  <span class="mf">111.9167</span><span class="p">),</span>
+    <span class="s1">'Nunukan'</span>                    <span class="p">:</span> <span class="p">(</span> <span class="mf">4.1333</span><span class="p">,</span>  <span class="mf">117.6667</span><span class="p">),</span>
+    <span class="s1">'Sreseh, Sampang'</span>            <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1833</span><span class="p">,</span>  <span class="mf">113.2167</span><span class="p">),</span>
+    <span class="s1">'Manyar, Gresik'</span>             <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1500</span><span class="p">,</span>  <span class="mf">112.6500</span><span class="p">),</span>
+    <span class="s1">'Kamal, Bangkalan'</span>           <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1833</span><span class="p">,</span>  <span class="mf">112.7833</span><span class="p">),</span>
+    <span class="s1">'Kedungpring Lamongan'</span>       <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.3500</span><span class="p">,</span>  <span class="mf">112.2167</span><span class="p">),</span>
+    <span class="s1">'Gresik Kota, Gresik'</span>        <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1556</span><span class="p">,</span>  <span class="mf">112.6527</span><span class="p">),</span>
+    <span class="s1">'Waru, Pamekasan'</span>            <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1667</span><span class="p">,</span>  <span class="mf">113.4833</span><span class="p">),</span>
+    <span class="s1">'Paciran, Lamongan'</span>          <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">6.8667</span><span class="p">,</span>  <span class="mf">112.3333</span><span class="p">),</span>
+    <span class="s1">'Kertosono, Nganjuk'</span>         <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.5833</span><span class="p">,</span>  <span class="mf">112.1000</span><span class="p">),</span>
 <span class="p">}</span>
 
 <span class="c1"># Koreksi manual untuk wilayah yang koordinatnya salah (mis. jatuh di Bali / Laut Jawa).</span>
 <span class="c1"># Koordinat ini PERKIRAAN pada tingkat kecamatan/kabupaten, silakan periksa dan ubah bila perlu.</span>
 <span class="n">KOREKSI_MANUAL</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Banyu Ajuh, Perumnas, Kamal&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1833</span><span class="p">,</span> <span class="mf">112.7833</span><span class="p">),</span>   <span class="c1"># Kamal, Bangkalan (sama dengan entri Kamal lain)</span>
-    <span class="s1">&#39;Bandung - Jogoroto, Jombang&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.5467</span><span class="p">,</span> <span class="mf">112.2331</span><span class="p">),</span>   <span class="c1"># Kabupaten Jombang (perkiraan)</span>
-    <span class="s1">&#39;Kec. Kalianget, Sumenep&#39;</span>    <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.0583</span><span class="p">,</span> <span class="mf">113.9333</span><span class="p">),</span>   <span class="c1"># Kalianget, Sumenep (perkiraan)</span>
+    <span class="s1">'Banyu Ajuh, Perumnas, Kamal'</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.1833</span><span class="p">,</span> <span class="mf">112.7833</span><span class="p">),</span>   <span class="c1"># Kamal, Bangkalan (sama dengan entri Kamal lain)</span>
+    <span class="s1">'Bandung - Jogoroto, Jombang'</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.5467</span><span class="p">,</span> <span class="mf">112.2331</span><span class="p">),</span>   <span class="c1"># Kabupaten Jombang (perkiraan)</span>
+    <span class="s1">'Kec. Kalianget, Sumenep'</span>    <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.0583</span><span class="p">,</span> <span class="mf">113.9333</span><span class="p">),</span>   <span class="c1"># Kalianget, Sumenep (perkiraan)</span>
 <span class="p">}</span>
 
 <span class="n">DEFAULT_KOORDINAT</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">112.7</span><span class="p">)</span>   <span class="c1"># dipakai (dan diberi peringatan) jika koordinat tidak ditemukan</span>
-<span class="n">CACHE_FILE</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/koordinat_cache.json&#39;</span>
+<span class="n">CACHE_FILE</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/koordinat_cache.json'</span>
 
 <span class="c1"># Load cache yang sudah ada</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">koordinat_cache</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cache dimuat: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">koordinat_cache</span><span class="p">)</span><span class="si">}</span><span class="s1"> koordinat&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Cache dimuat: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">koordinat_cache</span><span class="p">)</span><span class="si">}</span><span class="s1"> koordinat'</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">koordinat_cache</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="c1"># Terapkan koreksi manual (menimpa nilai lama di cache)</span>
 <span class="k">for</span> <span class="n">nama_wil</span><span class="p">,</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">KOREKSI_MANUAL</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">koordinat_cache</span><span class="p">[</span><span class="n">nama_wil</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Koreksi manual diterapkan: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">KOREKSI_MANUAL</span><span class="p">)</span><span class="si">}</span><span class="s1"> wilayah&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Koreksi manual diterapkan: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">KOREKSI_MANUAL</span><span class="p">)</span><span class="si">}</span><span class="s1"> wilayah'</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">get_koordinat</span><span class="p">(</span><span class="n">daerah</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cari koordinat: cache -&gt; hardcoded -&gt; Nominatim. Mengembalikan (koordinat, sumber).&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Cari koordinat: cache -&gt; hardcoded -&gt; Nominatim. Mengembalikan (koordinat, sumber)."""</span>
     <span class="k">if</span> <span class="n">daerah</span> <span class="ow">in</span> <span class="n">koordinat_cache</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">koordinat_cache</span><span class="p">[</span><span class="n">daerah</span><span class="p">]),</span> <span class="s1">&#39;cache&#39;</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">koordinat_cache</span><span class="p">[</span><span class="n">daerah</span><span class="p">]),</span> <span class="s1">'cache'</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">KOORDINAT_DB</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">daerah</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="n">daerah</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">coord</span><span class="p">,</span> <span class="s1">&#39;hardcoded&#39;</span>
+            <span class="k">return</span> <span class="n">coord</span><span class="p">,</span> <span class="s1">'hardcoded'</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">geopy.geocoders</span><span class="w"> </span><span class="kn">import</span> <span class="n">Nominatim</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">geopy.extra.rate_limiter</span><span class="w"> </span><span class="kn">import</span> <span class="n">RateLimiter</span>
-        <span class="n">geo</span> <span class="o">=</span> <span class="n">Nominatim</span><span class="p">(</span><span class="n">user_agent</span><span class="o">=</span><span class="s1">&#39;psd_cluster_2026&#39;</span><span class="p">)</span>
+        <span class="n">geo</span> <span class="o">=</span> <span class="n">Nominatim</span><span class="p">(</span><span class="n">user_agent</span><span class="o">=</span><span class="s1">'psd_cluster_2026'</span><span class="p">)</span>
         <span class="n">geocode</span> <span class="o">=</span> <span class="n">RateLimiter</span><span class="p">(</span><span class="n">geo</span><span class="o">.</span><span class="n">geocode</span><span class="p">,</span> <span class="n">min_delay_seconds</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">loc</span> <span class="o">=</span> <span class="n">geocode</span><span class="p">(</span><span class="n">daerah</span> <span class="o">+</span> <span class="s1">&#39;, Indonesia&#39;</span><span class="p">)</span>
+        <span class="n">loc</span> <span class="o">=</span> <span class="n">geocode</span><span class="p">(</span><span class="n">daerah</span> <span class="o">+</span> <span class="s1">', Indonesia'</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">loc</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Nominatim: </span><span class="si">{</span><span class="n">daerah</span><span class="si">}</span><span class="s1"> → (</span><span class="si">{</span><span class="n">loc</span><span class="o">.</span><span class="n">latitude</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">loc</span><span class="o">.</span><span class="n">longitude</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">loc</span><span class="o">.</span><span class="n">longitude</span><span class="p">),</span> <span class="s1">&#39;nominatim&#39;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Nominatim: </span><span class="si">{</span><span class="n">daerah</span><span class="si">}</span><span class="s1"> → (</span><span class="si">{</span><span class="n">loc</span><span class="o">.</span><span class="n">latitude</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">loc</span><span class="o">.</span><span class="n">longitude</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">loc</span><span class="o">.</span><span class="n">longitude</span><span class="p">),</span> <span class="s1">'nominatim'</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Nominatim gagal (</span><span class="si">{</span><span class="n">daerah</span><span class="si">}</span><span class="s1">): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">DEFAULT_KOORDINAT</span><span class="p">,</span> <span class="s1">&#39;fallback&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Nominatim gagal (</span><span class="si">{</span><span class="n">daerah</span><span class="si">}</span><span class="s1">): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">DEFAULT_KOORDINAT</span><span class="p">,</span> <span class="s1">'fallback'</span>
 
 <span class="c1"># Geocode semua wilayah (gabungan Linear &amp; Poly)</span>
-<span class="n">daftar_daerah</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">meta_linear</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">])</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">meta_poly</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Mengambil koordinat </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">daftar_daerah</span><span class="p">)</span><span class="si">}</span><span class="s1"> wilayah...&#39;</span><span class="p">)</span>
+<span class="n">daftar_daerah</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">meta_linear</span><span class="p">[</span><span class="s1">'daerah'</span><span class="p">])</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">meta_poly</span><span class="p">[</span><span class="s1">'daerah'</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Mengambil koordinat </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">daftar_daerah</span><span class="p">)</span><span class="si">}</span><span class="s1"> wilayah...'</span><span class="p">)</span>
 <span class="n">fallback_list</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">daerah</span> <span class="ow">in</span> <span class="n">daftar_daerah</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">daerah</span> <span class="ow">in</span> <span class="n">koordinat_cache</span><span class="p">:</span>
         <span class="k">continue</span>
     <span class="n">coord</span><span class="p">,</span> <span class="n">sumber</span> <span class="o">=</span> <span class="n">get_koordinat</span><span class="p">(</span><span class="n">daerah</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">sumber</span> <span class="o">==</span> <span class="s1">&#39;fallback&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">sumber</span> <span class="o">==</span> <span class="s1">'fallback'</span><span class="p">:</span>
         <span class="n">fallback_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">daerah</span><span class="p">)</span>          <span class="c1"># TIDAK disimpan ke cache</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">koordinat_cache</span><span class="p">[</span><span class="n">daerah</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
 
 <span class="c1"># Simpan cache</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">koordinat_cache</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Total koordinat: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">koordinat_cache</span><span class="p">)</span><span class="si">}</span><span class="s1"> wilayah → disimpan ke cache&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Total koordinat: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">koordinat_cache</span><span class="p">)</span><span class="si">}</span><span class="s1"> wilayah → disimpan ke cache'</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">fallback_list</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">PERINGATAN: koordinat tidak ditemukan untuk wilayah berikut (diletakkan di titik default,&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;            tambahkan ke KOREKSI_MANUAL agar tampil di lokasi yang benar):&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">PERINGATAN: koordinat tidak ditemukan untuk wilayah berikut (diletakkan di titik default,'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'            tambahkan ke KOREKSI_MANUAL agar tampil di lokasi yang benar):'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">nama_wil</span> <span class="ow">in</span> <span class="n">fallback_list</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   - </span><span class="si">{</span><span class="n">nama_wil</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'   - </span><span class="si">{</span><span class="n">nama_wil</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -663,7 +657,7 @@ document.write(`
 Koreksi manual diterapkan: 3 wilayah
 
 Mengambil koordinat 36 wilayah...
-  Nominatim gagal (Jabon , Sidoarjo): No module named &#39;geopy&#39;
+  Nominatim gagal (Jabon , Sidoarjo): No module named 'geopy'
 
 Total koordinat: 35 wilayah → disimpan ke cache
 
@@ -676,37 +670,37 @@ PERINGATAN: koordinat tidak ditemukan untuk wilayah berikut (diletakkan di titik
 </div>
 </section>
 <section id="siapkan-dataframe-peta">
-<h2>4.3 Siapkan DataFrame Peta<a class="headerlink" href="#siapkan-dataframe-peta" title="Link to this heading">#</a></h2>
+<h2>4.3 Siapkan DataFrame Peta<a class="headerlink" href="#siapkan-dataframe-peta" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Gabungkan label cluster + koordinat untuk SETIAP dimensi ──</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">buat_df_peta</span><span class="p">(</span><span class="n">info</span><span class="p">):</span>
-    <span class="n">metode</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;metode&#39;</span><span class="p">]</span>
-    <span class="n">meta</span>   <span class="o">=</span> <span class="p">(</span><span class="n">meta_linear</span> <span class="k">if</span> <span class="n">metode</span> <span class="o">==</span> <span class="s1">&#39;Linear&#39;</span> <span class="k">else</span> <span class="n">meta_poly</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">X_r</span>    <span class="o">=</span> <span class="n">X_linear</span> <span class="k">if</span> <span class="n">metode</span> <span class="o">==</span> <span class="s1">&#39;Linear&#39;</span> <span class="k">else</span> <span class="n">X_poly</span>
+    <span class="n">metode</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s1">'metode'</span><span class="p">]</span>
+    <span class="n">meta</span>   <span class="o">=</span> <span class="p">(</span><span class="n">meta_linear</span> <span class="k">if</span> <span class="n">metode</span> <span class="o">==</span> <span class="s1">'Linear'</span> <span class="k">else</span> <span class="n">meta_poly</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">X_r</span>    <span class="o">=</span> <span class="n">X_linear</span> <span class="k">if</span> <span class="n">metode</span> <span class="o">==</span> <span class="s1">'Linear'</span> <span class="k">else</span> <span class="n">X_poly</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">koordinat_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">DEFAULT_KOORDINAT</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">koordinat_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">DEFAULT_KOORDINAT</span><span class="p">))[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">pol</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;no2&#39;</span><span class="p">,</span> <span class="s1">&#39;so2&#39;</span><span class="p">,</span> <span class="s1">&#39;co&#39;</span><span class="p">]:</span>          <span class="c1"># statistik polutan utama (mean)</span>
-        <span class="n">col_mean</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pol</span><span class="si">}</span><span class="s1">_calc_mean&#39;</span>
-        <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pol</span><span class="si">}</span><span class="s1">_mean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_r</span><span class="p">[</span><span class="n">col_mean</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">if</span> <span class="n">col_mean</span> <span class="ow">in</span> <span class="n">X_r</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">'cluster'</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s1">'labels'</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">'lat'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'daerah'</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">koordinat_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">DEFAULT_KOORDINAT</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">'lon'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'daerah'</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">koordinat_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">DEFAULT_KOORDINAT</span><span class="p">))[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">pol</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'no2'</span><span class="p">,</span> <span class="s1">'so2'</span><span class="p">,</span> <span class="s1">'co'</span><span class="p">]:</span>          <span class="c1"># statistik polutan utama (mean)</span>
+        <span class="n">col_mean</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">pol</span><span class="si">}</span><span class="s1">_calc_mean'</span>
+        <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">pol</span><span class="si">}</span><span class="s1">_mean'</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_r</span><span class="p">[</span><span class="n">col_mean</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">if</span> <span class="n">col_mean</span> <span class="ow">in</span> <span class="n">X_r</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="k">return</span> <span class="n">df</span>
 
-<span class="n">df_maps</span> <span class="o">=</span> <span class="p">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]:</span> <span class="n">buat_df_peta</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
+<span class="n">df_maps</span> <span class="o">=</span> <span class="p">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]:</span> <span class="n">buat_df_peta</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
 
 <span class="c1"># Konfigurasi terbaik global (dipakai sel peta statis tunggal)</span>
 <span class="n">df_map</span> <span class="o">=</span> <span class="n">df_maps</span><span class="p">[</span><span class="n">BEST_DATASET</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ringkasan cluster terbaik per dimensi:&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">metode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Linear&#39;</span><span class="p">,</span> <span class="s1">&#39;Poly&#39;</span><span class="p">]:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Ringkasan cluster terbaik per dimensi:'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">metode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Linear'</span><span class="p">,</span> <span class="s1">'Poly'</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">DIMENSI</span><span class="p">:</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">metode</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">info</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;11</span><span class="si">}</span><span class="s2"> k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">  sil=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  ukuran cluster: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;ukuran&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;11</span><span class="si">}</span><span class="s2"> k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'k'</span><span class="p">]</span><span class="si">}</span><span class="s2">  sil=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'silhouette'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  ukuran cluster: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'ukuran'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">DataFrame peta konfigurasi terbaik global (</span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">):&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df_map</span><span class="p">[[</span><span class="s1">&#39;daerah&#39;</span><span class="p">,</span><span class="s1">&#39;cluster&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span><span class="s1">&#39;no2_mean&#39;</span><span class="p">,</span><span class="s1">&#39;so2_mean&#39;</span><span class="p">,</span><span class="s1">&#39;co_mean&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="se">\n</span><span class="s1">DataFrame peta konfigurasi terbaik global (</span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">):'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_map</span><span class="p">[[</span><span class="s1">'daerah'</span><span class="p">,</span><span class="s1">'cluster'</span><span class="p">,</span><span class="s1">'lat'</span><span class="p">,</span><span class="s1">'lon'</span><span class="p">,</span><span class="s1">'no2_mean'</span><span class="p">,</span><span class="s1">'so2_mean'</span><span class="p">,</span><span class="s1">'co_mean'</span><span class="p">]]</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -766,7 +760,7 @@ DataFrame peta konfigurasi terbaik global (Poly-204):
 </div>
 </section>
 <section id="peta-interaktif-folium-satu-layer-per-dimensi">
-<h2>4.4 Peta Interaktif Folium — Satu Layer per Dimensi<a class="headerlink" href="#peta-interaktif-folium-satu-layer-per-dimensi" title="Link to this heading">#</a></h2>
+<h2>4.4 Peta Interaktif Folium — Satu Layer per Dimensi<a class="headerlink" href="#peta-interaktif-folium-satu-layer-per-dimensi" title="Permalink to this heading">#</a></h2>
 <p>Peta interaktif ini menggunakan <strong>Leaflet.js</strong> via Folium, dengan fitur:</p>
 <ul class="simple">
 <li><p><strong>Satu layer untuk setiap dimensi</strong> (Linear dan Poly × 204, 203, 74, 37). Pilih layer di kontrol kanan atas (default: konfigurasi terbaik global)</p></li>
@@ -779,8 +773,8 @@ DataFrame peta konfigurasi terbaik global (Poly-204):
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Buat peta Folium ──────────────────────────────────────────</span>
-<span class="c1"># CATATAN: tile CARTO (&#39;CartoDB positron&#39; / &#39;CartoDB dark_matter&#39;) sekarang wajib API key,</span>
-<span class="c1"># tanpa key peta menampilkan watermark &quot;API KEY REQUIRED&quot;. Karena itu basemap default diganti</span>
+<span class="c1"># CATATAN: tile CARTO ('CartoDB positron' / 'CartoDB dark_matter') sekarang wajib API key,</span>
+<span class="c1"># tanpa key peta menampilkan watermark "API KEY REQUIRED". Karena itu basemap default diganti</span>
 <span class="c1"># ke provider yang tidak memerlukan key (OpenStreetMap dan Esri).</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
     <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">118.0</span><span class="p">],</span>   <span class="c1"># Pusat Indonesia</span>
@@ -789,98 +783,98 @@ DataFrame peta konfigurasi terbaik global (Poly-204):
     <span class="n">control_scale</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
-<span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="s1">&#39;OpenStreetMap&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;OpenStreetMap (default)&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="s1">'OpenStreetMap'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'OpenStreetMap (default)'</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
 <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span>
-    <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/</span><span class="si">{z}</span><span class="s1">/</span><span class="si">{y}</span><span class="s1">/</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;Tiles &amp;copy; Esri&#39;</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Esri Street Map&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span>
+    <span class="n">tiles</span><span class="o">=</span><span class="s1">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/</span><span class="si">{z}</span><span class="s1">/</span><span class="si">{y}</span><span class="s1">/</span><span class="si">{x}</span><span class="s1">'</span><span class="p">,</span>
+    <span class="n">attr</span><span class="o">=</span><span class="s1">'Tiles &amp;copy; Esri'</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'Esri Street Map'</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
 <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span>
-    <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="si">{z}</span><span class="s1">/</span><span class="si">{y}</span><span class="s1">/</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;Tiles &amp;copy; Esri &amp;mdash; Source: Esri, Maxar, Earthstar Geographics&#39;</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Citra Satelit (Esri)&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span>
+    <span class="n">tiles</span><span class="o">=</span><span class="s1">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="si">{z}</span><span class="s1">/</span><span class="si">{y}</span><span class="s1">/</span><span class="si">{x}</span><span class="s1">'</span><span class="p">,</span>
+    <span class="n">attr</span><span class="o">=</span><span class="s1">'Tiles &amp;copy; Esri &amp;mdash; Source: Esri, Maxar, Earthstar Geographics'</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'Citra Satelit (Esri)'</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
 <span class="c1"># OPSIONAL: aktifkan basemap CARTO jika Anda punya API key gratis (carto.com/basemaps/apikey).</span>
 <span class="c1"># Simpan key di environment variable CARTO_API_KEY, jangan ditulis langsung di notebook.</span>
-<span class="n">CARTO_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CARTO_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">CARTO_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'CARTO_API_KEY'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">CARTO_KEY</span><span class="p">:</span>
-    <span class="n">carto_attr</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;&amp;copy; &lt;a href=&quot;https://www.openstreetmap.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt;, &#39;</span>
-                  <span class="s1">&#39;&amp;copy; &lt;a href=&quot;https://carto.com/attributions&quot;&gt;CARTO&lt;/a&gt;&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">estilo</span><span class="p">,</span> <span class="n">nama</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;light_all&#39;</span><span class="p">,</span> <span class="s1">&#39;CARTO Light&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;dark_all&#39;</span><span class="p">,</span> <span class="s1">&#39;CARTO Dark&#39;</span><span class="p">)]:</span>
+    <span class="n">carto_attr</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt;, '</span>
+                  <span class="s1">'&amp;copy; &lt;a href="https://carto.com/attributions"&gt;CARTO&lt;/a&gt;'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">estilo</span><span class="p">,</span> <span class="n">nama</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">'light_all'</span><span class="p">,</span> <span class="s1">'CARTO Light'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'dark_all'</span><span class="p">,</span> <span class="s1">'CARTO Dark'</span><span class="p">)]:</span>
         <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span>
-            <span class="n">tiles</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;https://basemaps.cartocdn.com/rastertiles/</span><span class="si">{</span><span class="n">estilo</span><span class="si">}</span><span class="s1">/</span><span class="se">{{</span><span class="s1">z</span><span class="se">}}</span><span class="s1">/</span><span class="se">{{</span><span class="s1">x</span><span class="se">}}</span><span class="s1">/</span><span class="se">{{</span><span class="s1">y</span><span class="se">}}</span><span class="s1">.png?key=</span><span class="si">{</span><span class="n">CARTO_KEY</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="n">tiles</span><span class="o">=</span><span class="sa">f</span><span class="s1">'https://basemaps.cartocdn.com/rastertiles/</span><span class="si">{</span><span class="n">estilo</span><span class="si">}</span><span class="s1">/</span><span class="se">{{</span><span class="s1">z</span><span class="se">}}</span><span class="s1">/</span><span class="se">{{</span><span class="s1">x</span><span class="se">}}</span><span class="s1">/</span><span class="se">{{</span><span class="s1">y</span><span class="se">}}</span><span class="s1">.png?key=</span><span class="si">{</span><span class="n">CARTO_KEY</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
             <span class="n">attr</span><span class="o">=</span><span class="n">carto_attr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">nama</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
 <span class="c1"># ── Satu FeatureGroup (layer) untuk setiap dimensi ───────────</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">tambah_layer</span><span class="p">(</span><span class="n">peta</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">tampil</span><span class="p">):</span>
-    <span class="n">nama_layer</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;metode&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dimensi&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> dimensi  |  &quot;</span>
-                  <span class="sa">f</span><span class="s2">&quot;k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, sil=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">nama_layer</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'metode'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'dimensi'</span><span class="p">]</span><span class="si">}</span><span class="s2"> dimensi  |  "</span>
+                  <span class="sa">f</span><span class="s2">"k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'k'</span><span class="p">]</span><span class="si">}</span><span class="s2">, sil=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'silhouette'</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">fg</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">FeatureGroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">nama_layer</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">tampil</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-        <span class="n">c</span>   <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">])</span>
+        <span class="n">c</span>   <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'cluster'</span><span class="p">])</span>
         <span class="n">col</span> <span class="o">=</span> <span class="n">CLUSTER_COLORS</span><span class="p">[</span><span class="n">c</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">CLUSTER_COLORS</span><span class="p">)]</span>
 
-        <span class="n">no2_txt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;no2_mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;no2_mean&#39;</span><span class="p">))</span> <span class="k">else</span> <span class="s1">&#39;N/A&#39;</span>
-        <span class="n">so2_txt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;so2_mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;so2_mean&#39;</span><span class="p">))</span> <span class="k">else</span> <span class="s1">&#39;N/A&#39;</span>
-        <span class="n">co_txt</span>  <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;co_mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>  <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;co_mean&#39;</span><span class="p">))</span>  <span class="k">else</span> <span class="s1">&#39;N/A&#39;</span>
+        <span class="n">no2_txt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'no2_mean'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'no2_mean'</span><span class="p">))</span> <span class="k">else</span> <span class="s1">'N/A'</span>
+        <span class="n">so2_txt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'so2_mean'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'so2_mean'</span><span class="p">))</span> <span class="k">else</span> <span class="s1">'N/A'</span>
+        <span class="n">co_txt</span>  <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'co_mean'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span>  <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'co_mean'</span><span class="p">))</span>  <span class="k">else</span> <span class="s1">'N/A'</span>
 
-        <span class="n">popup_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        &lt;div style=&quot;font-family:&#39;Segoe UI&#39;,Arial,sans-serif; min-width:220px; max-width:280px;&quot;&gt;</span>
-<span class="s2">          &lt;div style=&quot;background:</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">;color:white;padding:8px 12px;border-radius:6px 6px 0 0;&quot;&gt;</span>
-<span class="s2">            &lt;b style=&quot;font-size:14px;&quot;&gt;Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&lt;/b&gt;</span>
+        <span class="n">popup_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">        &lt;div style="font-family:'Segoe UI',Arial,sans-serif; min-width:220px; max-width:280px;"&gt;</span>
+<span class="s2">          &lt;div style="background:</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">;color:white;padding:8px 12px;border-radius:6px 6px 0 0;"&gt;</span>
+<span class="s2">            &lt;b style="font-size:14px;"&gt;Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&lt;/b&gt;</span>
 <span class="s2">          &lt;/div&gt;</span>
-<span class="s2">          &lt;div style=&quot;padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;&quot;&gt;</span>
-<span class="s2">            &lt;table style=&quot;width:100%;border-collapse:collapse;font-size:12px;&quot;&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td style=&quot;color:#777;padding:2px 0&quot;&gt;Daerah&lt;/td&gt;&lt;td&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td style=&quot;color:#777;padding:2px 0&quot;&gt;Nama&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;nama&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td style=&quot;color:#777;padding:2px 0&quot;&gt;Koordinat&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td colspan=2&gt;&lt;hr style=&quot;margin:6px 0&quot;&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td style=&quot;color:#1565C0;padding:2px 0&quot;&gt;NO₂ mean&lt;/td&gt;&lt;td&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">no2_txt</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td style=&quot;color:#B71C1C;padding:2px 0&quot;&gt;SO₂ mean&lt;/td&gt;&lt;td&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">so2_txt</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td style=&quot;color:#1B5E20;padding:2px 0&quot;&gt;CO mean&lt;/td&gt;&lt;td&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">co_txt</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td colspan=2&gt;&lt;hr style=&quot;margin:6px 0&quot;&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td style=&quot;color:#777&quot;&gt;Dataset&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="s2">              &lt;tr&gt;&lt;td style=&quot;color:#777&quot;&gt;k / Silhouette&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">          &lt;div style="padding:10px 12px;border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;"&gt;</span>
+<span class="s2">            &lt;table style="width:100%;border-collapse:collapse;font-size:12px;"&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td style="color:#777;padding:2px 0"&gt;Daerah&lt;/td&gt;&lt;td&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'daerah'</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td style="color:#777;padding:2px 0"&gt;Nama&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'nama'</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td style="color:#777;padding:2px 0"&gt;Koordinat&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'lat'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'lon'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td colspan=2&gt;&lt;hr style="margin:6px 0"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td style="color:#1565C0;padding:2px 0"&gt;NO₂ mean&lt;/td&gt;&lt;td&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">no2_txt</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td style="color:#B71C1C;padding:2px 0"&gt;SO₂ mean&lt;/td&gt;&lt;td&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">so2_txt</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td style="color:#1B5E20;padding:2px 0"&gt;CO mean&lt;/td&gt;&lt;td&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">co_txt</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td colspan=2&gt;&lt;hr style="margin:6px 0"&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td style="color:#777"&gt;Dataset&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">              &lt;tr&gt;&lt;td style="color:#777"&gt;k / Silhouette&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'k'</span><span class="p">]</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'silhouette'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;</span>
 <span class="s2">            &lt;/table&gt;</span>
 <span class="s2">          &lt;/div&gt;</span>
 <span class="s2">        &lt;/div&gt;</span>
-<span class="s2">        &quot;&quot;&quot;</span>
+<span class="s2">        """</span>
 
         <span class="n">folium</span><span class="o">.</span><span class="n">CircleMarker</span><span class="p">(</span>
-            <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]],</span>
+            <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">'lat'</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">'lon'</span><span class="p">]],</span>
             <span class="n">radius</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">fill_color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
             <span class="n">popup</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">Popup</span><span class="p">(</span><span class="n">popup_html</span><span class="p">,</span> <span class="n">max_width</span><span class="o">=</span><span class="mi">300</span><span class="p">),</span>
-            <span class="n">tooltip</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]</span><span class="si">}</span><span class="s2"> | Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'daerah'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">fg</span><span class="p">)</span>
 
         <span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span>
-            <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]],</span>
+            <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">'lat'</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">'lon'</span><span class="p">]],</span>
             <span class="n">icon</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">DivIcon</span><span class="p">(</span>
-                <span class="n">html</span><span class="o">=</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;div style=&quot;font-size:9px;font-weight:bold;color:white;&#39;</span>
-                      <span class="sa">f</span><span class="s1">&#39;background:</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">;border-radius:50%;width:22px;height:22px;&#39;</span>
-                      <span class="sa">f</span><span class="s1">&#39;display:flex;align-items:center;justify-content:center;&#39;</span>
-                      <span class="sa">f</span><span class="s1">&#39;box-shadow:0 2px 4px rgba(0,0,0,0.4);&quot;&gt;C</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&lt;/div&gt;&#39;</span><span class="p">),</span>
+                <span class="n">html</span><span class="o">=</span><span class="p">(</span><span class="sa">f</span><span class="s1">'&lt;div style="font-size:9px;font-weight:bold;color:white;'</span>
+                      <span class="sa">f</span><span class="s1">'background:</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">;border-radius:50%;width:22px;height:22px;'</span>
+                      <span class="sa">f</span><span class="s1">'display:flex;align-items:center;justify-content:center;'</span>
+                      <span class="sa">f</span><span class="s1">'box-shadow:0 2px 4px rgba(0,0,0,0.4);"&gt;C</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&lt;/div&gt;'</span><span class="p">),</span>
                 <span class="n">icon_size</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="n">icon_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
             <span class="p">),</span>
-            <span class="n">tooltip</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">'daerah'</span><span class="p">]</span>
         <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">fg</span><span class="p">)</span>
     <span class="n">fg</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta</span><span class="p">)</span>
 
 <span class="n">n_layer</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">metode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Linear&#39;</span><span class="p">,</span> <span class="s1">&#39;Poly&#39;</span><span class="p">]:</span>
+<span class="k">for</span> <span class="n">metode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Linear'</span><span class="p">,</span> <span class="s1">'Poly'</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">DIMENSI</span><span class="p">:</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">metode</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">continue</span>
-        <span class="n">tambah_layer</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">df_maps</span><span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]],</span> <span class="n">info</span><span class="p">,</span> <span class="n">tampil</span><span class="o">=</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">BEST_DATASET</span><span class="p">))</span>
+        <span class="n">tambah_layer</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">df_maps</span><span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]],</span> <span class="n">info</span><span class="p">,</span> <span class="n">tampil</span><span class="o">=</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]</span> <span class="o">==</span> <span class="n">BEST_DATASET</span><span class="p">))</span>
         <span class="n">n_layer</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n_layer</span><span class="si">}</span><span class="s1"> layer (dimensi) ditambahkan, masing-masing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_map</span><span class="p">)</span><span class="si">}</span><span class="s1"> marker wilayah.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">n_layer</span><span class="si">}</span><span class="s1"> layer (dimensi) ditambahkan, masing-masing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_map</span><span class="p">)</span><span class="si">}</span><span class="s1"> marker wilayah.'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -893,58 +887,58 @@ DataFrame peta konfigurasi terbaik global (Poly-204):
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Legenda HTML: ringkasan hasil di setiap dimensi ───────────</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="k">for</span> <span class="n">metode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Linear&#39;</span><span class="p">,</span> <span class="s1">&#39;Poly&#39;</span><span class="p">]:</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="s1">''</span>
+<span class="k">for</span> <span class="n">metode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Linear'</span><span class="p">,</span> <span class="s1">'Poly'</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">DIMENSI</span><span class="p">:</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">metode</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">continue</span>
-        <span class="n">ukuran</span> <span class="o">=</span> <span class="s1">&#39; / &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;ukuran&#39;</span><span class="p">])</span>
-        <span class="n">bintang</span> <span class="o">=</span> <span class="s1">&#39; ★&#39;</span> <span class="k">if</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">BEST_DATASET</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
-        <span class="n">rows</span> <span class="o">+=</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;tr&gt;&lt;td style=&quot;padding:2px 8px 2px 0&quot;&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&lt;/b&gt;</span><span class="si">{</span><span class="n">bintang</span><span class="si">}</span><span class="s1">&lt;/td&gt;&#39;</span>
-                 <span class="sa">f</span><span class="s1">&#39;&lt;td style=&quot;padding:2px 8px&quot;&gt;k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&lt;/td&gt;&#39;</span>
-                 <span class="sa">f</span><span class="s1">&#39;&lt;td style=&quot;padding:2px 8px&quot;&gt;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;silhouette&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&lt;/td&gt;&#39;</span>
-                 <span class="sa">f</span><span class="s1">&#39;&lt;td style=&quot;padding:2px 0&quot;&gt;</span><span class="si">{</span><span class="n">ukuran</span><span class="si">}</span><span class="s1">&lt;/td&gt;&lt;/tr&gt;&#39;</span><span class="p">)</span>
+        <span class="n">ukuran</span> <span class="o">=</span> <span class="s1">' / '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="s1">'ukuran'</span><span class="p">])</span>
+        <span class="n">bintang</span> <span class="o">=</span> <span class="s1">' ★'</span> <span class="k">if</span> <span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]</span> <span class="o">==</span> <span class="n">BEST_DATASET</span> <span class="k">else</span> <span class="s1">''</span>
+        <span class="n">rows</span> <span class="o">+=</span> <span class="p">(</span><span class="sa">f</span><span class="s1">'&lt;tr&gt;&lt;td style="padding:2px 8px 2px 0"&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s2">"dataset"</span><span class="p">]</span><span class="si">}</span><span class="s1">&lt;/b&gt;</span><span class="si">{</span><span class="n">bintang</span><span class="si">}</span><span class="s1">&lt;/td&gt;'</span>
+                 <span class="sa">f</span><span class="s1">'&lt;td style="padding:2px 8px"&gt;k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s2">"k"</span><span class="p">]</span><span class="si">}</span><span class="s1">&lt;/td&gt;'</span>
+                 <span class="sa">f</span><span class="s1">'&lt;td style="padding:2px 8px"&gt;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s2">"silhouette"</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&lt;/td&gt;'</span>
+                 <span class="sa">f</span><span class="s1">'&lt;td style="padding:2px 0"&gt;</span><span class="si">{</span><span class="n">ukuran</span><span class="si">}</span><span class="s1">&lt;/td&gt;&lt;/tr&gt;'</span><span class="p">)</span>
 
-<span class="n">warna_items</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s1">&#39;&lt;span style=&quot;display:inline-flex;align-items:center;margin-right:8px;&quot;&gt;&#39;</span>
-    <span class="sa">f</span><span class="s1">&#39;&lt;span style=&quot;width:12px;height:12px;border-radius:50%;background:</span><span class="si">{</span><span class="n">CLUSTER_COLORS</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="si">}</span><span class="s1">;&#39;</span>
-    <span class="sa">f</span><span class="s1">&#39;margin-right:3px;&quot;&gt;&lt;/span&gt;C</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&lt;/span&gt;&#39;</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">warna_items</span> <span class="o">=</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s1">'&lt;span style="display:inline-flex;align-items:center;margin-right:8px;"&gt;'</span>
+    <span class="sa">f</span><span class="s1">'&lt;span style="width:12px;height:12px;border-radius:50%;background:</span><span class="si">{</span><span class="n">CLUSTER_COLORS</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="si">}</span><span class="s1">;'</span>
+    <span class="sa">f</span><span class="s1">'margin-right:3px;"&gt;&lt;/span&gt;C</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&lt;/span&gt;'</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">'k'</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
 <span class="p">)</span>
 
-<span class="n">legend_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">&lt;div style=&quot;position:fixed;bottom:30px;left:30px;z-index:9999;</span>
+<span class="n">legend_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">&lt;div style="position:fixed;bottom:30px;left:30px;z-index:9999;</span>
 <span class="s2">            background:white;padding:14px 18px;border-radius:10px;</span>
 <span class="s2">            box-shadow:0 4px 15px rgba(0,0,0,0.2);</span>
-<span class="s2">            font-family:&#39;Segoe UI&#39;,Arial,sans-serif;font-size:11px;max-width:330px;&quot;&gt;</span>
-<span class="s2">  &lt;div style=&quot;font-size:14px;font-weight:bold;margin-bottom:4px;&quot;&gt;Cluster Terbaik per Dimensi&lt;/div&gt;</span>
-<span class="s2">  &lt;div style=&quot;color:#777;margin-bottom:6px;&quot;&gt;Pilih layer di kanan atas (★ = terbaik global)&lt;/div&gt;</span>
-<span class="s2">  &lt;table style=&quot;border-collapse:collapse;&quot;&gt;</span>
-<span class="s2">    &lt;tr style=&quot;color:#777;&quot;&gt;&lt;td&gt;Dataset&lt;/td&gt;&lt;td style=&quot;padding:0 8px&quot;&gt;k&lt;/td&gt;&lt;td style=&quot;padding:0 8px&quot;&gt;Sil.&lt;/td&gt;&lt;td&gt;Ukuran cluster&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="s2">            font-family:'Segoe UI',Arial,sans-serif;font-size:11px;max-width:330px;"&gt;</span>
+<span class="s2">  &lt;div style="font-size:14px;font-weight:bold;margin-bottom:4px;"&gt;Cluster Terbaik per Dimensi&lt;/div&gt;</span>
+<span class="s2">  &lt;div style="color:#777;margin-bottom:6px;"&gt;Pilih layer di kanan atas (★ = terbaik global)&lt;/div&gt;</span>
+<span class="s2">  &lt;table style="border-collapse:collapse;"&gt;</span>
+<span class="s2">    &lt;tr style="color:#777;"&gt;&lt;td&gt;Dataset&lt;/td&gt;&lt;td style="padding:0 8px"&gt;k&lt;/td&gt;&lt;td style="padding:0 8px"&gt;Sil.&lt;/td&gt;&lt;td&gt;Ukuran cluster&lt;/td&gt;&lt;/tr&gt;</span>
 <span class="s2">    </span><span class="si">{</span><span class="n">rows</span><span class="si">}</span>
 <span class="s2">  &lt;/table&gt;</span>
-<span class="s2">  &lt;div style=&quot;margin-top:8px;color:#555;&quot;&gt;</span><span class="si">{</span><span class="n">warna_items</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">  &lt;div style="margin-top:8px;color:#555;"&gt;</span><span class="si">{</span><span class="n">warna_items</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
 <span class="s2">&lt;/div&gt;</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 <span class="n">m</span><span class="o">.</span><span class="n">get_root</span><span class="p">()</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">folium</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="n">legend_html</span><span class="p">))</span>
 
 <span class="c1"># Layer control</span>
-<span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">(</span><span class="n">collapsed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s1">&#39;topright&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">(</span><span class="n">collapsed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s1">'topright'</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
 <span class="c1"># Minimap</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">minimap</span> <span class="o">=</span> <span class="n">plugins</span><span class="o">.</span><span class="n">MiniMap</span><span class="p">(</span><span class="n">toggle_display</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tile_layer</span><span class="o">=</span><span class="s1">&#39;OpenStreetMap&#39;</span><span class="p">)</span>
+    <span class="n">minimap</span> <span class="o">=</span> <span class="n">plugins</span><span class="o">.</span><span class="n">MiniMap</span><span class="p">(</span><span class="n">toggle_display</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tile_layer</span><span class="o">=</span><span class="s1">'OpenStreetMap'</span><span class="p">)</span>
     <span class="n">m</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">minimap</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
     <span class="k">pass</span>
 
 <span class="c1"># Simpan peta</span>
-<span class="n">map_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/peta_clustering_interaktif.html&#39;</span>
+<span class="n">map_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/peta_clustering_interaktif.html'</span>
 <span class="n">m</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">map_path</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Peta interaktif disimpan:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">map_path</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Ukuran: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">map_path</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> KB&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Peta interaktif disimpan:'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">map_path</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Ukuran: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">map_path</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> KB'</span><span class="p">)</span>
 
 <span class="c1"># Tampilkan di notebook</span>
 <span class="n">m</span>
@@ -20164,53 +20158,53 @@ DataFrame peta konfigurasi terbaik global (Poly-204):
 </div>
 </section>
 <section id="peta-statis-matplotlib-untuk-laporan">
-<h2>4.5 Peta Statis (Matplotlib) — untuk Laporan<a class="headerlink" href="#peta-statis-matplotlib-untuk-laporan" title="Link to this heading">#</a></h2>
+<h2>4.5 Peta Statis (Matplotlib) — untuk Laporan<a class="headerlink" href="#peta-statis-matplotlib-untuk-laporan" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Peta statis scatter ───────────────────────────────────────</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">BEST_K</span><span class="p">):</span>
-    <span class="n">mask</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">'cluster'</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span>
     <span class="n">sub</span>  <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span> <span class="n">sub</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">'lon'</span><span class="p">],</span> <span class="n">sub</span><span class="p">[</span><span class="s1">'lat'</span><span class="p">],</span>
                <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">CLUSTER_COLORS</span><span class="p">[</span><span class="n">c</span><span class="p">],</span>
-               <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-               <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> wil.)&#39;</span><span class="p">,</span>
+               <span class="n">edgecolors</span><span class="o">=</span><span class="s1">'white'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+               <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> wil.)'</span><span class="p">,</span>
                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sub</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
-            <span class="n">row</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">14</span><span class="p">],</span>
-            <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]),</span>
-            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
-            <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#333&#39;</span><span class="p">,</span>
-            <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round,pad=0.2&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">row</span><span class="p">[</span><span class="s1">'daerah'</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">14</span><span class="p">],</span>
+            <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'lon'</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">'lat'</span><span class="p">]),</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">'offset points'</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#333'</span><span class="p">,</span>
+            <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">'round,pad=0.2'</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">'white'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="p">)</span>
 
 <span class="c1"># Garis grid</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;#E8F4FD&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">'#E8F4FD'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
 
 <span class="c1"># Garis batas</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">114</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">114</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Longitude&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Peta Segmentasi Wilayah Polutan — Hasil Clustering</span><span class="se">\n</span><span class="s1">&#39;</span>
-             <span class="sa">f</span><span class="s1">&#39;Dataset: </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1"> | k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1"> | Silhouette = </span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-             <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
-          <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Longitude'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Latitude'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Peta Segmentasi Wilayah Polutan — Hasil Clustering</span><span class="se">\n</span><span class="s1">'</span>
+             <span class="sa">f</span><span class="s1">'Dataset: </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1"> | k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1"> | Silhouette = </span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'lower right'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+          <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Anotasi equator</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="s1">&#39;Equator (0°)&#39;</span><span class="p">,</span>
-        <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="s1">'Equator (0°)'</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">'italic'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/12_peta_statis.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/12_peta_statis.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">'tight'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Peta statis disimpan: output/12_peta_statis.png&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Peta statis disimpan: output/12_peta_statis.png'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -20222,43 +20216,43 @@ DataFrame peta konfigurasi terbaik global (Poly-204):
 </div>
 </div>
 <section id="peta-statis-untuk-setiap-dimensi">
-<h3>Peta Statis untuk Setiap Dimensi<a class="headerlink" href="#peta-statis-untuk-setiap-dimensi" title="Link to this heading">#</a></h3>
+<h3>Peta Statis untuk Setiap Dimensi<a class="headerlink" href="#peta-statis-untuk-setiap-dimensi" title="Permalink to this heading">#</a></h3>
 <p>Cluster terbaik di setiap dimensi (baris atas Linear, baris bawah Polynomial), semua dengan skala peta yang sama agar mudah dibandingkan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Peta statis: 2 baris (Linear, Poly) x 4 kolom (204, 203, 74, 37) ──</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">metode</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;Linear&#39;</span><span class="p">,</span> <span class="s1">&#39;Poly&#39;</span><span class="p">]):</span>
+<span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">metode</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">'Linear'</span><span class="p">,</span> <span class="s1">'Poly'</span><span class="p">]):</span>
     <span class="k">for</span> <span class="n">ci</span><span class="p">,</span> <span class="n">dim</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">DIMENSI</span><span class="p">):</span>
         <span class="n">ax</span>   <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">ci</span><span class="p">]</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">metode</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
             <span class="k">continue</span>
-        <span class="n">df_p</span> <span class="o">=</span> <span class="n">df_maps</span><span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]]</span>
-        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]):</span>
-            <span class="n">sub</span> <span class="o">=</span> <span class="n">df_p</span><span class="p">[</span><span class="n">df_p</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span> <span class="n">sub</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+        <span class="n">df_p</span> <span class="o">=</span> <span class="n">df_maps</span><span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">'k'</span><span class="p">]):</span>
+            <span class="n">sub</span> <span class="o">=</span> <span class="n">df_p</span><span class="p">[</span><span class="n">df_p</span><span class="p">[</span><span class="s1">'cluster'</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s1">'lon'</span><span class="p">],</span> <span class="n">sub</span><span class="p">[</span><span class="s1">'lat'</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
                        <span class="n">color</span><span class="o">=</span><span class="n">CLUSTER_COLORS</span><span class="p">[</span><span class="n">c</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">CLUSTER_COLORS</span><span class="p">)],</span>
-                       <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                       <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span><span class="si">}</span><span class="s1"> wil.)&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;#E8F4FD&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">  |  k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">  |  sil=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                     <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+                       <span class="n">edgecolors</span><span class="o">=</span><span class="s1">'white'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                       <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span><span class="si">}</span><span class="s1"> wil.)'</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">'#E8F4FD'</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]</span><span class="si">}</span><span class="s2">  |  k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'k'</span><span class="p">]</span><span class="si">}</span><span class="s2">  |  sil=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'silhouette'</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                     <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'lower right'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Longitude&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Longitude'</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ci</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Latitude&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Latitude'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Peta Segmentasi Wilayah — Cluster Terbaik di Setiap Dimensi (204 → 203 → 74 → 37)&#39;</span><span class="p">,</span>
-             <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'Peta Segmentasi Wilayah — Cluster Terbaik di Setiap Dimensi (204 → 203 → 74 → 37)'</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/13_peta_per_dimensi.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">/13_peta_per_dimensi.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">'tight'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Peta statis per dimensi disimpan: output/13_peta_per_dimensi.png&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Peta statis per dimensi disimpan: output/13_peta_per_dimensi.png'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -20272,63 +20266,63 @@ DataFrame peta konfigurasi terbaik global (Poly-204):
 </section>
 </section>
 <section id="ringkasan-lengkap-analisis">
-<h2>4.6 Ringkasan Lengkap Analisis<a class="headerlink" href="#ringkasan-lengkap-analisis" title="Link to this heading">#</a></h2>
+<h2>4.6 Ringkasan Lengkap Analisis<a class="headerlink" href="#ringkasan-lengkap-analisis" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Cetak ringkasan lengkap ───────────────────────────────────</span>
-<span class="n">separator</span> <span class="o">=</span> <span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="mi">65</span>
+<span class="n">separator</span> <span class="o">=</span> <span class="s1">'='</span> <span class="o">*</span> <span class="mi">65</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; RINGKASAN LENGKAP ANALISIS CLUSTERING SEGMENTASI POLUTAN&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">' RINGKASAN LENGKAP ANALISIS CLUSTERING SEGMENTASI POLUTAN'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">[TAHAP 1] DATA &amp; EDA&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Sumber   : MySQL — basisda1_PSD-A-Interpolasi&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Tabel    : ekstraksi_fitur_linear + ekstraksi_fitur_polynomial&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Ukuran   : 37 wilayah × 204 fitur (68 per polutan)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">[TAHAP 1] DATA &amp; EDA'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Sumber   : MySQL — basisda1_PSD-A-Interpolasi'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Tabel    : ekstraksi_fitur_linear + ekstraksi_fitur_polynomial'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Ukuran   : 37 wilayah × 204 fitur (68 per polutan)'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">[TAHAP 2] REDUKSI DIMENSI&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Standardisasi : StandardScaler (mean=0, std=1)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Urutan        : 204 → 203 → 74 → 37&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  204 → 203     : seleksi fitur (buang 1 fitur paling redundan)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  203 → 74      : seleksi fitur (buang 129 fitur paling redundan)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  74  → 37      : PCA (37 komponen)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">[TAHAP 2] REDUKSI DIMENSI'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Standardisasi : StandardScaler (mean=0, std=1)'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Urutan        : 204 → 203 → 74 → 37'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  204 → 203     : seleksi fitur (buang 1 fitur paling redundan)'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  203 → 74      : seleksi fitur (buang 129 fitur paling redundan)'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  74  → 37      : PCA (37 komponen)'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">[TAHAP 3] EKSPERIMEN CLUSTERING&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Algoritma     : K-Means (k-means++, n_init=20)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Variasi       : </span><span class="si">{</span><span class="n">df_hasil</span><span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1"> dataset × k=2..10 = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_hasil</span><span class="p">)</span><span class="si">}</span><span class="s1"> eksperimen&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Evaluasi      : Silhouette Coefficient&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Terbaik global: </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">, k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">, silhouette=</span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  Cluster terbaik di setiap dimensi:&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">metode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Linear&#39;</span><span class="p">,</span> <span class="s1">&#39;Poly&#39;</span><span class="p">]:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">[TAHAP 3] EKSPERIMEN CLUSTERING'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Algoritma     : K-Means (k-means++, n_init=20)'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Variasi       : </span><span class="si">{</span><span class="n">df_hasil</span><span class="p">[</span><span class="s2">"dataset"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1"> dataset × k=2..10 = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_hasil</span><span class="p">)</span><span class="si">}</span><span class="s1"> eksperimen'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Evaluasi      : Silhouette Coefficient'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Terbaik global: </span><span class="si">{</span><span class="n">BEST_DATASET</span><span class="si">}</span><span class="s1">, k=</span><span class="si">{</span><span class="n">BEST_K</span><span class="si">}</span><span class="s1">, silhouette=</span><span class="si">{</span><span class="n">BEST_SIL</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">  Cluster terbaik di setiap dimensi:'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">metode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Linear'</span><span class="p">,</span> <span class="s1">'Poly'</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">DIMENSI</span><span class="p">:</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">BEST_PER_DIM</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">metode</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">info</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;11</span><span class="si">}</span><span class="s2"> k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">  sil=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;silhouette&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  &quot;</span>
-                  <span class="sa">f</span><span class="s2">&quot;ukuran: </span><span class="si">{</span><span class="s1">&#39; / &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;ukuran&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"    </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;11</span><span class="si">}</span><span class="s2"> k=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'k'</span><span class="p">]</span><span class="si">}</span><span class="s2">  sil=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'silhouette'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  "</span>
+                  <span class="sa">f</span><span class="s2">"ukuran: </span><span class="si">{</span><span class="s1">' / '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">info</span><span class="p">[</span><span class="s1">'ukuran'</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">[TAHAP 4] VISUALISASI PETA&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Geocoding     : Nominatim (OpenStreetMap) + hardcoded&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Peta interaktif : output/peta_clustering_interaktif.html&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Peta statis     : output/12_peta_statis.png&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Peta per dimensi: output/13_peta_per_dimensi.png&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">[TAHAP 4] VISUALISASI PETA'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Geocoding     : Nominatim (OpenStreetMap) + hardcoded'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Peta interaktif : output/peta_clustering_interaktif.html'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Peta statis     : output/12_peta_statis.png'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  Peta per dimensi: output/13_peta_per_dimensi.png'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">DISTRIBUSI WILAYAH PER CLUSTER:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">DISTRIBUSI WILAYAH PER CLUSTER:'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'-'</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">BEST_K</span><span class="p">):</span>
-    <span class="n">mask</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span>
-    <span class="n">wils</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">wils</span><span class="p">)</span><span class="si">}</span><span class="s1"> wilayah) ─ warna: </span><span class="si">{</span><span class="n">CLUSTER_COLORS</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">'cluster'</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span>
+    <span class="n">wils</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">'daerah'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">wils</span><span class="p">)</span><span class="si">}</span><span class="s1"> wilayah) ─ warna: </span><span class="si">{</span><span class="n">CLUSTER_COLORS</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">wils</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   • </span><span class="si">{</span><span class="n">w</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'   • </span><span class="si">{</span><span class="n">w</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">separator</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; OUTPUT FILES (folder output/)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="n">separator</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">' OUTPUT FILES (folder output/)'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">OUTPUT_DIR</span><span class="p">)):</span>
     <span class="n">fpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUTPUT_DIR</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
     <span class="n">size</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  </span><span class="si">{</span><span class="n">fname</span><span class="si">:</span><span class="s1">&lt;45</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">size</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s1">6.1f</span><span class="si">}</span><span class="s1"> KB&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">[SELESAI]&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  </span><span class="si">{</span><span class="n">fname</span><span class="si">:</span><span class="s1">&lt;45</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">size</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s1">6.1f</span><span class="si">}</span><span class="s1"> KB'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">[SELESAI]'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -20465,7 +20459,7 @@ Cluster 1 (2 wilayah) ─ warna: #1E88E5
         },
         kernelOptions: {
             name: "python3",
-            path: "./Clustering_Segmentasi\04_Visualisasi_Peta"
+            path: "./Clustering_Segmentasi/04_Visualisasi_Peta"
         },
         predefinedOutput: true
     }
@@ -20552,7 +20546,7 @@ By Okan Syailendra Wahyudi
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>

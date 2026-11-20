@@ -1,30 +1,20 @@
 Traceback (most recent call last):
-  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "/home/kannz/.local/share/uv/tools/jupyter-book/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-    ~~~~~~~~~^
-        nb,
-        ^^^
-    ...<4 lines>...
-        **kwargs,
-        ^^^^^^^^^
-    )
-    ^
-  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 1323, in execute
+  File "/home/kannz/.local/share/uv/tools/jupyter-book/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kannz/.local/share/uv/tools/jupyter-book/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
-  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kannz/.local/share/uv/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
     return future.result()
-           ~~~~~~~~~~~~~^^
-  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+           ^^^^^^^^^^^^^^^
+  File "/home/kannz/.local/share/uv/tools/jupyter-book/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
     await self.async_execute_cell(
-        cell, index, execution_count=self.code_cells_executed + 1
-    )
-  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+  File "/home/kannz/.local/share/uv/tools/jupyter-book/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "C:\Users\OKAN\AppData\Local\Programs\Python\Python314\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+  File "/home/kannz/.local/share/uv/tools/jupyter-book/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -53,14 +43,14 @@ from scipy.stats import skew
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Ekstraksi fitur tekstur GLCM Haralick
-from skimage.feature import graycomatrix, graycoprops
+# Ekstraksi fitur tekstur GLCM Haralick dan HOG
+from skimage.feature import graycomatrix, graycoprops, hog, local_binary_pattern
 
 # Prapemrosesan, pembagian data, dan pipeline
 from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
-from sklearn.feature_selection import f_classif
+from sklearn.feature_selection import f_classif, SelectKBest
 
 # Algoritma klasifikasi Machine Learning klasik dan ensemble
 from sklearn.linear_model import LogisticRegression
@@ -68,6 +58,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.ensemble import (
     RandomForestClassifier,
+    ExtraTreesClassifier,
     GradientBoostingClassifier,
     VotingClassifier,
     StackingClassifier
@@ -88,18 +79,22 @@ warnings.filterwarnings('ignore')
 plt.style.use('seaborn-v0_8-whitegrid')
 plt.rcParams['font.family'] = 'DejaVu Sans'
 
-print("Pustaka pendukung berhasil dimuat.")
+print("Pustaka pendukung berhasil dimuat secara lengkap.")
+
 ------------------
 
 
 [31m---------------------------------------------------------------------------[39m
 [31mModuleNotFoundError[39m                       Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 19[39m
-[32m     16[39m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m:
-[32m     17[39m     has_heif = [38;5;28;01mFalse[39;00m
-[32m---> [39m[32m19[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mcv2[39;00m
-[32m     20[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mnp[39;00m
-[32m     21[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mpandas[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mpd[39;00m
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 9[39m
+[32m      5[39m [38;5;28;01mimport[39;00m os
+[32m      6[39m [38;5;28;01mimport[39;00m glob
+[32m      7[39m [38;5;28;01mimport[39;00m time
+[32m      8[39m [38;5;28;01mimport[39;00m warnings
+[32m----> [39m[32m9[39m [38;5;28;01mfrom[39;00m PIL [38;5;28;01mimport[39;00m Image
+[32m     10[39m 
+[32m     11[39m [38;5;66;03m# Dukungan pembacaan format HEIC (Apple iPhone) ke dalam Pillow[39;00m
+[32m     12[39m [38;5;28;01mtry[39;00m:
 
-[31mModuleNotFoundError[39m: No module named 'cv2'
+[31mModuleNotFoundError[39m: No module named 'PIL'
 

@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="./" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Analisis Time Series: Persiapan Data Polutan Manyar &#8212; PSD - Materi</title>
   
@@ -28,35 +29,39 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'time_series';</script>
@@ -160,18 +165,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -288,9 +282,9 @@
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -431,9 +425,9 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -478,14 +472,14 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-time-series-persiapan-data-polutan-manyar">
-<h1>Analisis Time Series: Persiapan Data Polutan Manyar<a class="headerlink" href="#analisis-time-series-persiapan-data-polutan-manyar" title="Link to this heading">#</a></h1>
+<h1>Analisis Time Series: Persiapan Data Polutan Manyar<a class="headerlink" href="#analisis-time-series-persiapan-data-polutan-manyar" title="Permalink to this heading">#</a></h1>
 <p>Dalam proyek ini, kita menggunakan data historis kualitas udara (polutan) yang direkam berdasarkan urutan waktu. Sebelum melakukan pemodelan dan peramalan tren <em>time series</em>, data mentah dikelola di dalam <em>cloud database</em> agar proses penarikan data ke sistem analitik menjadi lebih efisien dan terpusat.</p>
 <p>Dokumen ini mencakup alur lengkap mulai dari migrasi data awal hingga pengolahan dasar menggunakan KNIME Analytics Platform, termasuk penjelasan matematis di balik setiap fitur statistik yang dihasilkan.</p>
 <section id="migrasi-data-ke-aiven-postgresql-via-dbeaver">
-<h2>1. Migrasi Data ke Aiven PostgreSQL (via DBeaver)<a class="headerlink" href="#migrasi-data-ke-aiven-postgresql-via-dbeaver" title="Link to this heading">#</a></h2>
+<h2>1. Migrasi Data ke Aiven PostgreSQL (via DBeaver)<a class="headerlink" href="#migrasi-data-ke-aiven-postgresql-via-dbeaver" title="Permalink to this heading">#</a></h2>
 <p>Tahap pertama bertujuan untuk memindahkan data historis (<code class="docutils literal notranslate"><span class="pre">polutan_Manyar_2025_2026.csv</span></code>) ke dalam layanan <em>cloud database</em> Aiven agar siap diakses secara daring dari berbagai platform, termasuk DBeaver dan KNIME.</p>
 <section id="pembuatan-struktur-tabel-di-aiven">
-<h3>1.1. Pembuatan Struktur Tabel di Aiven<a class="headerlink" href="#pembuatan-struktur-tabel-di-aiven" title="Link to this heading">#</a></h3>
+<h3>1.1. Pembuatan Struktur Tabel di Aiven<a class="headerlink" href="#pembuatan-struktur-tabel-di-aiven" title="Permalink to this heading">#</a></h3>
 <p>Langkah pertama sebelum memasukkan data adalah membuat penampung datanya, yaitu sebuah tabel. Karena ini adalah analisis runtun waktu, tipe data untuk kolom waktu (<code class="docutils literal notranslate"><span class="pre">time</span></code>) wajib didefinisikan sebagai <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code>.</p>
 <p>Melalui fitur <strong>PG Studio</strong> di <em>dashboard</em> Aiven, kita dapat membuat tabel dengan menjalankan <em>query</em> SQL. Berikut adalah langkah-langkahnya:</p>
 <ol class="arabic simple">
@@ -496,9 +490,9 @@ document.write(`
 </ol>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">polutan_Manyar</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="k">time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span>
-<span class="w">    </span><span class="ss">&quot;CO&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
-<span class="w">    </span><span class="ss">&quot;NO2&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
-<span class="w">    </span><span class="ss">&quot;SO2&quot;</span><span class="w"> </span><span class="nb">NUMERIC</span>
+<span class="w">    </span><span class="ss">"CO"</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">"NO2"</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">"SO2"</span><span class="w"> </span><span class="nb">NUMERIC</span>
 <span class="p">);</span>
 </pre></div>
 </div>
@@ -509,7 +503,7 @@ document.write(`
 <em>(Keterangan: Tampilan PG Studio di Aiven saat pembuatan tabel)</em></p>
 </section>
 <section id="menghubungkan-dbeaver-dengan-aiven">
-<h3>1.2. Menghubungkan DBeaver dengan Aiven<a class="headerlink" href="#menghubungkan-dbeaver-dengan-aiven" title="Link to this heading">#</a></h3>
+<h3>1.2. Menghubungkan DBeaver dengan Aiven<a class="headerlink" href="#menghubungkan-dbeaver-dengan-aiven" title="Permalink to this heading">#</a></h3>
 <p>Agar kita bisa mengelola data dan mengimpor file CSV dengan mudah, kita akan menggunakan aplikasi <strong>DBeaver</strong> yang ada di komputer lokal dan menghubungkannya ke <em>database</em> Aiven di <em>cloud</em>.</p>
 <p><strong>Langkah-langkah koneksi:</strong></p>
 <ol class="arabic simple">
@@ -527,7 +521,7 @@ document.write(`
 </ol>
 </section>
 <section id="import-data-csv-ke-dbeaver">
-<h3>1.3. Import Data CSV ke DBeaver<a class="headerlink" href="#import-data-csv-ke-dbeaver" title="Link to this heading">#</a></h3>
+<h3>1.3. Import Data CSV ke DBeaver<a class="headerlink" href="#import-data-csv-ke-dbeaver" title="Permalink to this heading">#</a></h3>
 <p>Setelah DBeaver berhasil terhubung ke Aiven dan tabel <code class="docutils literal notranslate"><span class="pre">polutan_Manyar</span></code> sudah terlihat di skema <code class="docutils literal notranslate"><span class="pre">public</span></code>, saatnya memasukkan data dari file CSV.</p>
 <p><strong>Langkah-langkah import data:</strong></p>
 <ol class="arabic simple">
@@ -548,10 +542,10 @@ Anda bisa mengecek total baris data yang berhasil diunggah dengan menjalankan qu
 </section>
 <hr class="docutils" />
 <section id="integrasi-dan-pengolahan-time-series-di-knime">
-<h2>2. Integrasi dan Pengolahan Time Series di KNIME<a class="headerlink" href="#integrasi-dan-pengolahan-time-series-di-knime" title="Link to this heading">#</a></h2>
+<h2>2. Integrasi dan Pengolahan Time Series di KNIME<a class="headerlink" href="#integrasi-dan-pengolahan-time-series-di-knime" title="Permalink to this heading">#</a></h2>
 <p>Setelah data siap dan tersimpan dengan aman di <em>cloud database</em> Aiven, tahapan selanjutnya adalah menarik data tersebut ke ruang kerja lokal (KNIME Analytics Platform) untuk pra-pemrosesan dan analisis tren.</p>
 <section id="menghubungkan-aiven-ke-knime">
-<h3>Menghubungkan Aiven ke KNIME<a class="headerlink" href="#menghubungkan-aiven-ke-knime" title="Link to this heading">#</a></h3>
+<h3>Menghubungkan Aiven ke KNIME<a class="headerlink" href="#menghubungkan-aiven-ke-knime" title="Permalink to this heading">#</a></h3>
 <p>Proses menghubungkan KNIME ke Aiven pada prinsipnya mirip dengan menghubungkan DBeaver. KNIME akan mengambil data secara langsung dari <em>cloud</em>. Alur koneksinya (<em>workflow</em>) dibangun menggunakan beberapa node utama secara berurutan:</p>
 <ul>
 <li><p><strong>PostgreSQL Connector</strong>: Diatur menggunakan detail host, port, dan kredensial server Aiven. Pada tab JDBC Parameters, properti tambahan <code class="docutils literal notranslate"><span class="pre">sslmode</span></code> dengan nilai <code class="docutils literal notranslate"><span class="pre">require</span></code> dikonfigurasi agar node dapat terhubung. Hal ini penting karena Aiven menuntut koneksi SSL.</p>
@@ -574,7 +568,7 @@ Alih-alih mengecek polutan satu per satu, node <em>Statistics</em> akan secara o
 </ul>
 </section>
 <section id="penjelasan-rumus-dan-contoh-perhitungan-fitur-pada-node-statistics">
-<h3>2.1. Penjelasan Rumus dan Contoh Perhitungan Fitur pada Node Statistics<a class="headerlink" href="#penjelasan-rumus-dan-contoh-perhitungan-fitur-pada-node-statistics" title="Link to this heading">#</a></h3>
+<h3>2.1. Penjelasan Rumus dan Contoh Perhitungan Fitur pada Node Statistics<a class="headerlink" href="#penjelasan-rumus-dan-contoh-perhitungan-fitur-pada-node-statistics" title="Permalink to this heading">#</a></h3>
 <p>Bagian ini menjelaskan makna, rumus matematis, dan contoh perhitungan manual untuk tiap fitur statistik yang muncul di output node <em>Statistics</em>. Sebagai contoh perhitungan, digunakan 5 data NO2 pertama dari file <code class="docutils literal notranslate"><span class="pre">polutan_Manyar_2025_2026.csv</span></code> (tanggal 2025-08-31 s.d. 2025-09-04):</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -770,7 +764,7 @@ $<span class="math notranslate nohighlight">\(\text{Kurtosis} \approx -0.85\)</s
 </section>
 <hr class="docutils" />
 <section id="kesimpulan-hasil-pre-processing">
-<h2>3. Kesimpulan &amp; Hasil Pre-processing<a class="headerlink" href="#kesimpulan-hasil-pre-processing" title="Link to this heading">#</a></h2>
+<h2>3. Kesimpulan &amp; Hasil Pre-processing<a class="headerlink" href="#kesimpulan-hasil-pre-processing" title="Permalink to this heading">#</a></h2>
 <p>Dari tahapan pengumpulan data ke database <em>cloud</em> (Aiven) hingga proses transformasi di dalam KNIME, kita telah berhasil mempersiapkan data mentah menjadi himpunan data (dataset) runtun waktu yang berkualitas tinggi. Berikut adalah rangkuman dari hasil <em>pre-processing</em> ini:</p>
 <ol class="arabic simple">
 <li><p><strong>Sentralisasi Data yang Aman</strong>: Data historis polutan Manyar kini tersimpan dengan aman di Aiven PostgreSQL dan diakses menggunakan enkripsi SSL, memungkinkan kolaborasi atau penarikan data dari berbagai platform kapan saja tanpa harus memindahkan <em>file</em> CSV secara manual.</p></li>
@@ -880,7 +874,7 @@ By Okan Syailendra Wahyudi
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>

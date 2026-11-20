@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Penjelasan Proses Clustering Menggunakan KNIME &#8212; PSD - Materi</title>
   
@@ -28,35 +29,39 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clustering/penjelasan_clustering_knime';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -158,18 +163,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -286,9 +280,9 @@
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -429,9 +423,9 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -474,17 +468,17 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="penjelasan-proses-clustering-menggunakan-knime">
-<h1>Penjelasan Proses Clustering Menggunakan KNIME<a class="headerlink" href="#penjelasan-proses-clustering-menggunakan-knime" title="Link to this heading">#</a></h1>
+<h1>Penjelasan Proses Clustering Menggunakan KNIME<a class="headerlink" href="#penjelasan-proses-clustering-menggunakan-knime" title="Permalink to this heading">#</a></h1>
 <p>Dokumen ini menjelaskan proses clustering pada data polutan (NO2, SO2, dan CO) menggunakan tools KNIME. Terdapat 3 file CSV yang mewakili masing-masing polutan dari direktori <code class="docutils literal notranslate"><span class="pre">Data_Polutan_Sekelas</span></code>, dan ketiganya diproses menggunakan alur kerja (workflow) yang identik.</p>
 <section id="alur-kerja-workflow-knime">
-<h2>Alur Kerja (Workflow) KNIME<a class="headerlink" href="#alur-kerja-workflow-knime" title="Link to this heading">#</a></h2>
+<h2>Alur Kerja (Workflow) KNIME<a class="headerlink" href="#alur-kerja-workflow-knime" title="Permalink to this heading">#</a></h2>
 <p>Secara umum, workflow clustering dibagi menjadi dua jalur untuk membandingkan proses pengelompokan data dengan dan tanpa reduksi dimensi (PCA):</p>
 <ol class="arabic simple">
 <li><p><strong>Jalur Atas (Dengan PCA)</strong>: Data dari CSV Reader diproses terlebih dahulu melalui node PCA untuk reduksi dimensi, kemudian masuk ke node k-Means, dan hasilnya divisualisasikan dengan Scatter Plot.</p></li>
 <li><p><strong>Jalur Bawah (Tanpa PCA)</strong>: Data dari CSV Reader langsung dimasukkan ke node k-Means tanpa reduksi dimensi, lalu divisualisasikan dengan Scatter Plot.</p></li>
 </ol>
 <section id="konfigurasi-node">
-<h3>Konfigurasi Node<a class="headerlink" href="#konfigurasi-node" title="Link to this heading">#</a></h3>
+<h3>Konfigurasi Node<a class="headerlink" href="#konfigurasi-node" title="Permalink to this heading">#</a></h3>
 <p>Berikut adalah rincian konfigurasi untuk masing-masing node yang digunakan pada workflow:</p>
 <ul class="simple">
 <li><p><strong>CSV Reader</strong>:</p>
@@ -518,24 +512,24 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="visualisasi-workflow-dan-scatter-plot">
-<h2>Visualisasi Workflow dan Scatter Plot<a class="headerlink" href="#visualisasi-workflow-dan-scatter-plot" title="Link to this heading">#</a></h2>
+<h2>Visualisasi Workflow dan Scatter Plot<a class="headerlink" href="#visualisasi-workflow-dan-scatter-plot" title="Permalink to this heading">#</a></h2>
 <p>Berikut adalah gambar dari masing-masing workflow dan hasil scatter plot untuk ketiga dataset polutan (NO2, SO2, dan CO). Pastikan gambar-gambar di bawah ini sudah disimpan di dalam folder <code class="docutils literal notranslate"><span class="pre">images</span></code> dengan nama yang sesuai.</p>
 <section id="polutan-no2">
-<h3>1. Polutan NO2<a class="headerlink" href="#polutan-no2" title="Link to this heading">#</a></h3>
+<h3>1. Polutan NO2<a class="headerlink" href="#polutan-no2" title="Permalink to this heading">#</a></h3>
 <p><img alt="Workflow NO2" src="../_images/workflow_1.png" />
 <em>Gambar 1: Workflow KNIME untuk file CSV NO2.</em></p>
 <p><img alt="Scatter Plot NO2" src="../_images/scatter_plot_1.png" />
 <em>Gambar 2: Hasil Scatter Plot untuk NO2 (Jalur atas dengan PCA / Jalur bawah tanpa PCA).</em></p>
 </section>
 <section id="polutan-so2">
-<h3>2. Polutan SO2<a class="headerlink" href="#polutan-so2" title="Link to this heading">#</a></h3>
+<h3>2. Polutan SO2<a class="headerlink" href="#polutan-so2" title="Permalink to this heading">#</a></h3>
 <p><img alt="Workflow SO2" src="../_images/workflow_2.png" />
 <em>Gambar 3: Workflow KNIME untuk file CSV SO2.</em></p>
 <p><img alt="Scatter Plot SO2" src="../_images/scatter_plot_2.png" />
 <em>Gambar 4: Hasil Scatter Plot untuk SO2.</em></p>
 </section>
 <section id="polutan-co">
-<h3>3. Polutan CO<a class="headerlink" href="#polutan-co" title="Link to this heading">#</a></h3>
+<h3>3. Polutan CO<a class="headerlink" href="#polutan-co" title="Permalink to this heading">#</a></h3>
 <p><img alt="Workflow CO" src="../_images/workflow_3.png" />
 <em>Gambar 5: Workflow KNIME untuk file CSV CO.</em></p>
 <p><img alt="Scatter Plot CO" src="../_images/scatter_plot_3.png" />
@@ -642,7 +636,7 @@ By Okan Syailendra Wahyudi
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
